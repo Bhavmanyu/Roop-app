@@ -124,12 +124,15 @@ export default function Footer() {
             © 2025 Roopé Beauty Technologies Pvt. Ltd. Made with{" "}
             <Heart className="w-3 h-3 text-champagne-DEFAULT fill-current" /> in India.
           </p>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 flex-wrap">
             {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((item) => (
               <a key={item} href="#" className="text-white/30 text-xs hover:text-white/60 transition-colors duration-200">
                 {item}
               </a>
             ))}
+            <Link href="/admin" className="text-champagne-DEFAULT text-xs font-medium hover:text-white transition-all duration-300 border border-champagne-DEFAULT/20 hover:border-champagne-DEFAULT px-3 py-1.5 rounded-xl bg-champagne-DEFAULT/5">
+              Admin Portal
+            </Link>
           </div>
         </div>
       </div>
