@@ -36,7 +36,7 @@ export default function BookPage() {
     date: "",
     time: "",
     address: "",
-    city: "Mumbai",
+    city: "Indore",
     artistTier: "premium",
     extras: [] as string[],
     coupon: "",
@@ -315,7 +315,7 @@ export default function BookPage() {
                               className="w-full pl-11 pr-4 py-3.5 rounded-2xl text-sm outline-none appearance-none"
                               style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
                             >
-                              {["Mumbai", "Delhi", "Bangalore", "Hyderabad", "Pune", "Chennai", "Kolkata", "Jaipur"].map((c) => (
+                              {["Indore"].map((c) => (
                                 <option key={c}>{c}</option>
                               ))}
                             </select>

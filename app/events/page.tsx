@@ -14,7 +14,7 @@ const addons = [
   { id: "hairstyle2", label: "Blowout / Blowdry", price: 799 },
 ];
 
-const cities = ["Mumbai", "Delhi", "Bangalore", "Hyderabad", "Pune", "Chennai", "Kolkata", "Jaipur"];
+const cities = ["Indore"];
 
 export default function EventsPage() {
   const [selectedPackage, setSelectedPackage] = useState<string | null>("event-full");

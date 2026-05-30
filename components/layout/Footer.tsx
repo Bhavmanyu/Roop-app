@@ -12,7 +12,6 @@ const footerLinks = {
   ],
   company: [
     { label: "About Roopé", href: "/about" },
-    { label: "Artist Network", href: "/artists" },
     { label: "Gallery", href: "/gallery" },
     { label: "Reviews", href: "/reviews" },
     { label: "Careers", href: "#" },
@@ -54,9 +53,6 @@ export default function Footer() {
             <Link href="/book" className="btn-primary px-8 py-4 text-sm">
               Book a Session
             </Link>
-            <Link href="/artists" className="btn-glass px-8 py-4 text-sm" style={{ color: "white", borderColor: "rgba(255,255,255,0.2)", background: "rgba(255,255,255,0.06)" }}>
-              Explore Artists
-            </Link>
           </div>
         </div>
       </div>
@@ -88,7 +84,7 @@ export default function Footer() {
               ))}
             </div>
             <div className="flex flex-wrap gap-2">
-              {["Mumbai", "Delhi", "Bangalore", "Hyderabad", "Pune", "Chennai"].map((city) => (
+              {["Indore"].map((city) => (
                 <span key={city} className="px-3 py-1 rounded-full text-xs text-white/40"
                   style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
                   {city}

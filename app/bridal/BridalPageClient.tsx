@@ -14,7 +14,7 @@ const bridalLooks = [
   { label: "Soft Dewy Bride", image: "/images/gallery_natural_glam.png" },
 ];
 
-const cities = ["Mumbai", "Delhi", "Bangalore", "Hyderabad", "Pune", "Chennai", "Kolkata", "Jaipur"];
+const cities = ["Indore"];
 
 export default function BridalPageClient() {
   const [activeLook, setActiveLook] = useState(0);
