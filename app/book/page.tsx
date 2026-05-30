@@ -22,6 +22,8 @@ import {
 } from "lucide-react";
 import { services } from "@/lib/data";
 import { formatPrice } from "@/lib/utils";
+import { supabase } from "@/lib/supabase";
+import AuthModal from "@/components/auth/AuthModal";
 
 const occasions = [
   { id: "bridal", label: "Wedding / Bridal", icon: "💍" },
@@ -64,6 +66,8 @@ export default function BookPage() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [selectedServiceId, setSelectedServiceId] = useState<string | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [user, setUser] = useState<any>(null);
 
   // Checkout selections
   const [selections, setSelections] = useState({
@@ -113,7 +117,37 @@ export default function BookPage() {
 
   // Dynamic next 7 days list
   const [availableDays, setAvailableDays] = useState<any[]>([]);
+  
   useEffect(() => {
+    // Get active user session on load
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session?.user) {
+        setUser(session.user);
+        setSelections(prev => ({
+          ...prev,
+          email: session.user.email || "",
+          name: session.user.user_metadata?.full_name || prev.name || "",
+          phone: session.user.user_metadata?.phone || prev.phone || "",
+        }));
+      }
+    });
+
+    // Listen for real-time auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        setUser(session.user);
+        setSelections(prev => ({
+          ...prev,
+          email: session.user.email || "",
+          name: session.user.user_metadata?.full_name || prev.name || "",
+          phone: session.user.user_metadata?.phone || prev.phone || "",
+        }));
+      } else {
+        setUser(null);
+        setSelections(prev => ({ ...prev, name: "", email: "", phone: "" }));
+      }
+    });
+
     const days = [];
     const msInDay = 24 * 60 * 60 * 1000;
     const today = new Date();
@@ -139,6 +173,8 @@ export default function BookPage() {
     if (days[0]) {
       setSelections(prev => ({ ...prev, date: days[0].id }));
     }
+
+    return () => subscription.unsubscribe();
   }, []);
 
   const categories = [
@@ -172,7 +208,7 @@ export default function BookPage() {
       setAppliedCoupon("WELCOME");
       setCouponError("");
     } else {
-      setCouponError("Invalid coupon code. Try WELCOME or ROOPE25");
+      setCouponError("Invalid coupon. Try WELCOME or ROOPE25");
       setAppliedCoupon("");
     }
   };
@@ -503,6 +539,25 @@ export default function BookPage() {
 
               {/* Drawer Body Scroll */}
               <div className="flex-1 overflow-y-auto px-6 py-6 space-y-8">
+                {/* Auth Pre-fill Promotion Banner */}
+                {!user && (
+                  <div className="p-3.5 bg-champagne-300/10 border border-champagne-DEFAULT/20 rounded-2xl flex items-center justify-between gap-3 shadow-sm">
+                    <div className="flex gap-2.5 items-start">
+                      <Sparkles className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
+                      <div>
+                        <p className="text-[10px] font-bold text-roope-primary uppercase tracking-wide">Sign in for faster checkout</p>
+                        <p className="text-[9px] text-stone-warm/75 mt-0.5">Auto-fill details & track your scheduled artist arrival.</p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => setIsAuthModalOpen(true)}
+                      className="text-[10px] font-bold uppercase tracking-wider text-gold hover:underline cursor-pointer flex-shrink-0"
+                    >
+                      Sign In
+                    </button>
+                  </div>
+                )}
+
                 {/* 1. Selected Primary Service Summary */}
                 <div className="bg-white rounded-3xl p-5 border border-pearl-200 shadow-sm">
                   <div className="flex justify-between items-start">
@@ -907,6 +962,12 @@ export default function BookPage() {
           </>
         )}
       </AnimatePresence>
+
+      {/* Auth Modal Trigger for Sign In Banner */}
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+      />
     </div>
   );
 }

@@ -4,7 +4,9 @@ import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, User, LogOut, Calendar, Shield } from "lucide-react";
+import { supabase } from "@/lib/supabase";
+import AuthModal from "@/components/auth/AuthModal";
 
 const navLinks = [
   { href: "/services", label: "Services" },
@@ -25,19 +27,50 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [user, setUser] = useState<any>(null);
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
+  
   const pathname = usePathname();
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Get active session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
     const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    
+    return () => {
+      subscription.unsubscribe();
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   useEffect(() => {
     setMobileOpen(false);
     setActiveDropdown(null);
+    setProfileDropdownOpen(false);
   }, [pathname]);
+
+  // Close dropdown on click outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setProfileDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const handleDropdownEnter = (label: string) => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -46,6 +79,17 @@ export default function Navbar() {
 
   const handleDropdownLeave = () => {
     timeoutRef.current = setTimeout(() => setActiveDropdown(null), 150);
+  };
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    setProfileDropdownOpen(false);
+  };
+
+  const getInitials = () => {
+    if (!user) return "";
+    const name = user.user_metadata?.full_name || user.email || "";
+    return name.slice(0, 2).toUpperCase();
   };
 
   return (
@@ -137,11 +181,68 @@ export default function Navbar() {
             </Link>
             <Link
               href="/contact"
-              className="text-sm font-medium text-stone-warm hover:text-roope-primary transition-colors duration-200 px-3 py-2"
+              className="text-sm font-medium text-stone-warm hover:text-roope-primary transition-colors duration-200 px-3 py-2 mr-1"
             >
               Support
             </Link>
-            <Link href="/book" className="btn-primary text-sm px-6 py-2.5">
+
+            {/* Auth section */}
+            {user ? (
+              <div className="relative" ref={dropdownRef}>
+                <button
+                  onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
+                  className="w-9 h-9 rounded-full bg-champagne-300/30 border border-champagne-DEFAULT flex items-center justify-center text-roope-primary font-bold text-xs uppercase hover:bg-champagne-300/50 transition-colors shadow-sm cursor-pointer"
+                >
+                  {getInitials()}
+                </button>
+
+                <AnimatePresence>
+                  {profileDropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8, scale: 0.97 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 8, scale: 0.97 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute right-0 mt-2.5 w-56 bg-white border border-pearl-200 rounded-2xl shadow-xl p-2.5 z-50 text-left"
+                    >
+                      <div className="px-3.5 py-2.5 border-b border-pearl-200 mb-2">
+                        <p className="text-xs font-bold text-roope-primary truncate">
+                          {user.user_metadata?.full_name || "Roopé Client"}
+                        </p>
+                        <p className="text-[10px] text-stone-warm/60 truncate mt-0.5">
+                          {user.email}
+                        </p>
+                      </div>
+
+                      <Link
+                        href="/profile/bookings"
+                        className="flex items-center gap-2.5 w-full px-3.5 py-2 rounded-xl text-xs font-semibold text-stone-warm hover:text-roope-primary hover:bg-pearl transition-all duration-200"
+                      >
+                        <Calendar className="w-4 h-4 text-stone-warm/50" />
+                        <span>My Bookings</span>
+                      </Link>
+
+                      <button
+                        onClick={handleSignOut}
+                        className="flex items-center gap-2.5 w-full px-3.5 py-2 rounded-xl text-xs font-semibold text-red-500 hover:bg-red-500/5 transition-all duration-200 mt-1 cursor-pointer"
+                      >
+                        <LogOut className="w-4 h-4 text-red-400" />
+                        <span>Sign Out</span>
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ) : (
+              <button
+                onClick={() => setIsAuthModalOpen(true)}
+                className="text-sm font-semibold uppercase tracking-wider text-roope-primary bg-champagne-300/30 hover:bg-champagne-300/50 px-5 py-2 rounded-full transition-colors cursor-pointer border border-champagne-DEFAULT/20"
+              >
+                Sign In
+              </button>
+            )}
+
+            <Link href="/book" className="btn-primary text-sm px-6 py-2.5 shadow-sm">
               Book Now
             </Link>
           </div>
@@ -173,17 +274,17 @@ export default function Navbar() {
             className="fixed inset-0 z-40 glass-dark md:hidden"
           >
             <div className="flex flex-col h-full pt-24 pb-8 px-8">
-              <nav className="flex flex-col gap-1 flex-1">
+              <nav className="flex flex-col gap-1 flex-1 overflow-y-auto">
                 {navLinks.map((link, i) => (
                   <motion.div
-                    key={link.href}
+                    key={link.label}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.08, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   >
                     {link.children ? (
                       <div>
-                        <p className="section-label py-4 border-b border-white/10">{link.label}</p>
+                        <p className="section-label py-4 border-b border-white/10 uppercase tracking-widest text-[10px] text-white/50">{link.label}</p>
                         {link.children.map((child) => (
                           <Link
                             key={child.href}
@@ -204,12 +305,54 @@ export default function Navbar() {
                     )}
                   </motion.div>
                 ))}
+
+                {/* Mobile Auth Items */}
+                {user ? (
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3, duration: 0.4 }}
+                    className="border-t border-white/10 mt-6 pt-6"
+                  >
+                    <p className="text-white/60 text-xs mb-3 truncate font-medium">Logged in as {user.email}</p>
+                    <Link
+                      href="/profile/bookings"
+                      className="block py-3.5 text-lg font-light text-white hover:text-champagne-DEFAULT transition-colors flex items-center gap-2"
+                    >
+                      <Calendar className="w-5 h-5 text-white/50" /> My Bookings
+                    </Link>
+                    <button
+                      onClick={handleSignOut}
+                      className="w-full text-left py-3.5 text-lg font-light text-red-400 hover:text-red-300 transition-colors flex items-center gap-2 mt-1"
+                    >
+                      <LogOut className="w-5 h-5 text-red-400/50" /> Sign Out
+                    </button>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3, duration: 0.4 }}
+                    className="border-t border-white/10 mt-6 pt-6"
+                  >
+                    <button
+                      onClick={() => {
+                        setMobileOpen(false);
+                        setIsAuthModalOpen(true);
+                      }}
+                      className="btn-secondary w-full py-4 text-white hover:text-champagne-DEFAULT border border-white/20 hover:border-champagne-DEFAULT/50 justify-center text-sm font-semibold tracking-wider uppercase"
+                    >
+                      Sign In / Register
+                    </button>
+                  </motion.div>
+                )}
               </nav>
+              
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.4 }}
-                className="mt-auto"
+                className="mt-auto pt-6"
               >
                 <Link href="/book" className="btn-primary w-full justify-center text-base py-4">
                   Book Now
@@ -219,6 +362,12 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Embedded Auth Modal dialog */}
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+      />
     </>
   );
 }
