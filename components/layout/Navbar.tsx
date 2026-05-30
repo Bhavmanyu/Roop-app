@@ -55,22 +55,16 @@ export default function Navbar() {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
           scrolled
-            ? "glass shadow-luxury py-3"
-            : "bg-transparent py-5"
+            ? "glass shadow-luxury py-3 border-stone-warm/15"
+            : "bg-pearl/70 backdrop-blur-md py-4 border-stone-warm/10"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="group flex items-center gap-2.5">
-            <div className="relative">
-              <div className="w-8 h-8 rounded-full flex items-center justify-center"
-                style={{ background: "linear-gradient(135deg, #C9A84C 0%, #B8922E 100%)" }}>
-                <span className="text-white text-sm font-display font-light">R</span>
-              </div>
-            </div>
-            <span className="font-display text-xl font-light tracking-wide text-roope-primary group-hover:opacity-70 transition-opacity duration-300">
+          <Link href="/" className="group flex items-center">
+            <span className="font-display text-2xl font-bold tracking-wide text-roope-primary group-hover:text-champagne-500 transition-colors duration-300">
               Roopé
             </span>
           </Link>

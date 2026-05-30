@@ -66,12 +66,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand col */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2.5 mb-6">
-              <div className="w-9 h-9 rounded-full flex items-center justify-center"
-                style={{ background: "linear-gradient(135deg, #C9A84C 0%, #B8922E 100%)" }}>
-                <span className="text-white font-display font-light">R</span>
-              </div>
-              <span className="font-display text-2xl font-light text-white">Roopé</span>
+            <Link href="/" className="flex items-center mb-6">
+              <span className="font-display text-2xl font-bold tracking-wide text-white hover:text-champagne-DEFAULT transition-colors duration-300">
+                Roopé
+              </span>
             </Link>
             <p className="text-white/50 text-sm leading-relaxed mb-6 max-w-xs">
               India's most trusted luxury beauty-tech platform. Professional artists, transparent pricing, extraordinary results.
