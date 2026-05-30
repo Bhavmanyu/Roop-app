@@ -45,6 +45,9 @@ export default function BookPage() {
     email: "",
   });
   const [confirmed, setConfirmed] = useState(false);
+  const [bookingId, setBookingId] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const selectedService = services.find((s) => s.id === selections.service);
   const selectedTier = artistTiers.find((t) => t.id === selections.artistTier);
@@ -69,6 +72,46 @@ export default function BookPage() {
     return true;
   };
 
+  const submitBooking = async (paymentMethod: string) => {
+    setSubmitting(true);
+    setSubmitError("");
+    try {
+      const res = await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: selections.name,
+          phone: selections.phone,
+          email: selections.email,
+          occasion: selections.occasion,
+          service_id: selections.service,
+          service_name: selectedService?.name || "",
+          service_price: selectedService?.price || 0,
+          date: selections.date,
+          time: selections.time,
+          city: selections.city,
+          address: selections.address,
+          artist_tier: selections.artistTier,
+          extras: selections.extras,
+          coupon: selections.coupon,
+          total_amount: total,
+          payment_method: paymentMethod,
+        }),
+      });
+      const json = await res.json();
+      if (res.ok) {
+        setBookingId(json.bookingId);
+        setConfirmed(true);
+      } else {
+        setSubmitError(json.error || "Failed to submit booking. Please try again.");
+      }
+    } catch {
+      setSubmitError("Network error. Please check your connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   if (confirmed) {
     return (
       <div className="min-h-screen flex items-center justify-center px-6 pt-24"
@@ -89,8 +132,8 @@ export default function BookPage() {
             <Check className="w-12 h-12 text-white" />
           </motion.div>
           <h1 className="font-display text-4xl font-light text-roope-primary mb-4">Booking Confirmed!</h1>
-          <p className="text-stone-warm mb-2">Your Roopé artist has been reserved.</p>
-          <p className="text-stone-warm text-sm mb-8">Booking #RP-{Math.floor(Math.random() * 90000) + 10000}</p>
+          <p className="text-stone-warm mb-2">Your Roopé artist has been reserved. A confirmation email has been sent to you.</p>
+          <p className="text-stone-warm text-sm mb-8">Booking #RP-{bookingId.slice(0, 8).toUpperCase()}</p>
           <div className="glass rounded-3xl p-6 text-left mb-8">
             <p className="text-xs text-stone-warm mb-3 uppercase tracking-wider">Booking Summary</p>
             {selectedService && <p className="font-medium text-roope-primary">{selectedService.name}</p>}
@@ -419,9 +462,10 @@ export default function BookPage() {
                           { id: "cod", label: "Pay at Service", icon: "💵" },
                         ].map((method) => (
                           <button key={method.id}
-                            className="w-full p-4 rounded-2xl flex items-center gap-4 border border-pearl-300 hover:border-champagne-DEFAULT transition-all duration-200 text-left"
+                            className="w-full p-4 rounded-2xl flex items-center gap-4 border border-pearl-300 hover:border-champagne-DEFAULT transition-all duration-200 text-left disabled:opacity-60"
                             style={{ background: "rgba(255,255,255,0.8)" }}
-                            onClick={() => setConfirmed(true)}
+                            disabled={submitting}
+                            onClick={() => submitBooking(method.id)}
                           >
                             <span className="text-2xl">{method.icon}</span>
                             <span className="font-medium text-roope-primary">{method.label}</span>
@@ -429,6 +473,12 @@ export default function BookPage() {
                           </button>
                         ))}
                       </div>
+                      {submitError && (
+                        <p className="text-red-500 text-sm text-center mt-2">{submitError}</p>
+                      )}
+                      {submitting && (
+                        <p className="text-center text-sm mt-3" style={{ color: "#C9A84C" }}>Saving your booking...</p>
+                      )}
                       <p className="text-xs text-stone-warm text-center mt-6 flex items-center justify-center gap-1">
                         <CreditCard className="w-3 h-3" /> 256-bit SSL encrypted • 100% secure payment
                       </p>

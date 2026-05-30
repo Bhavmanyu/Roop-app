@@ -20,6 +20,35 @@ export default function ContactPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const phone = process.env.NEXT_PUBLIC_BUSINESS_PHONE || "+91 98765 43210";
+  const whatsapp = process.env.NEXT_PUBLIC_BUSINESS_WHATSAPP || "919876543210";
+  const email = process.env.NEXT_PUBLIC_BUSINESS_EMAIL || "hello@roope.in";
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    try {
+      const res = await fetch("/api/contacts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (res.ok) {
+        setSent(true);
+      } else {
+        const json = await res.json();
+        setError(json.error || "Failed to send message. Please try again.");
+      }
+    } catch {
+      setError("Network error. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -47,23 +76,23 @@ export default function ContactPage() {
               title: "WhatsApp",
               desc: "Chat with us instantly",
               action: "Open WhatsApp",
-              href: "https://wa.me/919999999999",
+              href: `https://wa.me/${whatsapp}`,
               accent: true,
             },
             {
               icon: Phone,
               title: "Call Us",
-              desc: "+91 98765 43210",
+              desc: phone,
               action: "Call Now",
-              href: "tel:+919876543210",
+              href: `tel:${phone.replace(/\s/g, "")}`,
               accent: false,
             },
             {
               icon: Mail,
               title: "Email",
-              desc: "hello@roope.in",
+              desc: email,
               action: "Send Email",
-              href: "mailto:hello@roope.in",
+              href: `mailto:${email}`,
               accent: false,
             },
           ].map(({ icon: Icon, title, desc, action, href, accent }) => (
@@ -104,7 +133,7 @@ export default function ContactPage() {
                 <p className="text-stone-warm text-sm">We&apos;ll get back to you within 30 minutes.</p>
               </motion.div>
             ) : (
-              <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 {[
                   { key: "name", label: "Full Name", type: "text", placeholder: "Your name" },
                   { key: "email", label: "Email Address", type: "email", placeholder: "you@example.com" },
@@ -129,8 +158,11 @@ export default function ContactPage() {
                     style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
                   />
                 </div>
-                <button type="submit" className="btn-primary w-full justify-center py-4 gap-2">
-                  Send Message <Send className="w-4 h-4" />
+                {error && (
+                  <p className="text-red-500 text-sm">{error}</p>
+                )}
+                <button type="submit" disabled={loading} className="btn-primary w-full justify-center py-4 gap-2 disabled:opacity-60">
+                  {loading ? "Sending..." : "Send Message"} <Send className="w-4 h-4" />
                 </button>
               </form>
             )}
@@ -187,7 +219,7 @@ export default function ContactPage() {
           <p className="text-white/50 text-sm mb-8 leading-relaxed">
             Are you a certified makeup artist looking to grow your client base? Apply to join Roopé&apos;s verified artist network and get access to thousands of premium clients.
           </p>
-          <Link href="#" className="btn-primary px-10 py-4 inline-flex items-center gap-2">
+          <Link href="/contact" className="btn-primary px-10 py-4 inline-flex items-center gap-2">
             Apply as Artist <Send className="w-4 h-4" />
           </Link>
         </div>

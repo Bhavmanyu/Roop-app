@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { Check, ArrowRight, Plus, Minus } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Check, ArrowRight, Plus, Minus, Send, X } from "lucide-react";
 import { eventPackages } from "@/lib/data";
 import { formatPrice } from "@/lib/utils";
 
@@ -15,10 +14,18 @@ const addons = [
   { id: "hairstyle2", label: "Blowout / Blowdry", price: 799 },
 ];
 
+const cities = ["Mumbai", "Delhi", "Bangalore", "Hyderabad", "Pune", "Chennai", "Kolkata", "Jaipur"];
+
 export default function EventsPage() {
   const [selectedPackage, setSelectedPackage] = useState<string | null>("event-full");
   const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
   const [groupSize, setGroupSize] = useState(1);
+
+  const [showInquiry, setShowInquiry] = useState(false);
+  const [form, setForm] = useState({ name: "", phone: "", email: "", event_date: "", city: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
   const base = eventPackages.find((p) => p.id === selectedPackage);
   const basePrice = (base?.price || 0) * groupSize;
@@ -29,6 +36,31 @@ export default function EventsPage() {
   const total = basePrice + addonTotal;
   const discount = groupSize >= 4 ? Math.round(total * 0.15) : 0;
   const finalTotal = total - discount;
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setError("");
+    try {
+      const res = await fetch("/api/events", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...form,
+          package_id: selectedPackage,
+          package_name: base?.name || "",
+          group_size: groupSize,
+          add_ons: selectedAddons.map((id) => addons.find((a) => a.id === id)?.label || id),
+        }),
+      });
+      if (res.ok) { setSubmitted(true); }
+      else {
+        const json = await res.json();
+        setError(json.error || "Failed to submit. Please try again.");
+      }
+    } catch { setError("Network error. Please try again."); }
+    finally { setSubmitting(false); }
+  };
 
   return (
     <>
@@ -176,14 +208,111 @@ export default function EventsPage() {
                 <span className="font-semibold text-roope-primary">Total</span>
                 <span className="font-display text-2xl font-light text-roope-primary">{formatPrice(finalTotal)}</span>
               </div>
-              <Link href="/book" className="btn-primary w-full justify-center gap-2 py-4">
+              <button
+                onClick={() => { setShowInquiry(true); setSubmitted(false); setError(""); }}
+                className="btn-primary w-full justify-center gap-2 py-4"
+              >
                 Book Now <ArrowRight className="w-4 h-4" />
-              </Link>
+              </button>
               <p className="text-xs text-stone-warm text-center mt-4">Free cancellation • 24hr support</p>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Inquiry Modal */}
+      <AnimatePresence>
+        {showInquiry && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center px-4"
+            style={{ background: "rgba(26,22,18,0.8)", backdropFilter: "blur(8px)" }}
+            onClick={() => setShowInquiry(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full max-w-lg rounded-4xl p-8 max-h-[90vh] overflow-y-auto"
+              style={{ background: "#FAF6EC" }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <p className="section-label mb-1">Event Inquiry</p>
+                  <h2 className="font-display text-2xl font-light text-roope-primary">{base?.name}</h2>
+                  <p className="text-sm text-stone-warm">{groupSize} {groupSize === 1 ? "person" : "people"} • {formatPrice(finalTotal)}</p>
+                </div>
+                <button onClick={() => setShowInquiry(false)} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-stone-100 transition-colors">
+                  <X className="w-4 h-4 text-stone-warm" />
+                </button>
+              </div>
+
+              {submitted ? (
+                <div className="text-center py-8">
+                  <div className="text-5xl mb-4">✨</div>
+                  <h3 className="font-display text-2xl font-light text-roope-primary mb-2">Inquiry Received!</h3>
+                  <p className="text-stone-warm text-sm">We&apos;ll confirm your event booking within 2 hours.</p>
+                  <button onClick={() => setShowInquiry(false)} className="btn-primary px-8 py-3 mt-6">Close</button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  {[
+                    { key: "name", label: "Full Name", type: "text", placeholder: "Your name" },
+                    { key: "phone", label: "Phone Number", type: "tel", placeholder: "+91 98765 43210" },
+                    { key: "email", label: "Email Address", type: "email", placeholder: "you@example.com" },
+                  ].map(({ key, label, type, placeholder }) => (
+                    <div key={key}>
+                      <label className="block text-sm font-medium text-stone-warm mb-2">{label} *</label>
+                      <input type={type} required placeholder={placeholder}
+                        value={form[key as keyof typeof form]}
+                        onChange={(e) => setForm({ ...form, [key]: e.target.value })}
+                        className="w-full px-4 py-3.5 rounded-2xl text-sm outline-none"
+                        style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
+                      />
+                    </div>
+                  ))}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-stone-warm mb-2">Event Date</label>
+                      <input type="date" value={form.event_date}
+                        onChange={(e) => setForm({ ...form, event_date: e.target.value })}
+                        className="w-full px-4 py-3.5 rounded-2xl text-sm outline-none"
+                        style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-stone-warm mb-2">City *</label>
+                      <select required value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })}
+                        className="w-full px-4 py-3.5 rounded-2xl text-sm outline-none appearance-none"
+                        style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: form.city ? "#1A1612" : "#8B7D6B" }}
+                      >
+                        <option value="">Select city</option>
+                        {cities.map((c) => <option key={c}>{c}</option>)}
+                      </select>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-stone-warm mb-2">Message (optional)</label>
+                    <textarea rows={3} placeholder="Any special requests or requirements..."
+                      value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}
+                      className="w-full px-4 py-3.5 rounded-2xl text-sm outline-none resize-none"
+                      style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
+                    />
+                  </div>
+                  {error && <p className="text-red-500 text-sm">{error}</p>}
+                  <button type="submit" disabled={submitting} className="btn-primary w-full justify-center py-4 gap-2 disabled:opacity-60">
+                    {submitting ? "Submitting..." : "Confirm Inquiry"} <Send className="w-4 h-4" />
+                  </button>
+                </form>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

@@ -1,12 +1,41 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Star, BadgeCheck, Quote, ArrowRight } from "lucide-react";
-import { testimonials } from "@/lib/data";
+import { Star, BadgeCheck, Quote, ArrowRight, Send } from "lucide-react";
+import { testimonials, services } from "@/lib/data";
 
 export default function ReviewsPage() {
+  const [reviewForm, setReviewForm] = useState({
+    name: "", location: "", service: "", rating: 0, review_text: "",
+  });
+  const [hoveredStar, setHoveredStar] = useState(0);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleReviewSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (reviewForm.rating === 0) { setError("Please select a star rating."); return; }
+    setSubmitting(true);
+    setError("");
+    try {
+      const res = await fetch("/api/reviews", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(reviewForm),
+      });
+      if (res.ok) { setSubmitted(true); }
+      else {
+        const json = await res.json();
+        setError(json.error || "Failed to submit. Please try again.");
+      }
+    } catch { setError("Network error. Please try again."); }
+    finally { setSubmitting(false); }
+  };
+
   return (
     <>
       <section className="pt-28 pb-16 px-6" style={{ background: "linear-gradient(160deg, #F8F6F2 0%, #FAF6EC 100%)" }}>
@@ -76,6 +105,108 @@ export default function ReviewsPage() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Write a Review */}
+      <section className="py-20 px-6" style={{ background: "linear-gradient(135deg, #FAF6EC, #F8F6F2)" }}>
+        <div className="max-w-xl mx-auto">
+          <p className="section-label mb-3 text-center">Share Your Experience</p>
+          <h2 className="font-display text-3xl font-light text-roope-primary mb-2 text-center">
+            Write a <span className="italic text-gradient-gold">review.</span>
+          </h2>
+          <p className="text-stone-warm text-sm text-center mb-8">Your review will appear after approval. Thank you for sharing!</p>
+
+          {submitted ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="card-luxury p-8 text-center"
+            >
+              <div className="text-4xl mb-4">💛</div>
+              <h3 className="font-display text-2xl font-light text-roope-primary mb-2">Thank you!</h3>
+              <p className="text-stone-warm text-sm">Your review has been submitted and will appear after approval.</p>
+            </motion.div>
+          ) : (
+            <form onSubmit={handleReviewSubmit} className="card-luxury p-8 space-y-5">
+              {/* Star Rating */}
+              <div>
+                <label className="block text-sm font-medium text-stone-warm mb-3">Your Rating *</label>
+                <div className="flex gap-2">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <button
+                      key={star}
+                      type="button"
+                      onClick={() => setReviewForm({ ...reviewForm, rating: star })}
+                      onMouseEnter={() => setHoveredStar(star)}
+                      onMouseLeave={() => setHoveredStar(0)}
+                      className="transition-transform hover:scale-110"
+                    >
+                      <Star
+                        className="w-8 h-8 transition-colors"
+                        fill={(hoveredStar || reviewForm.rating) >= star ? "#C9A84C" : "none"}
+                        style={{ color: (hoveredStar || reviewForm.rating) >= star ? "#C9A84C" : "#D4C9B8" }}
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {[
+                { key: "name", label: "Full Name", type: "text", placeholder: "Your name" },
+                { key: "location", label: "City / Location", type: "text", placeholder: "e.g. Mumbai" },
+              ].map(({ key, label, type, placeholder }) => (
+                <div key={key}>
+                  <label className="block text-sm font-medium text-stone-warm mb-2">{label} *</label>
+                  <input
+                    type={type}
+                    required
+                    placeholder={placeholder}
+                    value={reviewForm[key as keyof typeof reviewForm] as string}
+                    onChange={(e) => setReviewForm({ ...reviewForm, [key]: e.target.value })}
+                    className="w-full px-4 py-3.5 rounded-2xl text-sm outline-none"
+                    style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
+                  />
+                </div>
+              ))}
+
+              <div>
+                <label className="block text-sm font-medium text-stone-warm mb-2">Service Received *</label>
+                <select
+                  required
+                  value={reviewForm.service}
+                  onChange={(e) => setReviewForm({ ...reviewForm, service: e.target.value })}
+                  className="w-full px-4 py-3.5 rounded-2xl text-sm outline-none appearance-none"
+                  style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
+                >
+                  <option value="">Select a service</option>
+                  {services.map((s) => <option key={s.id} value={s.name}>{s.name}</option>)}
+                  <option value="Essential Bride Package">Essential Bride Package</option>
+                  <option value="Signature Bride Package">Signature Bride Package</option>
+                  <option value="Luxury Bride Package">Luxury Bride Package</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-stone-warm mb-2">Your Review *</label>
+                <textarea
+                  required
+                  rows={4}
+                  placeholder="Tell us about your experience..."
+                  value={reviewForm.review_text}
+                  onChange={(e) => setReviewForm({ ...reviewForm, review_text: e.target.value })}
+                  className="w-full px-4 py-3.5 rounded-2xl text-sm outline-none resize-none"
+                  style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
+                />
+              </div>
+
+              {error && <p className="text-red-500 text-sm">{error}</p>}
+
+              <button type="submit" disabled={submitting} className="btn-primary w-full justify-center py-4 gap-2 disabled:opacity-60">
+                {submitting ? "Submitting..." : "Submit Review"} <Send className="w-4 h-4" />
+              </button>
+            </form>
+          )}
         </div>
       </section>
 

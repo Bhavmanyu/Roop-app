@@ -3,8 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { Check, Star, ArrowRight, Sparkles } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Check, Star, ArrowRight, Sparkles, Send, X } from "lucide-react";
 import { bridalPackages } from "@/lib/data";
 import { formatPrice, getDiscount } from "@/lib/utils";
 
@@ -14,9 +14,47 @@ const bridalLooks = [
   { label: "Soft Dewy Bride", image: "/images/gallery_natural_glam.png" },
 ];
 
+const cities = ["Mumbai", "Delhi", "Bangalore", "Hyderabad", "Pune", "Chennai", "Kolkata", "Jaipur"];
+
 export default function BridalPageClient() {
   const [activeLook, setActiveLook] = useState(0);
   const [selectedPackage, setSelectedPackage] = useState<string | null>("luxury-bride");
+  const [showInquiry, setShowInquiry] = useState(false);
+  const [inquiryPackage, setInquiryPackage] = useState<{ id: string; name: string } | null>(null);
+  const [form, setForm] = useState({ name: "", phone: "", email: "", wedding_date: "", city: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+
+  const openInquiry = (pkg: { id: string; name: string }) => {
+    setInquiryPackage(pkg);
+    setShowInquiry(true);
+    setSubmitted(false);
+    setError("");
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setError("");
+    try {
+      const res = await fetch("/api/bridal", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...form,
+          package_id: inquiryPackage?.id,
+          package_name: inquiryPackage?.name,
+        }),
+      });
+      if (res.ok) { setSubmitted(true); }
+      else {
+        const json = await res.json();
+        setError(json.error || "Failed to submit. Please try again.");
+      }
+    } catch { setError("Network error. Please try again."); }
+    finally { setSubmitting(false); }
+  };
 
   return (
     <>
@@ -162,11 +200,14 @@ export default function BridalPageClient() {
                     ))}
                   </ul>
 
-                  <Link href="/book" className={`w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl text-sm font-medium transition-all duration-300 ${
-                    pkg.color === "gold" ? "btn-primary" : "btn-secondary"
-                  }`}>
-                    Select Package <ArrowRight className="w-4 h-4" />
-                  </Link>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); openInquiry({ id: pkg.id, name: pkg.name }); }}
+                    className={`w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl text-sm font-medium transition-all duration-300 ${
+                      pkg.color === "gold" ? "btn-primary" : "btn-secondary"
+                    }`}
+                  >
+                    Enquire Now <ArrowRight className="w-4 h-4" />
+                  </button>
                 </motion.div>
               );
             })}
@@ -206,6 +247,99 @@ export default function BridalPageClient() {
           </div>
         </div>
       </section>
+
+      {/* Inquiry Modal */}
+      <AnimatePresence>
+        {showInquiry && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center px-4"
+            style={{ background: "rgba(26,22,18,0.8)", backdropFilter: "blur(8px)" }}
+            onClick={() => setShowInquiry(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full max-w-lg rounded-4xl p-8 max-h-[90vh] overflow-y-auto"
+              style={{ background: "#FAF6EC" }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <p className="section-label mb-1">Bridal Inquiry</p>
+                  <h2 className="font-display text-2xl font-light text-roope-primary">{inquiryPackage?.name}</h2>
+                </div>
+                <button onClick={() => setShowInquiry(false)} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-stone-100 transition-colors">
+                  <X className="w-4 h-4 text-stone-warm" />
+                </button>
+              </div>
+
+              {submitted ? (
+                <div className="text-center py-8">
+                  <div className="text-5xl mb-4">💍</div>
+                  <h3 className="font-display text-2xl font-light text-roope-primary mb-2">Inquiry Received!</h3>
+                  <p className="text-stone-warm text-sm">We&apos;ll reach out to you within 2 hours to discuss your dream bridal look.</p>
+                  <button onClick={() => setShowInquiry(false)} className="btn-primary px-8 py-3 mt-6">Close</button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  {[
+                    { key: "name", label: "Full Name", type: "text", placeholder: "Your name" },
+                    { key: "phone", label: "Phone Number", type: "tel", placeholder: "+91 98765 43210" },
+                    { key: "email", label: "Email Address", type: "email", placeholder: "you@example.com" },
+                  ].map(({ key, label, type, placeholder }) => (
+                    <div key={key}>
+                      <label className="block text-sm font-medium text-stone-warm mb-2">{label} *</label>
+                      <input type={type} required placeholder={placeholder}
+                        value={form[key as keyof typeof form]}
+                        onChange={(e) => setForm({ ...form, [key]: e.target.value })}
+                        className="w-full px-4 py-3.5 rounded-2xl text-sm outline-none"
+                        style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
+                      />
+                    </div>
+                  ))}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-stone-warm mb-2">Wedding Date</label>
+                      <input type="date" value={form.wedding_date}
+                        onChange={(e) => setForm({ ...form, wedding_date: e.target.value })}
+                        className="w-full px-4 py-3.5 rounded-2xl text-sm outline-none"
+                        style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-stone-warm mb-2">City *</label>
+                      <select required value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })}
+                        className="w-full px-4 py-3.5 rounded-2xl text-sm outline-none appearance-none"
+                        style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: form.city ? "#1A1612" : "#8B7D6B" }}
+                      >
+                        <option value="">Select city</option>
+                        {cities.map((c) => <option key={c}>{c}</option>)}
+                      </select>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-stone-warm mb-2">Message (optional)</label>
+                    <textarea rows={3} placeholder="Tell us about your vision..."
+                      value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}
+                      className="w-full px-4 py-3.5 rounded-2xl text-sm outline-none resize-none"
+                      style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
+                    />
+                  </div>
+                  {error && <p className="text-red-500 text-sm">{error}</p>}
+                  <button type="submit" disabled={submitting} className="btn-primary w-full justify-center py-4 gap-2 disabled:opacity-60">
+                    {submitting ? "Submitting..." : "Send Inquiry"} <Send className="w-4 h-4" />
+                  </button>
+                </form>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
