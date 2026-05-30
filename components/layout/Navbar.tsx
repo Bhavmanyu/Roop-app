@@ -128,8 +128,13 @@ export default function Navbar() {
             )}
           </nav>
 
-          {/* CTA */}
           <div className="hidden md:flex items-center gap-3">
+            <Link
+              href="/admin"
+              className="text-sm font-medium text-stone-warm hover:text-roope-primary transition-colors duration-200 px-3 py-2"
+            >
+              Admin
+            </Link>
             <Link
               href="/contact"
               className="text-sm font-medium text-stone-warm hover:text-roope-primary transition-colors duration-200 px-3 py-2"
