@@ -37,7 +37,7 @@ export default function BookPage() {
     time: "",
     address: "",
     city: "Indore",
-    artistTier: "premium",
+    artistTier: "standard",
     extras: [] as string[],
     coupon: "",
     name: "",
