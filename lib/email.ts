@@ -222,3 +222,164 @@ export async function sendReviewNotification(review: {
     `,
   });
 }
+
+// ─── Professional Registration Notification to Admin ─────────────────────────
+export async function sendProfessionalApplicationNotification(app: {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  experience_years: number;
+  city: string;
+  skills: string[];
+  portfolio_link?: string;
+  certificate_url?: string;
+}) {
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+  const acceptLink = `${appUrl}/api/register/professional/action?id=${app.id}&action=accept`;
+  const rejectLink = `${appUrl}/api/register/professional/action?id=${app.id}&action=reject`;
+
+  await transporter.sendMail({
+    from: `"${BUSINESS_NAME} Partner Portal" <${ADMIN_EMAIL}>`,
+    to: ADMIN_EMAIL,
+    subject: `💼 New Artist Application: ${app.name} (${app.experience_years} yrs exp)`,
+    html: `
+      <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; background: #FAF6EC; padding: 32px; border-radius: 12px; border: 1px solid #E8D5A0;">
+        <h1 style="color: #1A1612; font-weight: 300; margin-bottom: 8px; text-align: center;">New Artist Application</h1>
+        <p style="color: #8B7D6B; font-size: 13px; margin-bottom: 24px; text-align: center;">Review credentials and take action below</p>
+        
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
+          <tr><td style="padding: 8px 0; color: #8B7D6B; font-size: 13px; width: 140px;">Artist Name</td><td style="color: #1A1612; font-weight: 500;">${app.name}</td></tr>
+          <tr><td style="padding: 8px 0; color: #8B7D6B; font-size: 13px;">Email</td><td style="color: #1A1612;"><a href="mailto:${app.email}" style="color: #C9A84C;">${app.email}</a></td></tr>
+          <tr><td style="padding: 8px 0; color: #8B7D6B; font-size: 13px;">Phone</td><td style="color: #1A1612;">${app.phone}</td></tr>
+          <tr><td style="padding: 8px 0; color: #8B7D6B; font-size: 13px;">Experience</td><td style="color: #1A1612; font-weight: 500;">${app.experience_years} Years</td></tr>
+          <tr><td style="padding: 8px 0; color: #8B7D6B; font-size: 13px;">City</td><td style="color: #1A1612;">${app.city}</td></tr>
+          <tr><td style="padding: 8px 0; color: #8B7D6B; font-size: 13px;">Specialties</td><td style="color: #1A1612;">${app.skills.join(", ")}</td></tr>
+          ${app.portfolio_link ? `<tr><td style="padding: 8px 0; color: #8B7D6B; font-size: 13px;">Portfolio</td><td style="color: #1A1612;"><a href="${app.portfolio_link}" target="_blank" style="color: #C9A84C;">View Portfolio</a></td></tr>` : ""}
+          ${app.certificate_url ? `<tr><td style="padding: 8px 0; color: #8B7D6B; font-size: 13px;">Certificate</td><td style="color: #1A1612;"><a href="${app.certificate_url}" target="_blank" style="color: #C9A84C;">View Certificate Document</a></td></tr>` : ""}
+        </table>
+
+        <div style="background: white; border-radius: 12px; padding: 24px; text-align: center; border: 1px solid #FAF6EC;">
+          <p style="margin: 0 0 16px; color: #1A1612; font-weight: 600; font-size: 14px;">Onboarding Decision</p>
+          <div style="display: flex; justify-content: center; gap: 12px;">
+            <a href="${acceptLink}" style="display: inline-block; background: #C9A84C; color: white; text-decoration: none; padding: 12px 24px; border-radius: 30px; font-weight: bold; font-size: 13px; font-family: sans-serif; box-shadow: 0 4px 12px rgba(201,168,76,0.3);">Accept Application</a>
+            <a href="${rejectLink}" style="display: inline-block; background: #6B5E52; color: white; text-decoration: none; padding: 12px 24px; border-radius: 30px; font-weight: bold; font-size: 13px; font-family: sans-serif; margin-left: 12px;">Reject</a>
+          </div>
+        </div>
+      </div>
+    `,
+    replyTo: app.email,
+  });
+}
+
+// ─── Salon Registration Notification to Admin ────────────────────────────────
+export async function sendSalonApplicationNotification(salon: {
+  id: string;
+  salon_name: string;
+  owner_name: string;
+  email: string;
+  phone: string;
+  address: string;
+  website_link?: string;
+  staff_count: number;
+  years_in_business: number;
+  services: string[];
+}) {
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+  const acceptLink = `${appUrl}/api/register/salon/action?id=${salon.id}&action=accept`;
+  const rejectLink = `${appUrl}/api/register/salon/action?id=${salon.id}&action=reject`;
+
+  await transporter.sendMail({
+    from: `"${BUSINESS_NAME} Partner Portal" <${ADMIN_EMAIL}>`,
+    to: ADMIN_EMAIL,
+    subject: `🏨 New Salon Partnership Inquiry: ${salon.salon_name} — ${salon.owner_name}`,
+    html: `
+      <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; background: #FAF6EC; padding: 32px; border-radius: 12px; border: 1px solid #E8D5A0;">
+        <h1 style="color: #1A1612; font-weight: 300; margin-bottom: 8px; text-align: center;">New Salon Partnership</h1>
+        <p style="color: #8B7D6B; font-size: 13px; margin-bottom: 24px; text-align: center;">Review details and take action below</p>
+        
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
+          <tr><td style="padding: 8px 0; color: #8B7D6B; font-size: 13px; width: 140px;">Salon/Parlour Name</td><td style="color: #1A1612; font-weight: 500;">${salon.salon_name}</td></tr>
+          <tr><td style="padding: 8px 0; color: #8B7D6B; font-size: 13px;">Owner Name</td><td style="color: #1A1612; font-weight: 500;">${salon.owner_name}</td></tr>
+          <tr><td style="padding: 8px 0; color: #8B7D6B; font-size: 13px;">Email</td><td style="color: #1A1612;"><a href="mailto:${salon.email}" style="color: #C9A84C;">${salon.email}</a></td></tr>
+          <tr><td style="padding: 8px 0; color: #8B7D6B; font-size: 13px;">Phone</td><td style="color: #1A1612;">${salon.phone}</td></tr>
+          <tr><td style="padding: 8px 0; color: #8B7D6B; font-size: 13px;">Business Age</td><td style="color: #1A1612;">${salon.years_in_business} Years</td></tr>
+          <tr><td style="padding: 8px 0; color: #8B7D6B; font-size: 13px;">Staff Count</td><td style="color: #1A1612;">${salon.staff_count} Members</td></tr>
+          <tr><td style="padding: 8px 0; color: #8B7D6B; font-size: 13px;">Address</td><td style="color: #1A1612;">${salon.address}</td></tr>
+          <tr><td style="padding: 8px 0; color: #8B7D6B; font-size: 13px;">Specialties</td><td style="color: #1A1612;">${salon.services.join(", ")}</td></tr>
+          ${salon.website_link ? `<tr><td style="padding: 8px 0; color: #8B7D6B; font-size: 13px;">Website / Social</td><td style="color: #1A1612;"><a href="${salon.website_link}" target="_blank" style="color: #C9A84C;">Visit Site</a></td></tr>` : ""}
+        </table>
+
+        <div style="background: white; border-radius: 12px; padding: 24px; text-align: center; border: 1px solid #FAF6EC;">
+          <p style="margin: 0 0 16px; color: #1A1612; font-weight: 600; font-size: 14px;">Onboarding Decision</p>
+          <div style="display: flex; justify-content: center; gap: 12px;">
+            <a href="${acceptLink}" style="display: inline-block; background: #C9A84C; color: white; text-decoration: none; padding: 12px 24px; border-radius: 30px; font-weight: bold; font-size: 13px; font-family: sans-serif; box-shadow: 0 4px 12px rgba(201,168,76,0.3);">Accept Application</a>
+            <a href="${rejectLink}" style="display: inline-block; background: #6B5E52; color: white; text-decoration: none; padding: 12px 24px; border-radius: 30px; font-weight: bold; font-size: 13px; font-family: sans-serif; margin-left: 12px;">Reject</a>
+          </div>
+        </div>
+      </div>
+    `,
+    replyTo: salon.email,
+  });
+}
+
+// ─── Onboarding Follow-Up Update to Applicant ───────────────────────────────
+export async function sendApplicationStatusUpdate(applicant: {
+  name: string;
+  email: string;
+  type: "professional" | "salon";
+  status: "accepted" | "rejected";
+}) {
+  const isAccepted = applicant.status === "accepted";
+  const subject = isAccepted
+    ? `💖 Roopé Partnership Status: Congratulations!`
+    : `Roopé Onboarding Application Update`;
+
+  const htmlContent = isAccepted
+    ? `
+      <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; background: #FAF6EC; padding: 32px; border-radius: 12px;">
+        <h1 style="color: #1A1612; font-weight: 300; margin-bottom: 4px; text-align: center;">Welcome to Roopé!</h1>
+        <p style="color: #C9A84C; font-size: 11px; margin-bottom: 24px; text-align: center; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">Application Accepted</p>
+        
+        <p style="color: #6B5E52; line-height: 1.7; font-size: 14px;">
+          Dear ${applicant.name},<br/><br/>
+          Congratulations! We are delighted to inform you that your application to join the Roopé Beauty Platform has been <strong>Accepted</strong>.
+          We reviewed your credentials and certificates and are incredibly excited about the prospect of working together.
+        </p>
+        <div style="background: white; border-radius: 12px; padding: 24px; margin: 24px 0; border: 1px solid #F0EBE0;">
+          <p style="margin: 0 0 12px; color: #1A1612; font-weight: 600; font-size: 14px;">📅 What's Next?</p>
+          <p style="margin: 0; color: #6B5E52; font-size: 13px; line-height: 1.6;">
+            A representative from our partnership team will reach out to you via phone or email within the next 48 hours to schedule a conversation and finalize your onboarding onto our platform in Indore.
+          </p>
+        </div>
+        <p style="color: #6B5E52; font-size: 13px; line-height: 1.6;">
+          If you have any questions in the meantime, feel free to reply directly to this email or reach us on WhatsApp at ${process.env.NEXT_PUBLIC_BUSINESS_PHONE || "+91 98765 43210"}.
+        </p>
+        <p style="color: #C9A84C; margin-top: 32px; font-size: 13px;">With love,<br/><strong style="color: #1A1612;">The Roopé Partnership Team</strong></p>
+      </div>
+    `
+    : `
+      <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; background: #FAF6EC; padding: 32px; border-radius: 12px;">
+        <h1 style="color: #1A1612; font-weight: 300; margin-bottom: 24px; text-align: center;">Roopé Application Status</h1>
+        
+        <p style="color: #6B5E52; line-height: 1.7; font-size: 14px;">
+          Dear ${applicant.name},<br/><br/>
+          Thank you for your interest in partnering with the Roopé Beauty Platform. We truly appreciate the time and effort you put into applying and submitting your details.
+        </p>
+        <p style="color: #6B5E52; line-height: 1.7; font-size: 14px;">
+          After careful consideration of your application and current capacity requirements in Indore, we regret to inform you that we are unable to move forward with your onboarding at this stage.
+        </p>
+        <p style="color: #6B5E52; line-height: 1.7; font-size: 14px;">
+          We will keep your professional credentials and portfolio on file in our database and will contact you directly if matching onboarding openings arise in the future. We wish you the absolute best in your professional journey.
+        </p>
+        <p style="color: #C9A84C; margin-top: 32px; font-size: 13px;">Sincerely,<br/><strong style="color: #1A1612;">The Roopé Partnership Team</strong></p>
+      </div>
+    `;
+
+  await transporter.sendMail({
+    from: `"${BUSINESS_NAME} Partnership Team" <${ADMIN_EMAIL}>`,
+    to: applicant.email,
+    subject,
+    html: htmlContent,
+  });
+}

@@ -60,6 +60,7 @@ const timeSlots = [
 export default function BookPage() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [selectedServiceId, setSelectedServiceId] = useState<string | null>(null);
+  const [cartItems, setCartItems] = useState<{ [id: string]: number }>({});
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
@@ -90,7 +91,13 @@ export default function BookPage() {
   const [submitError, setSubmitError] = useState("");
 
   const selectedService = services.find((s) => s.id === selectedServiceId);
-  const basePrice = selectedService?.price || 0;
+  const basePrice = Object.keys(cartItems).length > 0
+    ? Object.entries(cartItems).reduce((sum, [id, qty]) => {
+        const svc = services.find((s) => s.id === id);
+        return sum + (svc ? svc.price * qty : 0);
+      }, 0)
+    : (selectedService?.price || 0);
+
   const tierUpcharge = 0;
   const extrasTotal = selections.extras.reduce((sum, extraId) => {
     const extra = extras.find(e => e.id === extraId);
@@ -182,6 +189,30 @@ export default function BookPage() {
     };
   }, [isDrawerOpen]);
 
+  // Pre-load roope-cart on mount
+  useEffect(() => {
+    const savedCart = localStorage.getItem("roope-cart");
+    const query = new URLSearchParams(window.location.search);
+    const checkoutDirect = query.get("checkout") === "direct";
+    
+    if (savedCart) {
+      try {
+        const parsed = JSON.parse(savedCart);
+        if (Object.keys(parsed).length > 0) {
+          setCartItems(parsed);
+          const firstKey = Object.keys(parsed)[0];
+          setSelectedServiceId(firstKey);
+          
+          if (checkoutDirect) {
+            setIsDrawerOpen(true);
+          }
+        }
+      } catch (err) {
+        console.warn("Failed to load roope-cart", err);
+      }
+    }
+  }, []);
+
   const categories = [
     { id: "all", label: "All Services" },
     { id: "Bridal", label: "Bridal Makeup" },
@@ -244,6 +275,21 @@ export default function BookPage() {
 
     setSubmitting(true);
     setSubmitError("");
+
+    // Construct final booking payloads supporting multi-services
+    const finalServiceId = Object.keys(cartItems).length > 0
+      ? "cart"
+      : (selectedServiceId || "");
+
+    const finalServiceName = Object.keys(cartItems).length > 0
+      ? Object.entries(cartItems).map(([id, qty]) => {
+          const svc = services.find(s => s.id === id);
+          return svc ? `${svc.name} (x${qty})` : "";
+        }).filter(Boolean).join(", ").slice(0, 148)
+      : (selectedService?.name || "");
+
+    const finalServicePrice = basePrice;
+
     try {
       const res = await fetch("/api/bookings", {
         method: "POST",
@@ -253,9 +299,9 @@ export default function BookPage() {
           phone: selections.phone,
           email: selections.email,
           occasion: selections.occasion,
-          service_id: selectedServiceId,
-          service_name: selectedService?.name || "",
-          service_price: selectedService?.price || 0,
+          service_id: finalServiceId,
+          service_name: finalServiceName,
+          service_price: finalServicePrice,
           date: selections.date,
           time: selections.time,
           city: selections.city,
@@ -269,6 +315,9 @@ export default function BookPage() {
       });
       const json = await res.json();
       if (res.ok) {
+        // Successful checkout: clear local cart
+        localStorage.removeItem("roope-cart");
+        setCartItems({});
         setBookingId(json.bookingId);
         setConfirmed(true);
         setIsDrawerOpen(false);
@@ -316,8 +365,22 @@ export default function BookPage() {
             
             <div className="space-y-3">
               <div>
-                <p className="text-xs text-stone-warm/50">Service Selected</p>
-                {selectedService && <p className="font-medium text-roope-primary text-base">{selectedService.name}</p>}
+                <p className="text-xs text-stone-warm/50">Service(s) Selected</p>
+                {Object.keys(cartItems).length > 0 ? (
+                  <div className="space-y-1 mt-1">
+                    {Object.entries(cartItems).map(([id, qty]) => {
+                      const svc = services.find(s => s.id === id);
+                      if (!svc) return null;
+                      return (
+                        <p key={id} className="font-medium text-roope-primary text-sm leading-snug">
+                          {svc.name} <span className="text-gold font-bold">x{qty}</span>
+                        </p>
+                      );
+                    })}
+                  </div>
+                ) : selectedService ? (
+                  <p className="font-medium text-roope-primary text-base">{selectedService.name}</p>
+                ) : null}
               </div>
               <div className="pt-2">
                 <p className="text-xs text-stone-warm/50">Date & Time</p>
@@ -557,23 +620,47 @@ export default function BookPage() {
                   </div>
                 )}
 
-                {/* 1. Selected Primary Service Summary */}
-                <div className="bg-white rounded-3xl p-5 border border-pearl-200 shadow-sm">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <span className="text-[9px] font-bold text-stone-warm/60 uppercase tracking-widest bg-pearl-200/60 px-2 py-0.5 rounded">
-                        Selected Package
-                      </span>
-                      <h4 className="font-semibold text-roope-primary mt-1 text-base leading-snug">{selectedService.name}</h4>
-                      <p className="text-xs text-stone-warm/60 mt-1 flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5 text-stone-warm/40" /> {selectedService.duration}
-                      </p>
-                    </div>
-                    <span className="font-display text-lg font-light text-roope-primary">
-                      {formatPrice(selectedService.price)}
-                    </span>
-                  </div>
-                </div>
+                {/* 1. Selected Services Summary (Single or Multiple) */}
+                 <div className="bg-white rounded-3xl p-5 border border-pearl-200 shadow-sm">
+                   <span className="text-[9px] font-bold text-stone-warm/60 uppercase tracking-widest bg-pearl-200/60 px-2 py-0.5 rounded block mb-2.5 w-max">
+                     Selected Service(s)
+                   </span>
+                   {Object.keys(cartItems).length > 0 ? (
+                     <div className="space-y-3.5 divide-y divide-pearl-100">
+                       {Object.entries(cartItems).map(([id, qty]) => {
+                         const svc = services.find(s => s.id === id);
+                         if (!svc) return null;
+                         return (
+                           <div key={id} className="flex justify-between items-start pt-3.5 first:pt-0">
+                             <div className="min-w-0 pr-3">
+                               <h4 className="font-semibold text-roope-primary text-sm leading-snug">
+                                 {svc.name} <span className="text-gold font-bold ml-1 text-xs">x{qty}</span>
+                               </h4>
+                               <p className="text-[10px] text-stone-warm/60 mt-1 flex items-center gap-1.5">
+                                 <Clock className="w-3.5 h-3.5 text-stone-warm/40" /> {svc.duration}
+                               </p>
+                             </div>
+                             <span className="font-display text-base font-light text-roope-primary flex-shrink-0">
+                               {formatPrice(svc.price * qty)}
+                             </span>
+                           </div>
+                         );
+                       })}
+                     </div>
+                   ) : selectedService ? (
+                     <div className="flex justify-between items-start">
+                       <div>
+                         <h4 className="font-semibold text-roope-primary text-base leading-snug">{selectedService.name}</h4>
+                         <p className="text-xs text-stone-warm/60 mt-1 flex items-center gap-1.5">
+                           <Clock className="w-3.5 h-3.5 text-stone-warm/40" /> {selectedService.duration}
+                         </p>
+                       </div>
+                       <span className="font-display text-lg font-light text-roope-primary">
+                         {formatPrice(selectedService.price)}
+                       </span>
+                     </div>
+                   ) : null}
+                 </div>
 
                 {/* 2. Add-on Recommendations (Extras) */}
                 <div>

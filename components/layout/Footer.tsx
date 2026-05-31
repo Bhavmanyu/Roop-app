@@ -23,6 +23,10 @@ const footerLinks = {
     { label: "Partner with Us", href: "/contact#partner" },
     { label: "Cancellation Policy", href: "#" },
   ],
+  partners: [
+    { label: "Register as Professional", href: "/register/professional" },
+    { label: "Register Salon / Parlour", href: "/register/salon" },
+  ],
 };
 
 const socialLinks = [
@@ -57,7 +61,7 @@ export default function Footer() {
 
       {/* Main footer grid */}
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12">
           {/* Brand col */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center mb-6">
@@ -92,7 +96,7 @@ export default function Footer() {
           </div>
 
           {/* Links */}
-          {(["services", "company", "support"] as const).map((key) => (
+          {(["services", "company", "support", "partners"] as const).map((key) => (
             <div key={key}>
               <h3 className="text-xs font-medium tracking-[0.12em] uppercase text-white/30 mb-5">
                 {key.charAt(0).toUpperCase() + key.slice(1)}
