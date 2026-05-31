@@ -109,7 +109,7 @@ export default function ServicesPage() {
   const centerPaneRef = useRef<HTMLDivElement | null>(null);
   const isAutoScrolling = useRef(false);
 
-  // Load cart and location from localStorage on component mount
+  // Load cart and location from localStorage on component mount, and check URL search parameters
   useEffect(() => {
     const savedCart = localStorage.getItem("roope-cart");
     if (savedCart) {
@@ -124,6 +124,30 @@ export default function ServicesPage() {
     if (savedLoc) {
       setActiveLocation(savedLoc);
     }
+
+    // Client-side safe search parameter parser to avoid Next.js static de-optimization
+    const params = new URLSearchParams(window.location.search);
+    const urlSearch = params.get("search");
+    if (urlSearch) {
+      setSearch(urlSearch);
+      setStep("catalog");
+    }
+  }, []);
+
+  // Listen for global navbar search events for real-time catalog filtering
+  useEffect(() => {
+    const handleGlobalSearch = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      setSearch(customEvent.detail);
+      if (customEvent.detail) {
+        setStep("catalog");
+      }
+    };
+
+    window.addEventListener("roope-global-search", handleGlobalSearch);
+    return () => {
+      window.removeEventListener("roope-global-search", handleGlobalSearch);
+    };
   }, []);
 
   // Update localStorage when cart changes

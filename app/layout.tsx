@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import ViewportProvider from "@/components/providers/ViewportProvider";
 import SplashLoader from "@/components/layout/SplashLoader";
+import CookieConsent from "@/components/layout/CookieConsent";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -51,6 +52,7 @@ export default function RootLayout({
             <Navbar />
             <main>{children}</main>
             <Footer />
+            <CookieConsent />
           </ViewportProvider>
         </SmoothScroll>
       </body>

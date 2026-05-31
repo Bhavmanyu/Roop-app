@@ -2,9 +2,9 @@
 
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, User, LogOut, Calendar, Shield } from "lucide-react";
+import { Menu, X, ChevronDown, User, LogOut, Calendar, Shield, Search } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import AuthModal from "@/components/auth/AuthModal";
 
@@ -29,10 +29,40 @@ export default function Navbar() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
+  const [searchVal, setSearchVal] = useState("");
   
   const pathname = usePathname();
+  const router = useRouter();
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Sync searchVal with global search updates and URL search queries
+  useEffect(() => {
+    const handleGlobalSearch = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      setSearchVal(customEvent.detail);
+    };
+
+    window.addEventListener("roope-global-search", handleGlobalSearch);
+
+    // Initial check for URL query search parameter
+    const query = new URLSearchParams(window.location.search);
+    const urlSearch = query.get("search");
+    if (urlSearch) {
+      setSearchVal(urlSearch);
+    }
+
+    return () => window.removeEventListener("roope-global-search", handleGlobalSearch);
+  }, []);
+
+  const handleSearchChange = (val: string) => {
+    setSearchVal(val);
+    if (pathname !== "/services") {
+      router.push(`/services?search=${encodeURIComponent(val)}`);
+    } else {
+      window.dispatchEvent(new CustomEvent("roope-global-search", { detail: val }));
+    }
+  };
 
   useEffect(() => {
     // Get active session
@@ -104,12 +134,31 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="group flex items-center">
-            <span className="font-display text-2xl font-bold tracking-wide text-roope-primary group-hover:text-champagne-500 transition-colors duration-300">
-              Roopé
-            </span>
-          </Link>
+          {/* Logo & Global Search Pill */}
+          <div className="flex items-center gap-4 flex-1 max-w-[420px]">
+            <Link href="/" className="group flex items-center flex-shrink-0">
+              <span className="font-display text-2xl font-bold tracking-wide text-roope-primary group-hover:text-champagne-500 transition-colors duration-300">
+                Roopé
+              </span>
+            </Link>
+
+            {/* Sleek Search Pill inside Header */}
+            <div className="hidden lg:flex items-center relative flex-1">
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-stone-warm/50" />
+              <input
+                type="text"
+                placeholder="Search premium services..."
+                value={searchVal}
+                onChange={(e) => handleSearchChange(e.target.value)}
+                className="w-full pl-9 pr-8 py-2 rounded-full text-xs font-semibold text-roope-primary placeholder-stone-warm/40 bg-pearl-200/50 border border-stone-warm/15 outline-none focus:border-champagne-DEFAULT focus:ring-1 focus:ring-champagne-300/10 transition-all shadow-inner"
+              />
+              {searchVal && (
+                <button onClick={() => handleSearchChange("")} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-warm/50 hover:text-roope-primary">
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
+          </div>
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-1">
@@ -184,9 +233,8 @@ export default function Navbar() {
             >
               Support
             </Link>
-
-            {/* Auth section */}
-            {user ? (
+             {/* Auth Section - Premium User Icon Avatar */}
+             {user ? (
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
@@ -235,9 +283,10 @@ export default function Navbar() {
             ) : (
               <button
                 onClick={() => setIsAuthModalOpen(true)}
-                className="text-sm font-semibold uppercase tracking-wider text-roope-primary bg-champagne-300/30 hover:bg-champagne-300/50 px-5 py-2 rounded-full transition-colors cursor-pointer border border-champagne-DEFAULT/20"
+                className="w-9 h-9 rounded-full bg-pearl-200/60 border border-stone-warm/15 hover:border-champagne-DEFAULT flex items-center justify-center text-stone-warm hover:text-roope-primary hover:bg-white transition-all shadow-sm cursor-pointer"
+                title="Sign In / Register"
               >
-                Sign In
+                <User className="w-4 h-4" />
               </button>
             )}
 
@@ -246,19 +295,53 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile menu toggle */}
-          <button
-            id="mobile-menu-toggle"
-            className="md:hidden p-2 rounded-xl hover:bg-pearl transition-colors"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? (
-              <X className="w-5 h-5 text-roope-primary" />
-            ) : (
-              <Menu className="w-5 h-5 text-roope-primary" />
-            )}
-          </button>
+          {/* Mobile Icons Header Row - Clean and uncluttered */}
+          <div className="flex md:hidden items-center gap-2.5">
+            {/* Mobile Search Button */}
+            <button
+              onClick={() => {
+                if (pathname !== "/services") {
+                  router.push("/services?search=");
+                } else {
+                  // Direct focus to services list search input
+                  document.querySelector("input[placeholder='Search premium services...']")?.scrollIntoView({ behavior: "smooth", block: "center" });
+                  (document.querySelector("input[placeholder='Search premium services...']") as HTMLInputElement)?.focus();
+                }
+              }}
+              className="p-2 rounded-xl hover:bg-pearl text-roope-primary transition-colors"
+              aria-label="Search"
+            >
+              <Search className="w-4.5 h-4.5" />
+            </button>
+
+            {/* Mobile Account Profile Logo */}
+            <button
+              onClick={() => {
+                if (user) {
+                  router.push("/profile/bookings");
+                } else {
+                  setIsAuthModalOpen(true);
+                }
+              }}
+              className="w-8 h-8 rounded-full bg-pearl-200/60 border border-stone-warm/15 flex items-center justify-center text-stone-warm hover:text-roope-primary transition-all"
+            >
+              {user ? getInitials() : <User className="w-3.5 h-3.5" />}
+            </button>
+
+            {/* Mobile menu toggle */}
+            <button
+              id="mobile-menu-toggle"
+              className="p-2 rounded-xl hover:bg-pearl transition-colors"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? (
+                <X className="w-4.5 h-4.5 text-roope-primary" />
+              ) : (
+                <Menu className="w-4.5 h-4.5 text-roope-primary" />
+              )}
+            </button>
+          </div>
         </div>
       </motion.header>
 
