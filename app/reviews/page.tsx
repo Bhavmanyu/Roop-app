@@ -154,7 +154,7 @@ export default function ReviewsPage() {
 
               {[
                 { key: "name", label: "Full Name", type: "text", placeholder: "Your name" },
-                { key: "location", label: "City / Location", type: "text", placeholder: "e.g. Mumbai" },
+                { key: "location", label: "City / Location", type: "text", placeholder: "e.g. Vijay Nagar, Indore" },
               ].map(({ key, label, type, placeholder }) => (
                 <div key={key}>
                   <label className="block text-sm font-medium text-stone-warm mb-2">{label} *</label>

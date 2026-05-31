@@ -11,7 +11,6 @@ const footerLinks = {
     { label: "Haldi Styling", href: "/services" },
   ],
   company: [
-    { label: "About Roopé", href: "/about" },
     { label: "Gallery", href: "/gallery" },
     { label: "Reviews", href: "/reviews" },
     { label: "Careers", href: "#" },
@@ -22,7 +21,6 @@ const footerLinks = {
     { label: "Contact Us", href: "/contact" },
     { label: "FAQ", href: "/contact#faq" },
     { label: "Partner with Us", href: "/contact#partner" },
-    { label: "Hygiene Policy", href: "/about#hygiene" },
     { label: "Cancellation Policy", href: "#" },
   ],
 };

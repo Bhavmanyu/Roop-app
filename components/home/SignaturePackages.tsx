@@ -93,13 +93,10 @@ export default function SignaturePackages() {
                         {service.description}
                       </p>
 
-                      {/* Duration + tier */}
+                      {/* Duration */}
                       <div className="flex items-center gap-3 mb-4 text-xs text-stone-warm">
                         <span className="flex items-center gap-1">
                           <Clock className="w-3 h-3" /> {service.duration}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <BadgeCheck className="w-3 h-3" style={{ color: "#C9A84C" }} /> {service.artistTier}
                         </span>
                       </div>
 

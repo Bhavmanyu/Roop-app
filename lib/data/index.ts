@@ -1,77 +1,4 @@
-export const artists = [
-  {
-    id: "ananya-sharma",
-    name: "Ananya Sharma",
-    title: "Senior Bridal Artist",
-    rating: 4.9,
-    reviews: 312,
-    experience: "8 years",
-    events: 920,
-    tier: "Elite",
-    specialties: ["Luxury Bridal", "Airbrush", "HD Makeup"],
-    languages: ["Hindi", "English", "Marathi"],
-    image: "/images/artist_1.png",
-    badge: "Top Artist",
-    available: true,
-    city: "Mumbai",
-    certifications: ["MAC Pro Certified", "Charlotte Tilbury Academy", "VLCC"],
-    bio: "Specializing in luxury bridal transformations with over 8 years of crafting timeless looks for discerning brides.",
-  },
-  {
-    id: "priya-mehta",
-    name: "Priya Mehta",
-    title: "Editorial & Bridal Specialist",
-    rating: 4.8,
-    reviews: 256,
-    experience: "6 years",
-    events: 640,
-    tier: "Premium",
-    specialties: ["Soft Glam", "Minimal Makeup", "Engagement Looks"],
-    languages: ["Hindi", "English", "Gujarati"],
-    image: "/images/artist_2.png",
-    badge: "Most Booked",
-    available: true,
-    city: "Delhi",
-    certifications: ["NYKAA Academy", "Lakme Certified"],
-    bio: "Known for creating ethereal, natural looks that photograph beautifully and last all day.",
-  },
-  {
-    id: "kavya-nair",
-    name: "Kavya Nair",
-    title: "Fashion & Event Makeup Artist",
-    rating: 4.9,
-    reviews: 198,
-    experience: "7 years",
-    events: 780,
-    tier: "Elite",
-    specialties: ["Editorial Fashion", "Bollywood Glam", "Event Makeup"],
-    languages: ["Hindi", "English", "Malayalam", "Tamil"],
-    image: "/images/artist_3.png",
-    badge: "Editor's Pick",
-    available: true,
-    city: "Bangalore",
-    certifications: ["NIFT Fashion Styling", "L'Oréal Pro"],
-    bio: "A fashion-forward artist who brings editorial excellence to every look, from runway to real life.",
-  },
-  {
-    id: "riya-kapoor",
-    name: "Riya Kapoor",
-    title: "Party Glam & Bridal Artist",
-    rating: 4.7,
-    reviews: 189,
-    experience: "5 years",
-    events: 520,
-    tier: "Premium",
-    specialties: ["Party Glam", "Smoky Eyes", "Contemporary Looks"],
-    languages: ["Hindi", "English", "Punjabi"],
-    image: "/images/artist_4.png",
-    badge: "Rising Star",
-    available: false,
-    city: "Hyderabad",
-    certifications: ["Jawed Habib Academy", "Schwarzkopf Pro"],
-    bio: "A true artist at heart, Riya creates bold, modern looks that make every client feel like a star.",
-  },
-];
+export const artists = [];
 
 export const services = [
   {
@@ -87,7 +14,6 @@ export const services = [
     tag: "Most Booked",
     image: "/images/bridal_glam_1.png",
     includes: ["Foundation & Base", "Eye Makeup", "Contouring", "Lipstick", "Setting"],
-    artistTier: "Premium+",
     description: "Full HD bridal look with premium products from MAC, Charlotte Tilbury & NARS.",
   },
   {
@@ -103,7 +29,6 @@ export const services = [
     tag: "Premium",
     image: "/images/hero_bridal.png",
     includes: ["Airbrush Foundation", "Waterproof Eye Look", "Highlight & Contour", "Lip Liner + Color", "Setting Spray"],
-    artistTier: "Elite",
     description: "Long-lasting airbrush application that looks flawless in HD photos all day long.",
   },
   {
@@ -119,7 +44,6 @@ export const services = [
     tag: "Popular",
     image: "/images/gallery_party_glam.png",
     includes: ["Glam Base", "Eye Makeup", "Contour", "Blush", "Long-wear Lip"],
-    artistTier: "Premium",
     description: "The perfect engagement look — elegant, photogenic, and completely you.",
   },
   {
@@ -135,7 +59,6 @@ export const services = [
     tag: "Best Seller",
     image: "/images/gallery_party_glam.png",
     includes: ["Event Base", "Eye Look", "Blush & Highlight", "Lip Color"],
-    artistTier: "Standard",
     description: "Turn heads at any event with our signature party glam makeup look.",
   },
   {
@@ -151,7 +74,6 @@ export const services = [
     tag: "New",
     image: "/images/gallery_natural_glam.png",
     includes: ["Glass Skin Base", "Brow Grooming", "Subtle Eye", "Peachy Lip"],
-    artistTier: "Standard",
     description: "The sought-after glass skin look that glows from within.",
   },
   {
@@ -167,7 +89,6 @@ export const services = [
     tag: "All Inclusive",
     image: "/images/makeup_application.png",
     includes: ["Makeup + Hair Styling", "Draping Assistance", "Touch-up Kit", "2 Artist Team", "Transportation"],
-    artistTier: "Elite",
     description: "Complete reception day package — from getting ready to the final touch-up.",
   },
   {
@@ -183,7 +104,6 @@ export const services = [
     tag: "Trending",
     image: "/images/gallery_natural_glam.png",
     includes: ["Natural Glam Base", "Floral Eye Look", "Blush", "Nude Lips"],
-    artistTier: "Standard",
     description: "Effortless, joyful looks for your Mehendi celebration.",
   },
   {
@@ -199,7 +119,6 @@ export const services = [
     tag: "Professional",
     image: "/images/makeup_application.png",
     includes: ["HD Camera-Ready Base", "Natural Eye Look", "Professional Lip", "Setting Spray"],
-    artistTier: "Premium",
     description: "Professional, polished looks for corporate shoots and LinkedIn profiles.",
   },
 ];
@@ -211,7 +130,6 @@ export const bridalPackages = [
     tagline: "Your perfect beginning",
     price: 22999,
     originalPrice: 30000,
-    tier: "Standard",
     badge: null,
     color: "stone",
     includes: [
@@ -230,7 +148,6 @@ export const bridalPackages = [
     tagline: "The pinnacle of bridal artistry",
     price: 49999,
     originalPrice: 68000,
-    tier: "Elite",
     badge: "Most Popular",
     color: "gold",
     includes: [
@@ -254,7 +171,6 @@ export const bridalPackages = [
     tagline: "Crafted for the modern bride",
     price: 34999,
     originalPrice: 46000,
-    tier: "Premium",
     badge: "Editor's Pick",
     color: "champagne",
     includes: [
@@ -324,18 +240,18 @@ export const testimonials = [
   {
     id: 1,
     name: "Nisha Agarwal",
-    location: "Mumbai",
+    location: "Vijay Nagar, Indore",
     rating: 5,
     service: "Luxury Bride Package",
     image: "/images/gallery_natural_glam.png",
-    text: "I was absolutely blown away. Ananya from Roopé did my bridal makeup and I've never felt more beautiful in my life. The entire experience — from the consultation to the touch-up on my wedding day — was seamless and incredibly professional.",
+    text: "I was absolutely blown away. The Roopé team did my bridal makeup and I've never felt more beautiful in my life. The entire experience — from the consultation to the touch-up on my wedding day — was seamless and incredibly professional.",
     date: "March 2025",
     verified: true,
   },
   {
     id: 2,
     name: "Deepika Sharma",
-    location: "Delhi",
+    location: "Palasia, Indore",
     rating: 5,
     service: "Airbrush Bridal",
     image: "/images/gallery_party_glam.png",
@@ -346,7 +262,7 @@ export const testimonials = [
   {
     id: 3,
     name: "Priyanka Menon",
-    location: "Bangalore",
+    location: "Saket, Indore",
     rating: 5,
     service: "Event Full Glam",
     image: "/images/hero_bridal.png",
@@ -357,7 +273,7 @@ export const testimonials = [
   {
     id: 4,
     name: "Aanya Mehta",
-    location: "Hyderabad",
+    location: "Anand Bazar, Indore",
     rating: 5,
     service: "Signature Bride Package",
     image: "/images/gallery_natural_glam.png",
@@ -368,8 +284,8 @@ export const testimonials = [
 ];
 
 export const stats = [
-  { number: "50,000+", label: "Happy Clients", sublabel: "Across 12 cities" },
-  { number: "1,200+", label: "Certified Artists", sublabel: "Verified & trained" },
+  { number: "100+", label: "Happy Customers", sublabel: "Served in Indore" },
+  { number: "15+", label: "Expert Artists", sublabel: "Verified & trained" },
   { number: "4.9★", label: "Average Rating", sublabel: "On all services" },
   { number: "99%", label: "On-time Arrival", sublabel: "Guaranteed" },
 ];

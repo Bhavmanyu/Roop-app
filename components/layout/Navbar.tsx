@@ -18,7 +18,6 @@ const navLinks = [
     children: [
       { href: "/gallery", label: "Gallery" },
       { href: "/reviews", label: "Reviews" },
-      { href: "/about", label: "About Roopé" },
     ],
   },
 ];

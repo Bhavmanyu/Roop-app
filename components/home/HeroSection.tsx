@@ -19,15 +19,15 @@ const floatingCards = [
   {
     id: 2,
     title: "Artist Arriving",
-    subtitle: "Ananya S. • 4 min away",
+    subtitle: "Professional • 4 min away",
     live: true,
     position: { bottom: "32%", left: "4%" },
     delay: 0.3,
   },
   {
     id: 3,
-    title: "50,000+ Happy Clients",
-    subtitle: "Across 12 cities",
+    title: "100+ Customers Served",
+    subtitle: "In Indore",
     position: { bottom: "18%", right: "8%" },
     delay: 0.6,
   },
@@ -202,7 +202,6 @@ export default function HeroSection() {
               style={{ background: "linear-gradient(to top, rgba(26,22,18,0.4), transparent)" }} />
             <div className="absolute bottom-5 left-5 right-5">
               <p className="text-white text-sm font-light opacity-80">Bridal Transformation</p>
-              <p className="text-white/60 text-xs mt-0.5">by Ananya Sharma • Elite Artist</p>
             </div>
           </motion.div>
 

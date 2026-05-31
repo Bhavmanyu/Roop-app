@@ -36,11 +36,6 @@ const occasions = [
   { id: "corporate", label: "Corporate", icon: "💼" },
 ];
 
-const artistTiers = [
-  { id: "standard", name: "Standard Artist", price: 0, desc: "Professional certified artists", rating: "4.5+", stars: 4 },
-  { id: "premium", name: "Premium Artist", price: 1500, desc: "Senior artists with 5+ years experience", rating: "4.7+", stars: 5 },
-  { id: "elite", name: "Elite Artist", price: 3000, desc: "Master artists — top 5% network", rating: "4.9+", stars: 5 },
-];
 
 const extras = [
   { id: "lashes", label: "Premium Lashes", price: 999, desc: "High-volume mink lashes" },
@@ -95,10 +90,8 @@ export default function BookPage() {
   const [submitError, setSubmitError] = useState("");
 
   const selectedService = services.find((s) => s.id === selectedServiceId);
-  const selectedTier = artistTiers.find((t) => t.id === selections.artistTier);
-  
   const basePrice = selectedService?.price || 0;
-  const tierUpcharge = selectedTier?.price || 0;
+  const tierUpcharge = 0;
   const extrasTotal = selections.extras.reduce((sum, extraId) => {
     const extra = extras.find(e => e.id === extraId);
     return sum + (extra?.price || 0);
@@ -326,15 +319,9 @@ export default function BookPage() {
                 <p className="text-xs text-stone-warm/50">Service Selected</p>
                 {selectedService && <p className="font-medium text-roope-primary text-base">{selectedService.name}</p>}
               </div>
-              <div className="grid grid-cols-2 gap-4 pt-2">
-                <div>
-                  <p className="text-xs text-stone-warm/50">Date & Time</p>
-                  <p className="text-sm font-medium text-roope-primary">{selections.date} at {selections.time}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-stone-warm/50">Artist Tier</p>
-                  <p className="text-sm font-medium text-roope-primary uppercase">{selections.artistTier}</p>
-                </div>
+              <div className="pt-2">
+                <p className="text-xs text-stone-warm/50">Date & Time</p>
+                <p className="text-sm font-medium text-roope-primary">{selections.date} at {selections.time}</p>
               </div>
               
               <div className="pt-2">
@@ -633,47 +620,6 @@ export default function BookPage() {
                   </div>
                 </div>
 
-                {/* 3. Interactive Artist Tier Choice (Defaulting to Standard) */}
-                <div>
-                  <div className="flex justify-between items-center mb-3">
-                    <h3 className="text-xs font-bold uppercase tracking-wider text-stone-warm/70 flex items-center gap-1.5">
-                      <User className="w-4 h-4 text-gold" /> Select Artist Tier
-                    </h3>
-                    <span className="text-[10px] text-gold font-semibold uppercase tracking-wider bg-gold/10 px-2 py-0.5 rounded">
-                      Standard Included
-                    </span>
-                  </div>
-                  <div className="grid grid-cols-3 gap-2">
-                    {artistTiers.map((tier) => {
-                      const isTierActive = selections.artistTier === tier.id;
-                      return (
-                        <button
-                          key={tier.id}
-                          onClick={() => setSelections({ ...selections, artistTier: tier.id })}
-                          className={`p-3.5 rounded-2xl flex flex-col justify-between border text-left transition-all duration-200 ${
-                            isTierActive 
-                              ? "bg-white shadow-sm shadow-gold/20 border-champagne-DEFAULT animate-pulse-subtle" 
-                              : "bg-white border-pearl-200 hover:border-champagne-300/30"
-                          }`}
-                        >
-                          <div>
-                            <p className="text-[10px] font-bold text-roope-primary truncate">{tier.name}</p>
-                            <p className="text-[9px] text-stone-warm/50 mt-0.5 line-clamp-2 leading-snug">{tier.desc}</p>
-                          </div>
-                          
-                          <div className="mt-4 pt-2 border-t border-pearl-200/50 w-full flex flex-col">
-                            <span className="text-[9px] font-semibold text-stone-warm mb-1">
-                              {tier.rating} Rated
-                            </span>
-                            <span className="text-[10px] font-bold text-roope-primary">
-                              {tier.price === 0 ? "Included" : `+${formatPrice(tier.price)}`}
-                            </span>
-                          </div>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
 
                 {/* 4. Schedule Picker (Dynamic Horizontal scroll for next 7 days) */}
                 <div>
@@ -889,12 +835,7 @@ export default function BookPage() {
                       <span className="font-semibold text-roope-primary">{formatPrice(basePrice)}</span>
                     </div>
 
-                    {selections.artistTier !== "standard" && tierUpcharge > 0 && (
-                      <div className="flex justify-between text-stone-warm">
-                        <span>Artist upgrade ({selectedTier?.name})</span>
-                        <span className="font-semibold text-roope-primary">+{formatPrice(tierUpcharge)}</span>
-                      </div>
-                    )}
+
 
                     {selections.extras.length > 0 && (
                       <div className="space-y-1">

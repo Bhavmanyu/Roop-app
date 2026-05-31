@@ -159,9 +159,6 @@ export default function BridalPageClient() {
                   )}
 
                   <div className="mb-6">
-                    <span className={`text-xs font-medium tracking-wide uppercase ${pkg.color === "gold" ? "text-champagne-DEFAULT" : "text-stone-warm"}`}>
-                      {pkg.tier}
-                    </span>
                     <h3 className={`font-display text-2xl font-light mt-1 ${pkg.color === "gold" ? "text-white" : "text-roope-primary"}`}>
                       {pkg.name}
                     </h3>

@@ -12,28 +12,24 @@ const transformations = [
     id: 1,
     label: "Bridal HD",
     image: "/images/hero_bridal.png",
-    artist: "Ananya S.",
     span: "row-span-2",
   },
   {
     id: 2,
     label: "Bollywood Glam",
     image: "/images/bridal_glam_1.png",
-    artist: "Kavya N.",
     span: "",
   },
   {
     id: 3,
     label: "Party Glam",
     image: "/images/gallery_party_glam.png",
-    artist: "Riya K.",
     span: "",
   },
   {
     id: 4,
     label: "Natural Dewy",
     image: "/images/gallery_natural_glam.png",
-    artist: "Priya M.",
     span: "col-span-2",
   },
 ];
@@ -93,8 +89,7 @@ export default function FeaturedTransformations() {
             {/* Hover overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-roope-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
             <div className="absolute bottom-4 left-4 right-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400">
-              <span className="tag-gold mb-2 inline-block">{item.label}</span>
-              <p className="text-white/80 text-xs">by {item.artist}</p>
+              <span className="tag-gold inline-block">{item.label}</span>
             </div>
             {/* Always-visible label for first card */}
             {i === 0 && (

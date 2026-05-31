@@ -4,12 +4,11 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Star, Clock, BadgeCheck, Search, SlidersHorizontal, X, ArrowRight } from "lucide-react";
+import { Star, Clock, Search, SlidersHorizontal, X, ArrowRight } from "lucide-react";
 import { services } from "@/lib/data";
 import { formatPrice, getDiscount } from "@/lib/utils";
 
 const categories = ["All", "Bridal", "Reception", "Party Glam", "Engagement", "Mehendi", "Haldi", "Natural", "Corporate", "Editorial"];
-const tiers = ["All Tiers", "Standard", "Premium", "Elite"];
 const priceRanges = [
   { label: "Under ₹3,000", min: 0, max: 3000 },
   { label: "₹3,000–₹8,000", min: 3000, max: 8000 },
@@ -20,18 +19,16 @@ const priceRanges = [
 export default function ServicesPage() {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
-  const [activeTier, setActiveTier] = useState("All Tiers");
   const [activePriceRange, setActivePriceRange] = useState<number | null>(null);
   const [sortBy, setSortBy] = useState("popular");
 
   const filtered = services.filter((s) => {
     const matchSearch = s.name.toLowerCase().includes(search.toLowerCase()) || s.category.toLowerCase().includes(search.toLowerCase());
     const matchCat = activeCategory === "All" || s.occasion === activeCategory || s.category === activeCategory;
-    const matchTier = activeTier === "All Tiers" || s.artistTier.includes(activeTier);
     const matchPrice = activePriceRange === null || (
       s.price >= priceRanges[activePriceRange].min && s.price <= priceRanges[activePriceRange].max
     );
-    return matchSearch && matchCat && matchTier && matchPrice;
+    return matchSearch && matchCat && matchPrice;
   }).sort((a, b) => {
     if (sortBy === "price-asc") return a.price - b.price;
     if (sortBy === "price-desc") return b.price - a.price;
@@ -51,7 +48,7 @@ export default function ServicesPage() {
           </motion.h1>
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}
             className="section-subtitle max-w-lg">
-            Filter by occasion, price, tier, and rating to find the perfect service for your needs.
+            Filter by occasion and price to find the perfect service for your needs.
           </motion.p>
         </div>
       </section>
@@ -123,21 +120,8 @@ export default function ServicesPage() {
             ))}
           </div>
 
-          {/* Tier + Price filters */}
+          {/* Price filters */}
           <div className="flex flex-wrap gap-3 mb-10">
-            <div className="flex gap-2">
-              {tiers.map((tier) => (
-                <button
-                  key={tier}
-                  onClick={() => setActiveTier(tier)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-200 ${
-                    activeTier === tier ? "bg-roope-primary text-white" : "text-stone-warm border border-pearl-300"
-                  }`}
-                >
-                  {tier}
-                </button>
-              ))}
-            </div>
             <div className="flex gap-2">
               {priceRanges.map((range, i) => (
                 <button
@@ -200,7 +184,6 @@ export default function ServicesPage() {
                     <p className="text-xs text-stone-warm/80 mb-4 flex-1 line-clamp-2">{service.description}</p>
                     <div className="flex items-center gap-3 text-xs text-stone-warm mb-4">
                       <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{service.duration}</span>
-                      <span className="flex items-center gap-1"><BadgeCheck className="w-3 h-3" style={{ color: "#C9A84C" }} />{service.artistTier}</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <div>
@@ -221,7 +204,7 @@ export default function ServicesPage() {
             <div className="text-center py-20">
               <p className="text-2xl mb-3">🔍</p>
               <p className="text-stone-warm">No services match your filters.</p>
-              <button onClick={() => { setSearch(""); setActiveCategory("All"); setActiveTier("All Tiers"); setActivePriceRange(null); }}
+              <button onClick={() => { setSearch(""); setActiveCategory("All"); setActivePriceRange(null); }}
                 className="btn-primary mt-4 text-sm px-6 py-3">
                 Clear Filters
               </button>
