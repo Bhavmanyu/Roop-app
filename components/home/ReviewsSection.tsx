@@ -21,7 +21,7 @@ export default function ReviewsSection() {
         >
           <p className="section-label mb-3">Client Stories</p>
           <h2 className="section-title mx-auto max-w-xl">
-            50,000+ women who
+            100+ people who
             <span className="italic text-gradient-gold"> loved their look.</span>
           </h2>
         </motion.div>
@@ -88,7 +88,7 @@ export default function ReviewsSection() {
             { value: "4.9/5.0", label: "Average Rating" },
             { value: "98%", label: "Would Recommend" },
             { value: "96%", label: "Repeat Clients" },
-            { value: "50,000+", label: "Total Reviews" },
+            { value: "100+", label: "Total Reviews" },
           ].map((metric) => (
             <div key={metric.label}>
               <p className="font-display text-2xl font-light text-roope-primary">{metric.value}</p>

@@ -43,7 +43,7 @@ export default function ReviewsPage() {
           <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="section-label mb-3">Reviews</motion.p>
           <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
             className="section-title mx-auto max-w-lg mb-4">
-            50,000+ women who <span className="italic text-gradient-gold">trusted Roopé.</span>
+            100+ people who <span className="italic text-gradient-gold">trusted Roopé.</span>
           </motion.h1>
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}
             className="section-subtitle max-w-md mx-auto">
@@ -56,7 +56,7 @@ export default function ReviewsPage() {
       <section className="py-12 px-6" style={{ background: "linear-gradient(135deg, #FAF6EC, #F3E8C8)" }}>
         <div className="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
           {[
-            { value: "4.9/5.0", label: "Average Rating", sub: "From 50,000+ reviews" },
+            { value: "4.9/5.0", label: "Average Rating", sub: "From 100+ reviews" },
             { value: "98%", label: "Would Recommend", sub: "To friends & family" },
             { value: "96%", label: "Repeat Clients", sub: "Book again within 6 months" },
             { value: "99%", label: "On-time Arrival", sub: "Across all bookings" },
