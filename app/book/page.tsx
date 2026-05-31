@@ -170,8 +170,16 @@ export default function BookPage() {
       });
     }
     setAvailableDays(days);
+    // Auto-fill active location from services
+    const savedLoc = localStorage.getItem("roope-location");
     if (days[0]) {
-      setSelections(prev => ({ ...prev, date: days[0].id }));
+      setSelections(prev => ({ 
+        ...prev, 
+        date: days[0].id, 
+        address: savedLoc || prev.address 
+      }));
+    } else if (savedLoc) {
+      setSelections(prev => ({ ...prev, address: savedLoc }));
     }
 
     return () => subscription.unsubscribe();
