@@ -177,6 +177,18 @@ export default function BookPage() {
     return () => subscription.unsubscribe();
   }, []);
 
+  // Lock body scroll when drawer is open to prevent background scrolling
+  useEffect(() => {
+    if (isDrawerOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isDrawerOpen]);
+
   const categories = [
     { id: "all", label: "All Services" },
     { id: "Bridal", label: "Bridal Makeup" },
@@ -518,7 +530,7 @@ export default function BookPage() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 220 }}
-              className="fixed inset-y-0 right-0 w-full sm:max-w-lg bg-[#FAF9F6] shadow-2xl z-50 flex flex-col pointer-events-auto"
+              className="fixed inset-y-0 right-0 w-full sm:max-w-lg h-screen max-h-screen bg-[#FAF9F6] shadow-2xl z-50 flex flex-col pointer-events-auto overflow-hidden"
             >
               {/* Drawer Header */}
               <div className="px-6 py-5 border-b border-pearl-200 bg-white flex justify-between items-center">
@@ -538,7 +550,7 @@ export default function BookPage() {
               </div>
 
               {/* Drawer Body Scroll */}
-              <div className="flex-1 overflow-y-auto px-6 py-6 space-y-8">
+              <div className="flex-1 overflow-y-auto px-6 py-6 space-y-8 min-h-0 max-h-[calc(100vh-190px)]">
                 {/* Auth Pre-fill Promotion Banner */}
                 {!user && (
                   <div className="p-3.5 bg-champagne-300/10 border border-champagne-DEFAULT/20 rounded-2xl flex items-center justify-between gap-3 shadow-sm">
