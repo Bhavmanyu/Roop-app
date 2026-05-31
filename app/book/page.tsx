@@ -537,7 +537,7 @@ export default function BookPage() {
               </div>
 
               {/* Drawer Body Scroll */}
-              <div className="flex-1 overflow-y-auto px-6 py-6 space-y-8 min-h-0 max-h-[calc(100vh-190px)]">
+              <div className="flex-1 overflow-y-auto px-6 py-6 space-y-8 min-h-0">
                 {/* Auth Pre-fill Promotion Banner */}
                 {!user && (
                   <div className="p-3.5 bg-champagne-300/10 border border-champagne-DEFAULT/20 rounded-2xl flex items-center justify-between gap-3 shadow-sm">

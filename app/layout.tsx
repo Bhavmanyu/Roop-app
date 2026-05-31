@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SmoothScroll from "@/components/providers/SmoothScroll";
+import ViewportProvider from "@/components/providers/ViewportProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -44,9 +45,11 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${instrumentSans.variable}`}>
       <body className="bg-pearl font-sans antialiased">
         <SmoothScroll>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
+          <ViewportProvider>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </ViewportProvider>
         </SmoothScroll>
       </body>
     </html>
