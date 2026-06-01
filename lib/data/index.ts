@@ -147,7 +147,7 @@ export const services = [
     rating: 4.86,
     reviews: 138000,
     tag: "Price drop",
-    image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=500",
+    image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=500",
     includes: [
       "Full arms, legs & underarms hair removal",
       "Painless & irritation-free waxing technique",
