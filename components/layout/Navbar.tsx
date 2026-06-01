@@ -7,6 +7,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, User, LogOut, Calendar, Shield, Search } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import AuthModal from "@/components/auth/AuthModal";
+import { services, bridalPackages, eventPackages } from "@/lib/data";
+import { formatPrice } from "@/lib/utils";
 
 const navLinks = [
   { href: "/services", label: "Services" },
@@ -30,11 +32,14 @@ export default function Navbar() {
   const [user, setUser] = useState<any>(null);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const [searchVal, setSearchVal] = useState("");
+  const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   
   const pathname = usePathname();
   const router = useRouter();
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const searchContainerRef = useRef<HTMLFormElement>(null);
 
   // Sync searchVal with global search updates and URL search queries
   useEffect(() => {
@@ -55,12 +60,72 @@ export default function Navbar() {
     return () => window.removeEventListener("roope-global-search", handleGlobalSearch);
   }, []);
 
+  // Generate suggestions based on input
+  useEffect(() => {
+    if (!searchVal.trim()) {
+      setSuggestions([]);
+      return;
+    }
+
+    const query = searchVal.toLowerCase();
+    
+    // Search normal services
+    const matchingServices = services
+      .filter(s => s.name.toLowerCase().includes(query) || s.category.toLowerCase().includes(query))
+      .map(s => ({ id: s.id, name: s.name, type: "service", price: s.price, category: "Salon Service" }));
+
+    // Search bridal packages
+    const matchingBridal = bridalPackages
+      .filter(b => b.name.toLowerCase().includes(query) || b.idealFor.toLowerCase().includes(query))
+      .map(b => ({ id: b.id, name: b.name, type: "bridal", price: b.price, category: "Bridal Package" }));
+
+    // Search event packages
+    const matchingEvents = eventPackages
+      .filter(e => e.name.toLowerCase().includes(query) || e.idealFor.toLowerCase().includes(query))
+      .map(e => ({ id: e.id, name: e.name, type: "event", price: e.price, category: "Event Package" }));
+
+    const combined = [...matchingServices, ...matchingBridal, ...matchingEvents].slice(0, 6);
+    setSuggestions(combined);
+  }, [searchVal]);
+
+  // Click outside search container to close suggestions
+  useEffect(() => {
+    const handleClickOutsideSearch = (event: MouseEvent) => {
+      if (searchContainerRef.current && !searchContainerRef.current.contains(event.target as Node)) {
+        setShowSuggestions(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutsideSearch);
+    return () => document.removeEventListener("mousedown", handleClickOutsideSearch);
+  }, []);
+
   const handleSearchChange = (val: string) => {
     setSearchVal(val);
-    if (pathname !== "/services") {
-      router.push(`/services?search=${encodeURIComponent(val)}`);
-    } else {
+    setShowSuggestions(true);
+    // If we are on `/services`, sync search immediately to filter current catalog in real-time
+    if (pathname === "/services") {
       window.dispatchEvent(new CustomEvent("roope-global-search", { detail: val }));
+    }
+  };
+
+  const handleSuggestionClick = (sug: any) => {
+    setSearchVal(sug.name);
+    setShowSuggestions(false);
+    
+    if (sug.type === "bridal") {
+      router.push("/bridal");
+    } else if (sug.type === "event") {
+      router.push("/events");
+    } else {
+      router.push(`/services?search=${encodeURIComponent(sug.name)}`);
+    }
+  };
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setShowSuggestions(false);
+    if (searchVal.trim()) {
+      router.push(`/services?search=${encodeURIComponent(searchVal)}`);
     }
   };
 
@@ -134,16 +199,16 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          {/* Logo & Global Search Pill */}
-          <div className="flex items-center gap-4 flex-1 max-w-[420px]">
-            <Link href="/" className="group flex items-center flex-shrink-0">
+          {/* Logo & Global Search Pill with generous layout spacing */}
+          <div className="flex items-center gap-12 flex-1 max-w-[480px]">
+            <Link href="/" className="group flex items-center flex-shrink-0 mr-4">
               <span className="font-display text-2xl font-bold tracking-wide text-roope-primary group-hover:text-champagne-500 transition-colors duration-300">
                 Roopé
               </span>
             </Link>
 
-            {/* Sleek Search Pill inside Header */}
-            <div className="hidden lg:flex items-center relative flex-1">
+            {/* Sleek Search Form with Auto-suggestions Dropdown */}
+            <form onSubmit={handleSearchSubmit} className="hidden lg:flex items-center relative flex-1" ref={searchContainerRef}>
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-stone-warm/50" />
               <input
                 type="text"
@@ -153,12 +218,44 @@ export default function Navbar() {
                 className="w-full pl-9 pr-8 py-2 rounded-full text-xs font-semibold text-roope-primary placeholder-stone-warm/40 bg-pearl-200/50 border border-stone-warm/15 outline-none focus:border-champagne-DEFAULT focus:ring-1 focus:ring-champagne-300/10 transition-all shadow-inner"
               />
               {searchVal && (
-                <button onClick={() => handleSearchChange("")} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-warm/50 hover:text-roope-primary">
+                <button type="button" onClick={() => handleSearchChange("")} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-warm/50 hover:text-roope-primary cursor-pointer">
                   <X className="w-3.5 h-3.5" />
                 </button>
               )}
-            </div>
+
+              {/* Suggestions Dropdown Overlay */}
+              <AnimatePresence>
+                {showSuggestions && suggestions.length > 0 && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute top-full left-0 right-0 mt-2 bg-white/95 border border-pearl-200 rounded-2xl shadow-xl p-2.5 z-50 text-left max-h-72 overflow-y-auto backdrop-blur-md"
+                  >
+                    <p className="text-[9px] font-bold text-stone-warm/40 uppercase tracking-widest px-2.5 py-1.5 border-b border-pearl-100 mb-1 select-none">
+                      Matching Services
+                    </p>
+                    {suggestions.map((sug) => (
+                      <button
+                        key={sug.id}
+                        type="button"
+                        onClick={() => handleSuggestionClick(sug)}
+                        className="flex items-center justify-between w-full px-3 py-2 rounded-xl text-xs font-semibold text-stone-warm hover:text-roope-primary hover:bg-pearl transition-all duration-200 cursor-pointer"
+                      >
+                        <div className="flex flex-col min-w-0 text-left">
+                          <span className="truncate">{sug.name}</span>
+                          <span className="text-[9px] text-stone-warm/40 font-normal">{sug.category}</span>
+                        </div>
+                        <span className="text-[#B8922E] font-medium flex-shrink-0 ml-2">{formatPrice(sug.price)}</span>
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </form>
           </div>
+
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-1">

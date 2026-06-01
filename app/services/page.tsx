@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { services } from "@/lib/data";
 import { formatPrice, getDiscount } from "@/lib/utils";
+import ComparePackages from "@/components/services/ComparePackages";
 
 // Category Definitions with Unsplash High-Fidelity Thumbnails & Dynamic Badges
 const CATEGORY_MAP = [
@@ -814,6 +815,20 @@ export default function ServicesPage() {
                                         {svc.tag}
                                       </span>
                                     )}
+                                    {svc.category === "super-saver" && (
+                                      <button
+                                        onClick={() => {
+                                          window.dispatchEvent(
+                                            new CustomEvent("roope-trigger-compare", {
+                                              detail: { packageId: svc.id }
+                                            })
+                                          );
+                                        }}
+                                        className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-champagne-300/20 text-[#B8922E] border border-champagne-DEFAULT/25 hover:bg-[#B8922E] hover:text-white transition-all cursor-pointer"
+                                      >
+                                        Compare Package
+                                      </button>
+                                    )}
                                     <span className="text-[9px] font-bold text-stone-warm/50 uppercase tracking-widest">
                                       {svc.occasion}
                                     </span>
@@ -1335,6 +1350,16 @@ export default function ServicesPage() {
           </>
         )}
       </AnimatePresence>
+
+      {/* ─── COMPARE PACKAGES DRAWER MODAL ─── */}
+      {step === "catalog" && (
+        <ComparePackages
+          cart={cart}
+          onAddToCart={handleAddToCart}
+          onRemoveFromCart={handleRemoveFromCart}
+        />
+      )}
     </div>
   );
 }
+

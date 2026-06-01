@@ -258,6 +258,62 @@ export default function HeroSection() {
               sizes="112px"
             />
           </motion.div>
+
+          {/* Roopé Luxury Standards Panel - Fills the empty right column on large screens */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute left-[440px] top-6 w-[200px] h-[510px] rounded-[28px] p-5 flex flex-col justify-between border border-champagne-DEFAULT/20 bg-white/30 backdrop-blur-md shadow-luxury select-none hidden xl:flex text-left"
+            style={{ transformStyle: "preserve-3d" }}
+          >
+            <div>
+              <div className="flex items-center gap-1.5 mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-champagne-DEFAULT" />
+                <span className="text-[9px] uppercase font-bold tracking-widest text-[#B8922E]">
+                  Signature Standards
+                </span>
+              </div>
+              
+              <div className="space-y-6">
+                {[
+                  {
+                    num: "01",
+                    title: "Bespoke Artistry",
+                    desc: "Custom cosmetic styling mapped to your profile."
+                  },
+                  {
+                    num: "02",
+                    title: "Hygienic Execution",
+                    desc: "Single-use organic tools & sanitised kits."
+                  },
+                  {
+                    num: "03",
+                    title: "Elite Style Crew",
+                    desc: "Top 1% certified beauty professionals."
+                  },
+                  {
+                    num: "04",
+                    title: "Doorstep Ease",
+                    desc: "Zero travel stress, zero salon queues."
+                  }
+                ].map((std) => (
+                  <div key={std.num} className="group">
+                    <div className="flex items-baseline gap-2">
+                      <span className="font-display text-xs text-[#B8922E] font-bold">{std.num}</span>
+                      <h4 className="text-xs font-bold text-roope-primary uppercase tracking-wider">{std.title}</h4>
+                    </div>
+                    <p className="text-[10px] text-stone-warm/60 leading-relaxed mt-1">{std.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="border-t border-pearl-200/50 pt-4 text-center">
+              <span className="text-[9px] text-[#B8922E] font-bold uppercase tracking-widest block">Roopé Promise</span>
+              <p className="text-[8px] text-stone-warm/50 mt-1 leading-normal">Uncompromised luxury and safety, guaranteed.</p>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
 

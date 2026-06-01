@@ -58,6 +58,7 @@ export default function SignaturePackages() {
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                         sizes="300px"
+                        unoptimized
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                       {/* Badges */}
