@@ -177,86 +177,89 @@ export default function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Right: 3D image composition */}
+        {/* Right: Premium Asymmetric 4-Quadrant Collage Grid */}
         <motion.div
-          className="relative hidden lg:flex items-center justify-center"
+          className="relative hidden lg:flex items-center justify-center w-full"
           style={{ rotateX, rotateY, transformStyle: "preserve-3d", perspective: 1200 }}
         >
-          {/* Main hero image */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.94, y: 20 }}
+            initial={{ opacity: 0, scale: 0.96, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-[420px] h-[560px] rounded-4xl overflow-hidden shadow-luxury-xl"
+            className="relative w-full max-w-[500px] h-[580px] flex gap-4 p-2 rounded-4xl bg-stone-900/5 backdrop-blur-sm border border-stone-200/20 shadow-luxury-xl"
+            style={{ transformStyle: "preserve-3d" }}
           >
-            <Image
-              src="/images/hero_bridal.png"
-              alt="Luxury bridal transformation by Roopé"
-              fill
-              priority
-              className="object-cover"
-              sizes="420px"
-            />
-            {/* Bottom gradient */}
-            <div className="absolute inset-x-0 bottom-0 h-32"
-              style={{ background: "linear-gradient(to top, rgba(26,22,18,0.4), transparent)" }} />
-            <div className="absolute bottom-5 left-5 right-5">
-              <p className="text-white text-sm font-light opacity-80">Bridal Transformation</p>
+            {/* Left Column (Width: 47%) */}
+            <div className="flex-[0.47] flex flex-col gap-4 h-full">
+              {/* Top-Left Image: Women's Salon (Aspect Ratio: ~53% Height) */}
+              <div className="relative flex-[0.53] rounded-3xl overflow-hidden border border-[#C9A84C]/15 group cursor-pointer shadow-luxury-md bg-stone-100">
+                <Image
+                  src="/images/collage_women_salon.png"
+                  alt="Premium Women's Salon Treatment by Roopé"
+                  fill
+                  priority
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  sizes="230px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <div className="absolute bottom-3 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                  <span className="text-[10px] uppercase tracking-widest text-[#C9A84C] font-semibold block mb-0.5">Signature Service</span>
+                  <span className="text-xs font-light tracking-wide">Women&apos;s Salon</span>
+                </div>
+              </div>
+
+              {/* Bottom-Left Image: Facial Therapy (Aspect Ratio: ~47% Height) */}
+              <div className="relative flex-[0.47] rounded-3xl overflow-hidden border border-[#C9A84C]/15 group cursor-pointer shadow-luxury-md bg-stone-100">
+                <Image
+                  src="/images/collage_facial_glow.png"
+                  alt="Premium Skincare Facial Treatment by Roopé"
+                  fill
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  sizes="230px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <div className="absolute bottom-3 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                  <span className="text-[10px] uppercase tracking-widest text-[#C9A84C] font-semibold block mb-0.5">Advanced Therapy</span>
+                  <span className="text-xs font-light tracking-wide">Facial Glow</span>
+                </div>
+              </div>
             </div>
-          </motion.div>
 
-          {/* Floating glass cards */}
-          {mounted && floatingCards.map((card) => (
-            <motion.div
-              key={card.id}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.5 + card.delay, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute glass rounded-2xl p-4 shadow-float"
-              style={{
-                ...card.position,
-                animation: `float ${5 + card.delay}s ease-in-out ${card.delay}s infinite`,
-              }}
-            >
-              {card.live && (
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="badge-live" />
-                  <span className="text-xs font-medium text-green-600">Live</span>
+            {/* Right Column (Width: 53%) */}
+            <div className="flex-[0.53] flex flex-col gap-4 h-full">
+              {/* Top-Right Image: Men's Massage (Aspect Ratio: ~40% Height) */}
+              <div className="relative flex-[0.40] rounded-3xl overflow-hidden border border-[#C9A84C]/15 group cursor-pointer shadow-luxury-md bg-stone-100">
+                <Image
+                  src="/images/collage_men_massage.png"
+                  alt="Signature Men's Massage Therapy by Roopé"
+                  fill
+                  priority
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  sizes="260px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <div className="absolute bottom-3 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                  <span className="text-[10px] uppercase tracking-widest text-[#C9A84C] font-semibold block mb-0.5">Relaxation</span>
+                  <span className="text-xs font-light tracking-wide">Signature Massage</span>
                 </div>
-              )}
-              {card.tag && (
-                <span className="tag-gold text-xs mb-2 block w-fit">{card.tag}</span>
-              )}
-              <p className="text-sm font-semibold text-roope-primary leading-tight">{card.title}</p>
-              {card.price && (
-                <p className="text-lg font-display font-light text-gradient-gold mt-1">{card.price}</p>
-              )}
-              {card.rating && (
-                <div className="flex items-center gap-1 mt-1">
-                  <Star className="w-3 h-3 fill-current" style={{ color: "#C9A84C" }} />
-                  <span className="text-xs text-stone-warm">{card.rating} rating</span>
-                </div>
-              )}
-              {card.subtitle && (
-                <p className="text-xs text-stone-warm mt-1">{card.subtitle}</p>
-              )}
-            </motion.div>
-          ))}
+              </div>
 
-          {/* Secondary image stack */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute -left-16 top-12 w-28 h-36 rounded-2xl overflow-hidden shadow-luxury-lg ring-2 ring-white"
-          >
-            <Image
-              src="/images/bridal_glam_1.png"
-              alt="Bridal makeup close-up"
-              fill
-              className="object-cover"
-              sizes="112px"
-            />
+              {/* Bottom-Right Image: Male Grooming & Hair Styling (Aspect Ratio: ~60% Height) */}
+              <div className="relative flex-[0.60] rounded-3xl overflow-hidden border border-[#C9A84C]/15 group cursor-pointer shadow-luxury-md bg-stone-100">
+                <Image
+                  src="/images/collage_men_grooming.png"
+                  alt="Premium Men's Styling & Grooming by Roopé"
+                  fill
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  sizes="260px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <div className="absolute bottom-3 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                  <span className="text-[10px] uppercase tracking-widest text-[#C9A84C] font-semibold block mb-0.5">Elite Grooming</span>
+                  <span className="text-xs font-light tracking-wide">Styling & Barber</span>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
       </div>
