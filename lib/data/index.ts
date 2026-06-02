@@ -86,7 +86,7 @@ export const services = [
     rating: 4.85,
     reviews: 8300,
     tag: "Upto 20% OFF",
-    image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=500",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1777289098166-78b28b.jpeg",
     includes: [
       "Waxing: Full arms (incl. underarms) - Roll-on & Full legs - Roll-on",
       "Facial & cleanup: Glass skin hydration facial",
@@ -106,7 +106,7 @@ export const services = [
     rating: 4.85,
     reviews: 6500,
     tag: "10% OFF",
-    image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=500",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1775030335442-db5de4.jpeg",
     includes: [
       "Waxing: Full arms (incl. underarms) - Honey",
       "Cleanup: Sara fruit cleanup & detan pack",
@@ -126,7 +126,7 @@ export const services = [
     rating: 4.82,
     reviews: 4200,
     tag: "Best Value",
-    image: "https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=500",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770660852627-c584ec.jpeg",
     includes: [
       "Haircut: Trendy cut matching your face shape",
       "Beard Styling: Precision trim & straight razor outlines",
@@ -147,7 +147,7 @@ export const services = [
     rating: 4.86,
     reviews: 138000,
     tag: "Price drop",
-    image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=500",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770654754078-0ca9bf.jpeg",
     includes: [
       "Full arms, legs & underarms hair removal",
       "Painless & irritation-free waxing technique",
@@ -166,7 +166,7 @@ export const services = [
     rating: 4.89,
     reviews: 42000,
     tag: "Trending",
-    image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770654756881-fc5c4a.jpeg",
     includes: [
       "Full body roll-on wax application",
       "Cartridge roll-on system: 100% hygienic, zero double-dipping",
@@ -185,7 +185,7 @@ export const services = [
     rating: 4.79,
     reviews: 215000,
     tag: "Quick service",
-    image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770654761760-38e768.jpeg",
     includes: [
       "Eyebrow shaping & precision threading",
       "Upper lip threading for fine hair removal",
@@ -206,7 +206,7 @@ export const services = [
     rating: 4.9,
     reviews: 28000,
     tag: "Premium Glow",
-    image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=500",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1777289404699-a6b57d.jpeg",
     includes: [
       "Double deep cleansing & gentle enzyme exfoliation",
       "Potent serums rich with active peptides for glow",
@@ -225,7 +225,7 @@ export const services = [
     rating: 4.87,
     reviews: 64000,
     tag: "Best Seller",
-    image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=500",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776255835323-a8678c.jpeg",
     includes: [
       "Cleansing & gold scrub exfoliation",
       "Cream massage to improve blood circulation",
@@ -244,7 +244,7 @@ export const services = [
     rating: 4.82,
     reviews: 95000,
     tag: "Price drop",
-    image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=500",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1777289407214-a22cab.jpeg",
     includes: [
       "Sara detan pack application for tan removal",
       "Cleansing and blackhead extraction",
@@ -265,7 +265,7 @@ export const services = [
     rating: 4.88,
     reviews: 34000,
     tag: "Luxury",
-    image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=500",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770659323099-b295c8.jpeg",
     includes: [
       "Warm water foot soak & organic salt scrub",
       "Nail cut, file, cuticle push & heel scrub",
@@ -284,7 +284,7 @@ export const services = [
     rating: 4.85,
     reviews: 58000,
     tag: "All Inclusive",
-    image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=500",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770659329192-be6242.jpeg",
     includes: [
       "Manicure: hand scrub, nail shaping & massage",
       "Pedicure: warm foot soak, scrub & moisturizing massage",
@@ -305,7 +305,7 @@ export const services = [
     rating: 4.84,
     reviews: 112000,
     tag: "Trending",
-    image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=500",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770661384210-fed330.jpeg",
     includes: [
       "Custom haircut & shampoo conditioning",
       "Beard shaping, mustache trim & razor styling",
@@ -324,7 +324,7 @@ export const services = [
     rating: 4.81,
     reviews: 32000,
     tag: "Detox Special",
-    image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=500",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770813589253-774232.jpeg",
     includes: [
       "Active charcoal deep face scrub & cleanse",
       "O3+ detan face pack application to clear tan",
@@ -343,7 +343,7 @@ export const services = [
     rating: 4.86,
     reviews: 48000,
     tag: "Price drop",
-    image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=500",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770661390930-8f5b6c.jpeg",
     includes: [
       "Hot towel treatment to soften facial hair follicles",
       "Classic lather shave or precision beard grooming",
@@ -364,7 +364,7 @@ export const services = [
     rating: 4.91,
     reviews: 24000,
     tag: "Luxury Relaxation",
-    image: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=500",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770656427240-a4da39.jpeg",
     includes: [
       "60-min full body Swedish massage therapy",
       "Aromatic lavender essential oils to soothe senses",
@@ -383,7 +383,7 @@ export const services = [
     rating: 4.89,
     reviews: 19000,
     tag: "Therapeutic",
-    image: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=500",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770656429818-d0de5d.jpeg",
     includes: [
       "60-min deep tissue massage focusing on core muscles",
       "Nourishing herbal oils to ease deep muscle tension",
@@ -402,7 +402,7 @@ export const services = [
     rating: 4.85,
     reviews: 75000,
     tag: "Quick Relax",
-    image: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=500",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770656432900-f5117f.jpeg",
     includes: [
       "30-min acupressure head, neck & shoulder massage",
       "Warm sesame or coconut oil head treatment",
@@ -610,4 +610,11 @@ export const trustPoints = [
     title: "Live Tracking",
     desc: "Track your artist's arrival in real-time, exactly like ordering food. Complete transparency.",
   },
+];
+
+export const extras = [
+  { id: "lashes", label: "Premium Lashes", price: 999, desc: "High-volume mink lashes" },
+  { id: "hairstyle", label: "Bridal Hairstyle", price: 999, desc: "Intricate curls or custom updos" },
+  { id: "draping", label: "Saree/Dupatta Draping", price: 999, desc: "Perfect pleating & secure styling" },
+  { id: "touchup", label: "1-hr Touch-up Artist", price: 999, desc: "On-standby artist support" },
 ];

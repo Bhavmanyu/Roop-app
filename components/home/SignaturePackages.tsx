@@ -3,17 +3,35 @@
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion, useInView } from "framer-motion";
 import { Star, Clock, ArrowRight, BadgeCheck } from "lucide-react";
 import { services } from "@/lib/data";
 import { formatPrice, getDiscount } from "@/lib/utils";
 
 export default function SignaturePackages() {
+  const router = useRouter();
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   const items = services.slice(0, 6);
   const duplicatedItems = [...items, ...items];
+
+  const handleServiceClick = (e: React.MouseEvent, id: string, name: string) => {
+    e.preventDefault();
+    let cart: { [id: string]: number } = {};
+    const savedCart = localStorage.getItem("roope-cart");
+    if (savedCart) {
+      try {
+        cart = JSON.parse(savedCart);
+      } catch (err) {
+        cart = {};
+      }
+    }
+    cart[id] = (cart[id] || 0) + 1;
+    localStorage.setItem("roope-cart", JSON.stringify(cart));
+    router.push(`/services?search=${encodeURIComponent(name)}`);
+  };
 
   return (
     <section
@@ -41,21 +59,21 @@ export default function SignaturePackages() {
         </motion.div>
 
         <style dangerouslySetInnerHTML={{ __html: `
-          @keyframes marquee-lr {
-            0% { transform: translate3d(-50%, 0, 0); }
-            100% { transform: translate3d(0%, 0, 0); }
+          @keyframes marquee-rl {
+            0% { transform: translate3d(0%, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
           }
           .marquee-track {
             display: flex;
             width: max-content;
-            animation: marquee-lr 35s linear infinite;
+            animation: marquee-rl 110s linear infinite;
           }
           .marquee-track:hover {
             animation-play-state: paused;
           }
         `}} />
 
-        {/* Slow-scrolling infinite horizontal marquee from left to right */}
+        {/* Slow-scrolling infinite horizontal marquee from right to left */}
         <div className="w-full overflow-hidden py-4 -mx-6 px-6">
           <div className="marquee-track gap-5">
             {duplicatedItems.map((service, i) => {
@@ -65,7 +83,10 @@ export default function SignaturePackages() {
                   key={`${service.id}-${i}`}
                   className="w-[280px] sm:w-[310px] flex-shrink-0"
                 >
-                  <Link href="/services" className="group block h-full">
+                  <button
+                    onClick={(e) => handleServiceClick(e, service.id, service.name)}
+                    className="group block h-full w-full text-left outline-none cursor-pointer"
+                  >
                     <div className="card-luxury h-full flex flex-col overflow-hidden">
                       {/* Image */}
                       <div className="relative h-52 overflow-hidden">
@@ -137,7 +158,7 @@ export default function SignaturePackages() {
                         </div>
                       </div>
                     </div>
-                  </Link>
+                  </button>
                 </div>
               );
             })}

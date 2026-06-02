@@ -13,15 +13,15 @@ const footerLinks = {
   company: [
     { label: "Gallery", href: "/gallery" },
     { label: "Reviews", href: "/reviews" },
-    { label: "Careers", href: "#" },
-    { label: "Press", href: "#" },
+    { label: "Careers", href: "/careers" },
+    { label: "Press", href: "/press" },
   ],
   support: [
     { label: "Book a Service", href: "/book" },
     { label: "Contact Us", href: "/contact" },
     { label: "FAQ", href: "/contact#faq" },
     { label: "Partner with Us", href: "/contact#partner" },
-    { label: "Cancellation Policy", href: "#" },
+    { label: "Cancellation Policy", href: "/cancellation-policy" },
   ],
   partners: [
     { label: "Register as Professional", href: "/register/professional" },
@@ -127,10 +127,14 @@ export default function Footer() {
             <Heart className="w-3 h-3 text-champagne-DEFAULT fill-current" /> in India.
           </p>
           <div className="flex items-center gap-6 flex-wrap">
-            {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((item) => (
-              <a key={item} href="#" className="text-white/30 text-xs hover:text-white/60 transition-colors duration-200">
-                {item}
-              </a>
+            {[
+              { label: "Privacy Policy", href: "/privacy" },
+              { label: "Terms of Service", href: "/terms" },
+              { label: "Cookie Policy", href: "/cookies" },
+            ].map((item) => (
+              <Link key={item.label} href={item.href} className="text-white/30 text-xs hover:text-white/60 transition-colors duration-200">
+                {item.label}
+              </Link>
             ))}
             <Link href="/admin" className="text-champagne-DEFAULT text-xs font-medium hover:text-white transition-all duration-300 border border-champagne-DEFAULT/20 hover:border-champagne-DEFAULT px-3 py-1.5 rounded-xl bg-champagne-DEFAULT/5">
               Admin Portal

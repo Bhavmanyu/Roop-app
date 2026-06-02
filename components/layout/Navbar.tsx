@@ -117,6 +117,16 @@ export default function Navbar() {
     } else if (sug.type === "event") {
       router.push("/events");
     } else {
+      let cart: { [id: string]: number } = {};
+      const savedCart = localStorage.getItem("roope-cart");
+      if (savedCart) {
+        try {
+          cart = JSON.parse(savedCart);
+        } catch {}
+      }
+      cart[sug.id] = (cart[sug.id] || 0) + 1;
+      localStorage.setItem("roope-cart", JSON.stringify(cart));
+      
       router.push(`/services?search=${encodeURIComponent(sug.name)}`);
     }
   };
