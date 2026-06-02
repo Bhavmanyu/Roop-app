@@ -11,15 +11,15 @@ interface AuthModalProps {
 }
 
 export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
-  const [mode, setMode] = useState<"signin" | "signup" | "phone" | "forgot">("signin");
+  const [mode, setMode] = useState<"signin" | "signup" | "email_otp" | "forgot">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   
-  // Phone OTP States
-  const [phoneMode, setPhoneMode] = useState<"phone_input" | "otp_verify">("phone_input");
+  // Email OTP States
+  const [otpVerifyMode, setOtpVerifyMode] = useState<"input" | "verify">("input");
   const [otpCode, setOtpCode] = useState("");
 
   const [loading, setLoading] = useState(false);
@@ -104,32 +104,26 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     }
   };
 
-  // Send Phone OTP SMS
-  const handleSendOtp = async (e?: React.FormEvent) => {
+  // Send Email OTP
+  const handleSendEmailOtp = async (e?: React.FormEvent) => {
     e?.preventDefault();
-    if (!phone.trim()) {
-      setError("Please enter a valid phone number.");
+    if (!email.trim() || !email.includes("@")) {
+      setError("Please enter a valid email address.");
       return;
     }
     setLoading(true);
     setError("");
     try {
-      let formattedPhone = phone.trim();
-      // Ensure local Indian code is prefilled if omitted
-      if (!formattedPhone.startsWith("+")) {
-        formattedPhone = "+91" + formattedPhone.replace(/\D/g, "");
-      }
-      
       const { error } = await supabase.auth.signInWithOtp({
-        phone: formattedPhone,
+        email: email.trim(),
         options: {
           shouldCreateUser: true, // Auto-signs up new user!
         }
       });
       if (error) throw error;
       
-      setPhoneMode("otp_verify");
-      setSuccessMsg("Verification OTP code sent successfully to your phone number.");
+      setOtpVerifyMode("verify");
+      setSuccessMsg("Verification OTP code sent successfully to your email address.");
     } catch (err: any) {
       setError(err.message || "Failed to dispatch verification code.");
     } finally {
@@ -137,8 +131,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     }
   };
 
-  // Verify Phone OTP SMS
-  const handleVerifyOtp = async (e: React.FormEvent) => {
+  // Verify Email OTP
+  const handleVerifyEmailOtp = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!otpCode || otpCode.length < 6) {
       setError("Please enter the 6-digit OTP code.");
@@ -147,15 +141,10 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     setLoading(true);
     setError("");
     try {
-      let formattedPhone = phone.trim();
-      if (!formattedPhone.startsWith("+")) {
-        formattedPhone = "+91" + formattedPhone.replace(/\D/g, "");
-      }
-      
       const { error } = await supabase.auth.verifyOtp({
-        phone: formattedPhone,
+        email: email.trim(),
         token: otpCode,
-        type: "sms",
+        type: "email",
       });
       if (error) throw error;
       onClose();
@@ -188,8 +177,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     }
   };
 
-  const resetPhoneStates = () => {
-    setPhoneMode("phone_input");
+  const resetOtpStates = () => {
+    setOtpVerifyMode("input");
     setOtpCode("");
     setSuccessMsg("");
     setError("");
@@ -236,7 +225,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               </div>
 
               {/* Success Screen */}
-              {successMsg && mode !== "phone" ? (
+              {successMsg && mode !== "email_otp" ? (
                 <div className="text-center py-6">
                   <CheckCircle2 className="w-12 h-12 text-[#B8922E] mx-auto mb-4" />
                   <h3 className="font-display text-lg font-light text-roope-primary mb-2">Check Your Email</h3>
@@ -277,14 +266,14 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                         Sign Up
                       </button>
                       <button
-                        onClick={() => { setMode("phone"); setError(""); resetPhoneStates(); }}
+                        onClick={() => { setMode("email_otp"); setError(""); resetOtpStates(); }}
                         className={`flex-1 py-2 text-center text-[10px] font-bold uppercase tracking-wider rounded-full transition-all cursor-pointer ${
-                          mode === "phone" 
+                          mode === "email_otp" 
                             ? "bg-white text-roope-primary shadow-sm" 
                             : "text-stone-warm/70 hover:text-roope-primary"
                         }`}
                       >
-                        Phone OTP
+                        Email OTP
                       </button>
                     </div>
                   )}
@@ -441,27 +430,27 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                     </form>
                   )}
 
-                  {/* ─── PHONE OTP LOGIN FORM ─── */}
-                  {mode === "phone" && (
+                  {/* ─── EMAIL OTP LOGIN FORM ─── */}
+                  {mode === "email_otp" && (
                     <div className="space-y-4">
-                      {phoneMode === "phone_input" ? (
-                        /* Step 1: Input Phone Number */
-                        <form onSubmit={handleSendOtp} className="space-y-4">
+                      {otpVerifyMode === "input" ? (
+                        /* Step 1: Input Email */
+                        <form onSubmit={handleSendEmailOtp} className="space-y-4">
                           <div>
-                            <label className="block text-[10px] font-bold text-stone-warm/50 uppercase tracking-widest mb-1">Phone Number</label>
+                            <label className="block text-[10px] font-bold text-stone-warm/50 uppercase tracking-widest mb-1">Email Address</label>
                             <div className="relative">
-                              <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-warm/40" />
+                              <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-warm/40" />
                               <input
-                                type="tel"
+                                type="email"
                                 required
-                                value={phone}
-                                onChange={(e) => setPhone(e.target.value)}
-                                placeholder="Enter 10-digit number"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="you@example.com"
                                 className="w-full bg-white rounded-2xl border border-pearl-200 pl-10 pr-4 py-3 text-xs text-roope-primary outline-none focus:border-champagne-DEFAULT transition-colors"
                               />
                             </div>
                             <p className="text-[9px] text-stone-warm/40 mt-1 leading-normal">
-                              We will send you a 6-digit OTP verification code to verify your phone. (Indian numbers default to +91).
+                              We will send you a 6-digit OTP verification code to verify your email address.
                             </p>
                           </div>
 
@@ -482,7 +471,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                         </form>
                       ) : (
                         /* Step 2: Verify OTP Code */
-                        <form onSubmit={handleVerifyOtp} className="space-y-4">
+                        <form onSubmit={handleVerifyEmailOtp} className="space-y-4">
                           <div>
                             <div className="flex justify-between items-center mb-1">
                               <label className="block text-[10px] font-bold text-stone-warm/50 uppercase tracking-widest">Verification Code</label>
@@ -490,7 +479,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                 <button
                                   type="button"
                                   disabled={loading}
-                                  onClick={() => handleSendOtp()}
+                                  onClick={() => handleSendEmailOtp()}
                                   className="text-[10px] text-gold hover:underline font-semibold tracking-wide uppercase cursor-pointer disabled:opacity-50"
                                 >
                                   {loading ? "Resending..." : "Resend OTP"}
@@ -498,10 +487,10 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                 <span className="text-[10px] text-stone-warm/30 select-none">|</span>
                                 <button
                                   type="button"
-                                  onClick={resetPhoneStates}
+                                  onClick={resetOtpStates}
                                   className="text-[10px] text-gold hover:underline font-semibold tracking-wide uppercase cursor-pointer"
                                 >
-                                  Change Phone
+                                  Change Email
                                 </button>
                               </div>
                             </div>
