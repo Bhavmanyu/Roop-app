@@ -21,7 +21,17 @@ export default function BridalPageClient() {
   const [selectedPackage, setSelectedPackage] = useState<string | null>("luxury-bride");
   const [showInquiry, setShowInquiry] = useState(false);
   const [inquiryPackage, setInquiryPackage] = useState<{ id: string; name: string } | null>(null);
-  const [form, setForm] = useState({ name: "", phone: "", email: "", wedding_date: "", city: "", message: "" });
+  const [form, setForm] = useState({ 
+    name: "", 
+    phone: "", 
+    email: "", 
+    wedding_date: "", 
+    city: "", 
+    message: "",
+    budget: "",
+    skinTone: "",
+    requirements: ""
+  });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
@@ -38,22 +48,38 @@ export default function BridalPageClient() {
     setSubmitting(true);
     setError("");
     try {
+      const fullMessage = `
+[Estimated Budget]: ${form.budget || "Not Specified"}
+[Skin Tone/Profile]: ${form.skinTone || "Not Specified"}
+[Specific Requirements]: ${form.requirements || "Not Specified"}
+[Additional Message]: ${form.message || "None"}
+`.trim();
+
       const res = await fetch("/api/bridal", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...form,
+          name: form.name,
+          phone: form.phone,
+          email: form.email,
+          wedding_date: form.wedding_date || null,
+          city: form.city,
+          message: fullMessage,
           package_id: inquiryPackage?.id,
           package_name: inquiryPackage?.name,
         }),
       });
-      if (res.ok) { setSubmitted(true); }
-      else {
+      if (res.ok) { 
+        setSubmitted(true); 
+      } else {
         const json = await res.json();
         setError(json.error || "Failed to submit. Please try again.");
       }
-    } catch { setError("Network error. Please try again."); }
-    finally { setSubmitting(false); }
+    } catch { 
+      setError("Network error. Please try again."); 
+    } finally { 
+      setSubmitting(false); 
+    }
   };
 
   return (
@@ -79,7 +105,12 @@ export default function BridalPageClient() {
             </motion.p>
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
               className="flex gap-4">
-              <Link href="/book" className="btn-primary px-8 py-4">Book Consultation</Link>
+              <button
+                onClick={() => openInquiry({ id: "consultation", name: "Free Bridal Consultation" })}
+                className="btn-primary px-8 py-4 cursor-pointer"
+              >
+                Book Free Consultation
+              </button>
               <Link href="#packages" className="btn-secondary px-8 py-4">View Packages</Link>
             </motion.div>
           </div>
@@ -169,19 +200,12 @@ export default function BridalPageClient() {
 
                   <div className="mb-6">
                     <div className="flex items-baseline gap-2">
-                      <span className={`font-display text-3xl font-light ${pkg.color === "gold" ? "text-white" : "text-roope-primary"}`}>
-                        {formatPrice(pkg.price)}
-                      </span>
-                      <span className={`text-sm line-through ${pkg.color === "gold" ? "text-white/30" : "text-stone-warm/40"}`}>
-                        {formatPrice(pkg.originalPrice)}
-                      </span>
-                      <span className="text-xs font-semibold px-2 py-0.5 rounded-full text-white"
-                        style={{ background: "#C9A84C" }}>
-                        -{discount}%
+                      <span className={`font-display text-2xl font-light ${pkg.color === "gold" ? "text-white" : "text-roope-primary"}`}>
+                        Free Consultation
                       </span>
                     </div>
                     <p className={`text-xs mt-1 ${pkg.color === "gold" ? "text-white/40" : "text-stone-warm/60"}`}>
-                      {pkg.highlights} • Best for {pkg.idealFor}
+                      Custom pricing based on requirements • {pkg.highlights}
                     </p>
                   </div>
 
@@ -203,7 +227,7 @@ export default function BridalPageClient() {
                       pkg.color === "gold" ? "btn-primary" : "btn-secondary"
                     }`}
                   >
-                    Enquire Now <ArrowRight className="w-4 h-4" />
+                    Book Free Consultation <ArrowRight className="w-4 h-4" />
                   </button>
                 </motion.div>
               );
@@ -319,9 +343,42 @@ export default function BridalPageClient() {
                       </select>
                     </div>
                   </div>
+
                   <div>
-                    <label className="block text-sm font-medium text-stone-warm mb-2">Message (optional)</label>
-                    <textarea rows={3} placeholder="Tell us about your vision..."
+                    <label className="block text-sm font-medium text-stone-warm mb-2">Estimated Budget *</label>
+                    <select required value={form.budget} onChange={(e) => setForm({ ...form, budget: e.target.value })}
+                      className="w-full px-4 py-3.5 rounded-2xl text-sm outline-none appearance-none"
+                      style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: form.budget ? "#1A1612" : "#8B7D6B" }}
+                    >
+                      <option value="">Select budget range</option>
+                      <option value="under-25k">Intimate / Under ₹25k</option>
+                      <option value="25k-50k">Classic / ₹25k - ₹50k</option>
+                      <option value="above-50k">Premium Luxury / Above ₹50k</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-stone-warm mb-2">Skin Tone / Profile (optional)</label>
+                    <input type="text" placeholder="e.g. Fair, warm undertones, combination skin"
+                      value={form.skinTone}
+                      onChange={(e) => setForm({ ...form, skinTone: e.target.value })}
+                      className="w-full px-4 py-3.5 rounded-2xl text-sm outline-none"
+                      style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-stone-warm mb-2">Specific Requirements (optional)</label>
+                    <textarea rows={2} placeholder="e.g. Draping style, number of family members, specific crew size..."
+                      value={form.requirements} onChange={(e) => setForm({ ...form, requirements: e.target.value })}
+                      className="w-full px-4 py-3.5 rounded-2xl text-sm outline-none resize-none"
+                      style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-stone-warm mb-2">Additional Message (optional)</label>
+                    <textarea rows={2} placeholder="Tell us about your dream bridal look..."
                       value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}
                       className="w-full px-4 py-3.5 rounded-2xl text-sm outline-none resize-none"
                       style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}

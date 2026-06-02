@@ -352,7 +352,7 @@ export default function ComparePackages({
                             >
                               {ALL_PACKAGES.map((pkg) => (
                                 <option key={pkg.id} value={pkg.id}>
-                                  {pkg.name} ({formatPrice(pkg.price)})
+                                  {pkg.name} ({pkg.price >= 10000 ? "Free Consultation" : formatPrice(pkg.price)})
                                 </option>
                               ))}
                             </select>
@@ -375,7 +375,7 @@ export default function ComparePackages({
                             >
                               {ALL_PACKAGES.map((pkg) => (
                                 <option key={pkg.id} value={pkg.id}>
-                                  {pkg.name} ({formatPrice(pkg.price)})
+                                  {pkg.name} ({pkg.price >= 10000 ? "Free Consultation" : formatPrice(pkg.price)})
                                 </option>
                               ))}
                             </select>
@@ -434,37 +434,63 @@ export default function ComparePackages({
                     <tr className="border-b border-pearl-100">
                       <td className="py-4 pr-4 font-semibold text-xs text-stone-warm">Pricing & Savings</td>
                       <td className="py-4 px-4">
-                        <div className="flex items-baseline gap-1.5">
-                          <span className="font-display text-lg font-light text-roope-primary">
-                            {formatPrice(slotA.price)}
-                          </span>
-                          {slotA.originalPrice && (
-                            <span className="text-xs text-stone-warm/40 line-through">
-                              {formatPrice(slotA.originalPrice)}
+                        {slotA.price >= 10000 ? (
+                          <div className="flex flex-col">
+                            <span className="font-display text-sm font-semibold text-[#B8922E]">
+                              Free Consultation
                             </span>
-                          )}
-                        </div>
-                        {slotA.originalPrice && (
-                          <p className="text-[9px] font-bold text-emerald-600 mt-0.5">
-                            SAVE {Math.round(((slotA.originalPrice - slotA.price) / slotA.originalPrice) * 100)}%
-                          </p>
+                            <span className="text-[9px] text-stone-warm/50 font-normal">
+                              Pricing customized post-consultation
+                            </span>
+                          </div>
+                        ) : (
+                          <>
+                            <div className="flex items-baseline gap-1.5">
+                              <span className="font-display text-lg font-light text-roope-primary">
+                                {formatPrice(slotA.price)}
+                              </span>
+                              {slotA.originalPrice && (
+                                <span className="text-xs text-stone-warm/40 line-through">
+                                  {formatPrice(slotA.originalPrice)}
+                                </span>
+                              )}
+                            </div>
+                            {slotA.originalPrice && (
+                              <p className="text-[9px] font-bold text-emerald-600 mt-0.5">
+                                SAVE {Math.round(((slotA.originalPrice - slotA.price) / slotA.originalPrice) * 100)}%
+                              </p>
+                            )}
+                          </>
                         )}
                       </td>
                       <td className="py-4 pl-4">
-                        <div className="flex items-baseline gap-1.5">
-                          <span className="font-display text-lg font-light text-roope-primary">
-                            {formatPrice(slotB.price)}
-                          </span>
-                          {slotB.originalPrice && (
-                            <span className="text-xs text-stone-warm/40 line-through">
-                              {formatPrice(slotB.originalPrice)}
+                        {slotB.price >= 10000 ? (
+                          <div className="flex flex-col">
+                            <span className="font-display text-sm font-semibold text-[#B8922E]">
+                              Free Consultation
                             </span>
-                          )}
-                        </div>
-                        {slotB.originalPrice && (
-                          <p className="text-[9px] font-bold text-emerald-600 mt-0.5">
-                            SAVE {Math.round(((slotB.originalPrice - slotB.price) / slotB.originalPrice) * 100)}%
-                          </p>
+                            <span className="text-[9px] text-stone-warm/50 font-normal">
+                              Pricing customized post-consultation
+                            </span>
+                          </div>
+                        ) : (
+                          <>
+                            <div className="flex items-baseline gap-1.5">
+                              <span className="font-display text-lg font-light text-roope-primary">
+                                {formatPrice(slotB.price)}
+                              </span>
+                              {slotB.originalPrice && (
+                                <span className="text-xs text-stone-warm/40 line-through">
+                                  {formatPrice(slotB.originalPrice)}
+                                </span>
+                              )}
+                            </div>
+                            {slotB.originalPrice && (
+                              <p className="text-[9px] font-bold text-emerald-600 mt-0.5">
+                                SAVE {Math.round(((slotB.originalPrice - slotB.price) / slotB.originalPrice) * 100)}%
+                              </p>
+                            )}
+                          </>
                         )}
                       </td>
                     </tr>

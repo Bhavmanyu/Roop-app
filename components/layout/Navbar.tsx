@@ -257,7 +257,9 @@ export default function Navbar() {
                           <span className="truncate">{sug.name}</span>
                           <span className="text-[9px] text-stone-warm/40 font-normal">{sug.category}</span>
                         </div>
-                        <span className="text-[#B8922E] font-medium flex-shrink-0 ml-2">{formatPrice(sug.price)}</span>
+                        <span className="text-[#B8922E] font-medium flex-shrink-0 ml-2">
+                          {sug.price >= 10000 ? "Free Consultation" : formatPrice(sug.price)}
+                        </span>
                       </button>
                     ))}
                   </motion.div>
