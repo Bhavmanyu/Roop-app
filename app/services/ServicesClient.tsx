@@ -110,6 +110,18 @@ export default function ServicesPage() {
   const centerPaneRef = useRef<HTMLDivElement | null>(null);
   const isAutoScrolling = useRef(false);
 
+  // Lock body scroll when overlays or mobile cart drawer are open to prevent background scrolling
+  useEffect(() => {
+    if (isLocationModalOpen || mobileCartDrawerOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isLocationModalOpen, mobileCartDrawerOpen]);
+
   // Load cart and location from localStorage on component mount, and check URL search parameters
   useEffect(() => {
     const savedCart = localStorage.getItem("roope-cart");

@@ -245,6 +245,18 @@ export default function ComparePackages({
   const [slotA, setSlotA] = useState<NormalizedPackage>(ALL_PACKAGES[0]);
   const [slotB, setSlotB] = useState<NormalizedPackage>(ALL_PACKAGES[1]);
 
+  // Lock body scroll when comparison module is open to prevent background scrolling
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+
   // Sync selection event dispatched from catalog service cards
   useEffect(() => {
     const handleTriggerCompare = (e: Event) => {
