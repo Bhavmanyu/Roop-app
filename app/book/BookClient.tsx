@@ -180,12 +180,15 @@ export default function BookPage() {
   // Lock body scroll when drawer is open to prevent background scrolling
   useEffect(() => {
     if (isDrawerOpen) {
+      document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
     };
   }, [isDrawerOpen]);
 
@@ -690,7 +693,7 @@ export default function BookPage() {
               animate={{ opacity: 0.4 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsDrawerOpen(false)}
-              className="fixed inset-0 bg-black z-50 pointer-events-auto"
+              className="fixed inset-0 bg-black z-40 pointer-events-auto"
             />
 
             {/* Sliding Drawer Container */}
@@ -719,7 +722,7 @@ export default function BookPage() {
               </div>
 
               {/* Drawer Body Scroll */}
-              <div className="flex-1 overflow-y-auto px-6 py-6 space-y-8 min-h-0">
+              <div className="flex-1 overflow-y-auto overscroll-contain px-6 py-6 space-y-8 min-h-0">
                 {/* Auth Pre-fill Promotion Banner */}
                 {!user && (
                   <div className="p-3.5 bg-champagne-300/10 border border-champagne-DEFAULT/20 rounded-2xl flex items-center justify-between gap-3 shadow-sm">

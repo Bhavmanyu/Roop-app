@@ -113,12 +113,15 @@ export default function ServicesPage() {
   // Lock body scroll when overlays or mobile cart drawer are open to prevent background scrolling
   useEffect(() => {
     if (isLocationModalOpen || mobileCartDrawerOpen) {
+      document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
     };
   }, [isLocationModalOpen, mobileCartDrawerOpen]);
 
@@ -1162,7 +1165,7 @@ export default function ServicesPage() {
                     animate={{ opacity: 0.4 }}
                     exit={{ opacity: 0 }}
                     onClick={() => setMobileCartDrawerOpen(false)}
-                    className="fixed inset-0 bg-black z-50 block lg:hidden"
+                    className="fixed inset-0 bg-black z-40 block lg:hidden"
                   />
                   {/* Drawer */}
                   <motion.div
@@ -1170,7 +1173,7 @@ export default function ServicesPage() {
                     animate={{ y: 0 }}
                     exit={{ y: "100%" }}
                     transition={{ type: "spring", damping: 25, stiffness: 220 }}
-                    className="fixed bottom-0 left-0 right-0 bg-[#FAF9F6] rounded-t-[32px] shadow-2xl z-50 px-6 py-6 pb-8 border-t border-pearl-200 block lg:hidden max-h-[85vh] overflow-y-auto"
+                    className="fixed bottom-0 left-0 right-0 bg-[#FAF9F6] rounded-t-[32px] shadow-2xl z-50 px-6 py-6 pb-8 border-t border-pearl-200 block lg:hidden max-h-[85vh] overflow-y-auto overscroll-contain"
                   >
                     <div className="w-12 h-1.5 rounded-full bg-pearl-300 mx-auto mb-4" />
                     <div className="flex items-center justify-between mb-5">

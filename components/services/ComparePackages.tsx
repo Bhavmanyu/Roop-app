@@ -248,12 +248,15 @@ export default function ComparePackages({
   // Lock body scroll when comparison module is open to prevent background scrolling
   useEffect(() => {
     if (isOpen) {
+      document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
     };
   }, [isOpen]);
 
@@ -306,7 +309,7 @@ export default function ComparePackages({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-md pt-12 pb-12 px-4 flex justify-center items-start min-h-screen"
+            className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-md pt-12 pb-12 px-4 flex justify-center items-start min-h-screen overscroll-contain"
           >
             <motion.div
               initial={{ scale: 0.96, y: 25, opacity: 0 }}

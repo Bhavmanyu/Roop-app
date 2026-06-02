@@ -29,12 +29,15 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   // Lock body scroll when auth modal is open to prevent background scrolling
   useEffect(() => {
     if (isOpen) {
+      document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
     };
   }, [isOpen]);
 
@@ -206,7 +209,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             animate={{ opacity: 0.5 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black z-50 pointer-events-auto"
+            className="fixed inset-0 bg-black z-40 pointer-events-auto"
           />
 
           {/* Modal Card */}
@@ -216,7 +219,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-[#FAF9F6] border border-pearl-200 w-full max-w-md rounded-3xl overflow-hidden shadow-2xl p-6 sm:p-8 pointer-events-auto flex flex-col relative"
+              className="bg-[#FAF9F6] border border-pearl-200 w-full max-w-md rounded-3xl overflow-hidden shadow-2xl p-6 sm:p-8 pointer-events-auto flex flex-col relative overscroll-contain"
             >
               {/* Close Button */}
               <button

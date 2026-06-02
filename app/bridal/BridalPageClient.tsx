@@ -39,12 +39,15 @@ export default function BridalPageClient() {
   // Lock body scroll when inquiry modal is open to prevent background scrolling
   useEffect(() => {
     if (showInquiry) {
+      document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
     };
   }, [showInquiry]);
 
@@ -297,7 +300,7 @@ export default function BridalPageClient() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="w-full max-w-lg rounded-4xl p-8 max-h-[90vh] overflow-y-auto"
+              className="w-full max-w-lg rounded-4xl p-8 max-h-[90vh] overflow-y-auto overscroll-contain"
               style={{ background: "#FAF6EC" }}
               onClick={(e) => e.stopPropagation()}
             >
