@@ -13,10 +13,10 @@ export default function Home() {
     <>
       <HeroSection />
       <HomeServicesSection />
-      <FeaturedTransformations />
-      <SignaturePackages />
       <WhyRoope />
       <TrustSection />
+      <SignaturePackages />
+      <FeaturedTransformations />
       <OffersSection />
       <ReviewsSection />
       <BookingCTA />
