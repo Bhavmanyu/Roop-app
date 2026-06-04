@@ -7,6 +7,7 @@ import SmoothScroll from "@/components/providers/SmoothScroll";
 import ViewportProvider from "@/components/providers/ViewportProvider";
 import SplashLoader from "@/components/layout/SplashLoader";
 import CookieConsent from "@/components/layout/CookieConsent";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -145,6 +146,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <SpeedInsights />
       </body>
     </html>
   );
