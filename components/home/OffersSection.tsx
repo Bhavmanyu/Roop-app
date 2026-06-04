@@ -25,7 +25,7 @@ function Countdown() {
   const pad = (n: number) => n.toString().padStart(2, "0");
 
   return (
-    <div className="flex items-center gap-2 font-display text-3xl font-light" style={{ color: "#C9A84C" }}>
+    <div className="flex items-center gap-1.5 md:gap-2 font-display text-lg md:text-3xl font-light" style={{ color: "#C9A84C" }}>
       <span>{pad(time.h)}</span>
       <span className="opacity-50 animate-pulse">:</span>
       <span>{pad(time.m)}</span>
@@ -89,9 +89,9 @@ export default function OffersSection() {
               Exceptional beauty,
               <span className="italic text-gradient-gold"> exceptional value.</span>
             </h2>
-            <div className="flex items-center gap-3">
-              <Zap className="w-4 h-4" style={{ color: "#C9A84C" }} />
-              <span className="text-sm text-stone-warm">Offer expires in:</span>
+            <div className="flex items-center gap-2 md:gap-3">
+              <Zap className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: "#C9A84C" }} />
+              <span className="text-xs md:text-sm text-stone-warm">Offer expires in:</span>
               <Countdown />
             </div>
           </div>
@@ -105,7 +105,7 @@ export default function OffersSection() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className={`group relative rounded-3xl p-7 h-full transition-all duration-500 hover:-translate-y-1 hover:shadow-luxury-lg ${
+              <div className={`group relative rounded-3xl p-4 md:p-7 h-full transition-all duration-500 hover:-translate-y-1 hover:shadow-luxury-lg ${
                 offer.color === "gold"
                   ? "border border-champagne-200"
                   : "border border-pearl-200"
@@ -124,17 +124,17 @@ export default function OffersSection() {
                   </div>
                 )}
 
-                <span className="tag-gold mb-4 inline-block">{offer.badge}</span>
-                <h3 className="font-display text-xl font-light text-roope-primary leading-tight mb-3">
+                <span className="tag-gold mb-3 md:mb-4 inline-block">{offer.badge}</span>
+                <h3 className="font-display text-sm font-semibold md:text-xl md:font-light text-roope-primary leading-tight mb-1.5 md:mb-3">
                   {offer.title}
                 </h3>
-                <p className="text-sm text-stone-warm leading-relaxed mb-6">{offer.desc}</p>
+                <p className="text-[11px] md:text-sm text-stone-warm leading-relaxed mb-4 md:mb-6">{offer.desc}</p>
 
                 {offer.slots && (
-                  <div className="flex items-center gap-2 mb-5 p-3 rounded-2xl"
+                  <div className="flex items-center gap-2 mb-3.5 p-2 md:p-3 rounded-xl md:rounded-2xl"
                     style={{ background: "rgba(201,168,76,0.08)" }}>
-                    <div className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
-                    <span className="text-xs font-semibold text-orange-600">
+                    <div className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
+                    <span className="text-[10px] md:text-xs font-semibold text-orange-600">
                       Only {offer.slots} slots left this week
                     </span>
                   </div>

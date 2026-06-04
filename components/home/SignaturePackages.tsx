@@ -81,7 +81,7 @@ export default function SignaturePackages() {
               return (
                 <div
                   key={`${service.id}-${i}`}
-                  className="w-[280px] sm:w-[310px] flex-shrink-0"
+                  className="w-[210px] md:w-[310px] flex-shrink-0"
                 >
                   <button
                     onClick={(e) => handleServiceClick(e, service.id, service.name)}
@@ -89,7 +89,7 @@ export default function SignaturePackages() {
                   >
                     <div className="card-luxury h-full flex flex-col overflow-hidden">
                       {/* Image */}
-                      <div className="relative h-52 overflow-hidden">
+                      <div className="relative h-32 md:h-52 overflow-hidden">
                         <Image
                           src={service.image}
                           alt={service.name}
@@ -114,26 +114,26 @@ export default function SignaturePackages() {
                       </div>
 
                       {/* Content */}
-                      <div className="p-5 flex flex-col flex-1">
+                      <div className="p-3.5 md:p-5 flex flex-col flex-1">
                         <div className="flex items-center justify-between mb-2">
-                          <span className="tag-stone text-xs">{service.category}</span>
-                          <div className="flex items-center gap-1">
+                          <span className="tag-stone text-[9px] md:text-xs">{service.category}</span>
+                          <div className="flex items-center gap-0.5 md:gap-1">
                             <Star className="w-3 h-3 fill-current" style={{ color: "#C9A84C" }} />
-                            <span className="text-xs font-medium text-stone-warm">{service.rating}</span>
-                            <span className="text-xs text-stone-warm/60">({service.reviews})</span>
+                            <span className="text-[10px] md:text-xs font-medium text-stone-warm">{service.rating}</span>
+                            <span className="text-[9px] md:text-xs text-stone-warm/60">({service.reviews})</span>
                           </div>
                         </div>
 
-                        <h3 className="font-display text-lg font-light text-roope-primary leading-tight mb-2 group-hover:text-gradient-gold transition-all duration-300">
+                        <h3 className="font-display text-xs font-semibold md:text-lg md:font-light text-roope-primary leading-tight mb-1 md:mb-2 group-hover:text-gradient-gold transition-all duration-300">
                           {service.name}
                         </h3>
 
-                        <p className="text-xs text-stone-warm/80 leading-relaxed mb-4 flex-1 line-clamp-2">
+                        <p className="text-[10.5px] md:text-xs text-stone-warm/80 leading-relaxed mb-2.5 md:mb-4 flex-1 line-clamp-2">
                           {service.description}
                         </p>
 
                         {/* Duration */}
-                        <div className="flex items-center gap-3 mb-4 text-xs text-stone-warm">
+                        <div className="flex items-center gap-2 mb-2.5 md:mb-4 text-[10px] md:text-xs text-stone-warm">
                           <span className="flex items-center gap-1">
                             <Clock className="w-3 h-3" /> {service.duration}
                           </span>
@@ -142,18 +142,18 @@ export default function SignaturePackages() {
                         {/* Price */}
                         <div className="flex items-center justify-between">
                           <div>
-                            <span className="font-display text-xl font-light text-roope-primary">
+                            <span className="font-display text-sm font-semibold md:text-xl md:font-light text-roope-primary">
                               {formatPrice(service.price)}
                             </span>
                             {service.originalPrice && (
-                              <span className="text-xs text-stone-warm/50 line-through ml-2">
+                              <span className="text-[10px] md:text-xs text-stone-warm/50 line-through ml-1.5 md:ml-2">
                                 {formatPrice(service.originalPrice)}
                               </span>
                             )}
                           </div>
-                          <div className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                          <div className="w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110"
                             style={{ background: "linear-gradient(135deg, #C9A84C 0%, #B8922E 100%)" }}>
-                            <ArrowRight className="w-4 h-4 text-white" />
+                            <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4 text-white" />
                           </div>
                         </div>
                       </div>

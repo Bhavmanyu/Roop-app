@@ -33,12 +33,12 @@ export default function WhyRoope() {
               transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
               className="group"
             >
-              <div className="card-luxury p-7 h-full group-hover:shadow-luxury-lg">
-                <div className="text-3xl mb-5">{point.icon}</div>
-                <h3 className="font-display text-xl font-light text-roope-primary mb-3 leading-tight">
+              <div className="card-luxury p-4 md:p-7 h-full group-hover:shadow-luxury-lg">
+                <div className="text-2xl mb-2.5 md:text-3xl md:mb-5">{point.icon}</div>
+                <h3 className="font-display text-sm font-semibold md:text-xl md:font-light text-roope-primary mb-1.5 md:mb-3 leading-tight">
                   {point.title}
                 </h3>
-                <p className="text-sm text-stone-warm/80 leading-relaxed">{point.desc}</p>
+                <p className="text-[11px] md:text-sm text-stone-warm/80 leading-relaxed">{point.desc}</p>
               </div>
             </motion.div>
           ))}

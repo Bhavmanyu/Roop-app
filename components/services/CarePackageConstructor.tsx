@@ -37,13 +37,13 @@ interface CarePackageConstructorProps {
 
 export default function CarePackageConstructor({ onAddPackageToCart }: CarePackageConstructorProps) {
   const [activeGroup, setActiveGroup] = useState("facials");
-  const [tray, setTray] = useState<any[]>([]);
-  const [rewardMessage, setRewardMessage] = useState("Add treatments to build your tray & unlock rewards!");
+  const [selectedServices, setSelectedServices] = useState<any[]>([]);
+  const [rewardMessage, setRewardMessage] = useState("Add treatments to build your package & unlock rewards!");
   const [showGuide, setShowGuide] = useState(false);
 
-  // Calculate prices, discounts, and unlocked rewards based on tray size
-  const itemCount = tray.length;
-  const rawSubtotal = tray.reduce((sum, item) => sum + item.price, 0);
+  // Calculate prices, discounts, and unlocked rewards based on package size
+  const itemCount = selectedServices.length;
+  const rawSubtotal = selectedServices.reduce((sum, item) => sum + item.price, 0);
   
   let discountPercentage = 0;
   let unlockedRewards: string[] = [];
@@ -71,9 +71,9 @@ export default function CarePackageConstructor({ onAddPackageToCart }: CarePacka
 
   useEffect(() => {
     if (itemCount === 0) {
-      setRewardMessage("Add treatments to build your tray & unlock rewards!");
+      setRewardMessage("Add treatments to build your package & unlock rewards!");
     } else if (itemCount === 1) {
-      setRewardMessage("Add 1 more treatment to unlock 10% OFF your entire tray!");
+      setRewardMessage("Add 1 more treatment to unlock 10% OFF your entire package!");
     } else if (itemCount === 2) {
       setRewardMessage("Awesome! You've unlocked 10% OFF. Add 1 more for 20% OFF + Free Threading!");
     } else if (itemCount === 3) {
@@ -83,21 +83,21 @@ export default function CarePackageConstructor({ onAddPackageToCart }: CarePacka
     }
   }, [itemCount]);
 
-  const handleAddToTray = (item: any) => {
-    if (tray.some((t) => t.id === item.id)) return; // Prevent duplicate additions
-    setTray([...tray, item]);
+  const handleAddToPackage = (item: any) => {
+    if (selectedServices.some((t) => t.id === item.id)) return; // Prevent duplicate additions
+    setSelectedServices([...selectedServices, item]);
   };
 
-  const handleRemoveFromTray = (id: string) => {
-    setTray(tray.filter((t) => t.id !== id));
+  const handleRemoveFromPackage = (id: string) => {
+    setSelectedServices(selectedServices.filter((t) => t.id !== id));
   };
 
-  const handleBookTray = () => {
-    if (tray.length === 0) return;
+  const handleBookPackage = () => {
+    if (selectedServices.length === 0) return;
     
-    // Convert tray items to cart dictionary structure
+    // Convert package items to cart dictionary structure
     const cartDict: { [id: string]: number } = {};
-    tray.forEach((item) => {
+    selectedServices.forEach((item) => {
       cartDict[item.id] = 1;
     });
 
@@ -124,7 +124,7 @@ export default function CarePackageConstructor({ onAddPackageToCart }: CarePacka
             Build Your Own <span className="italic text-gradient-gold">Luxury Package</span>
           </h2>
           <p className="text-stone-warm text-xs mt-2 max-w-xl leading-relaxed">
-            Drag, tap, and curate your personal wellness treatments. Combine services into your premium pampering tray to unlock custom discounts and luxury bonus treatments.
+            Drag, tap, and curate your personal wellness treatments. Combine services into your custom package to unlock custom discounts and luxury bonus treatments.
           </p>
         </div>
 
@@ -145,10 +145,10 @@ export default function CarePackageConstructor({ onAddPackageToCart }: CarePacka
             exit={{ opacity: 0, height: 0 }}
             className="bg-white rounded-3xl p-5 border border-[#C9A84C]/20 mb-6 shadow-xs text-xs text-stone-warm relative z-10"
           >
-            <h4 className="font-bold text-roope-primary uppercase tracking-wider mb-2">How to build your custom tray:</h4>
+            <h4 className="font-bold text-roope-primary uppercase tracking-wider mb-2">How to build your custom package:</h4>
             <ol className="list-decimal list-inside space-y-2 leading-relaxed">
               <li>Browse individual treatments using the skin, nails, massage, and grooming category tabs.</li>
-              <li>Click <strong>"Add to Tray"</strong> to place a treatment into your glassmorphic pampering tray.</li>
+              <li>Click <strong>"Add to Package"</strong> to place a treatment into your custom package.</li>
               <li>Watch the animated progress bar advance. Add multiple treatments to claim custom discounts and luxury gifts automatically.</li>
               <li>Once satisfied, click <strong>"Confirm & Checkout"</strong> to load your custom package and schedule your visit.</li>
             </ol>
@@ -182,7 +182,7 @@ export default function CarePackageConstructor({ onAddPackageToCart }: CarePacka
           {/* Treatment Cards Grid */}
           <div className="grid sm:grid-cols-2 gap-4 flex-1 content-start max-h-[420px] overflow-y-auto pr-1 scrollbar-thin">
             {INDIVIDUAL_TREATMENTS.filter((t) => t.category === activeGroup).map((treatment) => {
-              const isAdded = tray.some((item) => item.id === treatment.id);
+              const isAdded = selectedServices.some((item) => item.id === treatment.id);
               return (
                 <motion.div
                   key={treatment.id}
@@ -227,14 +227,14 @@ export default function CarePackageConstructor({ onAddPackageToCart }: CarePacka
 
                     <button
                       disabled={isAdded}
-                      onClick={() => handleAddToTray(treatment)}
+                      onClick={() => handleAddToPackage(treatment)}
                       className={`px-3 py-1.5 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all ${
                         isAdded
                           ? "bg-pearl-200 text-stone-warm/55 border border-pearl-300"
                           : "border border-champagne-DEFAULT text-roope-primary hover:bg-champagne-DEFAULT hover:text-white"
                       }`}
                     >
-                      {isAdded ? "Added" : "Add to Tray"}
+                      {isAdded ? "Added" : "Add to Package"}
                     </button>
                   </div>
                 </motion.div>
@@ -243,25 +243,25 @@ export default function CarePackageConstructor({ onAddPackageToCart }: CarePacka
           </div>
         </div>
 
-        {/* ─── RIGHT COLUMN: Pampering Tray & Rewards Progress (5 Cols) ─── */}
+        {/* ─── RIGHT COLUMN: Package Summary & Rewards Progress (5 Cols) ─── */}
         <div className="lg:col-span-5 flex flex-col gap-6">
           
-          {/* Visual Pampering Tray Container */}
+          {/* Visual Package Container */}
           <div className="bg-white/80 backdrop-blur-md rounded-[32px] border border-pearl-300/80 p-5 shadow-luxury flex flex-col justify-between min-h-[280px]">
             <div>
               <div className="flex items-center justify-between pb-3 border-b border-pearl-200/60 mb-4">
                 <h3 className="text-xs font-bold uppercase tracking-wider text-roope-primary flex items-center gap-1.5">
-                  💅 Your Pampering Tray
+                  ✨ Your Custom Package
                 </h3>
                 <span className="text-[10px] font-bold text-[#B8922E] bg-champagne-300/30 px-2.5 py-0.5 rounded-full">
                   {itemCount} {itemCount === 1 ? "Treatment" : "Treatments"}
                 </span>
               </div>
 
-              {/* Added Tray Items list */}
+              {/* Added Items list */}
               <div className="min-h-[140px] max-h-[220px] overflow-y-auto pr-1 scrollbar-thin">
                 <AnimatePresence initial={false}>
-                  {tray.length === 0 ? (
+                  {selectedServices.length === 0 ? (
                     <motion.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -269,12 +269,12 @@ export default function CarePackageConstructor({ onAddPackageToCart }: CarePacka
                       className="h-32 flex flex-col items-center justify-center text-center border-2 border-dashed border-pearl-300 rounded-2xl p-4"
                     >
                       <span className="text-2xl mb-1 filter grayscale opacity-45">🧖‍♀️</span>
-                      <p className="text-[11px] font-semibold text-stone-warm">Your tray is empty</p>
+                      <p className="text-[11px] font-semibold text-stone-warm">Your package is empty</p>
                       <p className="text-[9px] text-stone-warm/50 max-w-[200px] mt-0.5 leading-snug">Add individual skin, massage, or nail treatments from the left pool.</p>
                     </motion.div>
                   ) : (
                     <div className="space-y-2">
-                      {tray.map((item) => (
+                      {selectedServices.map((item) => (
                         <motion.div
                           key={item.id}
                           initial={{ opacity: 0, x: 20 }}
@@ -300,7 +300,7 @@ export default function CarePackageConstructor({ onAddPackageToCart }: CarePacka
                           </div>
 
                           <button
-                            onClick={() => handleRemoveFromTray(item.id)}
+                            onClick={() => handleRemoveFromPackage(item.id)}
                             className="w-7 h-7 rounded-full flex items-center justify-center bg-red-50 text-red-500 border border-red-100 hover:bg-red-100 transition-colors"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
@@ -313,11 +313,11 @@ export default function CarePackageConstructor({ onAddPackageToCart }: CarePacka
               </div>
             </div>
 
-            {/* Micro calculations inside tray */}
-            {tray.length > 0 && (
+            {/* Micro calculations inside package */}
+            {selectedServices.length > 0 && (
               <div className="pt-4 border-t border-pearl-200/60 mt-4 space-y-2 text-xs">
                 <div className="flex justify-between text-stone-warm">
-                  <span>Tray Subtotal</span>
+                  <span>Package Subtotal</span>
                   <span className="font-semibold text-roope-primary">{formatPrice(rawSubtotal)}</span>
                 </div>
                 {discountAmount > 0 && (
@@ -408,8 +408,8 @@ export default function CarePackageConstructor({ onAddPackageToCart }: CarePacka
 
             {/* Action Book Button */}
             <button
-              disabled={tray.length === 0}
-              onClick={handleBookTray}
+              disabled={selectedServices.length === 0}
+              onClick={handleBookPackage}
               className="w-full btn-primary py-3.5 justify-center gap-1.5 uppercase tracking-widest text-xs font-semibold shadow-md disabled:opacity-40 disabled:cursor-not-allowed active:scale-98 transition-all"
             >
               Confirm & Book Package <ArrowRight className="w-4 h-4" />

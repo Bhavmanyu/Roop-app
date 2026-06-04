@@ -494,8 +494,8 @@ export default function Navbar() {
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-0 z-40 glass-dark md:hidden"
           >
-            <div className="flex flex-col h-full pt-24 pb-8 px-8">
-              <nav className="flex flex-col gap-1 flex-1 overflow-y-auto">
+            <div className="flex flex-col h-full pt-20 pb-6 px-6">
+              <nav className="flex flex-col gap-0.5 flex-1 overflow-y-auto">
                 {navLinks.map((link, i) => (
                   <motion.div
                     key={link.label}
@@ -504,13 +504,13 @@ export default function Navbar() {
                     transition={{ delay: i * 0.08, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   >
                     {link.children ? (
-                      <div>
-                        <p className="section-label py-4 border-b border-white/10 uppercase tracking-widest text-[10px] text-white/50">{link.label}</p>
+                      <div className="mb-2">
+                        <p className="section-label py-2 border-b border-white/10 uppercase tracking-widest text-[9px] text-white/50">{link.label}</p>
                         {link.children.map((child) => (
                           <Link
                             key={child.href}
                             href={child.href}
-                            className="block py-3 pl-4 text-lg font-light text-white/80 hover:text-white transition-colors"
+                            className="block py-2 pl-3 text-xs font-semibold text-white/80 hover:text-white transition-colors"
                           >
                             {child.label}
                           </Link>
@@ -519,7 +519,7 @@ export default function Navbar() {
                     ) : (
                       <Link
                         href={link.href}
-                        className="block py-4 text-2xl font-display font-light text-white border-b border-white/10 hover:text-champagne-DEFAULT transition-colors"
+                        className="block py-2.5 text-sm font-semibold text-white border-b border-white/10 hover:text-champagne-DEFAULT transition-colors"
                       >
                         {link.label}
                       </Link>
@@ -533,20 +533,20 @@ export default function Navbar() {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3, duration: 0.4 }}
-                    className="border-t border-white/10 mt-6 pt-6"
+                    className="border-t border-white/10 mt-4 pt-4"
                   >
-                    <p className="text-white/60 text-xs mb-3 truncate font-medium">Logged in as {user.email}</p>
+                    <p className="text-white/60 text-[10px] mb-2 truncate font-medium">Logged in as {user.email}</p>
                     <Link
                       href="/profile/bookings"
-                      className="block py-3.5 text-lg font-light text-white hover:text-champagne-DEFAULT transition-colors flex items-center gap-2"
+                      className="block py-2.5 text-xs font-semibold text-white hover:text-champagne-DEFAULT transition-colors flex items-center gap-2"
                     >
-                      <Calendar className="w-5 h-5 text-white/50" /> My Bookings
+                      <Calendar className="w-4 h-4 text-white/50" /> My Bookings
                     </Link>
                     <button
                       onClick={handleSignOut}
-                      className="w-full text-left py-3.5 text-lg font-light text-red-400 hover:text-red-300 transition-colors flex items-center gap-2 mt-1"
+                      className="w-full text-left py-2.5 text-xs font-semibold text-red-400 hover:text-red-300 transition-colors flex items-center gap-2 mt-0.5"
                     >
-                      <LogOut className="w-5 h-5 text-red-400/50" /> Sign Out
+                      <LogOut className="w-4 h-4 text-red-400/50" /> Sign Out
                     </button>
                   </motion.div>
                 ) : (
@@ -554,14 +554,14 @@ export default function Navbar() {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3, duration: 0.4 }}
-                    className="border-t border-white/10 mt-6 pt-6"
+                    className="border-t border-white/10 mt-4 pt-4"
                   >
                     <button
                       onClick={() => {
                         setMobileOpen(false);
                         setIsAuthModalOpen(true);
                       }}
-                      className="btn-secondary w-full py-4 text-white hover:text-champagne-DEFAULT border border-white/20 hover:border-champagne-DEFAULT/50 justify-center text-sm font-semibold tracking-wider uppercase"
+                      className="btn-secondary w-full py-2.5 text-white hover:text-champagne-DEFAULT border border-white/20 hover:border-champagne-DEFAULT/50 justify-center text-xs font-bold tracking-wider uppercase"
                     >
                       Sign In / Register
                     </button>
@@ -573,9 +573,9 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.4 }}
-                className="mt-auto pt-6"
+                className="mt-auto pt-4"
               >
-                <Link href="/book" className="btn-primary w-full justify-center text-base py-4">
+                <Link href="/book" className="btn-primary w-full justify-center text-xs py-2.5">
                   Book Now
                 </Link>
               </motion.div>

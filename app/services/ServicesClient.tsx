@@ -768,7 +768,7 @@ export default function ServicesPage() {
                 <section className="flex-1 min-w-0" ref={centerPaneRef}>
                   
                   {/* Horizontal Category Scroll for Mobile viewports */}
-                  <div className="block md:hidden sticky top-[72px] z-10 bg-[#FAF9F6]/90 backdrop-blur-md -mx-4 px-4 py-3.5 border-b border-pearl-200/60 overflow-x-auto scrollbar-none snap-x mb-6">
+                  <div className="block md:hidden sticky top-[72px] z-10 bg-[#FAF9F6]/90 backdrop-blur-md -mx-4 px-4 py-2 border-b border-pearl-200/60 overflow-x-auto scrollbar-none snap-x mb-4">
                     <div className="flex gap-2.5">
                       {visibleCategories.map((cat) => {
                         const isActive = activeCategory === cat.id;
@@ -776,7 +776,7 @@ export default function ServicesPage() {
                           <button
                             key={cat.id}
                             onClick={() => handleCategoryClick(cat.id)}
-                            className={`flex-shrink-0 snap-start px-4 py-2.5 rounded-full text-xs font-semibold border transition-all duration-300 ${
+                            className={`flex-shrink-0 snap-start px-3.5 py-1.5 rounded-full text-[11px] font-semibold border transition-all duration-300 ${
                               isActive 
                                 ? "bg-stone-warm border-stone-warm text-white shadow-sm" 
                                 : "bg-white border-pearl-200 text-stone-warm hover:text-roope-primary"
@@ -820,28 +820,28 @@ export default function ServicesPage() {
                         className="mb-12 scroll-mt-28"
                       >
                         {/* Category Section Header Card */}
-                        <div className="glass rounded-3xl p-6 mb-6 border border-pearl-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-center justify-between relative overflow-hidden bg-white/70">
+                        <div className="glass rounded-2xl p-3 md:p-6 mb-4 md:mb-6 border border-pearl-200/80 shadow-sm flex flex-row sm:flex-row gap-3 md:gap-5 items-center justify-between relative overflow-hidden bg-white/70">
                           <div className="relative z-10 flex-1">
-                            <div className="flex items-center gap-2 mb-1.5">
-                              <span className="text-[10px] bg-champagne-300/40 text-roope-primary px-2.5 py-0.5 rounded font-bold uppercase tracking-wider">
+                            <div className="flex items-center gap-2 mb-1">
+                              <span className="text-[8.5px] md:text-[10px] bg-champagne-300/40 text-roope-primary px-2 py-0.5 rounded font-bold uppercase tracking-wider">
                                 Certified Prime
                               </span>
                               {category.badge && (
-                                <span className="text-[10px] text-[#B8922E] font-bold">
+                                <span className="text-[8.5px] md:text-[10px] text-[#B8922E] font-bold">
                                   ★ {category.badge}
                                 </span>
                               )}
                             </div>
-                            <h2 className="font-display text-2xl font-light text-roope-primary leading-tight">
+                            <h2 className="font-display text-base font-semibold md:text-2xl md:font-light text-roope-primary leading-tight">
                               {category.label}
                             </h2>
-                            <p className="text-stone-warm text-xs mt-1 max-w-md leading-relaxed">
+                            <p className="text-stone-warm text-[10px] md:text-xs mt-0.5 md:mt-1 max-w-md leading-normal md:leading-relaxed">
                               Exquisite custom care bundles curated under Roopé luxury quality guidelines. Painless, hygienic, and highly satisfying.
                             </p>
                           </div>
 
                           {/* Category Hero Banner Photo */}
-                          <div className="relative w-full sm:w-44 h-28 rounded-2xl overflow-hidden border border-pearl-200 flex-shrink-0 bg-pearl-200">
+                          <div className="relative w-20 md:w-44 h-14 md:h-28 rounded-xl md:rounded-2xl overflow-hidden border border-pearl-200 flex-shrink-0 bg-pearl-200">
                             <Image
                               src={category.image}
                               alt={category.label}
@@ -862,14 +862,14 @@ export default function ServicesPage() {
                             return (
                               <div
                                 key={svc.id}
-                                className={`bg-white rounded-3xl border p-5 flex flex-col sm:flex-row gap-5 items-start justify-between transition-all duration-300 hover:shadow-md ${
+                                className={`bg-white rounded-2xl border p-3 md:p-5 flex flex-col sm:flex-row gap-2.5 md:gap-5 items-start justify-between transition-all duration-300 hover:shadow-md ${
                                   qty > 0 ? "border-champagne-DEFAULT ring-1 ring-champagne-300/10" : "border-pearl-200/80"
                                 }`}
                               >
                                 {/* Info Column */}
                                 <div className="flex-1 min-w-0">
                                   {/* Service Badge & Tags */}
-                                  <div className="flex flex-wrap items-center gap-2 mb-2">
+                                  <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
                                     {svc.tag && (
                                       <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-100">
                                         {svc.tag}
@@ -895,12 +895,12 @@ export default function ServicesPage() {
                                   </div>
 
                                   {/* Service Name */}
-                                  <h3 className="font-display text-lg font-light text-roope-primary leading-snug">
+                                  <h3 className="font-display text-sm font-semibold md:text-lg md:font-light text-roope-primary leading-snug">
                                     {svc.name}
                                   </h3>
 
                                   {/* Reviews, Star Rating */}
-                                  <div className="flex items-center gap-1.5 text-xs text-stone-warm mt-1">
+                                  <div className="flex items-center gap-1.5 text-[10px] md:text-xs text-stone-warm mt-0.5 md:mt-1">
                                     <span className="text-[#C9A84C] font-semibold">★ {svc.rating}</span>
                                     <span className="text-stone-warm/40">•</span>
                                     <span className="text-stone-warm/60">({svc.reviews.toLocaleString()} reviews)</span>
@@ -908,9 +908,9 @@ export default function ServicesPage() {
 
                                   {/* Bullet Point Inclusions */}
                                   {svc.includes && svc.includes.length > 0 && (
-                                    <ul className="mt-3.5 space-y-1.5 border-t border-pearl-100/60 pt-3">
+                                    <ul className="mt-2.5 space-y-1 border-t border-pearl-100/60 pt-2 md:mt-3.5 md:space-y-1.5 md:pt-3">
                                       {svc.includes.map((inc, i) => (
-                                        <li key={i} className="flex gap-2 items-start text-xs text-stone-warm/80">
+                                        <li key={i} className="flex gap-1.5 items-start text-[11px] md:text-xs text-stone-warm/80">
                                           <span className="text-champagne-DEFAULT font-bold flex-shrink-0 mt-0.5">✓</span>
                                           <span className="leading-snug">{inc}</span>
                                         </li>
@@ -919,13 +919,13 @@ export default function ServicesPage() {
                                   )}
 
                                   {/* In-Depth Description */}
-                                  <p className="text-stone-warm/60 text-[11px] mt-3 leading-relaxed">
+                                  <p className="text-stone-warm/60 text-[10px] md:text-[11px] mt-2 md:mt-3 leading-relaxed">
                                     {svc.description}
                                   </p>
                                 </div>
 
                                 {/* Pricing & "Add" Counter Column */}
-                                <div className="w-full sm:w-36 flex sm:flex-col items-center justify-between sm:justify-start gap-4 sm:gap-2 flex-shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-pearl-100 mt-2 sm:mt-0">
+                                <div className="w-full sm:w-36 flex sm:flex-col items-center justify-between sm:justify-start gap-3 sm:gap-2 flex-shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-pearl-100/60 mt-1 md:mt-0">
                                   {/* Service Image Preview */}
                                   <div className="relative w-20 sm:w-28 h-20 sm:h-20 rounded-xl overflow-hidden border border-pearl-200/80 bg-pearl-200 hidden xs:block flex-shrink-0">
                                     <Image
@@ -946,7 +946,7 @@ export default function ServicesPage() {
                                   {/* Prices and Duration */}
                                   <div className="sm:text-center">
                                     <div className="flex items-baseline gap-1.5 sm:justify-center">
-                                      <span className="font-display text-lg font-light text-roope-primary">
+                                      <span className="font-display text-sm font-semibold md:text-lg md:font-light text-roope-primary">
                                         {formatPrice(svc.price)}
                                       </span>
                                       {svc.originalPrice && (
@@ -965,24 +965,24 @@ export default function ServicesPage() {
                                   {qty === 0 ? (
                                     <button
                                       onClick={() => handleAddToCart(svc.id)}
-                                      className="w-24 sm:w-28 py-2 border border-champagne-DEFAULT rounded-xl text-xs font-semibold text-roope-primary uppercase tracking-widest hover:bg-champagne-DEFAULT hover:text-white hover:shadow-xs transition-all active:scale-95 bg-white"
+                                      className="w-20 md:w-28 py-1.5 md:py-2 border border-champagne-DEFAULT rounded-lg md:rounded-xl text-[10px] md:text-xs font-semibold text-roope-primary uppercase tracking-widest hover:bg-champagne-DEFAULT hover:text-white hover:shadow-xs transition-all active:scale-95 bg-white"
                                     >
                                       Add
                                     </button>
                                   ) : (
-                                    <div className="w-24 sm:w-28 py-1.5 px-2 bg-stone-warm border border-stone-warm rounded-xl flex items-center justify-between text-white text-xs font-bold shadow-xs">
+                                    <div className="w-20 md:w-28 py-1 px-1.5 md:py-1.5 md:px-2 bg-stone-warm border border-stone-warm rounded-lg md:rounded-xl flex items-center justify-between text-white text-[10.5px] md:text-xs font-bold shadow-xs">
                                       <button 
                                         onClick={() => handleRemoveFromCart(svc.id)}
                                         className="w-5 h-5 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20"
                                       >
-                                        <Minus className="w-3.5 h-3.5" />
+                                        <Minus className="w-3 h-3" />
                                       </button>
                                       <span>{qty}</span>
                                       <button 
                                         onClick={() => handleAddToCart(svc.id)}
                                         className="w-5 h-5 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20"
                                       >
-                                        <Plus className="w-3.5 h-3.5" />
+                                        <Plus className="w-3 h-3" />
                                       </button>
                                     </div>
                                   )}
@@ -1158,24 +1158,24 @@ export default function ServicesPage() {
                   initial={{ y: 100, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: 100, opacity: 0 }}
-                  className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-pearl-200 shadow-xl px-5 py-4 block lg:hidden"
+                  className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-pearl-200 shadow-xl px-3.5 py-2.5 block lg:hidden"
                 >
                   <div className="max-w-md mx-auto flex items-center justify-between gap-4">
                     <div className="flex items-center gap-3">
                       <button
                         onClick={() => setMobileCartDrawerOpen(true)}
-                        className="w-10 h-10 rounded-full flex items-center justify-center bg-champagne-300/20 text-roope-primary relative"
+                        className="w-8 h-8 rounded-full flex items-center justify-center bg-champagne-300/20 text-roope-primary relative"
                       >
-                        <ShoppingBag className="w-5 h-5" />
-                        <span className="absolute -top-1 -right-1 bg-stone-warm text-white w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold">
+                        <ShoppingBag className="w-4 h-4" />
+                        <span className="absolute -top-1 -right-1 bg-stone-warm text-white w-4.5 h-4.5 rounded-full flex items-center justify-center text-[8px] font-bold">
                           {cartItemsCount}
                         </span>
                       </button>
                       <div onClick={() => setMobileCartDrawerOpen(true)} className="cursor-pointer">
-                        <p className="text-[9px] font-bold text-stone-warm/50 uppercase tracking-widest leading-none">
+                        <p className="text-[8px] font-bold text-stone-warm/50 uppercase tracking-widest leading-none">
                           Subtotal
                         </p>
-                        <p className="font-display text-lg font-light text-roope-primary mt-1">
+                        <p className="font-display text-sm font-semibold text-roope-primary mt-0.5">
                           {formatPrice(cartSubtotal)}
                         </p>
                       </div>
@@ -1184,15 +1184,15 @@ export default function ServicesPage() {
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => setMobileCartDrawerOpen(true)}
-                        className="text-xs font-semibold text-stone-warm uppercase tracking-wider px-3.5 py-3 hover:bg-pearl-100 rounded-xl"
+                        className="text-[11px] font-semibold text-stone-warm uppercase tracking-wider px-2 py-2 hover:bg-pearl-100 rounded-xl"
                       >
                         Details
                       </button>
                       <button
                         onClick={handleProceedToBooking}
-                        className="btn-primary py-3 px-5 text-[10px] uppercase tracking-widest font-semibold flex items-center gap-1 shadow-md"
+                        className="btn-primary py-2 px-3.5 text-[10px] uppercase tracking-widest font-semibold flex items-center gap-1 shadow-md"
                       >
-                        Book <ArrowRight className="w-3.5 h-3.5" />
+                        Book <ArrowRight className="w-3 h-3" />
                       </button>
                     </div>
                   </div>
@@ -1218,9 +1218,9 @@ export default function ServicesPage() {
                     animate={{ y: 0 }}
                     exit={{ y: "100%" }}
                     transition={{ type: "spring", damping: 25, stiffness: 220 }}
-                    className="fixed bottom-0 left-0 right-0 bg-[#FAF9F6] rounded-t-[32px] shadow-2xl z-50 px-6 py-6 pb-8 border-t border-pearl-200 block lg:hidden max-h-[85vh] overflow-y-auto overscroll-contain"
+                    className="fixed bottom-0 left-0 right-0 bg-[#FAF9F6] rounded-t-[20px] shadow-2xl z-50 px-4 py-4 pb-6 border-t border-pearl-200 block lg:hidden max-h-[85vh] overflow-y-auto overscroll-contain"
                   >
-                    <div className="w-12 h-1.5 rounded-full bg-pearl-300 mx-auto mb-4" />
+                    <div className="w-10 h-1 rounded-full bg-pearl-300 mx-auto mb-3" />
                     <div className="flex items-center justify-between mb-5">
                       <div className="flex items-center gap-2">
                         <ShoppingBag className="w-4 h-4 text-stone-warm" />
@@ -1300,9 +1300,9 @@ export default function ServicesPage() {
                     {/* Checkout Trigger */}
                     <button
                       onClick={handleProceedToBooking}
-                      className="w-full btn-primary py-4 px-6 text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 shadow-md"
+                      className="w-full btn-primary py-2.5 px-4 text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 shadow-md"
                     >
-                      Proceed to Checkout <ArrowRight className="w-4 h-4" />
+                      Proceed to Checkout <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </motion.div>
                 </>

@@ -315,9 +315,10 @@ export default function BookPage() {
             </div>
           </div>
 
+
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link href="/" className="btn-primary py-4 px-8 justify-center shadow-md">Return to Home</Link>
-            <Link href="/contact" className="btn-secondary py-4 px-8 justify-center border border-pearl-300">Need Help? Support</Link>
+            <Link href="/" className="btn-primary py-2.5 px-5 text-xs md:py-4 md:px-8 md:text-sm justify-center shadow-md">Return to Home</Link>
+            <Link href="/contact" className="btn-secondary py-2.5 px-5 text-xs md:py-4 md:px-8 md:text-sm justify-center border border-pearl-300">Need Help? Support</Link>
           </div>
         </motion.div>
       </div>
@@ -336,25 +337,25 @@ export default function BookPage() {
         style={{ background: "linear-gradient(160deg, #F8F6F2 0%, #FAF6EC 100%)" }}
       >
         {/* Checkout Page Header */}
-        <div className="pt-24 pb-6 px-6 border-b border-pearl-200/60 bg-white/70 backdrop-blur-sm">
+        <div className="pt-20 pb-3 px-4 md:pt-24 md:pb-6 md:px-6 border-b border-pearl-200/60 bg-white/70 backdrop-blur-sm">
           <div className="max-w-6xl mx-auto">
-            <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-stone-warm/50 mb-4">
+            <div className="flex items-center gap-2 text-[9px] md:text-[10px] font-bold uppercase tracking-wider text-stone-warm/50 mb-3 md:mb-4">
               <button onClick={() => { setView("services"); window.scrollTo({ top: 0 }); }} className="hover:text-roope-primary transition-colors">
                 Services
               </button>
               <ChevronRight className="w-3 h-3" />
               <span className="text-roope-primary">Complete Booking</span>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 md:gap-4">
               <button
                 onClick={() => { setView("services"); window.scrollTo({ top: 0 }); }}
-                className="w-9 h-9 rounded-full border border-pearl-200 flex items-center justify-center text-stone-warm hover:text-roope-primary hover:border-stone-warm/30 transition-all"
+                className="w-7 h-7 md:w-9 md:h-9 rounded-full border border-pearl-200 flex items-center justify-center text-stone-warm hover:text-roope-primary hover:border-stone-warm/30 transition-all"
               >
-                <ArrowLeft className="w-4 h-4" />
+                <ArrowLeft className="w-3.5 h-3.5 md:w-4 md:h-4" />
               </button>
               <div>
-                <h1 className="font-display text-3xl font-light text-roope-primary">Complete Booking</h1>
-                <div className="flex items-center gap-1 text-[10px] text-stone-warm/60 uppercase font-bold tracking-wider mt-0.5">
+                <h1 className="font-display text-lg font-semibold md:text-3xl md:font-light text-roope-primary">Complete Booking</h1>
+                <div className="flex items-center gap-1 text-[9px] md:text-[10px] text-stone-warm/60 uppercase font-bold tracking-wider mt-0.5">
                   <MapPin className="w-3 h-3 text-gold" />
                   <span>Indore Premium Service</span>
                 </div>
@@ -364,18 +365,18 @@ export default function BookPage() {
         </div>
 
         {/* Two-column layout */}
-        <div className="max-w-6xl mx-auto px-6 py-10 grid lg:grid-cols-[380px_1fr] gap-8 items-start">
+        <div className="max-w-6xl mx-auto px-4 py-4 lg:px-6 lg:py-10 grid lg:grid-cols-[380px_1fr] gap-4 lg:gap-8 items-start">
 
           {/* ── Left: Order Summary (sticky on desktop) ───────────────────── */}
           <div className="space-y-5 lg:sticky lg:top-24">
             {/* Auth banner */}
             {!user && (
-              <div className="p-4 bg-champagne-300/10 border border-champagne-DEFAULT/20 rounded-2xl flex items-center justify-between gap-3 shadow-sm">
+              <div className="p-3 md:p-4 bg-champagne-300/10 border border-champagne-DEFAULT/20 rounded-2xl flex items-center justify-between gap-3 shadow-sm">
                 <div className="flex gap-2.5 items-start">
                   <Sparkles className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="text-[10px] font-bold text-roope-primary uppercase tracking-wide">Sign in for faster checkout</p>
-                    <p className="text-[9px] text-stone-warm/75 mt-0.5">Auto-fill details &amp; track your scheduled artist arrival.</p>
+                    <p className="text-[8.5px] md:text-[9px] text-stone-warm/75 mt-0.5">Auto-fill details &amp; track your scheduled artist arrival.</p>
                   </div>
                 </div>
                 <button onClick={() => setIsAuthModalOpen(true)} className="text-[10px] font-bold uppercase tracking-wider text-gold hover:underline cursor-pointer flex-shrink-0">
@@ -385,7 +386,7 @@ export default function BookPage() {
             )}
 
             {/* Selected Services */}
-            <div className="bg-white rounded-3xl p-5 border border-pearl-200 shadow-sm">
+            <div className="bg-white rounded-3xl p-3.5 md:p-5 border border-pearl-200 shadow-sm">
               <span className="text-[9px] font-bold text-stone-warm/60 uppercase tracking-widest bg-pearl-200/60 px-2 py-0.5 rounded block mb-3 w-max">
                 Selected Service(s)
               </span>
@@ -397,10 +398,10 @@ export default function BookPage() {
                     return (
                       <div key={id} className="flex justify-between items-start pt-3 first:pt-0">
                         <div className="min-w-0 pr-3">
-                          <h4 className="font-semibold text-roope-primary text-sm leading-snug">{svc.name} <span className="text-gold font-bold ml-1 text-xs">x{qty}</span></h4>
-                          <p className="text-[10px] text-stone-warm/60 mt-1">{svc.duration}</p>
+                          <h4 className="font-semibold text-roope-primary text-xs md:text-sm leading-snug">{svc.name} <span className="text-gold font-bold ml-1 text-xs">x{qty}</span></h4>
+                          <p className="text-[10px] md:text-xs text-stone-warm/60 mt-1">{svc.duration}</p>
                         </div>
-                        <span className="font-display text-base font-light text-roope-primary flex-shrink-0">{formatPrice(svc.price * qty)}</span>
+                        <span className="font-display text-sm md:text-base font-semibold md:font-light text-roope-primary flex-shrink-0">{formatPrice(svc.price * qty)}</span>
                       </div>
                     );
                   })}
@@ -408,36 +409,36 @@ export default function BookPage() {
               ) : selectedService ? (
                 <div className="flex justify-between items-start">
                   <div>
-                    <h4 className="font-semibold text-roope-primary text-base leading-snug">{selectedService.name}</h4>
-                    <p className="text-xs text-stone-warm/60 mt-1">{selectedService.duration}</p>
+                    <h4 className="font-semibold text-roope-primary text-xs md:text-sm leading-snug">{selectedService.name}</h4>
+                    <p className="text-[10px] md:text-xs text-stone-warm/60 mt-1">{selectedService.duration}</p>
                   </div>
-                  <span className="font-display text-lg font-light text-roope-primary">{formatPrice(selectedService.price)}</span>
+                  <span className="font-display text-sm md:text-base font-semibold md:font-light text-roope-primary">{formatPrice(selectedService.price)}</span>
                 </div>
               ) : null}
             </div>
 
             {/* Add-ons */}
             <div>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-stone-warm/70 mb-3 flex items-center gap-1.5">
-                <Sparkles className="w-4 h-4 text-gold" /> Frequently Added Together
+              <h3 className="text-[10.5px] md:text-xs font-bold uppercase tracking-wider text-stone-warm/70 mb-3 flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-gold" /> Frequently Added Together
               </h3>
               <div className="space-y-2">
                 {extras.map((extra) => {
                   const isSelected = selections.extras.includes(extra.id);
                   return (
-                    <div key={extra.id} className={`p-4 rounded-2xl flex items-center justify-between border transition-all duration-200 ${isSelected ? "bg-champagne-300/5 border-champagne-DEFAULT" : "bg-white border-pearl-200 hover:border-champagne-300/50"}`}>
+                    <div key={extra.id} className={`p-2.5 md:p-4 rounded-2xl flex items-center justify-between border transition-all duration-200 ${isSelected ? "bg-champagne-300/5 border-champagne-DEFAULT" : "bg-white border-pearl-200 hover:border-champagne-300/50"}`}>
                       <div>
-                        <p className="text-xs font-semibold text-roope-primary">{extra.label}</p>
-                        <p className="text-[10px] text-stone-warm/60 mt-0.5">{extra.desc}</p>
+                        <p className="text-[11px] md:text-xs font-semibold text-roope-primary">{extra.label}</p>
+                        <p className="text-[9.5px] md:text-[10px] text-stone-warm/60 mt-0.5">{extra.desc}</p>
                       </div>
-                      <div className="flex items-center gap-3">
-                        <span className="text-xs font-medium text-stone-warm">+{formatPrice(extra.price)}</span>
+                      <div className="flex items-center gap-2.5">
+                        <span className="text-[10px] md:text-xs font-medium text-stone-warm">+{formatPrice(extra.price)}</span>
                         <button
                           onClick={() => {
                             const next = isSelected ? selections.extras.filter((e) => e !== extra.id) : [...selections.extras, extra.id];
                             setSelections({ ...selections, extras: next });
                           }}
-                          className={`w-7 h-7 rounded-full flex items-center justify-center border transition-all text-sm font-bold ${isSelected ? "bg-stone-warm border-stone-warm text-white" : "border-champagne-DEFAULT text-roope-primary hover:bg-champagne-DEFAULT hover:text-white"}`}
+                          className={`w-5.5 h-5.5 md:w-7 md:h-7 rounded-full flex items-center justify-center border transition-all text-xs font-bold ${isSelected ? "bg-stone-warm border-stone-warm text-white" : "border-champagne-DEFAULT text-roope-primary hover:bg-champagne-DEFAULT hover:text-white"}`}
                         >
                           {isSelected ? "✓" : "+"}
                         </button>
@@ -449,9 +450,9 @@ export default function BookPage() {
             </div>
 
             {/* Invoice */}
-            <div className="bg-white rounded-3xl p-5 border border-pearl-200 shadow-sm space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-roope-primary border-b border-pearl-200/60 pb-2">Invoice Summary</h4>
-              <div className="space-y-2 text-xs">
+            <div className="bg-white rounded-3xl p-3.5 md:p-5 border border-pearl-200 shadow-sm space-y-3">
+              <h4 className="text-[10.5px] md:text-xs font-bold uppercase tracking-wider text-roope-primary border-b border-pearl-200/60 pb-2">Invoice Summary</h4>
+              <div className="space-y-2 text-[11px] md:text-xs">
                 <div className="flex justify-between text-stone-warm">
                   <span>Service Base Price</span>
                   <span className="font-semibold text-roope-primary">{formatPrice(basePrice)}</span>
@@ -475,14 +476,14 @@ export default function BookPage() {
                     <span className="font-semibold text-[#B8922E]">-{formatPrice(discount)}</span>
                   </div>
                 )}
-                <div className="flex justify-between text-stone-warm pt-3 border-t border-pearl-200/80 text-sm font-semibold">
+                <div className="flex justify-between text-stone-warm pt-3 border-t border-pearl-200/80 text-[11px] md:text-sm font-semibold">
                   <span className="text-roope-primary">Grand Total</span>
-                  <span className="text-gradient-gold text-lg">{formatPrice(total)}</span>
+                  <span className="text-gradient-gold text-sm md:text-lg">{formatPrice(total)}</span>
                 </div>
               </div>
-              <div className="p-3 bg-champagne-300/10 rounded-2xl flex gap-2.5 items-start">
-                <ShieldCheck className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
-                <p className="text-[10px] text-stone-warm/80 leading-relaxed">
+              <div className="p-2.5 md:p-3 bg-champagne-300/10 rounded-2xl flex gap-2.5 items-start">
+                <ShieldCheck className="w-3.5 h-3.5 text-gold flex-shrink-0 mt-0.5" />
+                <p className="text-[9px] md:text-[10px] text-stone-warm/80 leading-relaxed">
                   <strong>Roopé Guarantee</strong>: Sanitized kits, genuine international brands, 100% on-time arrival. Free cancellation.
                 </p>
               </div>
@@ -492,7 +493,7 @@ export default function BookPage() {
           {/* ── Right: Form ────────────────────────────────────────────────── */}
           <div className="space-y-8">
             {/* Schedule */}
-            <div className="bg-white rounded-3xl p-6 border border-pearl-200 shadow-sm">
+            <div className="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 border border-pearl-200 shadow-sm">
               <VisualSchedulingCalendar
                 selectedDate={selections.date}
                 selectedTime={selections.time}
@@ -504,11 +505,11 @@ export default function BookPage() {
             </div>
 
             {/* Address */}
-            <div className="bg-white rounded-3xl p-6 border border-pearl-200 shadow-sm space-y-4">
+            <div className="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 border border-pearl-200 shadow-sm space-y-3.5 md:space-y-4">
               <h3 className="text-xs font-bold uppercase tracking-wider text-stone-warm/70 flex items-center gap-1.5">
                 <MapPin className="w-4 h-4 text-gold" /> Service Address (Indore)
               </h3>
-              <div className="bg-pearl-100/50 rounded-2xl p-4 border border-pearl-200 flex items-center gap-3">
+              <div className="bg-pearl-100/50 rounded-2xl p-3 md:p-4 border border-pearl-200 flex items-center gap-3">
                 <MapPin className="w-4 h-4 text-stone-warm/60" />
                 <div className="text-xs font-semibold text-roope-primary">
                   Indore, Madhya Pradesh
@@ -522,42 +523,42 @@ export default function BookPage() {
                   onChange={(e) => setSelections({ ...selections, address: e.target.value })}
                   placeholder="House No, Apartment Name, Street Name, landmark..."
                   rows={3}
-                  className="w-full bg-white rounded-2xl border border-pearl-200 p-4 text-xs text-roope-primary outline-none focus:border-champagne-DEFAULT transition-colors resize-none"
+                  className="w-full bg-white rounded-2xl border border-pearl-200 p-3 md:p-4 text-[11px] md:text-xs text-roope-primary outline-none focus:border-champagne-DEFAULT transition-colors resize-none"
                 />
               </div>
             </div>
 
             {/* Contact */}
-            <div className="bg-white rounded-3xl p-6 border border-pearl-200 shadow-sm space-y-4">
+            <div className="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 border border-pearl-200 shadow-sm space-y-3.5 md:space-y-4">
               <h3 className="text-xs font-bold uppercase tracking-wider text-stone-warm/70 flex items-center gap-1.5">
                 <User className="w-4 h-4 text-gold" /> Your Contact Information
               </h3>
               <div>
                 <label className="block text-[10px] font-bold text-stone-warm/50 uppercase tracking-widest mb-1.5">Full Name</label>
                 <input type="text" value={selections.name} onChange={(e) => setSelections({ ...selections, name: e.target.value })} placeholder="Enter your name"
-                  className="w-full bg-white rounded-2xl border border-pearl-200 px-4 py-3.5 text-xs text-roope-primary outline-none focus:border-champagne-DEFAULT transition-colors" />
+                  className="w-full bg-white rounded-2xl border border-pearl-200 px-3 py-2.5 md:px-4 md:py-3.5 text-[11px] md:text-xs text-roope-primary outline-none focus:border-champagne-DEFAULT transition-colors" />
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-[10px] font-bold text-stone-warm/50 uppercase tracking-widest mb-1.5">Phone Number</label>
                   <input type="tel" value={selections.phone} onChange={(e) => setSelections({ ...selections, phone: e.target.value })} placeholder="Phone number"
-                    className="w-full bg-white rounded-2xl border border-pearl-200 px-4 py-3.5 text-xs text-roope-primary outline-none focus:border-champagne-DEFAULT transition-colors" />
+                    className="w-full bg-white rounded-2xl border border-pearl-200 px-3 py-2.5 md:px-4 md:py-3.5 text-[11px] md:text-xs text-roope-primary outline-none focus:border-champagne-DEFAULT transition-colors" />
                 </div>
                 <div>
                   <label className="block text-[10px] font-bold text-stone-warm/50 uppercase tracking-widest mb-1.5">Email Address</label>
                   <input type="email" value={selections.email} onChange={(e) => setSelections({ ...selections, email: e.target.value })} placeholder="Email"
-                    className="w-full bg-white rounded-2xl border border-pearl-200 px-4 py-3.5 text-xs text-roope-primary outline-none focus:border-champagne-DEFAULT transition-colors" />
+                    className="w-full bg-white rounded-2xl border border-pearl-200 px-3 py-2.5 md:px-4 md:py-3.5 text-[11px] md:text-xs text-roope-primary outline-none focus:border-champagne-DEFAULT transition-colors" />
                 </div>
               </div>
             </div>
 
             {/* Coupon */}
-            <div className="bg-white rounded-3xl p-6 border border-pearl-200 shadow-sm space-y-3">
+            <div className="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 border border-pearl-200 shadow-sm space-y-2.5 md:space-y-3">
               <h3 className="text-xs font-bold uppercase tracking-wider text-stone-warm/70 flex items-center gap-1.5">
                 <Tag className="w-4 h-4 text-gold" /> Coupon Offers
               </h3>
               {appliedCoupon ? (
-                <div className="bg-champagne-300/10 border border-champagne-DEFAULT rounded-2xl px-4 py-3.5 flex justify-between items-center">
+                <div className="bg-champagne-300/10 border border-champagne-DEFAULT rounded-2xl px-3 py-2.5 md:px-4 md:py-3.5 flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <Tag className="w-4 h-4 text-gold" />
                     <div>
@@ -571,8 +572,8 @@ export default function BookPage() {
               ) : (
                 <div className="flex gap-2">
                   <input type="text" value={couponInput} onChange={(e) => setCouponInput(e.target.value)} placeholder="Try WELCOME or ROOPE25"
-                    className="flex-1 bg-white rounded-2xl border border-pearl-200 px-4 py-3.5 text-xs text-roope-primary uppercase outline-none focus:border-champagne-DEFAULT transition-colors" />
-                  <button onClick={handleApplyCoupon} className="btn-secondary px-5 py-3 rounded-2xl border border-pearl-300 text-xs uppercase tracking-wider">Apply</button>
+                    className="flex-1 bg-white rounded-2xl border border-pearl-200 px-3 py-2.5 md:px-4 md:py-3.5 text-[11px] md:text-xs text-roope-primary uppercase outline-none focus:border-champagne-DEFAULT transition-colors" />
+                  <button onClick={handleApplyCoupon} className="btn-secondary px-3.5 py-2 md:px-5 md:py-3 rounded-xl md:rounded-2xl text-[11px] md:text-xs uppercase tracking-wider">Apply</button>
                 </div>
               )}
               {couponError && <p className="text-red-500 text-[10px] font-medium">{couponError}</p>}
@@ -589,7 +590,7 @@ export default function BookPage() {
               <button
                 disabled={submitting || !canSubmit()}
                 onClick={() => submitBooking("cod")}
-                className="py-4 px-6 w-full rounded-2xl text-xs font-bold uppercase tracking-widest text-white shadow disabled:opacity-50 disabled:cursor-not-allowed transition-all text-center flex items-center justify-center cursor-pointer"
+                className="py-2.5 px-4 md:py-4 md:px-6 w-full rounded-xl md:rounded-2xl text-[10px] md:text-xs font-bold uppercase tracking-widest text-white shadow disabled:opacity-50 disabled:cursor-not-allowed transition-all text-center flex items-center justify-center cursor-pointer"
                 style={{ background: "linear-gradient(135deg, #C9A84C, #B8922E)" }}
               >
                 {submitting ? "Booking…" : "Confirm & Pay After Service In Person"}
@@ -619,22 +620,22 @@ export default function BookPage() {
       style={{ background: "linear-gradient(160deg, #F8F6F2 0%, #FAF6EC 100%)" }}
     >
       {/* Header */}
-      <div className="pt-28 pb-8 px-6">
+      <div className="pt-20 pb-4 px-4 md:pt-28 md:pb-8 md:px-6">
         <div className="max-w-5xl mx-auto text-center md:text-left">
-          <p className="section-label mb-2 tracking-widest uppercase">Luxury Salon at Home</p>
-          <h1 className="font-display text-4xl md:text-5xl font-light text-roope-primary mb-3">
+          <p className="section-label mb-1.5 md:mb-2 tracking-widest uppercase">Luxury Salon at Home</p>
+          <h1 className="font-display text-xl md:text-5xl font-light text-roope-primary mb-2 md:mb-3">
             Select Your <span className="text-gradient-gold">Glamour Experience</span>
           </h1>
-          <p className="text-stone-warm max-w-2xl text-sm md:text-base leading-relaxed">
+          <p className="text-stone-warm max-w-2xl text-[11px] md:text-base leading-relaxed">
             Delivering high-end international makeup artistry directly to your doorstep. Currently servicing premium homes in <strong>Indore</strong>.
           </p>
 
-          <div className="mt-8 flex flex-wrap justify-center md:justify-start gap-2 border-b border-pearl-200/80 pb-4">
+          <div className="mt-4 flex flex-wrap justify-center md:justify-start gap-1.5 border-b border-pearl-200/80 pb-2.5">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${activeCategory === cat.id ? "text-white shadow-sm" : "text-stone-warm/75 hover:text-roope-primary hover:bg-champagne-300/10"}`}
+                className={`px-3.5 py-1.5 rounded-full text-[10px] md:px-6 md:py-2.5 md:text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${activeCategory === cat.id ? "text-white shadow-sm" : "text-stone-warm/75 hover:text-roope-primary hover:bg-champagne-300/10"}`}
                 style={{ background: activeCategory === cat.id ? "linear-gradient(135deg, #C9A84C, #B8922E)" : "transparent" }}
               >
                 {cat.label}
@@ -645,8 +646,8 @@ export default function BookPage() {
       </div>
 
       {/* Services Grid */}
-      <div className="px-6 max-w-5xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-6">
+      <div className="px-4 md:px-6 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-3 md:gap-6">
           {filteredServices.map((service) => {
             const isSelected = selectedServiceId === service.id;
             return (
@@ -656,37 +657,37 @@ export default function BookPage() {
                 className={`card-luxury overflow-hidden flex flex-col justify-between transition-all duration-300 ${isSelected ? "shadow-gold border-champagne-DEFAULT animate-pulse-subtle" : "border border-pearl-300 hover:border-champagne-300"}`}
                 style={{ background: isSelected ? "linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(201,168,76,0.03) 100%)" : "rgba(255,255,255,0.8)" }}
               >
-                <div className="p-6">
-                  <div className="flex justify-between items-center mb-3">
-                    <span className="text-[10px] font-bold uppercase tracking-widest bg-champagne-300/30 text-roope-primary px-2.5 py-1 rounded-full">{service.tag || "Exclusive"}</span>
-                    <div className="flex items-center gap-1 text-xs font-medium text-stone-warm">
+                <div className="p-3.5 md:p-6">
+                  <div className="flex justify-between items-center mb-2.5">
+                    <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest bg-champagne-300/30 text-roope-primary px-2.5 py-0.5 md:py-1 rounded-full">{service.tag || "Exclusive"}</span>
+                    <div className="flex items-center gap-1 text-[10px] md:text-xs font-medium text-stone-warm">
                       <span className="text-gold">★</span>
                       <span>{service.rating}</span>
                       <span className="text-stone-warm/50">({service.reviews})</span>
                     </div>
                   </div>
-                  <h3 className="font-display text-xl font-light text-roope-primary mb-1.5">{service.name}</h3>
-                  <p className="text-xs text-stone-warm/80 leading-relaxed mb-4">{service.description}</p>
-                  <div className="flex flex-wrap gap-1.5 mb-5">
+                  <h3 className="font-display text-sm font-semibold md:text-xl md:font-light text-roope-primary mb-1 md:mb-1.5">{service.name}</h3>
+                  <p className="text-[10px] md:text-xs text-stone-warm/80 leading-relaxed mb-2.5 md:mb-4">{service.description}</p>
+                  <div className="flex flex-wrap gap-1.5 mb-3 md:mb-5">
                     {service.includes?.slice(0, 4).map((inc, i) => (
-                      <span key={i} className="text-[10px] bg-pearl-200/50 text-stone-warm px-2 py-0.5 rounded-md border border-pearl-300/30">✓ {inc}</span>
+                      <span key={i} className="text-[9px] md:text-[10px] bg-pearl-200/50 text-stone-warm px-1.5 py-0.5 rounded-md border border-pearl-300/30">✓ {inc}</span>
                     ))}
                   </div>
                 </div>
-                <div className="px-6 pb-6 pt-4 border-t border-pearl-200/50 flex justify-between items-center bg-pearl-100/10">
+                <div className="px-3.5 pb-3.5 pt-2.5 md:px-6 md:pb-6 md:pt-4 border-t border-pearl-200/50 flex justify-between items-center bg-pearl-100/10">
                   <div>
-                    <div className="flex items-baseline gap-2">
-                      <span className="font-display text-xl font-light text-roope-primary">{formatPrice(service.price)}</span>
-                      {service.originalPrice && <span className="text-xs text-stone-warm/50 line-through">{formatPrice(service.originalPrice)}</span>}
+                    <div className="flex items-baseline gap-1.5 md:gap-2">
+                      <span className="font-display text-sm font-semibold md:text-xl md:font-light text-roope-primary">{formatPrice(service.price)}</span>
+                      {service.originalPrice && <span className="text-[10px] md:text-xs text-stone-warm/50 line-through">{formatPrice(service.originalPrice)}</span>}
                     </div>
-                    <div className="flex items-center gap-1 text-[10px] text-stone-warm/60 mt-0.5">
+                    <div className="flex items-center gap-1 text-[9px] md:text-[10px] text-stone-warm/60 mt-0.5">
                       <Clock className="w-3 h-3 text-stone-warm/40" />
                       <span>{service.duration}</span>
                     </div>
                   </div>
                   <button
                     onClick={() => toggleService(service.id)}
-                    className={`px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${isSelected ? "bg-stone-warm text-white" : "border border-champagne-DEFAULT text-roope-primary hover:bg-champagne-DEFAULT hover:text-white"}`}
+                    className={`px-3.5 py-1.5 rounded-lg md:rounded-full text-[10px] md:text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${isSelected ? "bg-stone-warm text-white" : "border border-champagne-DEFAULT text-roope-primary hover:bg-champagne-DEFAULT hover:text-white"}`}
                   >
                     {isSelected ? "Selected" : "Add"}
                   </button>
@@ -704,28 +705,28 @@ export default function BookPage() {
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
-            className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-pearl-200 shadow-xl px-6 py-4"
+            className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-pearl-200 shadow-xl px-3.5 py-2.5"
           >
             <div className="max-w-5xl mx-auto flex items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center bg-champagne-300/20 text-roope-primary">
-                  <ShoppingBag className="w-5 h-5" />
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full flex items-center justify-center bg-champagne-300/20 text-roope-primary flex-shrink-0">
+                  <ShoppingBag className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold text-stone-warm/60 uppercase tracking-widest">Your Package</p>
-                  <p className="text-sm font-semibold text-roope-primary truncate max-w-[200px] md:max-w-md">{selectedService.name}</p>
+                  <p className="text-[8px] font-bold text-stone-warm/60 uppercase tracking-widest leading-none">Your Package</p>
+                  <p className="text-xs font-semibold text-roope-primary truncate max-w-[150px] sm:max-w-md mt-0.5">{selectedService.name}</p>
                 </div>
               </div>
-              <div className="flex items-center gap-6">
+              <div className="flex items-center gap-4">
                 <div className="text-right hidden sm:block">
-                  <p className="text-[10px] text-stone-warm/50 uppercase tracking-wider">Total</p>
-                  <p className="font-display text-xl font-light text-roope-primary">{formatPrice(selectedService.price)}</p>
+                  <p className="text-[9px] text-stone-warm/50 uppercase tracking-wider">Total</p>
+                  <p className="font-display text-base font-semibold text-roope-primary">{formatPrice(selectedService.price)}</p>
                 </div>
                 <button
                   onClick={handleProceedToCheckout}
-                  className="btn-primary py-3 px-6 text-xs uppercase tracking-widest font-semibold flex items-center gap-2 shadow-md"
+                  className="btn-primary py-2 px-3 text-[10px] uppercase tracking-widest font-semibold flex items-center gap-1.5 shadow-md"
                 >
-                  Proceed to Book <ArrowRight className="w-4 h-4" />
+                  Proceed to Book <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>

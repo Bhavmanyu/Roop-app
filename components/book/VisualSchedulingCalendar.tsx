@@ -105,7 +105,7 @@ export default function VisualSchedulingCalendar({
   const activeOccasionId = selectedOccasion.split(" - ")[0] || "party";
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
 
       {/* STEP 1: Booking Mode */}
       <div>
@@ -116,24 +116,24 @@ export default function VisualSchedulingCalendar({
           <button
             type="button"
             onClick={() => handleSetMode("single")}
-            className={`py-3 px-4 rounded-xl text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-all ${
+            className={`py-2 px-3 md:py-3 md:px-4 rounded-xl text-[10.5px] md:text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-all ${
               bookingMode === "single"
                 ? "bg-white text-roope-primary shadow-sm font-bold"
                 : "text-stone-warm/80 hover:text-roope-primary"
             }`}
           >
-            <User className="w-4 h-4 text-gold" /> Personal Styling
+            <User className="w-3.5 h-3.5 md:w-4 md:h-4 text-gold" /> Personal Styling
           </button>
           <button
             type="button"
             onClick={() => handleSetMode("group")}
-            className={`py-3 px-4 rounded-xl text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-all ${
+            className={`py-2 px-3 md:py-3 md:px-4 rounded-xl text-[10.5px] md:text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-all ${
               bookingMode === "group"
                 ? "bg-white text-roope-primary shadow-sm font-bold"
                 : "text-stone-warm/80 hover:text-roope-primary"
             }`}
           >
-            <Users className="w-4 h-4 text-gold" /> Group Booking
+            <Users className="w-3.5 h-3.5 md:w-4 md:h-4 text-gold" /> Group Booking
           </button>
         </div>
 
@@ -190,14 +190,14 @@ export default function VisualSchedulingCalendar({
                 type="button"
                 key={d.id}
                 onClick={() => { onSelectDate(d.id); onSelectTime(""); }}
-                className={`p-3 rounded-2xl border text-center transition-all duration-300 ${
+                className={`p-2 md:p-3 rounded-xl md:rounded-2xl border text-center transition-all duration-300 ${
                   isActive
                     ? "bg-stone-warm border-stone-warm text-white shadow shadow-gold"
                     : "bg-white border-pearl-200 text-stone-warm hover:border-champagne-300"
                 }`}
               >
                 <p className="text-[9px] font-bold uppercase tracking-wider opacity-60 leading-none">{d.dayName}</p>
-                <p className="text-base font-display font-light my-1 leading-none">{d.dateNum}</p>
+                <p className="text-xs md:text-base font-display font-light my-1 leading-none">{d.dateNum}</p>
                 <p className="text-[8px] uppercase tracking-wider font-extrabold opacity-60 leading-none">{d.monthName}</p>
               </button>
             );
@@ -227,7 +227,7 @@ export default function VisualSchedulingCalendar({
                           type="button"
                           key={slot.id}
                           onClick={() => onSelectTime(slot.id)}
-                          className={`py-3 px-3 rounded-2xl border text-xs font-semibold text-center transition-all duration-200 ${
+                          className={`py-2 px-2 md:py-3 md:px-3 rounded-xl md:rounded-2xl border text-[11px] md:text-xs font-semibold text-center transition-all duration-200 ${
                             isActive
                               ? "bg-white shadow border-[#B8922E] ring-1 ring-[#B8922E]/10 text-roope-primary"
                               : "bg-white border-pearl-200 text-stone-warm hover:border-champagne-300/60"
@@ -262,7 +262,7 @@ export default function VisualSchedulingCalendar({
                 type="button"
                 key={occ.id}
                 onClick={() => handleOccasionClick(occ.id)}
-                className={`p-3 rounded-2xl flex items-center gap-2.5 text-xs font-semibold border transition-all duration-300 ${
+                className={`py-2.5 px-2 md:p-3 rounded-xl md:rounded-2xl flex items-center gap-1.5 md:gap-2.5 text-[11px] md:text-xs font-semibold border transition-all duration-300 ${
                   isActive
                     ? "bg-champagne-300/10 border-champagne-DEFAULT text-roope-primary"
                     : "bg-white border-pearl-200 text-stone-warm/80 hover:border-champagne-300"

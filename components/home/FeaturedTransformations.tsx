@@ -64,18 +64,17 @@ export default function FeaturedTransformations() {
         </div>
       </motion.div>
 
-      {/* Masonry-style grid */}
       <motion.div
         initial="hidden"
         animate={inView ? "show" : "hidden"}
         variants={variants.container}
-        className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 h-[380px] md:h-[640px]"
+        className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 h-[260px] md:h-[640px]"
       >
         {transformations.map((item, i) => (
           <motion.div
             key={item.id}
             variants={variants.item}
-            className={`relative group rounded-3xl overflow-hidden cursor-pointer ${item.span}`}
+            className={`relative group rounded-xl md:rounded-3xl overflow-hidden cursor-pointer ${item.span}`}
             whileHover={{ scale: 1.01 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
