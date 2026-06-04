@@ -114,7 +114,7 @@ export default function ProfessionalRegisterPage() {
             <CheckCircle2 className="w-10 h-10 text-white" />
           </motion.div>
           
-          <h1 className="font-display text-3xl font-light text-roope-primary mb-3">Application Received</h1>
+          <h1 className="font-display text-xl md:text-3xl font-semibold md:font-light text-roope-primary mb-3">Application Received</h1>
           <p className="text-stone-warm mb-1">Your professional artist profile has been logged successfully.</p>
           <p className="text-stone-warm text-sm mb-8 leading-relaxed">
             Our partnerships team will review your qualifications and certificates. You will receive an onboarding status email within the next 48 hours.
@@ -142,7 +142,7 @@ export default function ProfessionalRegisterPage() {
         {/* Header */}
         <div className="text-center mb-10">
           <p className="section-label mb-2 tracking-widest uppercase">Join Our Network</p>
-          <h1 className="font-display text-4xl md:text-5xl font-light text-roope-primary mb-3">
+          <h1 className="font-display text-2xl md:text-5xl font-semibold md:font-light text-roope-primary mb-3">
             Register as a <span className="text-gradient-gold">Professional</span>
           </h1>
           <p className="text-stone-warm max-w-lg mx-auto text-sm leading-relaxed">

@@ -99,7 +99,7 @@
 
   /* Luxury button styles */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-medium text-sm tracking-wide transition-all duration-300;
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-medium text-xs md:text-sm tracking-wide transition-all duration-300 md:px-8 md:py-3.5;
     font-family: var(--font-inter), system-ui, sans-serif;
     background: linear-gradient(135deg, #C9A84C 0%, #B8922E 100%);
     color: white;
@@ -114,7 +114,7 @@
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-medium text-sm tracking-wide transition-all duration-300 border;
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-medium text-xs md:text-sm tracking-wide transition-all duration-300 border md:px-8 md:py-3.5;
     font-family: var(--font-inter), system-ui, sans-serif;
     background: transparent;
     color: var(--roope-primary);
@@ -127,7 +127,7 @@
   }
 
   .btn-glass {
-    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-medium text-sm transition-all duration-300;
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-medium text-xs md:text-sm transition-all duration-300 md:px-7 md:py-3.5;
     font-family: var(--font-inter), system-ui, sans-serif;
     background: var(--glass-bg);
     backdrop-filter: blur(16px);
@@ -162,14 +162,14 @@
   }
 
   .section-title {
-    @apply text-4xl md:text-5xl lg:text-6xl font-light leading-tight;
+    @apply text-2xl md:text-5xl lg:text-6xl font-light leading-tight;
     font-family: var(--font-instrument), Georgia, serif;
     color: var(--roope-primary);
     letter-spacing: -0.02em;
   }
 
   .section-subtitle {
-    @apply text-base md:text-lg font-light leading-relaxed;
+    @apply text-xs md:text-lg font-light leading-relaxed;
     color: var(--roope-muted);
   }
 
@@ -253,7 +253,7 @@
 
   /* Number counter style */
   .stat-number {
-    @apply text-4xl md:text-5xl font-light;
+    @apply text-2xl md:text-5xl font-light;
     font-family: var(--font-instrument), Georgia, serif;
     color: var(--roope-primary);
     letter-spacing: -0.02em;

@@ -205,7 +205,7 @@ export default function BridalPageClient() {
                   )}
 
                   <div className="mb-4 md:mb-6">
-                    <h3 className={`font-display text-lg font-semibold md:text-2xl md:font-light mt-1 ${pkg.color === "gold" ? "text-white" : "text-roope-primary"}`}>
+                    <h3 className={`font-display text-base font-semibold md:text-2xl md:font-light mt-1 ${pkg.color === "gold" ? "text-white" : "text-roope-primary"}`}>
                       {pkg.name}
                     </h3>
                     <p className={`text-xs md:text-sm mt-1 ${pkg.color === "gold" ? "text-white/50" : "text-stone-warm"}`}>
@@ -215,7 +215,7 @@ export default function BridalPageClient() {
 
                   <div className="mb-4 md:mb-6">
                     <div className="flex items-baseline gap-2">
-                      <span className={`font-display text-lg font-semibold md:text-2xl md:font-light ${pkg.color === "gold" ? "text-white" : "text-roope-primary"}`}>
+                      <span className={`font-display text-base font-semibold md:text-2xl md:font-light ${pkg.color === "gold" ? "text-white" : "text-roope-primary"}`}>
                         Free Consultation
                       </span>
                     </div>
@@ -307,7 +307,7 @@ export default function BridalPageClient() {
               <div className="flex items-center justify-between mb-4 md:mb-6">
                 <div>
                   <p className="section-label mb-1">Bridal Inquiry</p>
-                  <h2 className="font-display text-lg md:text-2xl font-semibold md:font-light text-roope-primary">{inquiryPackage?.name}</h2>
+                  <h2 className="font-display text-base md:text-2xl font-semibold md:font-light text-roope-primary">{inquiryPackage?.name}</h2>
                 </div>
                 <button onClick={() => setShowInquiry(false)} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-stone-100 transition-colors">
                   <X className="w-4 h-4 text-stone-warm" />

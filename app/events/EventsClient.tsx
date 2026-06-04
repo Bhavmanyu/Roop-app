@@ -84,7 +84,7 @@ export default function EventsPage() {
         <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-4 md:gap-10">
           {/* Packages */}
           <div className="lg:col-span-2">
-            <h2 className="font-display text-lg font-semibold md:text-2xl md:font-light text-roope-primary mb-4 md:mb-6">Choose a Package</h2>
+            <h2 className="font-display text-base font-semibold md:text-2xl md:font-light text-roope-primary mb-4 md:mb-6">Choose a Package</h2>
             <div className="grid sm:grid-cols-2 gap-4 md:gap-5 mb-6 md:mb-10">
               {eventPackages.map((pkg, i) => (
                 <motion.div
@@ -105,7 +105,7 @@ export default function EventsPage() {
                   <h3 className="font-display text-sm font-semibold md:text-xl md:font-light text-roope-primary mb-1">{pkg.name}</h3>
                   <p className="text-[10px] md:text-xs text-stone-warm mb-2.5 md:mb-4">{pkg.tagline}</p>
                   <div className="flex items-baseline gap-1.5 md:gap-2 mb-2.5 md:mb-4">
-                    <span className="font-display text-lg font-semibold md:text-2xl md:font-light text-roope-primary">{formatPrice(pkg.price)}</span>
+                    <span className="font-display text-base font-semibold md:text-2xl md:font-light text-roope-primary">{formatPrice(pkg.price)}</span>
                     <span className="text-[10px] md:text-xs text-stone-warm line-through">{formatPrice(pkg.originalPrice)}</span>
                     {pkg.priceNote && <span className="text-[10px] md:text-xs text-stone-warm">{pkg.priceNote}</span>}
                   </div>
@@ -127,7 +127,7 @@ export default function EventsPage() {
 
             {/* Group size */}
             <div className="card-luxury p-3.5 md:p-6 mb-4 md:mb-8">
-              <h3 className="font-display text-base font-semibold md:text-xl md:font-light text-roope-primary mb-1 md:mb-2">Group Size</h3>
+              <h3 className="font-display text-sm font-semibold md:text-xl md:font-light text-roope-primary mb-1 md:mb-2">Group Size</h3>
               <p className="text-xs md:text-sm text-stone-warm mb-3 md:mb-4">4+ people get 15% off automatically.</p>
               <div className="flex items-center gap-3 md:gap-4">
                 <button onClick={() => setGroupSize(Math.max(1, groupSize - 1))}
@@ -148,7 +148,7 @@ export default function EventsPage() {
 
             {/* Add-ons */}
             <div className="card-luxury p-3.5 md:p-6">
-              <h3 className="font-display text-base font-semibold md:text-xl md:font-light text-roope-primary mb-3 md:mb-4">Add-Ons (Optional)</h3>
+              <h3 className="font-display text-sm font-semibold md:text-xl md:font-light text-roope-primary mb-3 md:mb-4">Add-Ons (Optional)</h3>
               <div className="space-y-2 md:space-y-3">
                 {addons.map((addon) => {
                   const selected = selectedAddons.includes(addon.id);
@@ -206,7 +206,7 @@ export default function EventsPage() {
               </div>
               <div className="pt-3 md:pt-4 border-t border-pearl-200 flex justify-between items-center mb-4 md:mb-6">
                 <span className="text-xs md:text-sm font-semibold text-roope-primary">Total</span>
-                <span className="font-display text-lg font-semibold md:text-2xl md:font-light text-roope-primary">{formatPrice(finalTotal)}</span>
+                <span className="font-display text-base font-semibold md:text-2xl md:font-light text-roope-primary">{formatPrice(finalTotal)}</span>
               </div>
               <button
                 onClick={() => { setShowInquiry(true); setSubmitted(false); setError(""); }}
@@ -243,7 +243,7 @@ export default function EventsPage() {
               <div className="flex items-center justify-between mb-4 md:mb-6">
                 <div>
                   <p className="section-label mb-1">Event Inquiry</p>
-                  <h2 className="font-display text-lg md:text-2xl font-semibold md:font-light text-roope-primary">{base?.name}</h2>
+                  <h2 className="font-display text-base md:text-2xl font-semibold md:font-light text-roope-primary">{base?.name}</h2>
                   <p className="text-xs md:text-sm text-stone-warm">{groupSize} {groupSize === 1 ? "person" : "people"} • {formatPrice(finalTotal)}</p>
                 </div>
                 <button onClick={() => setShowInquiry(false)} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-stone-100 transition-colors">
@@ -254,7 +254,7 @@ export default function EventsPage() {
               {submitted ? (
                 <div className="text-center py-6 md:py-8">
                   <div className="text-4xl md:text-5xl mb-3 md:mb-4">✨</div>
-                  <h3 className="font-display text-lg md:text-2xl font-semibold md:font-light text-roope-primary mb-2">Inquiry Received!</h3>
+                  <h3 className="font-display text-base md:text-2xl font-semibold md:font-light text-roope-primary mb-2">Inquiry Received!</h3>
                   <p className="text-stone-warm text-xs md:text-sm">We&apos;ll confirm your event booking within 2 hours.</p>
                   <button onClick={() => setShowInquiry(false)} className="btn-primary px-6 py-2.5 md:px-8 md:py-3 mt-4 md:mt-6 text-xs md:text-sm">Close</button>
                 </div>

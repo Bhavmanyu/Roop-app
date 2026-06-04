@@ -102,7 +102,7 @@ export default function BookingsHistoryPage() {
         style={{ background: "linear-gradient(160deg, #F8F6F2 0%, #FAF6EC 100%)" }}>
         <div className="max-w-md w-full text-center p-8 bg-white border border-pearl-200 rounded-3xl shadow-xl">
           <ShoppingBag className="w-12 h-12 text-gold mx-auto mb-4" />
-          <h1 className="font-display text-2xl font-light text-roope-primary mb-3">View Your Appointments</h1>
+          <h1 className="font-display text-xl md:text-2xl font-semibold md:font-light text-roope-primary mb-3">View Your Appointments</h1>
           <p className="text-xs text-stone-warm/80 leading-relaxed mb-6">
             Please sign in using your account to view your scheduled beauty sessions, history, and booking receipts.
           </p>
@@ -122,7 +122,7 @@ export default function BookingsHistoryPage() {
         <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-pearl-200/80 pb-6 mb-8">
           <div>
             <p className="section-label mb-2 tracking-widest uppercase">Client Portal</p>
-            <h1 className="font-display text-3xl font-light text-roope-primary">
+            <h1 className="font-display text-2xl md:text-3xl font-semibold md:font-light text-roope-primary">
               Your <span className="text-gradient-gold">Glamour Sessions</span>
             </h1>
             <p className="text-xs text-stone-warm/80 mt-1">Logged in as {user.email}</p>
@@ -149,7 +149,7 @@ export default function BookingsHistoryPage() {
         ) : bookings.length === 0 ? (
           <div className="bg-white rounded-3xl p-8 border border-pearl-200 text-center shadow-sm max-w-lg mx-auto">
             <ShoppingBag className="w-10 h-10 text-stone-warm/30 mx-auto mb-4" />
-            <h3 className="font-display text-xl font-light text-roope-primary mb-2">No Bookings Yet</h3>
+            <h3 className="font-display text-lg md:text-xl font-semibold md:font-light text-roope-primary mb-2">No Bookings Yet</h3>
             <p className="text-xs text-stone-warm/75 mb-6">
               You haven&apos;t scheduled any Roopé luxury salon appointments yet. Create your first session now.
             </p>
@@ -184,7 +184,7 @@ export default function BookingsHistoryPage() {
                           </span>
                         </div>
 
-                        <h4 className="font-display text-lg font-light text-roope-primary leading-snug mb-2">
+                        <h4 className="font-display text-base md:text-lg font-semibold md:font-light text-roope-primary leading-snug mb-2">
                           {booking.service_name}
                         </h4>
 

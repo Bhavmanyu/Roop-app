@@ -71,7 +71,7 @@ export default function CareersPage() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="section-title mx-auto max-w-2xl mb-4 font-display text-4xl md:text-5xl font-light text-roope-primary"
+            className="section-title mx-auto max-w-2xl mb-4 font-display text-2xl md:text-5xl font-light text-roope-primary"
           >
             Shape the future of <span className="italic text-gradient-gold">doorstep luxury.</span>
           </motion.h1>
@@ -119,7 +119,7 @@ export default function CareersPage() {
       <section className="py-20 px-6 bg-[#FAF9F6]">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="font-display text-3xl font-light text-roope-primary">
+            <h2 className="font-display text-xl md:text-3xl font-semibold md:font-light text-roope-primary">
               Open <span className="italic text-gradient-gold">Opportunities</span>
             </h2>
             <p className="text-stone-warm text-xs mt-2">Indore, India (Home Services Network)</p>
@@ -136,7 +136,7 @@ export default function CareersPage() {
                 className="bg-white rounded-3xl p-6 border border-pearl-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-champagne-DEFAULT transition-all"
               >
                 <div>
-                  <h3 className="font-display text-lg font-light text-roope-primary">{job.title}</h3>
+                  <h3 className="font-display text-base md:text-lg font-semibold md:font-light text-roope-primary">{job.title}</h3>
                   <div className="flex flex-wrap gap-2.5 mt-2">
                     <span className="text-[10px] font-bold text-stone-warm/50 uppercase bg-pearl-100 px-2 py-0.5 rounded">
                       {job.type}
@@ -168,7 +168,7 @@ export default function CareersPage() {
       {/* CTA Onboarding banner */}
       <section className="py-16 px-6 text-center bg-white border-t border-pearl-200">
         <p className="section-label mb-3">Partner Onboarding</p>
-        <h2 className="font-display text-3xl font-light text-roope-primary mb-3 max-w-md mx-auto">
+        <h2 className="font-display text-xl md:text-3xl font-semibold md:font-light text-roope-primary mb-3 max-w-md mx-auto">
           Own a salon or studio? <span className="italic text-gradient-gold">Join as a partner.</span>
         </h2>
         <p className="text-stone-warm text-xs max-w-sm mx-auto mb-6 leading-relaxed">

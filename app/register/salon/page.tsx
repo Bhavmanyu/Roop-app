@@ -119,7 +119,7 @@ export default function SalonRegisterPage() {
             <CheckCircle2 className="w-10 h-10 text-white" />
           </motion.div>
           
-          <h1 className="font-display text-3xl font-light text-roope-primary mb-3">Partnership Logged</h1>
+          <h1 className="font-display text-xl md:text-3xl font-semibold md:font-light text-roope-primary mb-3">Partnership Logged</h1>
           <p className="text-stone-warm mb-1">Onboarding application for **{form.salon_name}** received.</p>
           <p className="text-stone-warm text-sm mb-8 leading-relaxed">
             Our corporate partnership lead will review your salon profile and get in touch with you directly to schedule an in-person meeting.
@@ -147,7 +147,7 @@ export default function SalonRegisterPage() {
         {/* Header */}
         <div className="text-center mb-10">
           <p className="section-label mb-2 tracking-widest uppercase">Establish Partnership</p>
-          <h1 className="font-display text-4xl md:text-5xl font-light text-roope-primary mb-3">
+          <h1 className="font-display text-2xl md:text-5xl font-semibold md:font-light text-roope-primary mb-3">
             Salon Onboarding <span className="text-gradient-gold">Portal</span>
           </h1>
           <p className="text-stone-warm max-w-lg mx-auto text-sm leading-relaxed">

@@ -77,7 +77,7 @@ export default function SplashLoader() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display text-4xl md:text-5xl font-bold tracking-wide text-roope-primary"
+              className="font-display text-3xl md:text-5xl font-bold tracking-wide text-roope-primary"
             >
               Roopé
             </motion.h1>

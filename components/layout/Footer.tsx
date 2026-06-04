@@ -44,15 +44,15 @@ export default function Footer() {
 
       {/* Top CTA band */}
       <div className="border-b border-white/8">
-        <div className="max-w-7xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div className="max-w-7xl mx-auto px-6 py-10 md:py-16 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <p className="section-label text-champagne-DEFAULT mb-3">Ready to begin?</p>
-            <h2 className="font-display text-3xl md:text-4xl font-light text-white leading-tight">
+            <h2 className="font-display text-xl md:text-4xl font-light text-white leading-tight">
               Your most beautiful day<br />starts with Roopé.
             </h2>
           </div>
           <div className="flex flex-col sm:flex-row gap-3">
-            <Link href="/book" className="btn-primary px-8 py-4 text-sm">
+            <Link href="/book" className="btn-primary px-5 py-3 text-xs md:px-8 md:py-4 md:text-sm">
               Book a Session
             </Link>
           </div>

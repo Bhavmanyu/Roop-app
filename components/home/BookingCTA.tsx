@@ -40,7 +40,7 @@ export default function BookingCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="font-display text-4xl md:text-5xl lg:text-6xl font-light text-white leading-tight mb-6"
+          className="font-display text-2xl md:text-5xl lg:text-6xl font-light text-white leading-tight mb-4 md:mb-6"
           style={{ letterSpacing: "-0.025em" }}
         >
           Your most beautiful moment
@@ -51,7 +51,7 @@ export default function BookingCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-white/60 text-lg font-light mb-10 max-w-xl mx-auto"
+          className="text-white/60 text-xs md:text-lg font-light mb-6 md:mb-10 max-w-xl mx-auto"
         >
           Book a certified Roopé artist for your bridal day, event, or next occasion.
           Transparent pricing, guaranteed results.
@@ -61,14 +61,14 @@ export default function BookingCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center"
         >
-          <Link href="/book" className="btn-primary px-10 py-4 text-base gap-2.5">
+          <Link href="/book" className="btn-primary px-6 py-3 text-xs md:px-10 md:py-4 md:text-base gap-2.5">
             Book Now — It&apos;s Free to Start
             <ArrowRight className="w-4 h-4" />
           </Link>
           <Link href="/bridal"
-            className="inline-flex items-center justify-center gap-2 px-10 py-4 rounded-full text-base font-medium transition-all duration-300 hover:bg-white/10"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs md:px-10 md:py-4 md:text-base font-medium transition-all duration-300 hover:bg-white/10"
             style={{ border: "1px solid rgba(255,255,255,0.2)", color: "white" }}>
             View Bridal Packages
           </Link>

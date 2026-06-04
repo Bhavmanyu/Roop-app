@@ -339,7 +339,7 @@ export default function CheckoutClient() {
           >
             <Check className="w-10 h-10 text-white" />
           </motion.div>
-          <h1 className="font-display text-4xl font-light text-roope-primary mb-3">
+          <h1 className="font-display text-2xl md:text-4xl font-semibold md:font-light text-roope-primary mb-3">
             Booking Confirmed!
           </h1>
           <p className="text-stone-warm mb-1">Your premium artist in Indore is reserved.</p>
@@ -387,7 +387,7 @@ export default function CheckoutClient() {
             </div>
             <div className="mt-5 pt-4 border-t border-pearl-200 flex justify-between items-center">
               <span className="text-sm font-medium text-stone-warm">Grand Total</span>
-              <span className="font-display text-2xl font-light text-roope-primary">
+              <span className="font-display text-lg font-semibold md:text-2xl md:font-light text-roope-primary">
                 {formatPrice(total)}
               </span>
             </div>
@@ -437,7 +437,7 @@ export default function CheckoutClient() {
               <ArrowLeft className="w-4 h-4" />
             </button>
             <div>
-              <h1 className="font-display text-3xl font-light text-roope-primary">
+              <h1 className="font-display text-xl md:text-3xl font-semibold md:font-light text-roope-primary">
                 Complete Booking
               </h1>
               <div className="flex items-center gap-1 text-[10px] text-stone-warm/60 uppercase font-bold tracking-wider mt-0.5">
@@ -510,7 +510,7 @@ export default function CheckoutClient() {
                   </h4>
                   <p className="text-xs text-stone-warm/60 mt-1">{selectedService.duration}</p>
                 </div>
-                <span className="font-display text-lg font-light text-roope-primary">
+                <span className="font-display text-base font-semibold md:text-lg md:font-light text-roope-primary">
                   {formatPrice(selectedService.price)}
                 </span>
               </div>
@@ -597,7 +597,7 @@ export default function CheckoutClient() {
               )}
               <div className="flex justify-between text-stone-warm pt-3 border-t border-pearl-200/80 text-sm font-semibold">
                 <span className="text-roope-primary">Grand Total</span>
-                <span className="text-gradient-gold text-lg">{formatPrice(total)}</span>
+                <span className="text-gradient-gold text-base md:text-lg font-bold md:font-semibold">{formatPrice(total)}</span>
               </div>
             </div>
 

@@ -48,7 +48,7 @@ export default function PressPage() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="section-title mx-auto max-w-2xl mb-4 font-display text-4xl md:text-5xl font-light text-roope-primary"
+            className="section-title mx-auto max-w-2xl mb-4 font-display text-2xl md:text-5xl font-semibold md:font-light text-roope-primary"
           >
             Roopé in the <span className="italic text-gradient-gold">spotlight.</span>
           </motion.h1>
@@ -82,7 +82,7 @@ export default function PressPage() {
                   </span>
                   <span className="text-xs text-stone-warm/50 font-semibold">{art.date}</span>
                 </div>
-                <h3 className="font-display text-xl font-light text-roope-primary mb-3 leading-snug group-hover:text-gold">
+                <h3 className="font-display text-lg md:text-xl font-semibold md:font-light text-roope-primary mb-3 leading-snug group-hover:text-gold">
                   {art.title}
                 </h3>
                 <p className="text-xs text-stone-warm/75 leading-relaxed mb-4">
@@ -110,7 +110,7 @@ export default function PressPage() {
               <FileText className="w-5 h-5 text-gold" />
             </div>
             <div>
-              <h3 className="font-display text-lg font-light text-roope-primary mb-1">Brand Assets & Logos</h3>
+              <h3 className="font-display text-base md:text-lg font-semibold md:font-light text-roope-primary mb-1">Brand Assets & Logos</h3>
               <p className="text-xs text-stone-warm/75 leading-relaxed mb-4">
                 Download verified high-resolution Roopé logos, luxury brand standard sheets, and official color typography tokens.
               </p>
@@ -125,7 +125,7 @@ export default function PressPage() {
               <Volume2 className="w-5 h-5 text-gold" />
             </div>
             <div>
-              <h3 className="font-display text-lg font-light text-roope-primary mb-1">Press Contact</h3>
+              <h3 className="font-display text-base md:text-lg font-semibold md:font-light text-roope-primary mb-1">Press Contact</h3>
               <p className="text-xs text-stone-warm/75 leading-relaxed mb-4">
                 Are you a journalist or researcher working on doorstep beauty verticals? Reach out directly to our PR lead.
               </p>

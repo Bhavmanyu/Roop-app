@@ -122,14 +122,14 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12">
           <div>
             <p className="section-label mb-3">Send a Message</p>
-            <h2 className="font-display text-3xl font-light text-roope-primary mb-8">
+            <h2 className="font-display text-xl md:text-3xl font-semibold md:font-light text-roope-primary mb-8">
               Tell us what you need.
             </h2>
             {sent ? (
               <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
                 className="glass rounded-3xl p-8 text-center">
                 <div className="text-5xl mb-4">✨</div>
-                <h3 className="font-display text-2xl font-light text-roope-primary mb-2">Message Received!</h3>
+                <h3 className="font-display text-lg md:text-2xl font-semibold md:font-light text-roope-primary mb-2">Message Received!</h3>
                 <p className="text-stone-warm text-sm">We&apos;ll get back to you within 30 minutes.</p>
               </motion.div>
             ) : (
@@ -171,7 +171,7 @@ export default function ContactPage() {
           {/* FAQ */}
           <div id="faq">
             <p className="section-label mb-3">FAQs</p>
-            <h2 className="font-display text-3xl font-light text-roope-primary mb-8">
+            <h2 className="font-display text-xl md:text-3xl font-semibold md:font-light text-roope-primary mb-8">
               Common questions.
             </h2>
             <div className="space-y-3">
@@ -213,7 +213,7 @@ export default function ContactPage() {
       <section id="partner" className="py-16 px-6" style={{ background: "linear-gradient(135deg, #1A1612 0%, #3D352D 100%)" }}>
         <div className="max-w-2xl mx-auto text-center">
           <p className="section-label text-champagne-DEFAULT mb-3">For Artists</p>
-          <h2 className="font-display text-3xl font-light text-white mb-4">
+          <h2 className="font-display text-xl md:text-3xl font-semibold md:font-light text-white mb-4">
             Join the Roopé network.
           </h2>
           <p className="text-white/50 text-sm mb-8 leading-relaxed">

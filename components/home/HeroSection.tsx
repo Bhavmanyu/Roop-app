@@ -401,6 +401,20 @@ export default function HeroSection() {
                 sizes="112px"
               />
             </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute -right-10 bottom-16 w-32 h-40 rounded-2xl overflow-hidden shadow-luxury-lg ring-2 ring-white"
+            >
+              <Image
+                src="/images/makeup_application.png"
+                alt="Professional makeup application"
+                fill
+                className="object-cover"
+                sizes="128px"
+              />
+            </motion.div>
           </motion.div>
         </div>
 

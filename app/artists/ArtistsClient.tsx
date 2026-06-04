@@ -17,12 +17,12 @@ export default function ArtistsPage() {
             Artist Network
           </motion.p>
           <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-            className="font-display text-5xl md:text-6xl font-light text-white leading-tight mb-4" style={{ letterSpacing: "-0.025em" }}>
+            className="font-display text-2xl md:text-6xl font-semibold md:font-light text-white leading-tight mb-4" style={{ letterSpacing: "-0.025em" }}>
             Certified. Brilliant.
             <span className="block italic" style={{ color: "#C9A84C" }}>Yours.</span>
           </motion.h1>
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}
-            className="text-white/60 text-lg font-light max-w-lg">
+            className="text-white/60 text-xs md:text-lg font-light max-w-lg">
             Browse and book from verified makeup artists in Indore. Every artist handpicked, trained, and background-checked.
           </motion.p>
         </div>
@@ -144,7 +144,7 @@ export default function ArtistsPage() {
       {/* Apply CTA */}
       <section className="py-16 px-6" style={{ background: "linear-gradient(135deg, #FAF6EC 0%, #F3E8C8 100%)" }}>
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="font-display text-3xl font-light text-roope-primary mb-4">
+          <h2 className="font-display text-xl md:text-3xl font-semibold md:font-light text-roope-primary mb-4">
             Are you a makeup artist?
           </h2>
           <p className="text-stone-warm mb-8">

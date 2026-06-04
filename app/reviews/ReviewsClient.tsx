@@ -112,7 +112,7 @@ export default function ReviewsPage() {
       <section className="py-20 px-6" style={{ background: "linear-gradient(135deg, #FAF6EC, #F8F6F2)" }}>
         <div className="max-w-xl mx-auto">
           <p className="section-label mb-3 text-center">Share Your Experience</p>
-          <h2 className="font-display text-3xl font-light text-roope-primary mb-2 text-center">
+          <h2 className="font-display text-xl md:text-3xl font-semibold md:font-light text-roope-primary mb-2 text-center">
             Write a <span className="italic text-gradient-gold">review.</span>
           </h2>
           <p className="text-stone-warm text-sm text-center mb-8">Your review will appear after approval. Thank you for sharing!</p>
@@ -124,7 +124,7 @@ export default function ReviewsPage() {
               className="card-luxury p-8 text-center"
             >
               <div className="text-4xl mb-4">💛</div>
-              <h3 className="font-display text-2xl font-light text-roope-primary mb-2">Thank you!</h3>
+              <h3 className="font-display text-lg md:text-2xl font-semibold md:font-light text-roope-primary mb-2">Thank you!</h3>
               <p className="text-stone-warm text-sm">Your review has been submitted and will appear after approval.</p>
             </motion.div>
           ) : (
@@ -212,7 +212,7 @@ export default function ReviewsPage() {
 
       <section className="py-16 px-6 text-center" style={{ background: "linear-gradient(135deg, #FAF6EC, #F8F6F2)" }}>
         <p className="section-label mb-3">Your Turn</p>
-        <h2 className="font-display text-3xl font-light text-roope-primary mb-6 max-w-md mx-auto">
+        <h2 className="font-display text-xl md:text-3xl font-semibold md:font-light text-roope-primary mb-6 max-w-md mx-auto">
           Ready to write your own <span className="italic text-gradient-gold">story?</span>
         </h2>
         <Link href="/book" className="btn-primary px-10 py-4 inline-flex items-center gap-2">

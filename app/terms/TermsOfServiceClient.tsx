@@ -44,7 +44,7 @@ export default function TermsOfServicePage() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="section-title mx-auto max-w-2xl mb-4 font-display text-4xl md:text-5xl font-light text-roope-primary"
+            className="section-title mx-auto max-w-2xl mb-4 font-display text-2xl md:text-5xl font-semibold md:font-light text-roope-primary"
           >
             Terms of <span className="italic text-gradient-gold">Service.</span>
           </motion.h1>
@@ -76,7 +76,7 @@ export default function TermsOfServicePage() {
                   {sec.icon}
                 </div>
                 <div>
-                  <h3 className="font-display text-lg font-light text-roope-primary mb-1.5">{sec.title}</h3>
+                  <h3 className="font-display text-base md:text-lg font-semibold md:font-light text-roope-primary mb-1.5">{sec.title}</h3>
                   <p className="text-xs text-stone-warm/75 leading-relaxed">
                     {sec.desc}
                   </p>
@@ -97,7 +97,7 @@ export default function TermsOfServicePage() {
       {/* Support conciliator */}
       <section className="py-16 px-6 text-center bg-[#FAF9F6] border-t border-pearl-200">
         <p className="section-label mb-3">Concierge Support</p>
-        <h2 className="font-display text-3xl font-light text-roope-primary mb-3 max-w-md mx-auto">
+        <h2 className="font-display text-xl md:text-3xl font-semibold md:font-light text-roope-primary mb-3 max-w-md mx-auto">
           Have query on <span className="italic text-gradient-gold">terms?</span>
         </h2>
         <p className="text-stone-warm text-xs max-w-xs mx-auto mb-6">

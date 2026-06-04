@@ -23,7 +23,6 @@ import {
 import { services } from "@/lib/data";
 import { formatPrice, getDiscount } from "@/lib/utils";
 import ComparePackages from "@/components/services/ComparePackages";
-import CarePackageConstructor from "@/components/services/CarePackageConstructor";
 
 // Category Definitions with Unsplash High-Fidelity Thumbnails & Dynamic Badges
 const CATEGORY_MAP = [
@@ -32,7 +31,7 @@ const CATEGORY_MAP = [
     label: "Super savers",
     badge: "Upto 20% OFF",
     image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=150",
-    description: "Make your own package & monthly care",
+    description: "Curated combos & monthly care",
     gender: "women"
   },
   {
@@ -329,12 +328,7 @@ export default function ServicesPage() {
     router.push("/book/checkout?checkout=direct");
   };
 
-  const handleAddPackageToCart = (items: { [id: string]: number }) => {
-    const newCart = { ...cart, ...items };
-    setCart(newCart);
-    localStorage.setItem("roope-cart", JSON.stringify(newCart));
-    router.push("/book/checkout?checkout=direct");
-  };
+
 
   return (
     <div className="min-h-screen bg-[#FAF9F6] pb-20">
@@ -371,7 +365,7 @@ export default function ServicesPage() {
                 </span>
                 <span className="w-1.5 h-1.5 rounded-full bg-champagne-DEFAULT" />
               </div>
-              <h1 className="font-display text-4xl md:text-5xl font-light text-roope-primary leading-tight">
+              <h1 className="font-display text-xl md:text-5xl font-semibold md:font-light text-roope-primary leading-tight">
                 Home services at <span className="italic text-gradient-gold">your doorstep</span>
               </h1>
               <p className="text-xs text-stone-warm mt-3 leading-relaxed">
@@ -422,7 +416,7 @@ export default function ServicesPage() {
                               ★ 4.86
                             </span>
                           </div>
-                          <h3 className="font-display text-2xl font-light text-roope-primary">
+                          <h3 className="font-display text-lg md:text-2xl font-semibold md:font-light text-roope-primary">
                             Services for Women
                           </h3>
                           <p className="text-[11px] text-stone-warm/70 mt-2 leading-relaxed">
@@ -540,7 +534,7 @@ export default function ServicesPage() {
                         ★ 4.84
                       </span>
                     </div>
-                    <h3 className="font-display text-2xl font-light text-roope-primary">
+                    <h3 className="font-display text-lg md:text-2xl font-semibold md:font-light text-roope-primary">
                       Services for Men
                     </h3>
                     <p className="text-[11px] text-stone-warm/70 mt-2 leading-relaxed">
@@ -625,7 +619,7 @@ export default function ServicesPage() {
                         For {gender === "men" ? "Gentlemen" : "Ladies"}
                       </span>
                     </div>
-                    <h1 className="font-display text-4xl md:text-5xl font-light text-roope-primary tracking-tight leading-tight text-center md:text-left">
+                    <h1 className="font-display text-xl md:text-5xl font-semibold md:font-light text-roope-primary tracking-tight leading-tight text-center md:text-left">
                       Luxury <span className="italic text-gradient-gold">Doorstep Services</span>
                     </h1>
                     <p className="text-sm text-stone-warm mt-2 text-center md:text-left max-w-xl">
@@ -804,8 +798,7 @@ export default function ServicesPage() {
                     </div>
                   )}
 
-                  {/* Build-Your-Own Package Constructor */}
-                  <CarePackageConstructor onAddPackageToCart={handleAddPackageToCart} />
+
 
                   {/* List Grouped by Category */}
                   {visibleCategories.map((category) => {

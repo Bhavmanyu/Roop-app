@@ -15,7 +15,7 @@ export default function ArtistSpotlight() {
     <section
       ref={ref}
       id="artist-spotlight"
-      className="py-24 px-6"
+      className="py-12 md:py-24 px-4 md:px-6"
       style={{ background: "#1A1612" }}
     >
       <div className="max-w-7xl mx-auto">
@@ -23,11 +23,11 @@ export default function ArtistSpotlight() {
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-14 flex items-end justify-between flex-wrap gap-6"
+          className="mb-8 md:mb-14 flex items-end justify-between flex-wrap gap-6"
         >
           <div>
             <p className="section-label text-champagne-DEFAULT mb-3">Artist Network</p>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-light text-white leading-tight" style={{ letterSpacing: "-0.02em" }}>
+            <h2 className="font-display text-2xl md:text-5xl lg:text-6xl font-light text-white leading-tight" style={{ letterSpacing: "-0.02em" }}>
               Meet the artists
               <span className="block italic" style={{ color: "#C9A84C" }}>behind the magic.</span>
             </h2>

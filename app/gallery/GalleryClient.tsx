@@ -32,12 +32,12 @@ export default function GalleryPage() {
       <section className="pt-28 pb-16 px-6 text-center" style={{ background: "linear-gradient(160deg, #1A1612 0%, #3D352D 100%)" }}>
         <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="section-label text-champagne-DEFAULT mb-3">Gallery</motion.p>
         <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-          className="font-display text-5xl md:text-6xl font-light text-white leading-tight mb-4" style={{ letterSpacing: "-0.025em" }}>
+          className="font-display text-2xl md:text-6xl font-semibold md:font-light text-white leading-tight mb-4" style={{ letterSpacing: "-0.025em" }}>
           Every look tells a
           <span className="italic" style={{ color: "#C9A84C" }}> story.</span>
         </motion.h1>
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}
-          className="text-white/50 text-lg font-light max-w-md mx-auto">
+          className="text-white/50 text-xs md:text-lg font-light max-w-md mx-auto">
           A curated showcase of transformations, artistry, and beauty — crafted by the Roopé network.
         </motion.p>
       </section>
@@ -128,7 +128,7 @@ export default function GalleryPage() {
       )}
 
       <section className="py-16 px-6 text-center" style={{ background: "linear-gradient(135deg, #FAF6EC, #F8F6F2)" }}>
-        <h2 className="font-display text-3xl font-light text-roope-primary mb-6">
+        <h2 className="font-display text-xl md:text-3xl font-semibold md:font-light text-roope-primary mb-6">
           Want a look like this?
         </h2>
         <Link href="/book" className="btn-primary px-10 py-4 inline-flex items-center gap-2">

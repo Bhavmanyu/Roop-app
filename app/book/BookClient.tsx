@@ -277,7 +277,7 @@ export default function BookPage() {
           >
             <Check className="w-10 h-10 text-white" />
           </motion.div>
-          <h1 className="font-display text-4xl font-light text-roope-primary mb-3">Booking Confirmed!</h1>
+          <h1 className="font-display text-2xl md:text-4xl font-semibold md:font-light text-roope-primary mb-3">Booking Confirmed!</h1>
           <p className="text-stone-warm mb-1">Your premium artist in Indore is reserved.</p>
           <p className="text-stone-warm text-sm mb-8">A confirmation email has been sent successfully.</p>
 
@@ -311,7 +311,7 @@ export default function BookPage() {
             </div>
             <div className="mt-5 pt-4 border-t border-pearl-200 flex justify-between items-center">
               <span className="text-sm font-medium text-stone-warm">Grand Total</span>
-              <span className="font-display text-2xl font-light text-roope-primary">{formatPrice(total)}</span>
+              <span className="font-display text-lg font-semibold md:text-2xl md:font-light text-roope-primary">{formatPrice(total)}</span>
             </div>
           </div>
 
