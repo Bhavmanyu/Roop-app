@@ -46,9 +46,17 @@ export default function ViewportProvider({ children }: { children: React.ReactNo
       setViewMode(savedMode);
     }
 
-    // Screen size detection
+    // Screen size and robust device detection
     const checkScreen = () => {
-      setIsDesktopScreen(window.innerWidth >= 768);
+      const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
+      const isMobileUA = /android|avantgo|bada|blackberry|iemobile|ip(hone|od|ad)|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(userAgent);
+      const isSmallScreen = window.innerWidth < 1024;
+      const hasTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+      // A device is mobile/tablet if it matches mobile User Agent, or has touch on <1024px screen, or width < 768px
+      const isMobile = isMobileUA || (isSmallScreen && hasTouch) || window.innerWidth < 768;
+
+      setIsDesktopScreen(!isMobile);
     };
 
     checkScreen();

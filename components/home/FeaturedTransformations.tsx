@@ -41,12 +41,12 @@ export default function FeaturedTransformations() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} id="transformations" className="py-24 px-6 max-w-7xl mx-auto">
+    <section ref={ref} id="transformations" className="py-12 md:py-24 px-4 md:px-6 max-w-7xl mx-auto">
       <motion.div
         initial="hidden"
         animate={inView ? "show" : "hidden"}
         variants={variants.container}
-        className="mb-14"
+        className="mb-8 md:mb-14"
       >
         <motion.p variants={variants.item} className="section-label mb-3">
           Real Transformations
@@ -69,7 +69,7 @@ export default function FeaturedTransformations() {
         initial="hidden"
         animate={inView ? "show" : "hidden"}
         variants={variants.container}
-        className="grid grid-cols-2 md:grid-cols-3 gap-4 h-[560px] md:h-[640px]"
+        className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 h-[380px] md:h-[640px]"
       >
         {transformations.map((item, i) => (
           <motion.div

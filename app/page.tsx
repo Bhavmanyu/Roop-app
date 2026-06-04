@@ -1,4 +1,5 @@
 import HeroSection from "@/components/home/HeroSection";
+import HomeServicesSection from "@/components/home/HomeServicesSection";
 import FeaturedTransformations from "@/components/home/FeaturedTransformations";
 import SignaturePackages from "@/components/home/SignaturePackages";
 import WhyRoope from "@/components/home/WhyRoope";
@@ -11,6 +12,7 @@ export default function Home() {
   return (
     <>
       <HeroSection />
+      <HomeServicesSection />
       <FeaturedTransformations />
       <SignaturePackages />
       <WhyRoope />

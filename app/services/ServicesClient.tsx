@@ -144,6 +144,24 @@ export default function ServicesPage() {
     // Client-side safe search parameter parser to avoid Next.js static de-optimization
     const params = new URLSearchParams(window.location.search);
     const urlSearch = params.get("search");
+    const urlGender = params.get("gender") as "men" | "women" | null;
+    const urlCategory = params.get("category");
+
+    if (urlGender) {
+      setGender(urlGender);
+      setStep("catalog");
+      if (urlGender === "men") {
+        setActiveCategory("grooming");
+      } else {
+        setActiveCategory("super-saver");
+      }
+    }
+
+    if (urlCategory) {
+      setActiveCategory(urlCategory);
+      setStep("catalog");
+    }
+
     if (urlSearch) {
       setSearch(urlSearch);
       setStep("catalog");

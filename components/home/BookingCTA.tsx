@@ -9,7 +9,7 @@ export default function BookingCTA() {
   return (
     <section
       id="booking-cta"
-      className="py-24 px-6 overflow-hidden relative"
+      className="py-12 md:py-24 px-4 md:px-6 overflow-hidden relative"
       style={{ background: "#1A1612" }}
     >
       {/* Background subtle image */}

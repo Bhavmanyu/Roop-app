@@ -37,15 +37,15 @@ export default function SignaturePackages() {
     <section
       ref={ref}
       id="signature-packages"
-      className="py-24 overflow-hidden"
+      className="py-12 md:py-24 overflow-hidden"
       style={{ background: "linear-gradient(180deg, #F8F6F2 0%, #FAF6EC 100%)" }}
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-14 flex items-end justify-between flex-wrap gap-6"
+          className="mb-8 md:mb-14 flex items-end justify-between flex-wrap gap-6"
         >
           <div>
             <p className="section-label mb-3">Signature Services</p>
@@ -74,7 +74,7 @@ export default function SignaturePackages() {
         `}} />
 
         {/* Slow-scrolling infinite horizontal marquee from right to left */}
-        <div className="w-full overflow-hidden py-4 -mx-6 px-6">
+        <div className="w-full overflow-hidden py-4 -mx-4 px-4 md:-mx-6 md:px-6">
           <div className="marquee-track gap-5">
             {duplicatedItems.map((service, i) => {
               const discount = getDiscount(service.originalPrice, service.price);

@@ -100,6 +100,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         email,
         password,
         options: {
+          emailRedirectTo: `${window.location.origin}`,
           data: {
             full_name: name,
             phone: phone,
@@ -132,6 +133,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
       const { error } = await supabase.auth.signInWithOtp({
         email: email.trim(),
         options: {
+          emailRedirectTo: `${window.location.origin}`,
           shouldCreateUser: true, // Auto-signs up new user!
         }
       });

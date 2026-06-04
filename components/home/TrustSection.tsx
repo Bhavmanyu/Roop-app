@@ -42,11 +42,11 @@ export default function TrustSection() {
     <section
       ref={ref}
       id="trust"
-      className="py-20 px-6 overflow-hidden"
+      className="py-10 md:py-20 px-4 md:px-6 overflow-hidden"
       style={{ background: "linear-gradient(135deg, #FAF6EC 0%, #F3E8C8 100%)" }}
     >
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}

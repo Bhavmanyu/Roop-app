@@ -9,13 +9,13 @@ export default function WhyRoope() {
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section ref={ref} id="why-roope" className="py-24 px-6">
+    <section ref={ref} id="why-roope" className="py-12 md:py-24 px-4 md:px-6">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
           <p className="section-label mb-3">Why Roopé</p>
           <h2 className="section-title mx-auto max-w-2xl">

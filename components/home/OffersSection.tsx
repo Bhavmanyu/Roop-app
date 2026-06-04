@@ -73,7 +73,7 @@ export default function OffersSection() {
     <section
       ref={ref}
       id="offers"
-      className="py-24 px-6 overflow-hidden"
+      className="py-12 md:py-24 px-4 md:px-6 overflow-hidden"
       style={{ background: "linear-gradient(180deg, #FAF6EC 0%, #F8F6F2 100%)" }}
     >
       <div className="max-w-7xl mx-auto">
@@ -81,7 +81,7 @@ export default function OffersSection() {
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-14"
+          className="mb-8 md:mb-14"
         >
           <p className="section-label mb-3">Limited Offers</p>
           <div className="flex items-end justify-between flex-wrap gap-4">
