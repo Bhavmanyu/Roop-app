@@ -23,6 +23,7 @@ import {
 import { services } from "@/lib/data";
 import { formatPrice, getDiscount } from "@/lib/utils";
 import ComparePackages from "@/components/services/ComparePackages";
+import CarePackageConstructor from "@/components/services/CarePackageConstructor";
 
 // Category Definitions with Unsplash High-Fidelity Thumbnails & Dynamic Badges
 const CATEGORY_MAP = [
@@ -110,19 +111,21 @@ export default function ServicesPage() {
   const centerPaneRef = useRef<HTMLDivElement | null>(null);
   const isAutoScrolling = useRef(false);
 
-  // Mobile-only body scroll lock. On desktop, touching the body blocks drawer scroll in Chrome.
+  // Lock body scroll on ALL devices. overflow:hidden on body does NOT affect position:fixed elements.
   useEffect(() => {
-    const isMobile = window.matchMedia("(pointer: coarse)").matches ||
-                     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    if (!isMobile) return;
-
     const isLocked = isLocationModalOpen || mobileCartDrawerOpen;
     if (isLocked) {
-      const scrollY = window.scrollY;
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = "100%";
-      document.body.style.overflow = "hidden";
+      const isMobile = window.matchMedia("(pointer: coarse)").matches ||
+                       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      if (isMobile) {
+        const scrollY = window.scrollY;
+        document.body.style.position = "fixed";
+        document.body.style.top = `-${scrollY}px`;
+        document.body.style.width = "100%";
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "hidden";
+      }
     } else {
       const scrollY = document.body.style.top;
       document.body.style.position = "";
@@ -323,7 +326,14 @@ export default function ServicesPage() {
   const handleProceedToBooking = () => {
     if (cartItemsCount === 0) return;
     localStorage.setItem("roope-cart", JSON.stringify(cart));
-    router.push("/book?checkout=direct");
+    router.push("/book/checkout?checkout=direct");
+  };
+
+  const handleAddPackageToCart = (items: { [id: string]: number }) => {
+    const newCart = { ...cart, ...items };
+    setCart(newCart);
+    localStorage.setItem("roope-cart", JSON.stringify(newCart));
+    router.push("/book/checkout?checkout=direct");
   };
 
   return (
@@ -793,6 +803,9 @@ export default function ServicesPage() {
                       </button>
                     </div>
                   )}
+
+                  {/* Build-Your-Own Package Constructor */}
+                  <CarePackageConstructor onAddPackageToCart={handleAddPackageToCart} />
 
                   {/* List Grouped by Category */}
                   {visibleCategories.map((category) => {
