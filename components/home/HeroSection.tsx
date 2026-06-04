@@ -386,21 +386,7 @@ export default function HeroSection() {
               </motion.div>
             ))}
 
-            {/* Secondary image stack */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute -left-6 top-12 w-28 h-36 rounded-2xl overflow-hidden shadow-luxury-lg ring-2 ring-white"
-            >
-              <Image
-                src="/images/bridal_glam_1.png"
-                alt="Bridal makeup close-up"
-                fill
-                className="object-cover"
-                sizes="112px"
-              />
-            </motion.div>
+
           </motion.div>
         </div>
 
