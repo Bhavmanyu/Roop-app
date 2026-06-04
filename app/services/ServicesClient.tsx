@@ -110,30 +110,26 @@ export default function ServicesPage() {
   const centerPaneRef = useRef<HTMLDivElement | null>(null);
   const isAutoScrolling = useRef(false);
 
-  // Lock body scroll when overlays or mobile cart drawer are open to prevent background scrolling (iOS Safari compatible)
+  // Mobile-only body scroll lock. On desktop, touching the body blocks drawer scroll in Chrome.
   useEffect(() => {
+    const isMobile = window.matchMedia("(pointer: coarse)").matches ||
+                     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (!isMobile) return;
+
     const isLocked = isLocationModalOpen || mobileCartDrawerOpen;
     if (isLocked) {
-      const isMobile = window.matchMedia("(pointer: coarse)").matches || 
-                       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      if (isMobile) {
-        const scrollY = window.scrollY;
-        document.body.style.position = "fixed";
-        document.body.style.top = `-${scrollY}px`;
-        document.body.style.width = "100%";
-        document.body.style.overflow = "hidden";
-      } else {
-        document.body.style.overflow = "hidden";
-      }
+      const scrollY = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
+      document.body.style.overflow = "hidden";
     } else {
       const scrollY = document.body.style.top;
       document.body.style.position = "";
       document.body.style.top = "";
       document.body.style.width = "";
       document.body.style.overflow = "";
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY, 10) * -1);
-      }
+      if (scrollY) window.scrollTo(0, parseInt(scrollY, 10) * -1);
     }
     return () => {
       document.body.style.position = "";
