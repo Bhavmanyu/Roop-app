@@ -146,11 +146,17 @@ export default function HeroSection() {
   // Lock body scroll on location modal (iOS Safari compatible)
   useEffect(() => {
     if (isLocationModalOpen) {
-      const scrollY = window.scrollY;
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = "100%";
-      document.body.style.overflow = "hidden";
+      const isMobile = window.matchMedia("(pointer: coarse)").matches || 
+                       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      if (isMobile) {
+        const scrollY = window.scrollY;
+        document.body.style.position = "fixed";
+        document.body.style.top = `-${scrollY}px`;
+        document.body.style.width = "100%";
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "hidden";
+      }
     } else {
       const scrollY = document.body.style.top;
       document.body.style.position = "";
