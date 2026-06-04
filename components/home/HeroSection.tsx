@@ -236,7 +236,7 @@ export default function HeroSection() {
         <div className="absolute bottom-20 left-20 w-80 h-80 rounded-full pointer-events-none"
           style={{ background: "radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%)" }} />
 
-        <div className="relative max-w-7xl mx-auto px-6 pt-28 pb-16 grid grid-cols-2 gap-12 items-center w-full">
+        <div className="relative max-w-7xl mx-auto px-6 pt-28 pb-16 grid grid-cols-[1.2fr_0.8fr] gap-12 items-center w-full">
           {/* Left: Text content */}
           <div className="relative z-10">
             {/* Pre-label */}
@@ -261,7 +261,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display text-5xl md:text-6xl lg:text-7xl font-light leading-tight mb-6"
+              className="font-display text-5xl md:text-7xl lg:text-8xl font-light leading-tight mb-6"
               style={{ letterSpacing: "-0.025em", color: "#1A1612" }}
             >
               Luxury Beauty
@@ -275,7 +275,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="text-lg text-stone-warm font-light leading-relaxed mb-10 max-w-lg"
+              className="text-lg md:text-xl text-stone-warm font-light leading-relaxed mb-10 max-w-xl"
             >
               Professional bridal glam, event styling, and beauty crews — at transparent,
               accessible pricing. Certified artists at your doorstep.
