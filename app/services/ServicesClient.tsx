@@ -110,17 +110,29 @@ export default function ServicesPage() {
   const centerPaneRef = useRef<HTMLDivElement | null>(null);
   const isAutoScrolling = useRef(false);
 
-  // Lock body scroll when overlays or mobile cart drawer are open to prevent background scrolling
+  // Lock body scroll when overlays or mobile cart drawer are open to prevent background scrolling (iOS Safari compatible)
   useEffect(() => {
-    if (isLocationModalOpen || mobileCartDrawerOpen) {
-      document.documentElement.style.overflow = "hidden";
+    const isLocked = isLocationModalOpen || mobileCartDrawerOpen;
+    if (isLocked) {
+      const scrollY = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
       document.body.style.overflow = "hidden";
     } else {
-      document.documentElement.style.overflow = "";
+      const scrollY = document.body.style.top;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
       document.body.style.overflow = "";
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY, 10) * -1);
+      }
     }
     return () => {
-      document.documentElement.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
       document.body.style.overflow = "";
     };
   }, [isLocationModalOpen, mobileCartDrawerOpen]);
