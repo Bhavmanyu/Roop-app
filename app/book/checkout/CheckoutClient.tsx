@@ -14,6 +14,7 @@ import {
   AlertCircle,
   ShieldCheck,
   ChevronRight,
+  X,
 } from "lucide-react";
 import { services, extras } from "@/lib/data";
 import { formatPrice } from "@/lib/utils";
@@ -62,6 +63,11 @@ export default function CheckoutClient() {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
+  const [tipAmount, setTipAmount] = useState<number>(0);
+  const [customTip, setCustomTip] = useState("");
+  const [isCustomTipActive, setIsCustomTipActive] = useState(false);
+  const [isCouponOpen, setIsCouponOpen] = useState(false);
+
   // Pricing
   const selectedService = services.find((s) => s.id === selectedServiceId);
   const basePrice =
@@ -81,7 +87,7 @@ export default function CheckoutClient() {
   let discount = 0;
   if (appliedCoupon === "ROOPE25") discount = Math.round(subtotal * 0.25);
   else if (appliedCoupon === "WELCOME") discount = Math.min(500, subtotal);
-  const total = Math.max(0, subtotal - discount);
+  const total = Math.max(0, subtotal - discount) + tipAmount;
 
   // Bootstrap data from URL params + localStorage + auth session
   useEffect(() => {
@@ -414,7 +420,7 @@ export default function CheckoutClient() {
   // ─── Main Checkout Page ────────────────────────────────────────────────────
   return (
     <div
-      className="min-h-screen"
+      className="min-h-screen pb-24 lg:pb-10"
       style={{ background: "linear-gradient(160deg, #F8F6F2 0%, #FAF6EC 100%)" }}
     >
       {/* Page Header */}
@@ -595,6 +601,12 @@ export default function CheckoutClient() {
                   <span className="font-semibold text-[#B8922E]">-{formatPrice(discount)}</span>
                 </div>
               )}
+              {tipAmount > 0 && (
+                <div className="flex justify-between text-stone-warm">
+                  <span>Professional Tip</span>
+                  <span className="font-semibold text-roope-primary">+{formatPrice(tipAmount)}</span>
+                </div>
+              )}
               <div className="flex justify-between text-stone-warm pt-3 border-t border-pearl-200/80 text-sm font-semibold">
                 <span className="text-roope-primary">Grand Total</span>
                 <span className="text-gradient-gold text-base md:text-lg font-bold md:font-semibold">{formatPrice(total)}</span>
@@ -605,9 +617,155 @@ export default function CheckoutClient() {
               <ShieldCheck className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
               <p className="text-[10px] text-stone-warm/80 leading-relaxed">
                 <strong>Roopé Guarantee</strong>: Sanitized kits, genuine international brands,
-                100% on-time arrival. Free cancellation.
+                100% on-time arrival.
               </p>
             </div>
+          </div>
+
+          {/* Tipping Card */}
+          <div className="bg-white rounded-3xl p-5 border border-pearl-200 shadow-sm space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-roope-primary border-b border-pearl-200/60 pb-2">
+              Add a tip to thank the Professional
+            </h4>
+            <div className="flex flex-wrap gap-2 pt-1">
+              {[50, 75, 100].map((amt) => {
+                const isSelected = tipAmount === amt && !isCustomTipActive;
+                return (
+                  <button
+                    key={amt}
+                    type="button"
+                    onClick={() => {
+                      setTipAmount(amt);
+                      setIsCustomTipActive(false);
+                    }}
+                    className={`relative px-4 py-2 rounded-xl text-xs font-semibold transition-all border ${
+                      isSelected
+                        ? "bg-[#1A1612] border-[#1A1612] text-white"
+                        : "bg-white border-pearl-200 text-stone-warm hover:border-champagne-300"
+                    }`}
+                  >
+                    ₹{amt}
+                    {amt === 75 && (
+                      <span className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 text-[7px] bg-green-100 text-green-700 px-1 rounded border border-green-200 leading-none py-0.5 font-bold uppercase tracking-wide">
+                        Popular
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+              <button
+                type="button"
+                onClick={() => {
+                  setIsCustomTipActive(true);
+                  setTipAmount(0);
+                }}
+                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all border ${
+                  isCustomTipActive
+                    ? "bg-[#1A1612] border-[#1A1612] text-white"
+                    : "bg-white border-pearl-200 text-stone-warm hover:border-champagne-300"
+                }`}
+              >
+                Custom
+              </button>
+            </div>
+            {isCustomTipActive && (
+              <div className="flex gap-2 pt-2 items-center">
+                <span className="text-xs font-bold text-roope-primary">₹</span>
+                <input
+                  type="number"
+                  value={customTip}
+                  onChange={(e) => {
+                    const val = parseInt(e.target.value, 10) || 0;
+                    setCustomTip(e.target.value);
+                    setTipAmount(val);
+                  }}
+                  placeholder="Enter amount"
+                  className="w-28 bg-[#FAF9F6] border border-pearl-200 rounded-xl px-3 py-1.5 text-xs text-roope-primary outline-none focus:border-champagne-DEFAULT"
+                />
+              </div>
+            )}
+            <p className="text-[9px] text-stone-warm/50 leading-tight">100% of the tip goes to the beauty professional.</p>
+          </div>
+
+          {/* Coupons and Offers row */}
+          <div className="bg-white rounded-3xl p-5 border border-pearl-200 shadow-sm space-y-3">
+            <div 
+              onClick={() => setIsCouponOpen(!isCouponOpen)}
+              className="flex items-center justify-between cursor-pointer"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center text-green-600">
+                  <Tag className="w-4 h-4" />
+                </div>
+                <span className="text-xs font-bold text-roope-primary uppercase tracking-wide">
+                  Coupons and offers
+                </span>
+              </div>
+              <span className="text-xs font-bold text-[#B8922E] hover:underline">
+                {appliedCoupon ? "Manage" : "View all >"}
+              </span>
+            </div>
+
+            {(isCouponOpen || appliedCoupon) && (
+              <div className="pt-3 border-t border-pearl-200/60">
+                {appliedCoupon ? (
+                  <div className="bg-champagne-300/10 border border-champagne-DEFAULT rounded-2xl px-4 py-3.5 flex justify-between items-center">
+                    <div>
+                      <p className="text-xs font-bold text-roope-primary uppercase tracking-wide">
+                        {appliedCoupon} APPLIED
+                      </p>
+                      <p className="text-[10px] text-stone-warm/70">
+                        {appliedCoupon === "ROOPE25"
+                          ? "25% discount off total bill"
+                          : "₹500 flat discount applied"}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => { setAppliedCoupon(""); setCouponInput(""); setCouponError(""); }}
+                      className="text-stone-warm hover:text-red-500 font-semibold text-xs tracking-wider uppercase pl-2"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ) : (
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={couponInput}
+                      onChange={(e) => setCouponInput(e.target.value)}
+                      placeholder="Try WELCOME or ROOPE25"
+                      className="flex-1 bg-white rounded-2xl border border-pearl-200 px-4 py-3.5 text-xs text-roope-primary uppercase outline-none focus:border-champagne-DEFAULT transition-colors"
+                    />
+                    <button
+                      onClick={handleApplyCoupon}
+                      className="btn-secondary px-5 py-3 rounded-2xl border border-pearl-300 text-xs uppercase tracking-wider"
+                    >
+                      Apply
+                    </button>
+                  </div>
+                )}
+                {couponError && (
+                  <p className="text-red-500 text-[10px] font-medium mt-1">{couponError}</p>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* Cancellation Policy Box */}
+          <div className="bg-white rounded-3xl p-5 border border-pearl-200 shadow-sm space-y-2">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-roope-primary">
+              Cancellation policy
+            </h4>
+            <p className="text-[10.5px] text-stone-warm/75 leading-relaxed">
+              Free cancellations or rescheduling up to 4 hours before the service. A fee will apply otherwise.
+            </p>
+            <Link 
+              href="/cancellation-policy" 
+              target="_blank"
+              className="text-xs font-bold text-[#B8922E] hover:underline inline-block mt-1"
+            >
+              Read full policy
+            </Link>
           </div>
         </div>
 
@@ -698,57 +856,8 @@ export default function CheckoutClient() {
             </div>
           </div>
 
-          {/* Coupon */}
-          <div className="bg-white rounded-3xl p-6 border border-pearl-200 shadow-sm space-y-3">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-stone-warm/70 flex items-center gap-1.5">
-              <Tag className="w-4 h-4 text-gold" /> Coupon Offers
-            </h3>
-            {appliedCoupon ? (
-              <div className="bg-champagne-300/10 border border-champagne-DEFAULT rounded-2xl px-4 py-3.5 flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                  <Tag className="w-4 h-4 text-gold" />
-                  <div>
-                    <p className="text-xs font-bold text-roope-primary uppercase tracking-wide">
-                      {appliedCoupon} APPLIED
-                    </p>
-                    <p className="text-[10px] text-stone-warm/70">
-                      {appliedCoupon === "ROOPE25"
-                        ? "25% discount off total bill"
-                        : "₹500 flat discount applied"}
-                    </p>
-                  </div>
-                </div>
-                <button
-                  onClick={() => { setAppliedCoupon(""); setCouponInput(""); setCouponError(""); }}
-                  className="text-stone-warm hover:text-red-500 font-semibold text-xs tracking-wider uppercase pl-2"
-                >
-                  Remove
-                </button>
-              </div>
-            ) : (
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  value={couponInput}
-                  onChange={(e) => setCouponInput(e.target.value)}
-                  placeholder="Try WELCOME or ROOPE25"
-                  className="flex-1 bg-white rounded-2xl border border-pearl-200 px-4 py-3.5 text-xs text-roope-primary uppercase outline-none focus:border-champagne-DEFAULT transition-colors"
-                />
-                <button
-                  onClick={handleApplyCoupon}
-                  className="btn-secondary px-5 py-3 rounded-2xl border border-pearl-300 text-xs uppercase tracking-wider"
-                >
-                  Apply
-                </button>
-              </div>
-            )}
-            {couponError && (
-              <p className="text-red-500 text-[10px] font-medium">{couponError}</p>
-            )}
-          </div>
-
-          {/* Submit */}
-          <div className="space-y-3">
+          {/* Submit (Desktop Only) */}
+          <div className="space-y-3 hidden md:block">
             {submitError && (
               <div className="p-4 bg-red-500/5 border border-red-500/15 rounded-2xl flex gap-2 items-center text-red-600 text-xs">
                 <AlertCircle className="w-4 h-4 flex-shrink-0" />
@@ -769,6 +878,38 @@ export default function CheckoutClient() {
               </p>
             )}
           </div>
+        </div>
+      </div>
+
+      {/* Sticky Bottom Bar for Mobile */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-pearl-200 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] md:hidden">
+        {submitError && (
+          <div className="px-6 py-2 bg-red-500/5 border-b border-red-500/10 text-red-600 text-[10px] font-medium flex gap-1.5 items-center">
+            <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" />
+            <span className="truncate">{submitError}</span>
+          </div>
+        )}
+        <div className="px-6 py-4 flex items-center justify-between gap-4 max-w-lg mx-auto">
+          <div className="min-w-0 flex-1">
+            <p className="text-[10px] font-bold text-stone-warm/50 uppercase tracking-wider truncate">
+              {selections.address.trim() || "Add address"}
+            </p>
+            <p className="text-[9px] text-stone-warm/60 mt-0.5">
+              {selections.date && selections.time ? `${selections.date} @ ${selections.time}` : "Select slot"}
+            </p>
+            <div className="text-sm font-extrabold text-roope-primary mt-1">
+              {formatPrice(total)}
+            </div>
+          </div>
+          
+          <button
+            disabled={submitting || !canSubmit()}
+            onClick={() => submitBooking("cod")}
+            className="btn-primary py-3.5 px-6 rounded-2xl text-[11px] font-bold uppercase tracking-widest text-white shadow disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+            style={{ background: "linear-gradient(135deg, #C9A84C, #B8922E)" }}
+          >
+            {submitting ? "Booking…" : "Confirm Booking"}
+          </button>
         </div>
       </div>
 

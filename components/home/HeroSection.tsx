@@ -6,6 +6,58 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
 import { ArrowRight, Star, Shield, Clock, Sparkles, Search, MapPin, ChevronDown, ShieldCheck, Users, X, ChevronRight } from "lucide-react";
+import { formatPrice } from "@/lib/utils";
+
+const curatedExperiences = [
+  {
+    id: "bridal-signature",
+    name: "Signature Bridal Glam",
+    category: "Bridal",
+    image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=300",
+    rating: "4.9",
+    reviews: "1.2K",
+    price: 14999,
+    originalPrice: 18999,
+    tag: "Popular",
+    link: "/bridal"
+  },
+  {
+    id: "korean-glow",
+    name: "Korean Glass Glow",
+    category: "Korean Facials",
+    image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=300",
+    rating: "4.8",
+    reviews: "820",
+    price: 2499,
+    originalPrice: 3200,
+    tag: "Trending",
+    link: "/services?search=Glass%20Glow"
+  },
+  {
+    id: "airbrush-glam",
+    name: "HD Airbrush Makeup",
+    category: "Event Glam",
+    image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=300",
+    rating: "4.9",
+    reviews: "540",
+    price: 4999,
+    originalPrice: 6500,
+    tag: "Luxury",
+    link: "/services?search=Airbrush"
+  },
+  {
+    id: "swedish-spa",
+    name: "Swedish Body Massage",
+    category: "Spa & Massage",
+    image: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=300",
+    rating: "4.7",
+    reviews: "1.1K",
+    price: 1899,
+    originalPrice: 2400,
+    tag: "Relaxing",
+    link: "/services?search=Swedish"
+  }
+];
 
 const floatingCards = [
   {
@@ -509,6 +561,78 @@ export default function HeroSection() {
                 </span>
               </Link>
             ))}
+          </div>
+        </div>
+
+        {/* Thoughtful Curations (Urban Company Style) */}
+        <div className="space-y-3 pt-2">
+          <div className="flex flex-col">
+            <h3 className="text-xs font-extrabold text-roope-primary uppercase tracking-wider">Thoughtful Curations</h3>
+            <p className="text-[9px] text-stone-warm/60">Of our finest luxury beauty experiences</p>
+          </div>
+          
+          <div className="flex gap-4 overflow-x-auto pb-3 -mx-4 px-4 scrollbar-none snap-x snap-mandatory">
+            {curatedExperiences.map((item) => {
+              const discount = Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100);
+              return (
+                <div 
+                  key={item.id}
+                  className="w-[200px] bg-white border border-pearl-200 rounded-2xl p-2.5 flex-shrink-0 snap-start shadow-sm"
+                >
+                  <div className="relative w-full h-28 rounded-xl overflow-hidden mb-2">
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      className="object-cover"
+                      sizes="200px"
+                      unoptimized
+                    />
+                    {item.tag && (
+                      <span className="absolute top-2 left-2 bg-champagne-300 text-roope-primary text-[8px] font-extrabold px-1.5 py-0.5 rounded uppercase tracking-wider">
+                        {item.tag}
+                      </span>
+                    )}
+                    {discount > 0 && (
+                      <span className="absolute top-2 right-2 bg-black/75 text-white text-[8px] font-extrabold px-1.5 py-0.5 rounded">
+                        -{discount}%
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-1">
+                      <span className="text-[8px] text-[#B8922E] font-extrabold">★ {item.rating}</span>
+                      <span className="text-[8px] text-stone-warm/50 font-bold">({item.reviews})</span>
+                    </div>
+                    
+                    <h4 className="text-[10px] font-extrabold text-roope-primary line-clamp-1 leading-snug">
+                      {item.name}
+                    </h4>
+                    
+                    <div className="flex items-center justify-between pt-1 border-t border-pearl-100">
+                      <div>
+                        <span className="text-[10.5px] font-bold text-roope-primary">
+                          {formatPrice(item.price)}
+                        </span>
+                        {item.originalPrice && (
+                          <span className="text-[8.5px] text-stone-warm/50 line-through ml-1">
+                            {formatPrice(item.originalPrice)}
+                          </span>
+                        )}
+                      </div>
+                      
+                      <Link 
+                        href={item.link}
+                        className="border border-[#B8922E] text-roope-primary text-[8px] font-extrabold px-2.5 py-1 rounded-lg uppercase tracking-wider hover:bg-champagne-300/10 transition-all"
+                      >
+                        Add
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
