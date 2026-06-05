@@ -169,7 +169,7 @@ export default function BridalPageClient() {
             </h2>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-4 md:gap-6">
+          <div className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory lg:grid lg:grid-cols-3 lg:gap-6 lg:pb-0 scrollbar-none -mx-4 px-4">
             {bridalPackages.map((pkg, i) => {
               const isSelected = selectedPackage === pkg.id;
               const discount = getDiscount(pkg.originalPrice, pkg.price);
@@ -181,7 +181,7 @@ export default function BridalPageClient() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.1 }}
                   onClick={() => setSelectedPackage(pkg.id)}
-                  className={`relative rounded-2xl md:rounded-4xl p-4.5 md:p-8 cursor-pointer transition-all duration-400 ${
+                  className={`relative rounded-2xl md:rounded-4xl p-4.5 md:p-8 cursor-pointer transition-all duration-400 flex-shrink-0 w-[85%] snap-center lg:w-auto lg:flex-shrink ${
                     isSelected ? "shadow-luxury-xl md:-translate-y-2" : "shadow-luxury md:hover:-translate-y-1"
                   }`}
                   style={{

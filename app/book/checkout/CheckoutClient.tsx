@@ -225,6 +225,7 @@ export default function CheckoutClient() {
             extras: selections.extras,
             coupon: appliedCoupon,
             cartItems,
+            tip_amount: tipAmount,
           }),
         });
         const json = await res.json();

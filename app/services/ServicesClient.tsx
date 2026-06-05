@@ -374,29 +374,29 @@ export default function ServicesPage() {
             </div>
 
             {/* Main Selection Grid */}
-            <div className="grid md:grid-cols-2 gap-8 w-full max-w-4xl px-2">
+            <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-8 w-full max-w-4xl px-2">
               
               {/* Card 1: Services for Women */}
               <motion.div
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.3 }}
-                className="bg-white rounded-[32px] border border-pearl-200/80 shadow-luxury overflow-hidden flex flex-col min-h-[380px] relative group"
+                className="bg-white rounded-[20px] md:rounded-[32px] border border-pearl-200/80 shadow-luxury overflow-hidden flex flex-col min-h-[220px] md:min-h-[380px] relative group"
               >
                 {/* Background Image Header */}
-                <div className="relative h-44 w-full bg-pearl-200 overflow-hidden flex-shrink-0">
+                <div className="relative h-20 md:h-44 w-full bg-pearl-200 overflow-hidden flex-shrink-0">
                   <Image
                     src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600"
                     alt="Salon for Women"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 400px"
+                    sizes="(max-width: 768px) 50vw, 400px"
                     unoptimized
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-white via-white/10 to-transparent" />
                 </div>
 
                 {/* Sub-selector Options inside the card (smooth fade-in) */}
-                <div className="p-6 flex-1 flex flex-col justify-between z-10 bg-white">
+                <div className="p-3 md:p-6 flex-1 flex flex-col justify-between z-10 bg-white">
                   <AnimatePresence mode="wait">
                     {!showWomenOptions ? (
                       /* Main cover view */
@@ -408,27 +408,27 @@ export default function ServicesPage() {
                         className="flex flex-col flex-1 justify-between"
                       >
                         <div>
-                          <div className="flex items-center justify-between mb-1.5">
-                            <span className="text-[10px] font-bold text-stone-warm/50 uppercase tracking-wider">
-                              Unisex Professional Leads
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="text-[8px] md:text-[10px] font-bold text-stone-warm/50 uppercase tracking-wider truncate">
+                              Unisex Leads
                             </span>
-                            <span className="text-[10px] bg-champagne-300/30 text-roope-primary px-2.5 py-0.5 rounded font-extrabold uppercase">
+                            <span className="text-[8px] md:text-[10px] bg-champagne-300/30 text-roope-primary px-1.5 py-0.5 rounded font-extrabold uppercase">
                               ★ 4.86
                             </span>
                           </div>
-                          <h3 className="font-display text-lg md:text-2xl font-semibold md:font-light text-roope-primary">
+                          <h3 className="font-display text-xs md:text-2xl font-bold md:font-light text-roope-primary leading-tight">
                             Services for Women
                           </h3>
-                          <p className="text-[11px] text-stone-warm/70 mt-2 leading-relaxed">
+                          <p className="hidden md:block text-[11px] text-stone-warm/70 mt-2 leading-relaxed">
                             Treat yourself to premium spatula/cartridge waxing, Korean collagen facials, organic candle spa pedicures, and luxury full-body stress-relieving massage therapy.
                           </p>
                         </div>
 
                         <button
                           onClick={() => setShowWomenOptions(true)}
-                          className="mt-6 w-full btn-primary py-3.5 text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2"
+                          className="mt-3 md:mt-6 w-full btn-primary py-2 md:py-3.5 text-[9px] md:text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-1"
                         >
-                          Explore Women&apos;s Services <ChevronRight className="w-4 h-4" />
+                          Explore <ChevronRight className="w-3 h-3" />
                         </button>
                       </motion.div>
                     ) : (
@@ -441,61 +441,61 @@ export default function ServicesPage() {
                         transition={{ duration: 0.3 }}
                         className="flex flex-col flex-1 justify-between h-full"
                       >
-                        <div className="space-y-4">
+                        <div className="space-y-2 md:space-y-4">
                           <div className="flex items-center justify-between">
-                            <h4 className="text-xs font-extrabold uppercase text-stone-warm tracking-wider">
-                              Choose Service Type
+                            <h4 className="text-[9px] md:text-xs font-extrabold uppercase text-stone-warm tracking-wider truncate">
+                              Choose Type
                             </h4>
                             <button
                               onClick={() => setShowWomenOptions(false)}
-                              className="text-[10px] font-bold uppercase tracking-wider text-gold hover:underline"
+                              className="text-[8px] md:text-[10px] font-bold uppercase tracking-wider text-gold hover:underline"
                             >
                               ← Back
                             </button>
                           </div>
 
-                          <div className="grid gap-3">
+                          <div className="grid gap-2">
                             {/* Option 1: Personal Styling & Salon */}
                             <button
                               onClick={() => handleSelectGenderCatalog("women")}
-                              className="w-full text-left p-4 rounded-2xl border border-pearl-200 hover:border-champagne-DEFAULT hover:bg-champagne-300/5 transition-all flex items-center gap-4 group/opt"
+                              className="w-full text-left p-2 md:p-4 rounded-xl md:rounded-2xl border border-pearl-200 hover:border-champagne-DEFAULT hover:bg-champagne-300/5 transition-all flex items-center gap-2 md:gap-4 group/opt"
                             >
-                              <div className="w-10 h-10 rounded-xl bg-champagne-300/20 text-roope-primary flex items-center justify-center font-bold text-lg">
+                              <div className="w-7 h-7 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-champagne-300/20 text-roope-primary flex items-center justify-center font-bold text-xs md:text-lg">
                                 🧴
                               </div>
                               <div className="flex-1 min-w-0">
-                                <h5 className="text-xs font-bold text-roope-primary group-hover/opt:text-[#B8922E]">
-                                  Salon & Spa (Personal Styling)
+                                <h5 className="text-[9px] md:text-xs font-bold text-roope-primary group-hover/opt:text-[#B8922E] truncate">
+                                  Salon & Spa
                                 </h5>
-                                <p className="text-[10px] text-stone-warm/50 truncate mt-0.5">
+                                <p className="hidden md:block text-[10px] text-stone-warm/50 truncate mt-0.5">
                                   Hygienic waxing, glow facials, spa mani-pedi & massages.
                                 </p>
                               </div>
-                              <ChevronRight className="w-4 h-4 text-stone-warm/40 group-hover/opt:text-roope-primary" />
+                              <ChevronRight className="w-3.5 h-3.5 text-stone-warm/40 group-hover/opt:text-roope-primary flex-shrink-0" />
                             </button>
 
                             {/* Option 2: Bridal & Wedding packages */}
                             <button
                               onClick={() => router.push("/bridal")}
-                              className="w-full text-left p-4 rounded-2xl border border-pearl-200 hover:border-champagne-DEFAULT hover:bg-champagne-300/5 transition-all flex items-center gap-4 group/opt"
+                              className="w-full text-left p-2 md:p-4 rounded-xl md:rounded-2xl border border-pearl-200 hover:border-champagne-DEFAULT hover:bg-champagne-300/5 transition-all flex items-center gap-2 md:gap-4 group/opt"
                             >
-                              <div className="w-10 h-10 rounded-xl bg-champagne-300/20 text-roope-primary flex items-center justify-center font-bold text-lg">
+                              <div className="w-7 h-7 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-champagne-300/20 text-roope-primary flex items-center justify-center font-bold text-xs md:text-lg">
                                 💍
                               </div>
                               <div className="flex-1 min-w-0">
-                                <h5 className="text-xs font-bold text-roope-primary group-hover/opt:text-[#B8922E]">
-                                  Bridal & Wedding Collection
+                                <h5 className="text-[9px] md:text-xs font-bold text-roope-primary group-hover/opt:text-[#B8922E] truncate">
+                                  Bridal Collection
                                 </h5>
-                                <p className="text-[10px] text-stone-warm/50 truncate mt-0.5">
+                                <p className="hidden md:block text-[10px] text-stone-warm/50 truncate mt-0.5">
                                   HD & Airbrush bridal packages with certified lead artists.
                                 </p>
                               </div>
-                              <ChevronRight className="w-4 h-4 text-stone-warm/40 group-hover/opt:text-roope-primary" />
+                              <ChevronRight className="w-3.5 h-3.5 text-stone-warm/40 group-hover/opt:text-roope-primary flex-shrink-0" />
                             </button>
                           </div>
                         </div>
 
-                        <p className="text-[9px] text-stone-warm/50 mt-4 leading-normal">
+                        <p className="hidden md:block text-[9px] text-stone-warm/50 mt-4 leading-normal">
                           All personal styling services are performed inside the privacy and comfort of your home by highly certified female beauty specialists.
                         </p>
                       </motion.div>
@@ -508,36 +508,36 @@ export default function ServicesPage() {
               <motion.div
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.3 }}
-                className="bg-white rounded-[32px] border border-pearl-200/80 shadow-luxury overflow-hidden flex flex-col min-h-[380px] relative group"
+                className="bg-white rounded-[20px] md:rounded-[32px] border border-pearl-200/80 shadow-luxury overflow-hidden flex flex-col min-h-[220px] md:min-h-[380px] relative group"
               >
                 {/* Background Image Header */}
-                <div className="relative h-44 w-full bg-pearl-200 overflow-hidden flex-shrink-0">
+                <div className="relative h-20 md:h-44 w-full bg-pearl-200 overflow-hidden flex-shrink-0">
                   <Image
                     src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600"
                     alt="Grooming for Men"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 400px"
+                    sizes="(max-width: 768px) 50vw, 400px"
                     unoptimized
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-white via-white/10 to-transparent" />
                 </div>
 
                 {/* Body Content */}
-                <div className="p-6 flex-1 flex flex-col justify-between bg-white z-10">
+                <div className="p-3 md:p-6 flex-1 flex flex-col justify-between bg-white z-10">
                   <div>
-                    <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-[10px] font-bold text-stone-warm/50 uppercase tracking-wider">
-                        Premium Men&apos;s Styling
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-[8px] md:text-[10px] font-bold text-stone-warm/50 uppercase tracking-wider truncate">
+                        Premium Men
                       </span>
-                      <span className="text-[10px] bg-champagne-300/30 text-roope-primary px-2.5 py-0.5 rounded font-extrabold uppercase">
+                      <span className="text-[8px] md:text-[10px] bg-champagne-300/30 text-roope-primary px-1.5 py-0.5 rounded font-extrabold uppercase">
                         ★ 4.84
                       </span>
                     </div>
-                    <h3 className="font-display text-lg md:text-2xl font-semibold md:font-light text-roope-primary">
+                    <h3 className="font-display text-xs md:text-2xl font-bold md:font-light text-roope-primary leading-tight">
                       Services for Men
                     </h3>
-                    <p className="text-[11px] text-stone-warm/70 mt-2 leading-relaxed">
+                    <p className="hidden md:block text-[11px] text-stone-warm/70 mt-2 leading-relaxed">
                       Elevate your everyday look with precision haircuts, tailored beard grooming, charcoal skin detoxification and detan, and highly relaxing head and body massage treatments.
                     </p>
                   </div>
@@ -545,9 +545,9 @@ export default function ServicesPage() {
                   <div className="space-y-4">
                     <button
                       onClick={() => handleSelectGenderCatalog("men")}
-                      className="w-full btn-primary py-3.5 text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 mt-6"
+                      className="w-full btn-primary py-2 md:py-3.5 text-[9px] md:text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-1 mt-3 md:mt-6"
                     >
-                      Explore Men&apos;s Grooming <ChevronRight className="w-4 h-4" />
+                      Explore <ChevronRight className="w-3 h-3" />
                     </button>
                   </div>
                 </div>
@@ -855,7 +855,7 @@ export default function ServicesPage() {
                             return (
                               <div
                                 key={svc.id}
-                                className={`bg-white rounded-2xl border p-3 md:p-5 flex flex-col sm:flex-row gap-2.5 md:gap-5 items-start justify-between transition-all duration-300 hover:shadow-md ${
+                                className={`bg-white rounded-2xl border p-3 pb-4 md:p-5 flex flex-row gap-3 md:gap-5 items-start justify-between transition-all duration-300 hover:shadow-md ${
                                   qty > 0 ? "border-champagne-DEFAULT ring-1 ring-champagne-300/10" : "border-pearl-200/80"
                                 }`}
                               >
@@ -888,23 +888,39 @@ export default function ServicesPage() {
                                   </div>
 
                                   {/* Service Name */}
-                                  <h3 className="font-display text-sm font-semibold md:text-lg md:font-light text-roope-primary leading-snug">
+                                  <h3 className="font-display text-xs sm:text-sm md:text-lg font-semibold md:font-light text-roope-primary leading-snug">
                                     {svc.name}
                                   </h3>
 
                                   {/* Reviews, Star Rating */}
-                                  <div className="flex items-center gap-1.5 text-[10px] md:text-xs text-stone-warm mt-0.5 md:mt-1">
+                                  <div className="flex items-center gap-1.5 text-[9px] sm:text-xs text-stone-warm mt-0.5 md:mt-1">
                                     <span className="text-[#C9A84C] font-semibold">★ {svc.rating}</span>
                                     <span className="text-stone-warm/40">•</span>
                                     <span className="text-stone-warm/60">({svc.reviews.toLocaleString()} reviews)</span>
                                   </div>
 
+                                  {/* Mobile-only Pricing & Duration */}
+                                  <div className="flex items-center gap-2 mt-1 sm:hidden">
+                                    <span className="font-display text-xs font-bold text-roope-primary">
+                                      {formatPrice(svc.price)}
+                                    </span>
+                                    {svc.originalPrice && (
+                                      <span className="text-[9px] text-stone-warm/40 line-through">
+                                        {formatPrice(svc.originalPrice)}
+                                      </span>
+                                    )}
+                                    <span className="text-[9px] text-stone-warm/50 flex items-center gap-0.5 ml-1">
+                                      <Clock className="w-2.5 h-2.5 text-stone-warm/30" />
+                                      <span>{svc.duration}</span>
+                                    </span>
+                                  </div>
+
                                   {/* Bullet Point Inclusions */}
                                   {svc.includes && svc.includes.length > 0 && (
-                                    <ul className="mt-2.5 space-y-1 border-t border-pearl-100/60 pt-2 md:mt-3.5 md:space-y-1.5 md:pt-3">
+                                    <ul className="mt-2 space-y-0.5 border-t border-pearl-100/60 pt-1.5 md:mt-3.5 md:space-y-1.5 md:pt-3">
                                       {svc.includes.map((inc, i) => (
-                                        <li key={i} className="flex gap-1.5 items-start text-[11px] md:text-xs text-stone-warm/80">
-                                          <span className="text-champagne-DEFAULT font-bold flex-shrink-0 mt-0.5">✓</span>
+                                        <li key={i} className="flex gap-1 items-start text-[10px] md:text-xs text-stone-warm/80">
+                                          <span className="text-champagne-DEFAULT font-bold flex-shrink-0">✓</span>
                                           <span className="leading-snug">{inc}</span>
                                         </li>
                                       ))}
@@ -912,33 +928,33 @@ export default function ServicesPage() {
                                   )}
 
                                   {/* In-Depth Description */}
-                                  <p className="text-stone-warm/60 text-[10px] md:text-[11px] mt-2 md:mt-3 leading-relaxed">
+                                  <p className="text-stone-warm/60 text-[9px] md:text-[11px] mt-1.5 md:mt-3 leading-relaxed line-clamp-2 md:line-clamp-none">
                                     {svc.description}
                                   </p>
                                 </div>
 
                                 {/* Pricing & "Add" Counter Column */}
-                                <div className="w-full sm:w-36 flex sm:flex-col items-center justify-between sm:justify-start gap-3 sm:gap-2 flex-shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-pearl-100/60 mt-1 md:mt-0">
+                                <div className="flex flex-col items-center flex-shrink-0 w-20 sm:w-36 relative">
                                   {/* Service Image Preview */}
-                                  <div className="relative w-20 sm:w-28 h-20 sm:h-20 rounded-xl overflow-hidden border border-pearl-200/80 bg-pearl-200 hidden xs:block flex-shrink-0">
+                                  <div className="relative w-20 sm:w-28 h-20 sm:h-20 rounded-xl overflow-hidden border border-pearl-200/80 bg-pearl-200 flex-shrink-0">
                                     <Image
                                       src={svc.image}
                                       alt={svc.name}
                                       fill
                                       className="object-cover"
-                                      sizes="112px"
+                                      sizes="(max-width: 640px) 80px, 112px"
                                       unoptimized
                                     />
                                     {discount > 0 && (
-                                      <span className="absolute top-1 right-1 px-1.5 py-0.5 rounded text-[9px] font-bold text-white bg-stone-warm/80 backdrop-blur-xs">
+                                      <span className="absolute top-1 right-1 px-1 py-0.5 rounded text-[8px] font-bold text-white bg-stone-warm/80 backdrop-blur-xs">
                                         -{discount}%
                                       </span>
                                     )}
                                   </div>
 
-                                  {/* Prices and Duration */}
-                                  <div className="sm:text-center">
-                                    <div className="flex items-baseline gap-1.5 sm:justify-center">
+                                  {/* Prices and Duration - Desktop Only */}
+                                  <div className="hidden sm:block text-center mt-2.5">
+                                    <div className="flex items-baseline gap-1.5 justify-center">
                                       <span className="font-display text-sm font-semibold md:text-lg md:font-light text-roope-primary">
                                         {formatPrice(svc.price)}
                                       </span>
@@ -948,37 +964,39 @@ export default function ServicesPage() {
                                         </span>
                                       )}
                                     </div>
-                                    <p className="text-[10px] text-stone-warm/50 flex items-center gap-1 sm:justify-center mt-0.5">
+                                    <p className="text-[10px] text-stone-warm/50 flex items-center gap-1 justify-center mt-0.5">
                                       <Clock className="w-3 h-3 text-stone-warm/30" />
                                       <span>{svc.duration}</span>
                                     </p>
                                   </div>
 
                                   {/* "Add" or Counter Buttons */}
-                                  {qty === 0 ? (
-                                    <button
-                                      onClick={() => handleAddToCart(svc.id)}
-                                      className="w-20 md:w-28 py-1.5 md:py-2 border border-champagne-DEFAULT rounded-lg md:rounded-xl text-[10px] md:text-xs font-semibold text-roope-primary uppercase tracking-widest hover:bg-champagne-DEFAULT hover:text-white hover:shadow-xs transition-all active:scale-95 bg-white"
-                                    >
-                                      Add
-                                    </button>
-                                  ) : (
-                                    <div className="w-20 md:w-28 py-1 px-1.5 md:py-1.5 md:px-2 bg-stone-warm border border-stone-warm rounded-lg md:rounded-xl flex items-center justify-between text-white text-[10.5px] md:text-xs font-bold shadow-xs">
-                                      <button 
-                                        onClick={() => handleRemoveFromCart(svc.id)}
-                                        className="w-5 h-5 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20"
-                                      >
-                                        <Minus className="w-3 h-3" />
-                                      </button>
-                                      <span>{qty}</span>
-                                      <button 
+                                  <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 sm:static sm:bottom-auto sm:left-auto sm:translate-x-0 sm:mt-3 z-10 shadow-md sm:shadow-none">
+                                    {qty === 0 ? (
+                                      <button
                                         onClick={() => handleAddToCart(svc.id)}
-                                        className="w-5 h-5 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20"
+                                        className="w-16 sm:w-28 py-1 sm:py-2 border border-champagne-DEFAULT rounded-lg sm:rounded-xl text-[9px] sm:text-xs font-semibold text-roope-primary uppercase tracking-widest hover:bg-champagne-DEFAULT hover:text-white transition-all bg-white"
                                       >
-                                        <Plus className="w-3 h-3" />
+                                        Add
                                       </button>
-                                    </div>
-                                  )}
+                                    ) : (
+                                      <div className="w-16 sm:w-28 py-0.5 px-1 sm:py-1.5 sm:px-2 bg-stone-warm border border-stone-warm rounded-lg sm:rounded-xl flex items-center justify-between text-white text-[9px] sm:text-xs font-bold">
+                                        <button 
+                                          onClick={() => handleRemoveFromCart(svc.id)}
+                                          className="w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20"
+                                        >
+                                          <Minus className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                                        </button>
+                                        <span>{qty}</span>
+                                        <button 
+                                          onClick={() => handleAddToCart(svc.id)}
+                                          className="w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20"
+                                        >
+                                          <Plus className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                                        </button>
+                                      </div>
+                                    )}
+                                  </div>
                                 </div>
                               </div>
                             );

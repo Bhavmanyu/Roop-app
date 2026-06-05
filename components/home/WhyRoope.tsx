@@ -24,7 +24,26 @@ export default function WhyRoope() {
           </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* MOBILE VIEW: Square Grid of Trust Points */}
+        <div className="grid grid-cols-2 gap-3 lg:hidden">
+          {trustPoints.map((point) => (
+            <div
+              key={point.title}
+              className="bg-white border border-pearl-200 rounded-2xl p-4 flex flex-col items-center justify-center text-center aspect-square shadow-sm"
+            >
+              <div className="text-xl mb-1.5">{point.icon}</div>
+              <h4 className="text-[10px] font-extrabold text-roope-primary uppercase tracking-wider mb-1 line-clamp-1 leading-tight">
+                {point.title}
+              </h4>
+              <p className="text-[8.5px] text-stone-warm/75 leading-relaxed line-clamp-3">
+                {point.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* DESKTOP VIEW */}
+        <div className="hidden lg:grid lg:grid-cols-3 gap-6">
           {trustPoints.map((point, i) => (
             <motion.div
               key={point.title}

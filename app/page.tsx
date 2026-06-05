@@ -12,14 +12,16 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <HomeServicesSection />
       <WhyRoope />
-      <TrustSection />
-      <SignaturePackages />
-      <FeaturedTransformations />
-      <OffersSection />
       <ReviewsSection />
-      <BookingCTA />
+      <div className="hidden lg:block">
+        <HomeServicesSection />
+        <TrustSection />
+        <SignaturePackages />
+        <FeaturedTransformations />
+        <OffersSection />
+        <BookingCTA />
+      </div>
     </>
   );
 }

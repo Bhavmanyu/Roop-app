@@ -774,22 +774,6 @@ export default function HeroSection() {
             })}
           </div>
         </div>
-
-        {/* Trust Badges */}
-        <div className="grid grid-cols-3 gap-2 border-t border-pearl-200/50 pt-4 text-center mt-1">
-          <div className="flex flex-col items-center">
-            <span className="text-xs text-[#B8922E] font-bold">★ 4.9 Rating</span>
-            <span className="text-[8px] uppercase tracking-wider text-stone-warm/50 font-bold mt-0.5">Average Rating</span>
-          </div>
-          <div className="flex flex-col items-center border-x border-pearl-200">
-            <span className="text-xs text-[#B8922E] font-bold">🛡️ Sanitized</span>
-            <span className="text-[8px] uppercase tracking-wider text-stone-warm/50 font-bold mt-0.5">100% Safe Kits</span>
-          </div>
-          <div className="flex flex-col items-center">
-            <span className="text-xs text-[#B8922E] font-bold">⏱️ Guaranteed</span>
-            <span className="text-[8px] uppercase tracking-wider text-stone-warm/50 font-bold mt-0.5">On-Time Arrival</span>
-          </div>
-        </div>
       </section>
 
       {/* MOBILE LOCATION SELECT MODAL */}

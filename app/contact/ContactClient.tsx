@@ -68,14 +68,14 @@ export default function ContactPage() {
       </section>
 
       {/* Quick contact cards */}
-      <section className="py-10 px-6">
-        <div className="max-w-7xl mx-auto grid sm:grid-cols-3 gap-5">
+      <section className="py-6 md:py-10 px-4 md:px-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-3 gap-2 md:gap-5">
           {[
             {
               icon: MessageCircle,
               title: "WhatsApp",
               desc: "Chat with us instantly",
-              action: "Open WhatsApp",
+              action: "Chat",
               href: `https://wa.me/${whatsapp}`,
               accent: true,
             },
@@ -83,7 +83,7 @@ export default function ContactPage() {
               icon: Phone,
               title: "Call Us",
               desc: phone,
-              action: "Call Now",
+              action: "Call",
               href: `tel:${phone.replace(/\s/g, "")}`,
               accent: false,
             },
@@ -91,7 +91,7 @@ export default function ContactPage() {
               icon: Mail,
               title: "Email",
               desc: email,
-              action: "Send Email",
+              action: "Email",
               href: `mailto:${email}`,
               accent: false,
             },
@@ -101,17 +101,17 @@ export default function ContactPage() {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group card-luxury p-7 flex flex-col gap-4 hover:shadow-luxury-xl"
+              className="group card-luxury p-3 md:p-7 flex flex-col gap-2 md:gap-4 hover:shadow-luxury-xl text-center items-center justify-center"
             >
-              <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${accent ? "" : ""}`}
+              <div className={`w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110`}
                 style={{ background: accent ? "linear-gradient(135deg, #C9A84C, #B8922E)" : "rgba(201,168,76,0.1)" }}>
-                <Icon className={`w-6 h-6 ${accent ? "text-white" : ""}`} style={{ color: accent ? undefined : "#C9A84C" }} />
+                <Icon className={`w-4 h-4 md:w-6 md:h-6 ${accent ? "text-white" : ""}`} style={{ color: accent ? undefined : "#C9A84C" }} />
               </div>
-              <div>
-                <h3 className="font-semibold text-roope-primary">{title}</h3>
-                <p className="text-sm text-stone-warm mt-1">{desc}</p>
+              <div className="min-w-0">
+                <h3 className="text-[10px] md:text-base font-bold text-roope-primary truncate">{title}</h3>
+                <p className="hidden md:block text-xs text-stone-warm mt-1 truncate">{desc}</p>
               </div>
-              <span className="text-sm font-medium mt-auto" style={{ color: "#C9A84C" }}>{action} →</span>
+              <span className="text-[9px] md:text-sm font-semibold mt-1 md:mt-auto" style={{ color: "#C9A84C" }}>{action} →</span>
             </a>
           ))}
         </div>

@@ -43,13 +43,13 @@ export default function GalleryPage() {
       </section>
 
       {/* Filters */}
-      <section className="py-8 px-6 sticky top-16 z-30 glass border-b border-pearl-200">
-        <div className="max-w-7xl mx-auto flex flex-wrap gap-2 justify-center">
+      <section className="py-4 md:py-8 px-6 sticky top-16 z-30 glass border-b border-pearl-200">
+        <div className="max-w-7xl mx-auto flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-none justify-start px-4 -mx-6 lg:justify-center lg:px-0 lg:mx-0">
           {cats.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveFilter(cat)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+              className={`flex-shrink-0 px-4 py-2 rounded-full text-xs md:text-sm font-medium transition-all duration-200 ${
                 activeFilter === cat ? "text-white shadow-gold" : "text-stone-warm border border-pearl-300 hover:border-champagne-300"
               }`}
               style={{ background: activeFilter === cat ? "linear-gradient(135deg, #C9A84C, #B8922E)" : "rgba(255,255,255,0.9)" }}

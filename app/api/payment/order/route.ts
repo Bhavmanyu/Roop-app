@@ -20,6 +20,7 @@ const orderSchema = z.object({
   extras: z.array(z.string()).default([]),
   coupon: z.string().max(50).optional().default(""),
   cartItems: z.record(z.string(), z.number()).default({}),
+  tip_amount: z.number().int().nonnegative().optional().default(0),
 });
 
 const razorpay = new Razorpay({
@@ -101,7 +102,7 @@ export async function POST(req: NextRequest) {
       discount = Math.min(500, subtotal);
     }
 
-    const finalAmount = Math.max(0, subtotal - discount);
+    const finalAmount = Math.max(0, subtotal - discount) + validatedData.tip_amount;
 
     // Create Razorpay Order
     // Razorpay amount is in paise (1 INR = 100 paise)

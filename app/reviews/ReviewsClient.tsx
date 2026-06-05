@@ -71,9 +71,9 @@ export default function ReviewsPage() {
       </section>
 
       {/* Reviews masonry */}
-      <section className="py-20 px-6">
+      <section className="py-10 md:py-20 px-4 md:px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 space-y-5">
+          <div className="columns-2 sm:columns-2 lg:columns-3 gap-3 space-y-3">
             {[...testimonials, ...testimonials].map((review, i) => (
               <motion.div
                 key={`${review.id}-${i}`}
@@ -81,25 +81,25 @@ export default function ReviewsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: Math.min(i * 0.05, 0.3) }}
-                className="break-inside-avoid card-luxury p-6 mb-5"
+                className="break-inside-avoid card-luxury p-3 md:p-6 mb-3 md:mb-5"
               >
-                <Quote className="w-5 h-5 mb-3 opacity-25" style={{ color: "#C9A84C" }} />
-                <div className="flex gap-0.5 mb-3">
+                <Quote className="w-3.5 h-3.5 md:w-5 md:h-5 mb-1.5 md:mb-3 opacity-25" style={{ color: "#C9A84C" }} />
+                <div className="flex gap-0.5 mb-1.5 md:mb-3">
                   {[...Array(review.rating)].map((_, j) => (
-                    <Star key={j} className="w-3.5 h-3.5 fill-current" style={{ color: "#C9A84C" }} />
+                    <Star key={j} className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 fill-current" style={{ color: "#C9A84C" }} />
                   ))}
                 </div>
-                <p className="text-sm text-stone-warm leading-relaxed mb-5">&ldquo;{review.text}&rdquo;</p>
-                <div className="flex items-center gap-3">
-                  <div className="relative w-9 h-9 rounded-full overflow-hidden flex-shrink-0">
-                    <Image src={review.image} alt={review.name} fill className="object-cover object-top" sizes="36px" />
+                <p className="text-[10px] md:text-sm text-stone-warm leading-relaxed mb-3 md:mb-5 line-clamp-4 md:line-clamp-none">&ldquo;{review.text}&rdquo;</p>
+                <div className="flex items-center gap-2 md:gap-3">
+                  <div className="relative w-6 h-6 md:w-9 md:h-9 rounded-full overflow-hidden flex-shrink-0">
+                    <Image src={review.image} alt={review.name} fill className="object-cover object-top" sizes="(max-width: 640px) 24px, 36px" />
                   </div>
-                  <div>
-                    <div className="flex items-center gap-1">
-                      <p className="text-sm font-semibold text-roope-primary">{review.name}</p>
-                      {review.verified && <BadgeCheck className="w-3.5 h-3.5" style={{ color: "#C9A84C" }} />}
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-0.5 md:gap-1">
+                      <p className="text-[9px] md:text-sm font-bold text-roope-primary truncate">{review.name}</p>
+                      {review.verified && <BadgeCheck className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 flex-shrink-0" style={{ color: "#C9A84C" }} />}
                     </div>
-                    <p className="text-xs text-stone-warm">{review.service} • {review.location}</p>
+                    <p className="text-[8px] md:text-xs text-stone-warm/70 truncate">{review.service} • {review.location}</p>
                   </div>
                 </div>
               </motion.div>
