@@ -59,6 +59,57 @@ const curatedExperiences = [
   }
 ];
 
+const bestSellerCombos = [
+  {
+    id: "pedi-mani-combo",
+    name: "Luxury Pedicure & Manicure Combo",
+    category: "Combos",
+    image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=300",
+    rating: "4.8",
+    reviews: "930",
+    price: 1899,
+    originalPrice: 2499,
+    tag: "Value Pack",
+    link: "/services?category=pedi-mani"
+  },
+  {
+    id: "waxing-package",
+    name: "Full Body Honey Waxing",
+    category: "Waxing",
+    image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=300",
+    rating: "4.9",
+    reviews: "1.5K",
+    price: 1299,
+    originalPrice: 1699,
+    tag: "Best Seller",
+    link: "/services?category=waxing"
+  },
+  {
+    id: "men-hair-massage",
+    name: "Haircut + Head Massage + Shave",
+    category: "Men's Grooming",
+    image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=300",
+    rating: "4.7",
+    reviews: "710",
+    price: 799,
+    originalPrice: 1199,
+    tag: "Trending",
+    link: "/services?gender=men"
+  },
+  {
+    id: "stress-relief-massage",
+    name: "Deep Tissue Stress Relief Massage",
+    category: "Massages",
+    image: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=300",
+    rating: "4.8",
+    reviews: "1.3K",
+    price: 2199,
+    originalPrice: 2899,
+    tag: "Relaxing",
+    link: "/services?category=spa-massage"
+  }
+];
+
 const floatingCards = [
   {
     id: 1,
@@ -167,6 +218,12 @@ export default function HeroSection() {
       href: "/services?category=pedi-mani"
     },
     {
+      label: "Waxing & Thread",
+      image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=150",
+      href: "/services?category=waxing",
+      badge: "Deal"
+    },
+    {
       label: "Spa & Massage",
       image: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=150",
       href: "/services?category=spa-massage"
@@ -176,6 +233,11 @@ export default function HeroSection() {
       image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=150",
       href: "/bridal",
       badge: "Elite"
+    },
+    {
+      label: "Event Styling",
+      image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150",
+      href: "/events"
     }
   ];
 
@@ -464,20 +526,25 @@ export default function HeroSection() {
         id="hero-mobile"
         className="relative lg:hidden pt-24 pb-6 px-4 bg-white flex flex-col gap-5 border-b border-pearl-200/50"
       >
-        {/* Mobile Header location + search */}
-        <div className="flex flex-col gap-3">
-          <div className="flex justify-between items-center">
+        {/* Mobile Greeting and Location Selector */}
+        <div className="flex flex-col gap-1.5">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-[10px] uppercase tracking-widest font-extrabold text-stone-warm/50">Your Doorstep Salon</p>
+              <h2 className="text-base font-extrabold text-roope-primary tracking-tight">Indore, India</h2>
+            </div>
+            
             <button
               onClick={() => setIsLocationModalOpen(true)}
-              className="flex items-center gap-1.5 text-[11px] font-extrabold text-roope-primary bg-[#FAF9F6] border border-pearl-300 rounded-full px-4 py-2 max-w-[240px] truncate transition-all shadow-sm"
+              className="flex items-center gap-1.5 text-[9px] font-extrabold text-roope-primary bg-[#FAF9F6] border border-pearl-300 rounded-full px-3 py-1.5 max-w-[180px] truncate transition-all shadow-sm hover:border-[#B8922E]"
             >
-              <MapPin className="w-3.5 h-3.5 text-[#B8922E] flex-shrink-0" />
+              <MapPin className="w-3 h-3 text-[#B8922E] flex-shrink-0" />
               <span className="truncate">{activeLocation.split(",")[0]}</span>
-              <ChevronDown className="w-3 h-3 text-stone-warm/50 flex-shrink-0" />
+              <ChevronDown className="w-2.5 h-2.5 text-stone-warm/50 flex-shrink-0" />
             </button>
           </div>
-
-          <form onSubmit={handleSearchSubmit} className="relative w-full">
+          
+          <form onSubmit={handleSearchSubmit} className="relative w-full mt-1.5">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-warm/40" />
             <input
               type="text"
@@ -534,14 +601,14 @@ export default function HeroSection() {
 
         {/* Compact Grid of Services */}
         <div className="bg-[#FAF9F6] border border-pearl-200/80 rounded-2xl p-4 shadow-sm">
-          <div className="grid grid-cols-3 gap-y-4 gap-x-2">
+          <div className="grid grid-cols-4 gap-y-5 gap-x-2">
             {mobileServices.map((service, idx) => (
               <Link
                 key={idx}
                 href={service.href}
                 className="flex flex-col items-center text-center group relative"
               >
-                <div className="relative w-14 h-14 bg-white border border-pearl-200 shadow-sm rounded-xl overflow-hidden flex-shrink-0 flex items-center justify-center">
+                <div className="relative w-14 h-14 bg-white border border-pearl-200 shadow-sm rounded-full overflow-hidden flex-shrink-0 flex items-center justify-center">
                   <Image
                     src={service.image}
                     alt={service.label}
@@ -551,12 +618,12 @@ export default function HeroSection() {
                     unoptimized
                   />
                   {service.badge && (
-                    <span className="absolute top-0 right-0 bg-[#B8922E] text-white text-[7px] font-extrabold px-1 rounded-bl leading-tight uppercase tracking-wide">
+                    <span className="absolute top-0 right-0 bg-[#B8922E] text-white text-[7px] font-extrabold px-1.5 py-0.5 rounded-bl leading-tight uppercase tracking-wide">
                       {service.badge}
                     </span>
                   )}
                 </div>
-                <span className="text-[10px] font-bold text-stone-warm mt-2 leading-tight min-h-[24px] flex items-center justify-center">
+                <span className="text-[9px] font-extrabold text-stone-warm mt-2 leading-tight min-h-[24px] flex items-center justify-center">
                   {service.label}
                 </span>
               </Link>
@@ -573,6 +640,78 @@ export default function HeroSection() {
           
           <div className="flex gap-4 overflow-x-auto pb-3 -mx-4 px-4 scrollbar-none snap-x snap-mandatory">
             {curatedExperiences.map((item) => {
+              const discount = Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100);
+              return (
+                <div 
+                  key={item.id}
+                  className="w-[200px] bg-white border border-pearl-200 rounded-2xl p-2.5 flex-shrink-0 snap-start shadow-sm"
+                >
+                  <div className="relative w-full h-28 rounded-xl overflow-hidden mb-2">
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      className="object-cover"
+                      sizes="200px"
+                      unoptimized
+                    />
+                    {item.tag && (
+                      <span className="absolute top-2 left-2 bg-champagne-300 text-roope-primary text-[8px] font-extrabold px-1.5 py-0.5 rounded uppercase tracking-wider">
+                        {item.tag}
+                      </span>
+                    )}
+                    {discount > 0 && (
+                      <span className="absolute top-2 right-2 bg-black/75 text-white text-[8px] font-extrabold px-1.5 py-0.5 rounded">
+                        -{discount}%
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-1">
+                      <span className="text-[8px] text-[#B8922E] font-extrabold">★ {item.rating}</span>
+                      <span className="text-[8px] text-stone-warm/50 font-bold">({item.reviews})</span>
+                    </div>
+                    
+                    <h4 className="text-[10px] font-extrabold text-roope-primary line-clamp-1 leading-snug">
+                      {item.name}
+                    </h4>
+                    
+                    <div className="flex items-center justify-between pt-1 border-t border-pearl-100">
+                      <div>
+                        <span className="text-[10.5px] font-bold text-roope-primary">
+                          {formatPrice(item.price)}
+                        </span>
+                        {item.originalPrice && (
+                          <span className="text-[8.5px] text-stone-warm/50 line-through ml-1">
+                            {formatPrice(item.originalPrice)}
+                          </span>
+                        )}
+                      </div>
+                      
+                      <Link 
+                        href={item.link}
+                        className="border border-[#B8922E] text-roope-primary text-[8px] font-extrabold px-2.5 py-1 rounded-lg uppercase tracking-wider hover:bg-champagne-300/10 transition-all"
+                      >
+                        Add
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Best Sellers & Combos (Urban Company Style) */}
+        <div className="space-y-3 pt-2">
+          <div className="flex flex-col">
+            <h3 className="text-xs font-extrabold text-roope-primary uppercase tracking-wider">Best Sellers & Combos</h3>
+            <p className="text-[9px] text-stone-warm/60">Popular doorstep grooming packages</p>
+          </div>
+          
+          <div className="flex gap-4 overflow-x-auto pb-3 -mx-4 px-4 scrollbar-none snap-x snap-mandatory">
+            {bestSellerCombos.map((item) => {
               const discount = Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100);
               return (
                 <div 

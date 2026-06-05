@@ -83,6 +83,8 @@ export const metadata: Metadata = {
   },
 };
 
+import MobileBottomNav from "@/components/layout/MobileBottomNav";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -136,9 +138,10 @@ export default function RootLayout({
         <SmoothScroll>
           <ViewportProvider>
             <Navbar />
-            <main>{children}</main>
+            <main className="pb-16 md:pb-0">{children}</main>
             <Footer />
             <CookieConsent />
+            <MobileBottomNav />
           </ViewportProvider>
         </SmoothScroll>
         <script
