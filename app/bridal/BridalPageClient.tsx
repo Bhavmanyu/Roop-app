@@ -16,6 +16,40 @@ const bridalLooks = [
 
 const cities = ["Indore"];
 
+const DUST_PARTICLES = [
+  // Card 1 particles
+  [
+    { top: "15%", left: "20%", size: "3px", delay: "0s", duration: "12s" },
+    { top: "45%", left: "80%", size: "1.5px", delay: "-2s", duration: "8s" },
+    { top: "70%", left: "30%", size: "2.5px", delay: "-4s", duration: "15s" },
+    { top: "30%", left: "60%", size: "2px", delay: "-1s", duration: "10s" },
+    { top: "85%", left: "75%", size: "3px", delay: "-6s", duration: "14s" },
+    { top: "60%", left: "15%", size: "1.8px", delay: "-3s", duration: "11s" },
+  ],
+  // Card 2 particles (Luxury card - has more particles!)
+  [
+    { top: "10%", left: "30%", size: "3.5px", delay: "0s", duration: "14s" },
+    { top: "25%", left: "75%", size: "2px", delay: "-3s", duration: "9s" },
+    { top: "40%", left: "15%", size: "3px", delay: "-1s", duration: "12s" },
+    { top: "55%", left: "85%", size: "2px", delay: "-5s", duration: "11s" },
+    { top: "70%", left: "45%", size: "4px", delay: "-7s", duration: "16s" },
+    { top: "80%", left: "20%", size: "1.5px", delay: "-2s", duration: "8s" },
+    { top: "90%", left: "65%", size: "2.5px", delay: "-4s", duration: "13s" },
+    { top: "15%", left: "85%", size: "3px", delay: "-6s", duration: "15s" },
+    { top: "65%", left: "5%", size: "2px", delay: "-8s", duration: "10s" },
+    { top: "35%", left: "50%", size: "3.5px", delay: "-2.5s", duration: "12.5s" },
+  ],
+  // Card 3 particles
+  [
+    { top: "20%", left: "15%", size: "2px", delay: "-1s", duration: "11s" },
+    { top: "35%", left: "70%", size: "3px", delay: "-4s", duration: "13s" },
+    { top: "60%", left: "40%", size: "2.5px", delay: "0s", duration: "14s" },
+    { top: "80%", left: "80%", size: "1.5px", delay: "-6s", duration: "9s" },
+    { top: "50%", left: "85%", size: "3.5px", delay: "-3s", duration: "15s" },
+    { top: "75%", left: "20%", size: "2px", delay: "-2s", duration: "10s" },
+  ],
+];
+
 export default function BridalPageClient() {
   const [activeLook, setActiveLook] = useState(0);
   const [selectedPackage, setSelectedPackage] = useState<string | null>("luxury-bride");
@@ -56,6 +90,15 @@ export default function BridalPageClient() {
     setShowInquiry(true);
     setSubmitted(false);
     setError("");
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -181,7 +224,8 @@ export default function BridalPageClient() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.1 }}
                   onClick={() => setSelectedPackage(pkg.id)}
-                  className={`relative rounded-2xl md:rounded-4xl p-4.5 md:p-8 cursor-pointer transition-all duration-400 flex-shrink-0 w-[85%] snap-center lg:w-auto lg:flex-shrink ${
+                  onMouseMove={handleMouseMove}
+                  className={`relative rounded-2xl md:rounded-4xl p-4.5 md:p-8 cursor-pointer transition-all duration-400 flex-shrink-0 w-[85%] snap-center lg:w-auto lg:flex-shrink group ${
                     isSelected ? "shadow-luxury-xl md:-translate-y-2" : "shadow-luxury md:hover:-translate-y-1"
                   }`}
                   style={{
@@ -195,6 +239,36 @@ export default function BridalPageClient() {
                       : "1px solid rgba(255,255,255,0.8)",
                   }}
                 >
+                  {/* Premium Ambient Cursor Glow Overlay */}
+                  <div
+                    className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[inherit]"
+                    style={{
+                      background: `radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), ${
+                        pkg.color === "gold"
+                          ? "rgba(201, 168, 76, 0.18)"
+                          : "rgba(201, 168, 76, 0.08)"
+                      }, transparent 80%)`,
+                    }}
+                  />
+
+                  {/* Floating Gold Dust Particles */}
+                  <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40 rounded-[inherit]">
+                    {(DUST_PARTICLES[i] || []).map((p, idx) => (
+                      <div
+                        key={idx}
+                        className="absolute bg-[#C9A84C] rounded-full animate-gold-dust"
+                        style={{
+                          top: p.top,
+                          left: p.left,
+                          width: p.size,
+                          height: p.size,
+                          animationDelay: p.delay,
+                          filter: "blur(0.5px)",
+                          "--dust-duration": p.duration,
+                        } as React.CSSProperties}
+                      />
+                    ))}
+                  </div>
                   {pkg.badge && (
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                       <span className="px-3 py-1 md:px-4 md:py-1.5 rounded-full text-[10px] md:text-xs font-semibold text-white flex items-center gap-1 md:gap-1.5"
