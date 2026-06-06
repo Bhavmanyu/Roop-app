@@ -119,7 +119,7 @@ export const services = [
     id: "mens-classic-grooming",
     name: "Classic Grooming Package (Men)",
     category: "super-saver",
-    occasion: "Men's Salon",
+    occasion: "Men's Grooming",
     price: 999,
     originalPrice: 1399,
     duration: "1 hr 30 mins",
@@ -333,12 +333,12 @@ export const services = [
     description: "Complete hands and feet cleaning routine. Polishes nails, shapes cuticles, and relieves muscle tension.",
   },
 
-  // ─── MEN'S SALON & GROOMING ────────────────────────────────────────────────
+  // ─── MEN'S GROOMING ────────────────────────────────────────────────
   {
     id: "premium-haircut-beard",
     name: "Premium Haircut & Beard Styling",
     category: "grooming",
-    occasion: "Men's Salon",
+    occasion: "Men's Grooming",
     price: 499,
     originalPrice: 599,
     duration: "50 mins",
@@ -357,7 +357,7 @@ export const services = [
     id: "charcoal-detox-face",
     name: "Charcoal Face Detox & Detan",
     category: "grooming",
-    occasion: "Men's Salon",
+    occasion: "Men's Grooming",
     price: 699,
     originalPrice: 849,
     duration: "40 mins",
@@ -376,7 +376,7 @@ export const services = [
     id: "royal-shave",
     name: "Royal Beard Grooming & Hot Towel Shave",
     category: "grooming",
-    occasion: "Men's Salon",
+    occasion: "Men's Grooming",
     price: 399,
     originalPrice: 449,
     duration: "30 mins",

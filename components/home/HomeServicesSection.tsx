@@ -70,7 +70,7 @@ export default function HomeServicesSection() {
       badge: "Free"
     },
     {
-      label: "Services for Men",
+      label: "Men's Grooming",
       image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=150",
       href: "/services?gender=men",
       badge: "Men"
@@ -164,7 +164,7 @@ export default function HomeServicesSection() {
           <div className="relative h-64 rounded-3xl overflow-hidden shadow-luxury border border-pearl-200 mt-8">
             <Image
               src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=400"
-              alt="Massage for Men"
+              alt="Men's Grooming"
               fill
               className="object-cover"
               sizes="200px"

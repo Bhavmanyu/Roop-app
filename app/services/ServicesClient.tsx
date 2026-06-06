@@ -554,10 +554,10 @@ export default function ServicesPage() {
                       </span>
                     </div>
                     <h3 className="font-display text-xs md:text-2xl font-bold md:font-light text-roope-primary leading-tight">
-                      Services for Men
+                      Men&apos;s Grooming
                     </h3>
                     <p className="hidden md:block text-[11px] text-stone-warm/70 mt-2 leading-relaxed">
-                      Elevate your everyday look with precision haircuts, tailored beard grooming, charcoal skin detoxification and detan, and highly relaxing head and body massage treatments.
+                      Elevate your everyday look with precision haircuts, tailored beard grooming, and charcoal skin detoxification.
                     </p>
                   </div>
 
