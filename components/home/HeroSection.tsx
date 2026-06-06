@@ -22,16 +22,16 @@ const curatedExperiences = [
     link: "/bridal"
   },
   {
-    id: "korean-glow",
-    name: "Korean Glass Glow",
+    id: "korean-glass-skin",
+    name: "Korean Glass Skin Facial",
     category: "Korean Facials",
     image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=300",
-    rating: "4.8",
-    reviews: "820",
-    price: 2499,
-    originalPrice: 3200,
+    rating: "4.9",
+    reviews: "28K",
+    price: 1499,
+    originalPrice: 1999,
     tag: "Trending",
-    link: "/services?search=Glass%20Glow"
+    link: "/services?category=facials"
   },
   {
     id: "airbrush-glam",
@@ -46,65 +46,65 @@ const curatedExperiences = [
     link: "/services?search=Airbrush"
   },
   {
-    id: "swedish-spa",
-    name: "Swedish Body Massage",
+    id: "stress-relief-massage-women",
+    name: "Stress Relief Full Body Massage",
     category: "Spa & Massage",
     image: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=300",
-    rating: "4.7",
-    reviews: "1.1K",
+    rating: "4.91",
+    reviews: "24K",
     price: 1899,
-    originalPrice: 2400,
+    originalPrice: 2499,
     tag: "Relaxing",
-    link: "/services?search=Swedish"
+    link: "/services?category=spa-massage"
   }
 ];
 
 const bestSellerCombos = [
   {
-    id: "pedi-mani-combo",
-    name: "Luxury Pedicure & Manicure Combo",
+    id: "mani-pedi-duo",
+    name: "Classic Pedicure & Manicure Duo",
     category: "Combos",
     image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=300",
-    rating: "4.8",
-    reviews: "930",
-    price: 1899,
-    originalPrice: 2499,
+    rating: "4.85",
+    reviews: "58K",
+    price: 1199,
+    originalPrice: 1499,
     tag: "Value Pack",
     link: "/services?category=pedi-mani"
   },
   {
-    id: "waxing-package",
-    name: "Full Body Honey Waxing",
+    id: "roll-on-waxing",
+    name: "Roll-on Waxing (Full Body)",
     category: "Waxing",
     image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=300",
-    rating: "4.9",
-    reviews: "1.5K",
+    rating: "4.89",
+    reviews: "42K",
     price: 1299,
-    originalPrice: 1699,
+    originalPrice: 1599,
     tag: "Best Seller",
     link: "/services?category=waxing"
   },
   {
-    id: "men-hair-massage",
-    name: "Haircut + Head Massage + Shave",
+    id: "premium-haircut-beard",
+    name: "Premium Haircut & Beard Styling",
     category: "Men's Grooming",
     image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=300",
-    rating: "4.7",
-    reviews: "710",
-    price: 799,
-    originalPrice: 1199,
+    rating: "4.84",
+    reviews: "112K",
+    price: 499,
+    originalPrice: 599,
     tag: "Trending",
     link: "/services?gender=men"
   },
   {
-    id: "stress-relief-massage",
-    name: "Deep Tissue Stress Relief Massage",
+    id: "deep-tissue-massage-men",
+    name: "Deep Tissue Therapeutic Massage",
     category: "Massages",
     image: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=300",
-    rating: "4.8",
-    reviews: "1.3K",
-    price: 2199,
-    originalPrice: 2899,
+    rating: "4.89",
+    reviews: "19K",
+    price: 1999,
+    originalPrice: 2599,
     tag: "Relaxing",
     link: "/services?category=spa-massage"
   }
@@ -168,6 +168,53 @@ export default function HeroSection() {
   const [activeLocation, setActiveLocation] = useState("63, Maharani Road, Siyaganj, Indore");
   const [locationSearch, setLocationSearch] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [cart, setCart] = useState<{ [id: string]: number }>({});
+
+  // Sync cart count from localStorage and listen to updates
+  useEffect(() => {
+    const syncCart = () => {
+      const savedCart = localStorage.getItem("roope-cart");
+      if (savedCart) {
+        try {
+          setCart(JSON.parse(savedCart));
+        } catch {
+          setCart({});
+        }
+      } else {
+        setCart({});
+      }
+    };
+
+    syncCart();
+
+    window.addEventListener("roope-cart-updated", syncCart);
+    window.addEventListener("storage", syncCart);
+
+    return () => {
+      window.removeEventListener("roope-cart-updated", syncCart);
+      window.removeEventListener("storage", syncCart);
+    };
+  }, []);
+
+  const handleAddToCart = (id: string) => {
+    const newCart = { ...cart, [id]: (cart[id] || 0) + 1 };
+    setCart(newCart);
+    localStorage.setItem("roope-cart", JSON.stringify(newCart));
+    window.dispatchEvent(new Event("roope-cart-updated"));
+  };
+
+  const handleRemoveFromCart = (id: string) => {
+    if (!cart[id]) return;
+    const newCart = { ...cart };
+    if (newCart[id] === 1) {
+      delete newCart[id];
+    } else {
+      newCart[id] -= 1;
+    }
+    setCart(newCart);
+    localStorage.setItem("roope-cart", JSON.stringify(newCart));
+    window.dispatchEvent(new Event("roope-cart-updated"));
+  };
 
   const mobileSlides = [
     {
@@ -715,12 +762,41 @@ export default function HeroSection() {
                         )}
                       </div>
                       
-                      <Link 
-                        href={item.link}
-                        className="border border-[#B8922E] text-roope-primary text-[8px] font-extrabold px-2.5 py-1 rounded-lg uppercase tracking-wider hover:bg-champagne-300/10 transition-all"
-                      >
-                        Add
-                      </Link>
+                      {item.id === "bridal-signature" || item.id === "airbrush-glam" ? (
+                        <Link 
+                          href={item.link}
+                          className="border border-[#B8922E] text-roope-primary text-[8px] font-extrabold px-2.5 py-1 rounded-lg uppercase tracking-wider hover:bg-champagne-300/10 transition-all"
+                        >
+                          Add
+                        </Link>
+                      ) : (
+                        <div>
+                          {(cart[item.id] || 0) === 0 ? (
+                            <button
+                              onClick={() => handleAddToCart(item.id)}
+                              className="border border-[#B8922E] text-roope-primary text-[8px] font-extrabold px-2.5 py-1 rounded-lg uppercase tracking-wider hover:bg-champagne-300/10 transition-all bg-white"
+                            >
+                              Add
+                            </button>
+                          ) : (
+                            <div className="flex items-center gap-1.5 bg-[#8B7D6B] text-white text-[8px] font-bold px-2 py-1 rounded-lg border border-[#8B7D6B] h-6">
+                              <button 
+                                onClick={() => handleRemoveFromCart(item.id)}
+                                className="w-3.5 h-3.5 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-xs font-semibold animate-scale-up"
+                              >
+                                -
+                              </button>
+                              <span className="w-2.5 text-center">{cart[item.id]}</span>
+                              <button 
+                                onClick={() => handleAddToCart(item.id)}
+                                className="w-3.5 h-3.5 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-xs font-semibold animate-scale-up"
+                              >
+                                +
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -787,12 +863,32 @@ export default function HeroSection() {
                         )}
                       </div>
                       
-                      <Link 
-                        href={item.link}
-                        className="border border-[#B8922E] text-roope-primary text-[8px] font-extrabold px-2.5 py-1 rounded-lg uppercase tracking-wider hover:bg-champagne-300/10 transition-all"
-                      >
-                        Add
-                      </Link>
+                      <div>
+                        {(cart[item.id] || 0) === 0 ? (
+                          <button
+                            onClick={() => handleAddToCart(item.id)}
+                            className="border border-[#B8922E] text-roope-primary text-[8px] font-extrabold px-2.5 py-1 rounded-lg uppercase tracking-wider hover:bg-champagne-300/10 transition-all bg-white"
+                          >
+                            Add
+                          </button>
+                        ) : (
+                          <div className="flex items-center gap-1.5 bg-[#8B7D6B] text-white text-[8px] font-bold px-2 py-1 rounded-lg border border-[#8B7D6B] h-6">
+                            <button 
+                              onClick={() => handleRemoveFromCart(item.id)}
+                              className="w-3.5 h-3.5 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-xs font-semibold animate-scale-up"
+                            >
+                              -
+                            </button>
+                            <span className="w-2.5 text-center">{cart[item.id]}</span>
+                            <button 
+                              onClick={() => handleAddToCart(item.id)}
+                              className="w-3.5 h-3.5 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-xs font-semibold animate-scale-up"
+                            >
+                              +
+                            </button>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>

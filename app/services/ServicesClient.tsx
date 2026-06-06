@@ -109,6 +109,24 @@ export default function ServicesPage() {
   const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const centerPaneRef = useRef<HTMLDivElement | null>(null);
   const isAutoScrolling = useRef(false);
+  const hasScrolledOnMount = useRef(false);
+
+  // Handle auto-scroll to category on initial entry into catalog
+  useEffect(() => {
+    if (step === "portal") {
+      hasScrolledOnMount.current = false;
+    } else if (step === "catalog" && activeCategory && !hasScrolledOnMount.current) {
+      // Small timeout to allow DOM to render and populate sectionRefs
+      const timer = setTimeout(() => {
+        const targetSection = sectionRefs.current[activeCategory];
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
+          hasScrolledOnMount.current = true;
+        }
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [step, activeCategory]);
 
   // Lock body scroll on ALL devices. overflow:hidden on body does NOT affect position:fixed elements.
   useEffect(() => {
