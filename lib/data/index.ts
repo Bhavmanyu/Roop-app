@@ -412,25 +412,7 @@ export const services = [
     ],
     description: "Deeply relaxing massage using long strokes to release muscle knots, increase blood flow, and relieve mental stress.",
   },
-  {
-    id: "deep-tissue-massage-men",
-    name: "Deep Tissue Therapeutic Massage (Men)",
-    category: "spa-massage",
-    occasion: "Men's Spa",
-    price: 1999,
-    originalPrice: 2599,
-    duration: "1 hour",
-    rating: 4.89,
-    reviews: 19000,
-    tag: "Therapeutic",
-    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770656429818-d0de5d.jpeg",
-    includes: [
-      "60-min deep tissue massage focusing on core muscles",
-      "Nourishing herbal oils to ease deep muscle tension",
-      "Trained, certified male massage therapists"
-    ],
-    description: "Targeted deep-pressure massage designed to relieve chronic muscle stiffness, joint soreness, and athletic fatigue.",
-  },
+
   {
     id: "aromatic-head-shoulder",
     name: "Aromatic Head & Shoulder Massage",

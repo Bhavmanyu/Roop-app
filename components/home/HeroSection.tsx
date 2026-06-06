@@ -97,16 +97,16 @@ const bestSellerCombos = [
     link: "/services?gender=men"
   },
   {
-    id: "deep-tissue-massage-men",
-    name: "Deep Tissue Therapeutic Massage",
-    category: "Massages",
-    image: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=300",
-    rating: "4.89",
-    reviews: "19K",
-    price: 1999,
-    originalPrice: 2599,
-    tag: "Relaxing",
-    link: "/services?category=spa-massage"
+    id: "royal-shave",
+    name: "Royal Hot Towel Shave & Styling",
+    category: "Men's Grooming",
+    image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=300",
+    rating: "4.86",
+    reviews: "48K",
+    price: 399,
+    originalPrice: 449,
+    tag: "Trending",
+    link: "/services?gender=men"
   }
 ];
 
@@ -235,8 +235,8 @@ export default function HeroSection() {
     {
       id: 3,
       image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600",
-      title: "Men's Grooming & Spa",
-      sub: "Relaxing massages & precision cuts",
+      title: "Men's Grooming",
+      sub: "Precision haircuts & styling outlines",
       link: "/services?gender=men"
     }
   ];
@@ -249,7 +249,7 @@ export default function HeroSection() {
       badge: "20% OFF"
     },
     {
-      label: "Men's Salon",
+      label: "Men's Grooming",
       image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=150",
       href: "/services?gender=men",
       badge: "Men"
@@ -323,18 +323,13 @@ export default function HeroSection() {
       ]
     },
     {
-      title: "Men's Salon & Massage",
+      title: "Men's Grooming",
       items: [
         {
-          label: "Salon for Men",
+          label: "Men's Grooming",
           image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=150",
           href: "/services?gender=men",
           badge: "Men"
-        },
-        {
-          label: "Spa for Men",
-          image: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=150",
-          href: "/services?category=spa-massage&gender=men"
         }
       ]
     },
