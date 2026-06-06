@@ -94,7 +94,7 @@ export default function CareersPage() {
               Why professional artists <span className="italic text-gradient-gold">choose Roopé.</span>
             </h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
             {benefits.map((b, i) => (
               <motion.div
                 key={b.title}
@@ -102,30 +102,30 @@ export default function CareersPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="card-luxury p-6 bg-[#FAF9F6] border border-pearl-200"
+                className="card-luxury p-3 md:p-6 bg-[#FAF9F6] border border-pearl-200"
               >
-                <div className="w-10 h-10 rounded-xl bg-champagne-300/20 flex items-center justify-center mb-4">
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-champagne-300/20 flex items-center justify-center mb-3 md:mb-4">
                   {b.icon}
                 </div>
-                <h3 className="text-sm font-bold text-roope-primary mb-2">{b.title}</h3>
-                <p className="text-xs text-stone-warm/75 leading-relaxed">{b.desc}</p>
+                <h3 className="text-xs md:text-sm font-bold text-roope-primary mb-1 md:mb-2">{b.title}</h3>
+                <p className="text-[10px] md:text-xs text-stone-warm/75 leading-normal md:leading-relaxed">{b.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
-
+ 
       {/* Open Roles */}
-      <section className="py-20 px-6 bg-[#FAF9F6]">
+      <section className="py-12 md:py-20 px-4 md:px-6 bg-[#FAF9F6]">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="font-display text-xl md:text-3xl font-semibold md:font-light text-roope-primary">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="font-display text-lg md:text-3xl font-semibold md:font-light text-roope-primary">
               Open <span className="italic text-gradient-gold">Opportunities</span>
             </h2>
-            <p className="text-stone-warm text-xs mt-2">Indore, India (Home Services Network)</p>
+            <p className="text-stone-warm text-xs mt-1">Indore, India (Home Services Network)</p>
           </div>
-
-          <div className="space-y-4">
+ 
+          <div className="space-y-3 md:space-y-4">
             {jobs.map((job, i) => (
               <motion.div
                 key={job.title}
@@ -133,21 +133,21 @@ export default function CareersPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white rounded-3xl p-6 border border-pearl-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-champagne-DEFAULT transition-all"
+                className="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 border border-pearl-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 hover:border-champagne-DEFAULT transition-all"
               >
                 <div>
-                  <h3 className="font-display text-base md:text-lg font-semibold md:font-light text-roope-primary">{job.title}</h3>
-                  <div className="flex flex-wrap gap-2.5 mt-2">
-                    <span className="text-[10px] font-bold text-stone-warm/50 uppercase bg-pearl-100 px-2 py-0.5 rounded">
+                  <h3 className="font-display text-sm md:text-lg font-semibold md:font-light text-roope-primary">{job.title}</h3>
+                  <div className="flex flex-wrap gap-1.5 md:gap-2.5 mt-1.5 md:mt-2">
+                    <span className="text-[9px] md:text-[10px] font-bold text-stone-warm/50 uppercase bg-pearl-100 px-1.5 py-0.5 rounded">
                       {job.type}
                     </span>
-                    <span className="text-[10px] font-bold text-stone-warm/50 uppercase bg-pearl-100 px-2 py-0.5 rounded">
+                    <span className="text-[9px] md:text-[10px] font-bold text-stone-warm/50 uppercase bg-pearl-100 px-1.5 py-0.5 rounded">
                       {job.exp}
                     </span>
                   </div>
-                  <div className="flex flex-wrap gap-1.5 mt-3">
+                  <div className="flex flex-wrap gap-1 mt-2.5 md:mt-3">
                     {job.skills.map(s => (
-                      <span key={s} className="text-[9px] font-semibold text-[#B8922E] bg-champagne-300/10 px-2 py-0.5 rounded-full">
+                      <span key={s} className="text-[8.5px] md:text-[9px] font-semibold text-[#B8922E] bg-champagne-300/10 px-1.5 py-0.5 rounded-full">
                         {s}
                       </span>
                     ))}
@@ -155,7 +155,7 @@ export default function CareersPage() {
                 </div>
                 <Link
                   href="/register/professional"
-                  className="btn-primary py-3 px-5 text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-1.5 self-start md:self-auto"
+                  className="btn-primary py-2.5 px-4 md:py-3 md:px-5 text-[10px] md:text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-1.5 self-start md:self-auto"
                 >
                   Apply Now <ArrowRight className="w-3.5 h-3.5" />
                 </Link>

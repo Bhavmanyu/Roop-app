@@ -85,7 +85,7 @@ export default function EventsPage() {
           {/* Packages */}
           <div className="lg:col-span-2">
             <h2 className="font-display text-base font-semibold md:text-2xl md:font-light text-roope-primary mb-4 md:mb-6">Choose a Package</h2>
-            <div className="grid sm:grid-cols-2 gap-4 md:gap-5 mb-6 md:mb-10">
+            <div className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory sm:grid sm:grid-cols-2 sm:gap-5 sm:pb-0 scrollbar-none -mx-4 px-4 mb-6 md:mb-10">
               {eventPackages.map((pkg, i) => (
                 <motion.div
                   key={pkg.id}
@@ -94,7 +94,7 @@ export default function EventsPage() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
                   onClick={() => setSelectedPackage(pkg.id)}
-                  className="cursor-pointer rounded-2xl md:rounded-3xl p-4 md:p-6 transition-all duration-300"
+                  className="cursor-pointer rounded-2xl md:rounded-3xl p-4.5 md:p-6 transition-all duration-300 flex-shrink-0 w-[85%] snap-center sm:w-auto sm:flex-shrink"
                   style={{
                     background: selectedPackage === pkg.id ? "rgba(201,168,76,0.06)" : "rgba(255,255,255,0.9)",
                     border: selectedPackage === pkg.id ? "2px solid #C9A84C" : "1px solid rgba(107,94,82,0.12)",

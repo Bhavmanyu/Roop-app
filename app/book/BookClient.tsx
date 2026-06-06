@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -654,43 +655,99 @@ export default function BookPage() {
               <motion.div
                 key={service.id}
                 layoutId={`service-card-${service.id}`}
-                className={`card-luxury overflow-hidden flex flex-col justify-between transition-all duration-300 ${isSelected ? "shadow-gold border-champagne-DEFAULT animate-pulse-subtle" : "border border-pearl-300 hover:border-champagne-300"}`}
+                className={`card-luxury overflow-hidden flex flex-row gap-3 md:gap-5 p-3 pb-4 md:p-5 items-start justify-between transition-all duration-300 hover:shadow-md ${
+                  isSelected ? "border-champagne-DEFAULT ring-1 ring-champagne-300/10" : "border-pearl-200/80"
+                }`}
                 style={{ background: isSelected ? "linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(201,168,76,0.03) 100%)" : "rgba(255,255,255,0.8)" }}
               >
-                <div className="p-3.5 md:p-6">
-                  <div className="flex justify-between items-center mb-2.5">
-                    <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest bg-champagne-300/30 text-roope-primary px-2.5 py-0.5 md:py-1 rounded-full">{service.tag || "Exclusive"}</span>
+                {/* Info Column */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-1.5 mb-1.5">
+                    <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest bg-champagne-300/30 text-roope-primary px-2.5 py-0.5 rounded-full">
+                      {service.tag || "Exclusive"}
+                    </span>
                     <div className="flex items-center gap-1 text-[10px] md:text-xs font-medium text-stone-warm">
                       <span className="text-gold">★</span>
                       <span>{service.rating}</span>
                       <span className="text-stone-warm/50">({service.reviews})</span>
                     </div>
                   </div>
-                  <h3 className="font-display text-sm font-semibold md:text-xl md:font-light text-roope-primary mb-1 md:mb-1.5">{service.name}</h3>
-                  <p className="text-[10px] md:text-xs text-stone-warm/80 leading-relaxed mb-2.5 md:mb-4">{service.description}</p>
-                  <div className="flex flex-wrap gap-1.5 mb-3 md:mb-5">
+                  <h3 className="font-display text-xs sm:text-sm md:text-xl md:font-light text-roope-primary leading-snug">
+                    {service.name}
+                  </h3>
+
+                  {/* Mobile-only Pricing & Duration */}
+                  <div className="flex items-center gap-2 mt-1 sm:hidden">
+                    <span className="font-display text-xs font-bold text-roope-primary">
+                      {formatPrice(service.price)}
+                    </span>
+                    {service.originalPrice && (
+                      <span className="text-[9px] text-stone-warm/40 line-through">
+                        {formatPrice(service.originalPrice)}
+                      </span>
+                    )}
+                    <span className="text-[9px] text-stone-warm/50 flex items-center gap-0.5 ml-1">
+                      <Clock className="w-2.5 h-2.5 text-stone-warm/30" />
+                      <span>{service.duration}</span>
+                    </span>
+                  </div>
+
+                  <p className="text-stone-warm/80 text-[10px] md:text-xs leading-relaxed mt-2.5 mb-2.5 line-clamp-2 md:line-clamp-none">
+                    {service.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-1.5">
                     {service.includes?.slice(0, 4).map((inc, i) => (
                       <span key={i} className="text-[9px] md:text-[10px] bg-pearl-200/50 text-stone-warm px-1.5 py-0.5 rounded-md border border-pearl-300/30">✓ {inc}</span>
                     ))}
                   </div>
                 </div>
-                <div className="px-3.5 pb-3.5 pt-2.5 md:px-6 md:pb-6 md:pt-4 border-t border-pearl-200/50 flex justify-between items-center bg-pearl-100/10">
-                  <div>
-                    <div className="flex items-baseline gap-1.5 md:gap-2">
-                      <span className="font-display text-sm font-semibold md:text-xl md:font-light text-roope-primary">{formatPrice(service.price)}</span>
-                      {service.originalPrice && <span className="text-[10px] md:text-xs text-stone-warm/50 line-through">{formatPrice(service.originalPrice)}</span>}
-                    </div>
-                    <div className="flex items-center gap-1 text-[9px] md:text-[10px] text-stone-warm/60 mt-0.5">
-                      <Clock className="w-3 h-3 text-stone-warm/40" />
-                      <span>{service.duration}</span>
-                    </div>
+
+                {/* Image & Action Button Column */}
+                <div className="flex flex-col items-center flex-shrink-0 w-20 sm:w-28 relative">
+                  {/* Service Image Preview */}
+                  <div className="relative w-20 sm:w-28 h-20 sm:h-20 rounded-xl overflow-hidden border border-pearl-200/80 bg-pearl-200 flex-shrink-0">
+                    <Image
+                      src={service.image}
+                      alt={service.name}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 80px, 112px"
+                      unoptimized
+                    />
                   </div>
-                  <button
-                    onClick={() => toggleService(service.id)}
-                    className={`px-3.5 py-1.5 rounded-lg md:rounded-full text-[10px] md:text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${isSelected ? "bg-stone-warm text-white" : "border border-champagne-DEFAULT text-roope-primary hover:bg-champagne-DEFAULT hover:text-white"}`}
-                  >
-                    {isSelected ? "Selected" : "Add"}
-                  </button>
+
+                  {/* Prices and Duration - Desktop Only */}
+                  <div className="hidden sm:block text-center mt-2.5">
+                    <div className="flex items-baseline gap-1.5 justify-center">
+                      <span className="font-display text-sm font-semibold md:text-lg md:font-light text-roope-primary">
+                        {formatPrice(service.price)}
+                      </span>
+                      {service.originalPrice && (
+                        <span className="text-[10px] text-stone-warm/40 line-through">
+                          {formatPrice(service.originalPrice)}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-[10px] text-stone-warm/50 flex items-center gap-1 justify-center mt-0.5">
+                      <Clock className="w-3 h-3 text-stone-warm/30" />
+                      <span>{service.duration}</span>
+                    </p>
+                  </div>
+
+                  {/* Add or Selected Button */}
+                  <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 sm:static sm:bottom-auto sm:left-auto sm:translate-x-0 sm:mt-3 z-10 shadow-md sm:shadow-none">
+                    <button
+                      onClick={() => toggleService(service.id)}
+                      className={`w-16 sm:w-28 py-1 sm:py-2 border rounded-lg sm:rounded-xl text-[9px] sm:text-xs font-semibold uppercase tracking-widest transition-all bg-white ${
+                        isSelected 
+                          ? "bg-stone-warm border-stone-warm text-white hover:bg-stone-warm/95" 
+                          : "border-champagne-DEFAULT text-roope-primary hover:bg-champagne-DEFAULT hover:text-white"
+                      }`}
+                    >
+                      {isSelected ? "Selected" : "Add"}
+                    </button>
+                  </div>
                 </div>
               </motion.div>
             );
