@@ -8,70 +8,70 @@ export default function HomeServicesSection() {
   const serviceCategories = [
     {
       label: "Women's Salon",
-      image: "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=150",
+      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776843864535-72277e.jpeg",
       href: "/services?gender=women",
       badge: "20% OFF"
     },
     {
       label: "Korean Facials",
-      image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=150",
+      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1777289404699-a6b57d.jpeg",
       href: "/services?category=facials",
       badge: "Glow"
     },
     {
       label: "Manicure",
-      image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=150",
+      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770659329192-be6242.jpeg",
       href: "/services?search=Manicure",
       badge: "New"
     },
     {
       label: "Pedicure",
-      image: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=150",
+      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770659323099-b295c8.jpeg",
       href: "/services?search=Pedicure"
     },
     {
       label: "Waxing & Thread",
-      image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=150",
+      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770203489779-b131f8.jpeg",
       href: "/services?category=waxing",
       badge: "Deal"
     },
     {
       label: "Spa & Massage",
-      image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=150",
+      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682277109-e8bece.jpeg",
       href: "/services?category=spa-massage"
     },
     {
       label: "Combos & Offers",
-      image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=150",
+      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1777289098166-78b28b.jpeg",
       href: "/services?category=super-saver",
       badge: "Value"
     },
     {
       label: "Hair & Styling",
-      image: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=150",
+      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682281496-8bf504.jpeg",
       href: "/services?search=hair"
     },
     {
       label: "Bridal Glam",
-      image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=150",
+      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
       href: "/bridal",
       badge: "Elite"
     },
     {
       label: "Event Glam",
-      image: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=150",
+      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
       href: "/events",
       badge: "Luxury"
     },
     {
       label: "Free Consult",
-      image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=150",
+      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
       href: "/bridal#packages",
       badge: "Free"
     },
     {
       label: "Men's Grooming",
-      image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=150",
+      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776843862206-4d4247.jpeg",
       href: "/services?gender=men",
       badge: "Men"
     }
@@ -153,7 +153,7 @@ export default function HomeServicesSection() {
         <div className="col-span-5 grid grid-cols-2 gap-4">
           <div className="relative h-64 rounded-3xl overflow-hidden shadow-luxury border border-pearl-200">
             <Image
-              src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400"
+              src="https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776843864535-72277e.jpeg"
               alt="Women's Salon"
               fill
               className="object-cover"
@@ -163,7 +163,7 @@ export default function HomeServicesSection() {
           </div>
           <div className="relative h-64 rounded-3xl overflow-hidden shadow-luxury border border-pearl-200 mt-8">
             <Image
-              src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=400"
+              src="https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776843862206-4d4247.jpeg"
               alt="Men's Grooming"
               fill
               className="object-cover"
@@ -173,7 +173,7 @@ export default function HomeServicesSection() {
           </div>
           <div className="relative h-64 rounded-3xl overflow-hidden shadow-luxury border border-pearl-200 -mt-8">
             <Image
-              src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400"
+              src="https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770659329192-be6242.jpeg"
               alt="Pedicure & Manicure"
               fill
               className="object-cover"
@@ -183,7 +183,7 @@ export default function HomeServicesSection() {
           </div>
           <div className="relative h-64 rounded-3xl overflow-hidden shadow-luxury border border-pearl-200">
             <Image
-              src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400"
+              src="https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg"
               alt="Bridal Glam"
               fill
               className="object-cover"

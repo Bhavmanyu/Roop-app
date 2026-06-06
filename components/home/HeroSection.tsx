@@ -13,7 +13,7 @@ const curatedExperiences = [
     id: "bridal-signature",
     name: "Signature Bridal Glam",
     category: "Bridal",
-    image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=300",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
     rating: "4.9",
     reviews: "1.2K",
     price: 14999,
@@ -25,7 +25,7 @@ const curatedExperiences = [
     id: "korean-glass-skin",
     name: "Korean Glass Skin Facial",
     category: "Korean Facials",
-    image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=300",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1777289404699-a6b57d.jpeg",
     rating: "4.9",
     reviews: "28K",
     price: 1499,
@@ -37,7 +37,7 @@ const curatedExperiences = [
     id: "airbrush-glam",
     name: "HD Airbrush Makeup",
     category: "Event Glam",
-    image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=300",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
     rating: "4.9",
     reviews: "540",
     price: 4999,
@@ -49,7 +49,7 @@ const curatedExperiences = [
     id: "stress-relief-massage-women",
     name: "Stress Relief Full Body Massage",
     category: "Spa & Massage",
-    image: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=300",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770656427240-a4da39.jpeg",
     rating: "4.91",
     reviews: "24K",
     price: 1899,
@@ -64,7 +64,7 @@ const bestSellerCombos = [
     id: "mani-pedi-duo",
     name: "Classic Pedicure & Manicure Duo",
     category: "Combos",
-    image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=300",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770659329192-be6242.jpeg",
     rating: "4.85",
     reviews: "58K",
     price: 1199,
@@ -76,7 +76,7 @@ const bestSellerCombos = [
     id: "roll-on-waxing",
     name: "Roll-on Waxing (Full Body)",
     category: "Waxing",
-    image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=300",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770654756881-fc5c4a.jpeg",
     rating: "4.89",
     reviews: "42K",
     price: 1299,
@@ -88,7 +88,7 @@ const bestSellerCombos = [
     id: "premium-haircut-beard",
     name: "Premium Haircut & Beard Styling",
     category: "Men's Grooming",
-    image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=300",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776843862206-4d4247.jpeg",
     rating: "4.84",
     reviews: "112K",
     price: 499,
@@ -100,7 +100,7 @@ const bestSellerCombos = [
     id: "royal-shave",
     name: "Royal Hot Towel Shave & Styling",
     category: "Men's Grooming",
-    image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=300",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770661390930-8f5b6c.jpeg",
     rating: "4.86",
     reviews: "48K",
     price: 399,
@@ -220,21 +220,21 @@ export default function HeroSection() {
   const mobileSlides = [
     {
       id: 1,
-      image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600",
+      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
       title: "Bridal Glamour Lead",
       sub: "Certified lead artists at your doorstep",
       link: "/bridal"
     },
     {
       id: 2,
-      image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600",
+      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776843864535-72277e.jpeg",
       title: "Salon & Spa for Women",
       sub: "Flat 20% OFF on your first booking",
       link: "/services?gender=women"
     },
     {
       id: 3,
-      image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600",
+      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776843862206-4d4247.jpeg",
       title: "Men's Grooming",
       sub: "Precision haircuts & styling outlines",
       link: "/services?gender=men"
@@ -244,30 +244,30 @@ export default function HeroSection() {
   const heroGridServices = [
     {
       label: "Women's Salon",
-      image: "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=150",
+      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776843864535-72277e.jpeg",
       href: "/services?gender=women",
       badge: "20% OFF"
     },
     {
       label: "Men's Grooming",
-      image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=150",
+      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776843862206-4d4247.jpeg",
       href: "/services?gender=men",
       badge: "Men"
     },
     {
       label: "Spa & Massage",
-      image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=150",
+      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682277109-e8bece.jpeg",
       href: "/services?category=spa-massage"
     },
     {
       label: "Bridal Glam",
-      image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=150",
+      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
       href: "/bridal",
       badge: "Elite"
     },
     {
       label: "Event Glam",
-      image: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=150",
+      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
       href: "/events",
       badge: "Luxury"
     },
@@ -283,41 +283,41 @@ export default function HeroSection() {
       items: [
         {
           label: "Salon for Women",
-          image: "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=150",
+          image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776843864535-72277e.jpeg",
           href: "/services?gender=women",
           badge: "20% OFF"
         },
         {
           label: "Korean Facials",
-          image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=150",
+          image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1777289404699-a6b57d.jpeg",
           href: "/services?category=facials",
           badge: "Glow"
         },
         {
           label: "Spa & Massage",
-          image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=150",
+          image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682277109-e8bece.jpeg",
           href: "/services?category=spa-massage"
         },
         {
           label: "Waxing & Thread",
-          image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=150",
+          image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770203489779-b131f8.jpeg",
           href: "/services?category=waxing",
           badge: "Deal"
         },
         {
           label: "Manicure",
-          image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=150",
+          image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770659329192-be6242.jpeg",
           href: "/services?search=Manicure",
           badge: "New"
         },
         {
           label: "Pedicure",
-          image: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=150",
+          image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770659323099-b295c8.jpeg",
           href: "/services?search=Pedicure"
         },
         {
           label: "Hair & Styling",
-          image: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=150",
+          image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682281496-8bf504.jpeg",
           href: "/services?search=hair"
         }
       ]
@@ -327,7 +327,7 @@ export default function HeroSection() {
       items: [
         {
           label: "Men's Grooming",
-          image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=150",
+          image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776843862206-4d4247.jpeg",
           href: "/services?gender=men",
           badge: "Men"
         }
@@ -338,19 +338,19 @@ export default function HeroSection() {
       items: [
         {
           label: "Bridal Glam",
-          image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=150",
+          image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
           href: "/bridal",
           badge: "Elite"
         },
         {
           label: "Event Glam",
-          image: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=150",
+          image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
           href: "/events",
           badge: "Luxury"
         },
         {
           label: "Free Consult",
-          image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=150",
+          image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
           href: "/bridal#packages",
           badge: "Free"
         }

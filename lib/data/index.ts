@@ -265,7 +265,7 @@ export const services = [
     rating: 4.82,
     reviews: 15000,
     tag: "Essential",
-    image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770659329192-be6242.jpeg",
     includes: [
       "Nail cut, file & shape",
       "Cuticle care & cleaning",
@@ -285,7 +285,7 @@ export const services = [
     rating: 4.84,
     reviews: 18000,
     tag: "Essential",
-    image: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=600",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770659323099-b295c8.jpeg",
     includes: [
       "Warm water foot soak & scrub",
       "Nail cut, file & shape",
