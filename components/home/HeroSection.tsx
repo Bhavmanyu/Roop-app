@@ -608,17 +608,19 @@ export default function HeroSection() {
                 href={service.href}
                 className="flex flex-col items-center text-center group relative"
               >
-                <div className="relative w-14 h-14 bg-white border border-pearl-200 shadow-sm rounded-full overflow-hidden flex-shrink-0 flex items-center justify-center">
-                  <Image
-                    src={service.image}
-                    alt={service.label}
-                    fill
-                    className="object-cover"
-                    sizes="56px"
-                    unoptimized
-                  />
+                <div className="relative w-14 h-14 flex-shrink-0">
+                  <div className="absolute inset-0 bg-white border border-pearl-200 shadow-sm rounded-full overflow-hidden flex items-center justify-center">
+                    <Image
+                      src={service.image}
+                      alt={service.label}
+                      fill
+                      className="object-cover"
+                      sizes="56px"
+                      unoptimized
+                    />
+                  </div>
                   {service.badge && (
-                    <span className="absolute top-0 right-0 bg-[#B8922E] text-white text-[7px] font-extrabold px-1.5 py-0.5 rounded-bl leading-tight uppercase tracking-wide">
+                    <span className="absolute -top-1 -right-1.5 bg-[#B8922E] text-white text-[7.5px] font-extrabold px-1.5 py-0.5 rounded-full shadow-sm z-10 leading-none uppercase tracking-wide whitespace-nowrap">
                       {service.badge}
                     </span>
                   )}
