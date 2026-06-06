@@ -126,7 +126,7 @@ export const services = [
     rating: 4.82,
     reviews: 4200,
     tag: "Best Value",
-    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770660852627-c584ec.jpeg",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1753178331803-9c6a1f.jpeg",
     includes: [
       "Haircut: Trendy cut matching your face shape",
       "Beard Styling: Precision trim & straight razor outlines",
@@ -345,7 +345,7 @@ export const services = [
     rating: 4.84,
     reviews: 112000,
     tag: "Trending",
-    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770661384210-fed330.jpeg",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1753178331803-9c6a1f.jpeg",
     includes: [
       "Custom haircut & shampoo conditioning",
       "Beard shaping, mustache trim & razor styling",
@@ -383,7 +383,7 @@ export const services = [
     rating: 4.86,
     reviews: 48000,
     tag: "Price drop",
-    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770661390930-8f5b6c.jpeg",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1749642965077-53be02.jpeg",
     includes: [
       "Hot towel treatment to soften facial hair follicles",
       "Classic lather shave or precision beard grooming",

@@ -59,13 +59,13 @@ export default function HomeServicesSection() {
     },
     {
       label: "Event Glam",
-      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
+      image: "/images/gallery_party_glam.png",
       href: "/events",
       badge: "Luxury"
     },
     {
       label: "Free Consult",
-      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
+      image: "/images/hero_bridal.png",
       href: "/bridal#packages",
       badge: "Free"
     },
