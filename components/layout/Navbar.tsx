@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, User, LogOut, Calendar, Shield, Search } from "lucide-react";
+import { Menu, X, ChevronDown, User, LogOut, Calendar, Shield, Search, ShoppingBag } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import AuthModal from "@/components/auth/AuthModal";
 import { services, bridalPackages, eventPackages } from "@/lib/data";
@@ -34,6 +34,35 @@ export default function Navbar() {
   const [searchVal, setSearchVal] = useState("");
   const [suggestions, setSuggestions] = useState<any[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+
+  // Sync cart count from localStorage and listen to updates
+  useEffect(() => {
+    const updateCartCount = () => {
+      const savedCart = localStorage.getItem("roope-cart");
+      if (savedCart) {
+        try {
+          const cart = JSON.parse(savedCart);
+          const count = Object.values(cart).reduce((sum: number, qty: any) => sum + Number(qty), 0);
+          setCartCount(count);
+        } catch {
+          setCartCount(0);
+        }
+      } else {
+        setCartCount(0);
+      }
+    };
+
+    updateCartCount();
+
+    window.addEventListener("roope-cart-updated", updateCartCount);
+    window.addEventListener("storage", updateCartCount);
+
+    return () => {
+      window.removeEventListener("roope-cart-updated", updateCartCount);
+      window.removeEventListener("storage", updateCartCount);
+    };
+  }, []);
   
   const pathname = usePathname();
   const router = useRouter();
@@ -429,6 +458,19 @@ export default function Navbar() {
               </button>
             )}
 
+            {cartCount > 0 && (
+              <Link
+                href="/book/checkout?checkout=direct"
+                className="w-9 h-9 rounded-full bg-champagne-300/20 border border-champagne-DEFAULT/30 flex items-center justify-center text-roope-primary relative hover:bg-champagne-300/40 transition-colors shadow-sm cursor-pointer mr-1"
+                title="View Cart & Checkout"
+              >
+                <ShoppingBag className="w-4 h-4 text-[#B8922E]" />
+                <span className="absolute -top-1 -right-1 bg-[#B8922E] text-white w-4 h-4 rounded-full flex items-center justify-center text-[8.5px] font-extrabold border border-white leading-none">
+                  {cartCount}
+                </span>
+              </Link>
+            )}
+
             <Link href="/book" className="btn-primary text-sm px-6 py-2.5 shadow-sm">
               Book Now
             </Link>
@@ -452,6 +494,20 @@ export default function Navbar() {
             >
               <Search className="w-4.5 h-4.5" />
             </button>
+
+            {/* Mobile Cart Button */}
+            {cartCount > 0 && (
+              <Link
+                href="/book/checkout?checkout=direct"
+                className="w-8 h-8 rounded-full bg-champagne-300/20 border border-champagne-DEFAULT/30 flex items-center justify-center text-roope-primary relative hover:bg-champagne-300/40 transition-colors shadow-sm"
+                aria-label="View Cart & Checkout"
+              >
+                <ShoppingBag className="w-4 h-4 text-[#B8922E]" />
+                <span className="absolute -top-1 -right-1 bg-[#B8922E] text-white w-4.5 h-4.5 rounded-full flex items-center justify-center text-[8.5px] font-extrabold border border-white leading-none">
+                  {cartCount}
+                </span>
+              </Link>
+            )}
 
             {/* Mobile Account Profile Logo */}
             <button

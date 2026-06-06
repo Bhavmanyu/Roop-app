@@ -259,6 +259,7 @@ export default function CheckoutClient() {
               if (verifyRes.ok) {
                 localStorage.removeItem("roope-cart");
                 setCartItems({});
+                window.dispatchEvent(new Event("roope-cart-updated"));
                 setBookingId(json.bookingId);
                 setConfirmed(true);
               } else {
@@ -311,6 +312,7 @@ export default function CheckoutClient() {
         if (res.ok) {
           localStorage.removeItem("roope-cart");
           setCartItems({});
+          window.dispatchEvent(new Event("roope-cart-updated"));
           setBookingId(json.bookingId);
           setConfirmed(true);
         } else {

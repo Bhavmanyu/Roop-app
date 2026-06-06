@@ -204,6 +204,7 @@ export default function ServicesPage() {
   const saveCart = (newCart: { [id: string]: number }) => {
     setCart(newCart);
     localStorage.setItem("roope-cart", JSON.stringify(newCart));
+    window.dispatchEvent(new Event("roope-cart-updated"));
   };
 
   // Add Item
@@ -331,7 +332,7 @@ export default function ServicesPage() {
 
 
   return (
-    <div className="min-h-screen bg-[#FAF9F6] pb-20">
+    <div className="min-h-screen bg-[#FAF9F6] pb-32">
       <AnimatePresence mode="wait">
         
         {/* ─── STEP 1: DOORSTEP SERVICES PORTAL SELECTOR ─── */}
@@ -1173,7 +1174,7 @@ export default function ServicesPage() {
                   initial={{ y: 100, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: 100, opacity: 0 }}
-                  className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-pearl-200 shadow-xl px-3.5 py-2.5 block lg:hidden"
+                  className="fixed bottom-14 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-pearl-200 shadow-xl px-3.5 py-2.5 block lg:hidden"
                 >
                   <div className="max-w-md mx-auto flex items-center justify-between gap-4">
                     <div className="flex items-center gap-3">
