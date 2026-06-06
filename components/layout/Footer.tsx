@@ -20,12 +20,7 @@ const footerLinks = {
     { label: "Book a Service", href: "/book" },
     { label: "Contact Us", href: "/contact" },
     { label: "FAQ", href: "/contact#faq" },
-    { label: "Partner with Us", href: "/contact#partner" },
     { label: "Cancellation Policy", href: "/cancellation-policy" },
-  ],
-  partners: [
-    { label: "Register as Professional", href: "/register/professional" },
-    { label: "Register Salon / Parlour", href: "/register/salon" },
   ],
 };
 
@@ -72,7 +67,7 @@ export default function Footer() {
 
         {/* Compact Categories of Links Side-by-side horizontally */}
         <div className="space-y-3">
-          {(["services", "company", "support", "partners"] as const).map((key) => (
+          {(["services", "company", "support"] as const).map((key) => (
             <div key={key} className="flex flex-wrap items-baseline gap-2">
               <h3 className="text-[9px] font-extrabold tracking-[0.12em] uppercase text-white/45 min-w-[65px] flex-shrink-0">
                 {key}:
@@ -159,7 +154,7 @@ export default function Footer() {
             </div>
 
             {/* Links */}
-            {(["services", "company", "support", "partners"] as const).map((key) => (
+            {(["services", "company", "support"] as const).map((key) => (
               <div key={key}>
                 <h3 className="text-xs font-medium tracking-[0.12em] uppercase text-white/30 mb-5">
                   {key.charAt(0).toUpperCase() + key.slice(1)}

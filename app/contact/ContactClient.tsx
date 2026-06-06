@@ -208,22 +208,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
-      {/* Partner CTA */}
-      <section id="partner" className="py-16 px-6" style={{ background: "linear-gradient(135deg, #1A1612 0%, #3D352D 100%)" }}>
-        <div className="max-w-2xl mx-auto text-center">
-          <p className="section-label text-champagne-DEFAULT mb-3">For Artists</p>
-          <h2 className="font-display text-xl md:text-3xl font-semibold md:font-light text-white mb-4">
-            Join the Roopé network.
-          </h2>
-          <p className="text-white/50 text-sm mb-8 leading-relaxed">
-            Are you a certified makeup artist looking to grow your client base? Apply to join Roopé&apos;s verified artist network and get access to thousands of premium clients.
-          </p>
-          <Link href="/contact" className="btn-primary px-10 py-4 inline-flex items-center gap-2">
-            Apply as Artist <Send className="w-4 h-4" />
-          </Link>
-        </div>
-      </section>
     </>
   );
 }
