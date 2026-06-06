@@ -37,7 +37,7 @@ const curatedExperiences = [
     id: "airbrush-glam",
     name: "HD Airbrush Makeup",
     category: "Event Glam",
-    image: "/images/event_glam_icon.png",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
     rating: "4.9",
     reviews: "540",
     price: 4999,
@@ -267,7 +267,7 @@ export default function HeroSection() {
     },
     {
       label: "Event Glam",
-      image: "/images/event_glam_icon.png",
+      image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
       href: "/events",
       badge: "Luxury"
     },
@@ -344,13 +344,13 @@ export default function HeroSection() {
         },
         {
           label: "Event Glam",
-          image: "/images/event_glam_icon.png",
+          image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
           href: "/events",
           badge: "Luxury"
         },
         {
           label: "Free Consult",
-          image: "/images/free_consult_icon.png",
+          image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
           href: "/bridal#packages",
           badge: "Free"
         }

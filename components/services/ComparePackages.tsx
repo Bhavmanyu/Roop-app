@@ -113,7 +113,7 @@ const ALL_PACKAGES: NormalizedPackage[] = [
     rating: 4.90,
     reviews: 450,
     type: "bridal",
-    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1759154953718-3302bb.jpeg",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
     includes: [
       "HD Bridal Makeup",
       "Hair Styling + Draping",
@@ -136,7 +136,7 @@ const ALL_PACKAGES: NormalizedPackage[] = [
     rating: 4.95,
     reviews: 580,
     type: "bridal",
-    image: "/images/bridal_glam_1.png",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
     includes: [
       "Airbrush Bridal Makeup",
       "Luxury Hair Styling + Draping",
@@ -162,7 +162,7 @@ const ALL_PACKAGES: NormalizedPackage[] = [
     rating: 4.80,
     reviews: 198,
     type: "event",
-    image: "/images/event_glam_icon.png",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
     includes: [
       "Party Glam Base",
       "Detailed Eye Look",
@@ -181,7 +181,7 @@ const ALL_PACKAGES: NormalizedPackage[] = [
     rating: 4.85,
     reviews: 240,
     type: "event",
-    image: "/images/free_consult_icon.png",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
     includes: [
       "Full Glam High Definition Makeup",
       "Premium Hair Styling",
@@ -200,7 +200,7 @@ const ALL_PACKAGES: NormalizedPackage[] = [
     rating: 4.82,
     reviews: 180,
     type: "event",
-    image: "/images/gallery_natural_glam.png",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
     includes: [
       "Full Makeup per Person",
       "Dedicated Group Artist Crew",
@@ -219,7 +219,7 @@ const ALL_PACKAGES: NormalizedPackage[] = [
     rating: 4.90,
     reviews: 110,
     type: "event",
-    image: "/images/makeup_application.png",
+    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682279120-0ec7a1.jpeg",
     includes: [
       "Avant-garde Fashion Runway Makeup",
       "Couture Hair Styling",
