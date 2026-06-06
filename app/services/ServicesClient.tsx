@@ -608,22 +608,25 @@ export default function ServicesPage() {
 
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
-                    <div className="flex flex-wrap items-center gap-1.5 md:gap-2 mb-2 justify-center md:justify-start">
-                      <span className="text-[9px] md:text-[10px] bg-champagne-300/40 text-roope-primary px-2.5 py-1 rounded-full font-bold uppercase tracking-widest whitespace-nowrap">
+                    <div className="flex flex-wrap items-center gap-2 mb-3 justify-start">
+                      <span className="text-[9px] md:text-[10px] bg-champagne-300/20 text-roope-primary px-2.5 py-1 rounded-full font-bold uppercase tracking-widest whitespace-nowrap border border-champagne-400/20">
                         Salon Prime
                       </span>
-                      <span className="text-[9px] md:text-[10px] bg-[#B8922E]/10 text-[#B8922E] px-2.5 py-0.5 rounded-full font-extrabold uppercase whitespace-nowrap">
+                      <span className="text-[9px] md:text-[10px] bg-[#B8922E]/10 text-[#B8922E] px-2.5 py-1 rounded-full font-extrabold uppercase tracking-widest whitespace-nowrap border border-[#B8922E]/20">
                         For {gender === "men" ? "Gentlemen" : "Ladies"}
                       </span>
-                      <span className="text-xs text-stone-warm font-semibold flex items-center gap-1 whitespace-nowrap">
-                        ★ 4.85 <span className="text-stone-warm/50 font-normal text-[10px] md:text-xs hidden sm:inline">(17.6M bookings completed)</span>
-                        <span className="text-stone-warm/50 font-normal text-[10px] sm:hidden">(17M+)</span>
+                      <span className="inline-flex items-center gap-1 text-[9px] md:text-[10px] bg-white text-stone-warm border border-pearl-300 px-2.5 py-1 rounded-full font-bold whitespace-nowrap shadow-sm">
+                        <Star className="w-3.5 h-3.5 fill-champagne-DEFAULT text-champagne-DEFAULT" />
+                        <span>4.85</span>
+                        <span className="text-stone-light mx-0.5 font-normal">|</span>
+                        <span className="text-stone-warm/80 font-normal hidden sm:inline">17.6M bookings</span>
+                        <span className="text-stone-warm/80 font-normal sm:hidden">17M+</span>
                       </span>
                     </div>
-                    <h1 className="font-display text-xl md:text-5xl font-semibold md:font-light text-roope-primary tracking-tight leading-tight text-center md:text-left">
+                    <h1 className="font-display text-2xl md:text-5xl font-semibold md:font-light text-roope-primary tracking-tight leading-tight text-left">
                       Luxury <span className="italic text-gradient-gold">Doorstep Services</span>
                     </h1>
-                    <p className="text-sm text-stone-warm mt-2 text-center md:text-left max-w-xl">
+                    <p className="text-xs md:text-sm text-stone-warm mt-2 text-left max-w-xl leading-relaxed">
                       Unisex premium salon, high-end grooming, therapeutic massage, and deep relaxing spa experiences. Highly trained professionals using luxury products.
                     </p>
                   </div>
