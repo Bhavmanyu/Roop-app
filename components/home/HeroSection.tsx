@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
-import { ArrowRight, Star, Shield, Clock, Sparkles, Search, MapPin, ChevronDown, ShieldCheck, Users, X, ChevronRight } from "lucide-react";
+import { ArrowRight, Star, Shield, Clock, Sparkles, Search, MapPin, ChevronDown, ShieldCheck, Users, X, ChevronRight, LayoutGrid } from "lucide-react";
 import { formatPrice } from "@/lib/utils";
 
 const curatedExperiences = [
@@ -165,6 +165,7 @@ export default function HeroSection() {
   // Mobile-specific States
   const [activeSlide, setActiveSlide] = useState(0);
   const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
+  const [isAllServicesModalOpen, setIsAllServicesModalOpen] = useState(false);
   const [activeLocation, setActiveLocation] = useState("63, Maharani Road, Siyaganj, Indore");
   const [locationSearch, setLocationSearch] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -240,7 +241,7 @@ export default function HeroSection() {
     }
   ];
 
-  const mobileServices = [
+  const heroGridServices = [
     {
       label: "Women's Salon",
       image: "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=150",
@@ -248,43 +249,15 @@ export default function HeroSection() {
       badge: "20% OFF"
     },
     {
-      label: "Korean Facials",
-      image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=150",
-      href: "/services?category=facials",
-      badge: "Glow"
-    },
-    {
-      label: "Manicure",
-      image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=150",
-      href: "/services?search=Manicure",
-      badge: "New"
-    },
-    {
-      label: "Pedicure",
-      image: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=150",
-      href: "/services?search=Pedicure"
-    },
-    {
-      label: "Waxing & Thread",
-      image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=150",
-      href: "/services?category=waxing",
-      badge: "Deal"
+      label: "Men's Salon",
+      image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=150",
+      href: "/services?gender=men",
+      badge: "Men"
     },
     {
       label: "Spa & Massage",
       image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=150",
       href: "/services?category=spa-massage"
-    },
-    {
-      label: "Combos & Offers",
-      image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=150",
-      href: "/services?category=super-saver",
-      badge: "Value"
-    },
-    {
-      label: "Hair & Styling",
-      image: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=150",
-      href: "/services?search=hair"
     },
     {
       label: "Bridal Glam",
@@ -299,16 +272,94 @@ export default function HeroSection() {
       badge: "Luxury"
     },
     {
-      label: "Free Consult",
-      image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=150",
-      href: "/bridal#packages",
-      badge: "Free"
+      label: "All Services",
+      isAllServicesTrigger: true,
+    }
+  ];
+
+  const modalCategories = [
+    {
+      title: "Women's Salon & Spa",
+      items: [
+        {
+          label: "Salon for Women",
+          image: "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=150",
+          href: "/services?gender=women",
+          badge: "20% OFF"
+        },
+        {
+          label: "Korean Facials",
+          image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=150",
+          href: "/services?category=facials",
+          badge: "Glow"
+        },
+        {
+          label: "Spa & Massage",
+          image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=150",
+          href: "/services?category=spa-massage"
+        },
+        {
+          label: "Waxing & Thread",
+          image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=150",
+          href: "/services?category=waxing",
+          badge: "Deal"
+        },
+        {
+          label: "Manicure",
+          image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=150",
+          href: "/services?search=Manicure",
+          badge: "New"
+        },
+        {
+          label: "Pedicure",
+          image: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=150",
+          href: "/services?search=Pedicure"
+        },
+        {
+          label: "Hair & Styling",
+          image: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=150",
+          href: "/services?search=hair"
+        }
+      ]
     },
     {
-      label: "Services for Men",
-      image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=150",
-      href: "/services?gender=men",
-      badge: "Men"
+      title: "Men's Salon & Massage",
+      items: [
+        {
+          label: "Salon for Men",
+          image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=150",
+          href: "/services?gender=men",
+          badge: "Men"
+        },
+        {
+          label: "Spa for Men",
+          image: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=150",
+          href: "/services?category=spa-massage&gender=men"
+        }
+      ]
+    },
+    {
+      title: "Bridal & Event Packages",
+      items: [
+        {
+          label: "Bridal Glam",
+          image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=150",
+          href: "/bridal",
+          badge: "Elite"
+        },
+        {
+          label: "Event Glam",
+          image: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=150",
+          href: "/events",
+          badge: "Luxury"
+        },
+        {
+          label: "Free Consult",
+          image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=150",
+          href: "/bridal#packages",
+          badge: "Free"
+        }
+      ]
     }
   ];
 
@@ -330,7 +381,7 @@ export default function HeroSection() {
 
   // Lock body scroll on ALL devices. overflow:hidden on body does NOT affect position:fixed elements.
   useEffect(() => {
-    if (isLocationModalOpen) {
+    if (isLocationModalOpen || isAllServicesModalOpen) {
       const isMobile = window.matchMedia("(pointer: coarse)").matches ||
                        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
       if (isMobile) {
@@ -356,7 +407,7 @@ export default function HeroSection() {
       document.body.style.width = "";
       document.body.style.overflow = "";
     };
-  }, [isLocationModalOpen]);
+  }, [isLocationModalOpen, isAllServicesModalOpen]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = heroRef.current?.getBoundingClientRect();
@@ -878,35 +929,55 @@ export default function HeroSection() {
 
         {/* Compact Grid of Services */}
         <div className="bg-[#FAF9F6] border border-pearl-200/80 rounded-2xl p-4 shadow-sm">
-          <div className="grid grid-cols-4 gap-y-5 gap-x-2">
-            {mobileServices.map((service, idx) => (
-              <Link
-                key={idx}
-                href={service.href}
-                className="flex flex-col items-center text-center group relative"
-              >
-                <div className="relative w-14 h-14 flex-shrink-0">
-                  <div className="absolute inset-0 bg-white border border-pearl-200 shadow-sm rounded-full overflow-hidden flex items-center justify-center">
-                    <Image
-                      src={service.image}
-                      alt={service.label}
-                      fill
-                      className="object-cover"
-                      sizes="56px"
-                      unoptimized
-                    />
-                  </div>
-                  {service.badge && (
-                    <span className="absolute -top-1 -right-1.5 bg-[#B8922E] text-white text-[7.5px] font-extrabold px-1.5 py-0.5 rounded-full shadow-sm z-10 leading-none uppercase tracking-wide whitespace-nowrap">
-                      {service.badge}
+          <div className="grid grid-cols-3 gap-y-6 gap-x-3">
+            {heroGridServices.map((service, idx) => {
+              if (service.isAllServicesTrigger) {
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => setIsAllServicesModalOpen(true)}
+                    className="flex flex-col items-center text-center group relative cursor-pointer"
+                  >
+                    <div className="relative w-14 h-14 flex-shrink-0">
+                      <div className="absolute inset-0 bg-[#F3E8C8]/40 border border-pearl-200 shadow-sm rounded-full flex items-center justify-center">
+                        <LayoutGrid className="w-6 h-6 text-[#B8922E]" />
+                      </div>
+                    </div>
+                    <span className="text-[9.5px] font-extrabold text-stone-warm mt-2 leading-tight min-h-[24px] flex items-center justify-center">
+                      All Services
                     </span>
-                  )}
-                </div>
-                <span className="text-[9px] font-extrabold text-stone-warm mt-2 leading-tight min-h-[24px] flex items-center justify-center">
-                  {service.label}
-                </span>
-              </Link>
-            ))}
+                  </button>
+                );
+              }
+              return (
+                <Link
+                  key={idx}
+                  href={service.href || "#"}
+                  className="flex flex-col items-center text-center group relative animate-fade-in"
+                >
+                  <div className="relative w-14 h-14 flex-shrink-0">
+                    <div className="absolute inset-0 bg-white border border-pearl-200 shadow-sm rounded-full overflow-hidden flex items-center justify-center">
+                      <Image
+                        src={service.image || ""}
+                        alt={service.label || ""}
+                        fill
+                        className="object-cover"
+                        sizes="56px"
+                        unoptimized
+                      />
+                    </div>
+                    {service.badge && (
+                      <span className="absolute -top-1 -right-1.5 bg-[#B8922E] text-white text-[7.5px] font-extrabold px-1.5 py-0.5 rounded-full shadow-sm z-10 leading-none uppercase tracking-wide whitespace-nowrap">
+                        {service.badge}
+                      </span>
+                    )}
+                  </div>
+                  <span className="text-[9.5px] font-extrabold text-stone-warm mt-2 leading-tight min-h-[24px] flex items-center justify-center">
+                    {service.label}
+                  </span>
+                </Link>
+              );
+            })}
           </div>
         </div>
 
@@ -1158,6 +1229,86 @@ export default function HeroSection() {
               )}
             </div>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* MOBILE ALL SERVICES DRAWER/MODAL (Urban Company Style) */}
+      <AnimatePresence>
+        {isAllServicesModalOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsAllServicesModalOpen(false)}
+              className="fixed inset-0 z-[9998] bg-black/60 backdrop-blur-sm animate-fade-in"
+            />
+            {/* Drawer */}
+            <motion.div
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", damping: 30, stiffness: 250 }}
+              className="fixed bottom-0 left-0 right-0 z-[9999] bg-[#FAF9F6] rounded-t-3xl shadow-2xl flex flex-col max-h-[85vh] overflow-hidden"
+            >
+              {/* Drag Indicator and Header */}
+              <div className="flex flex-col items-center pt-3 pb-4 px-6 border-b border-pearl-200/60 flex-shrink-0">
+                <div className="w-12 h-1.5 bg-stone-warm/20 rounded-full mb-3" />
+                <div className="flex items-center justify-between w-full">
+                  <h3 className="text-sm font-extrabold text-roope-primary uppercase tracking-wider">Explore All Services</h3>
+                  <button
+                    onClick={() => setIsAllServicesModalOpen(false)}
+                    className="w-8 h-8 rounded-full border border-pearl-200 flex items-center justify-center text-stone-warm hover:text-roope-primary bg-white shadow-sm"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Scrollable Categories List */}
+              <div className="flex-1 overflow-y-auto px-6 py-5 space-y-6 overscroll-contain">
+                {modalCategories.map((category, catIdx) => (
+                  <div key={catIdx} className="space-y-3">
+                    <h4 className="text-xs font-extrabold text-roope-primary uppercase tracking-wider border-l-2 border-[#C9A84C] pl-2">
+                      {category.title}
+                    </h4>
+                    
+                    {/* Horizontal Scroll Row of Services */}
+                    <div className="flex gap-3 overflow-x-auto pb-2 -mx-2 px-2 scrollbar-none snap-x snap-mandatory">
+                      {category.items.map((item, itemIdx) => (
+                        <Link
+                          key={itemIdx}
+                          href={item.href}
+                          onClick={() => setIsAllServicesModalOpen(false)}
+                          className="flex flex-col items-center justify-between p-3.5 bg-white border border-pearl-200/80 rounded-2xl w-[96px] h-[96px] flex-shrink-0 snap-start shadow-sm active:scale-95 transition-transform relative"
+                        >
+                          <div className="relative w-10 h-10 flex-shrink-0">
+                            <Image
+                              src={item.image}
+                              alt={item.label}
+                              fill
+                              className="object-cover rounded-full border border-pearl-100"
+                              sizes="40px"
+                              unoptimized
+                            />
+                            {item.badge && (
+                              <span className="absolute -top-1 -right-1 bg-[#B8922E] text-white text-[6px] font-extrabold px-1 py-0.5 rounded-full shadow-sm z-10 leading-none uppercase tracking-wide">
+                                {item.badge}
+                              </span>
+                            )}
+                          </div>
+                          <span className="text-[8.5px] font-extrabold text-stone-warm mt-1.5 leading-tight text-center line-clamp-2 w-full">
+                            {item.label}
+                          </span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>
