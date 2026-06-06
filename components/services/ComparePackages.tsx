@@ -162,7 +162,7 @@ const ALL_PACKAGES: NormalizedPackage[] = [
     rating: 4.80,
     reviews: 198,
     type: "event",
-    image: "/images/gallery_party_glam.png",
+    image: "/images/event_glam_icon.png",
     includes: [
       "Party Glam Base",
       "Detailed Eye Look",
@@ -181,7 +181,7 @@ const ALL_PACKAGES: NormalizedPackage[] = [
     rating: 4.85,
     reviews: 240,
     type: "event",
-    image: "/images/hero_bridal.png",
+    image: "/images/free_consult_icon.png",
     includes: [
       "Full Glam High Definition Makeup",
       "Premium Hair Styling",

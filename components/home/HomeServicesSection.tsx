@@ -59,13 +59,13 @@ export default function HomeServicesSection() {
     },
     {
       label: "Event Glam",
-      image: "/images/gallery_party_glam.png",
+      image: "/images/event_glam_icon.png",
       href: "/events",
       badge: "Luxury"
     },
     {
       label: "Free Consult",
-      image: "/images/hero_bridal.png",
+      image: "/images/free_consult_icon.png",
       href: "/bridal#packages",
       badge: "Free"
     },
