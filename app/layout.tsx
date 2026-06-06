@@ -24,7 +24,7 @@ const instrumentSans = Instrument_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://roope.in"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://roope.beauty"),
   title: {
     default: "Roopé — Luxury Beauty Services, Reimagined",
     template: "%s | Roopé",
