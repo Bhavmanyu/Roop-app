@@ -11,15 +11,23 @@ import BookingCTA from "@/components/home/BookingCTA";
 export default function Home() {
   return (
     <>
-      <HeroSection />
-      <WhyRoope />
-      <ReviewsSection />
+      {/* ─── MOBILE VIEWPORTS ONLY ─── */}
+      <div className="lg:hidden">
+        <HeroSection />
+        <WhyRoope />
+        <ReviewsSection />
+      </div>
+
+      {/* ─── DESKTOP VIEWPORTS ONLY ─── */}
       <div className="hidden lg:block">
+        <HeroSection />
         <HomeServicesSection />
+        <WhyRoope />
         <TrustSection />
         <SignaturePackages />
         <FeaturedTransformations />
         <OffersSection />
+        <ReviewsSection />
         <BookingCTA />
       </div>
     </>
