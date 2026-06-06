@@ -196,48 +196,72 @@ export default function HeroSection() {
   const mobileServices = [
     {
       label: "Women's Salon",
-      image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=150",
+      image: "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=150",
       href: "/services?gender=women",
       badge: "20% OFF"
     },
     {
-      label: "Massage for Men",
-      image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=150",
-      href: "/services?gender=men",
-      badge: "Relax"
-    },
-    {
       label: "Korean Facials",
-      image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=150",
+      image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=150",
       href: "/services?category=facials",
       badge: "Glow"
     },
     {
-      label: "Pedi & Mani",
+      label: "Manicure",
       image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=150",
-      href: "/services?category=pedi-mani"
+      href: "/services?search=Manicure",
+      badge: "New"
+    },
+    {
+      label: "Pedicure",
+      image: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=150",
+      href: "/services?search=Pedicure"
     },
     {
       label: "Waxing & Thread",
-      image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=150",
+      image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=150",
       href: "/services?category=waxing",
       badge: "Deal"
     },
     {
       label: "Spa & Massage",
-      image: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=150",
+      image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=150",
       href: "/services?category=spa-massage"
     },
     {
+      label: "Combos & Offers",
+      image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=150",
+      href: "/services?category=super-saver",
+      badge: "Value"
+    },
+    {
+      label: "Hair & Styling",
+      image: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=150",
+      href: "/services?search=hair"
+    },
+    {
       label: "Bridal Glam",
-      image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=150",
+      image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=150",
       href: "/bridal",
       badge: "Elite"
     },
     {
-      label: "Event Styling",
-      image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150",
-      href: "/events"
+      label: "Event Glam",
+      image: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=150",
+      href: "/events",
+      badge: "Luxury"
+    },
+    {
+      label: "Free Consult",
+      image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=150",
+      href: "/bridal#packages",
+      badge: "Free"
+    },
+    {
+      label: "Services for Men",
+      image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=150",
+      href: "/services?gender=men",
+      badge: "Men"
     }
   ];
 

@@ -255,6 +255,46 @@ export const services = [
 
   // ─── PEDICURE & MANICURE ───────────────────────────────────────────────────
   {
+    id: "classic-manicure",
+    name: "Classic Manicure",
+    category: "pedi-mani",
+    occasion: "Women's Salon",
+    price: 499,
+    originalPrice: 599,
+    duration: "35 mins",
+    rating: 4.82,
+    reviews: 15000,
+    tag: "Essential",
+    image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600",
+    includes: [
+      "Nail cut, file & shape",
+      "Cuticle care & cleaning",
+      "Moisturizing hand massage",
+      "Nail polish application"
+    ],
+    description: "Standard manicure care to clean, shape, and beautify your nails and hands.",
+  },
+  {
+    id: "classic-pedicure",
+    name: "Classic Pedicure",
+    category: "pedi-mani",
+    occasion: "Women's Salon",
+    price: 599,
+    originalPrice: 699,
+    duration: "40 mins",
+    rating: 4.84,
+    reviews: 18000,
+    tag: "Essential",
+    image: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=600",
+    includes: [
+      "Warm water foot soak & scrub",
+      "Nail cut, file & shape",
+      "Heel scrubbing & cuticle care",
+      "Nourishing feet massage"
+    ],
+    description: "Relaxing foot soak and scrub to clean, exfoliate, and shape your toenails.",
+  },
+  {
     id: "candle-spa-pedicure",
     name: "Candle Spa Pedicure",
     category: "pedi-mani",
