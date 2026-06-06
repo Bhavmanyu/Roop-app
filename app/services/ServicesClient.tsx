@@ -30,7 +30,7 @@ const CATEGORY_MAP = [
     id: "super-saver",
     label: "Super savers",
     badge: "Upto 20% OFF",
-    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1777289098166-78b28b.jpeg",
+    image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=150",
     description: "Curated combos & monthly care",
     gender: "women"
   },
@@ -38,7 +38,7 @@ const CATEGORY_MAP = [
     id: "waxing",
     label: "Waxing & threading",
     badge: "Price drop",
-    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770203489779-b131f8.jpeg",
+    image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=150",
     description: "Hygienic cartridge & spatula peel-off",
     gender: "women"
   },
@@ -46,7 +46,7 @@ const CATEGORY_MAP = [
     id: "facials",
     label: "Korean facials",
     badge: "Glow special",
-    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1777289404699-a6b57d.jpeg",
+    image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=150",
     description: "Deep cleanse & collagen hydration",
     gender: "women"
   },
@@ -54,7 +54,7 @@ const CATEGORY_MAP = [
     id: "pedi-mani",
     label: "Pedicure & manicure",
     badge: "Luxury spa",
-    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1770659329192-be6242.jpeg",
+    image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=150",
     description: "Candle spa & structural nail therapy",
     gender: "women"
   },
@@ -62,7 +62,7 @@ const CATEGORY_MAP = [
     id: "grooming",
     label: "Men's grooming",
     badge: "Styling lead",
-    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776843862206-4d4247.jpeg",
+    image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=150",
     description: "Precision haircuts & hot towel shaves",
     gender: "men"
   },
@@ -70,7 +70,7 @@ const CATEGORY_MAP = [
     id: "spa-massage",
     label: "Spa & massage",
     badge: "Stress relief",
-    image: "https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776682277109-e8bece.jpeg",
+    image: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=150",
     description: "Full body Swedish & deep tissue",
     gender: "unisex"
   }
@@ -404,7 +404,7 @@ export default function ServicesPage() {
                 {/* Background Image Header */}
                 <div className="relative h-20 md:h-44 w-full bg-pearl-200 overflow-hidden flex-shrink-0">
                   <Image
-                    src="https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776843864535-72277e.jpeg"
+                    src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600"
                     alt="Salon for Women"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -532,7 +532,7 @@ export default function ServicesPage() {
                 {/* Background Image Header */}
                 <div className="relative h-20 md:h-44 w-full bg-pearl-200 overflow-hidden flex-shrink-0">
                   <Image
-                    src="https://www.urbancompany.com/img?bucket=urbanclap-prod&quality=90&format=auto/w_600,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/supply/customer-app-supply/1776843862206-4d4247.jpeg"
+                    src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600"
                     alt="Grooming for Men"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
