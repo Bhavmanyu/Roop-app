@@ -7,41 +7,74 @@ import { Star, Users } from "lucide-react";
 export default function HomeServicesSection() {
   const serviceCategories = [
     {
-      label: "Women's Salon & Spa",
-      image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=150",
+      label: "Women's Salon",
+      image: "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=150",
       href: "/services?gender=women",
-      badge: "Upto 20% OFF",
-    },
-    {
-      label: "Massage for Men",
-      image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=150",
-      href: "/services?gender=men",
-      badge: "Stress relief",
+      badge: "20% OFF"
     },
     {
       label: "Korean Facials",
-      image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=150",
+      image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=150",
       href: "/services?category=facials",
-      badge: "Glow special",
+      badge: "Glow"
     },
     {
-      label: "Pedicure & Manicure",
+      label: "Manicure",
       image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=150",
-      href: "/services?category=pedi-mani",
-      badge: "Luxury spa",
+      href: "/services?search=Manicure",
+      badge: "New"
+    },
+    {
+      label: "Pedicure",
+      image: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=150",
+      href: "/services?search=Pedicure"
+    },
+    {
+      label: "Waxing & Thread",
+      image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=150",
+      href: "/services?category=waxing",
+      badge: "Deal"
     },
     {
       label: "Spa & Massage",
-      image: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=150",
-      href: "/services?category=spa-massage",
-      badge: "Certified",
+      image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=150",
+      href: "/services?category=spa-massage"
+    },
+    {
+      label: "Combos & Offers",
+      image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=150",
+      href: "/services?category=super-saver",
+      badge: "Value"
+    },
+    {
+      label: "Hair & Styling",
+      image: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=150",
+      href: "/services?search=hair"
     },
     {
       label: "Bridal Glam",
-      image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=150",
+      image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=150",
       href: "/bridal",
-      badge: "Lead Artists",
+      badge: "Elite"
     },
+    {
+      label: "Event Glam",
+      image: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=150",
+      href: "/events",
+      badge: "Luxury"
+    },
+    {
+      label: "Free Consult",
+      image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=150",
+      href: "/bridal#packages",
+      badge: "Free"
+    },
+    {
+      label: "Services for Men",
+      image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=150",
+      href: "/services?gender=men",
+      badge: "Men"
+    }
   ];
 
   return (
@@ -62,29 +95,29 @@ export default function HomeServicesSection() {
           </div>
 
           {/* Grid card */}
-          <div className="bg-[#FAF9F6] border border-pearl-200/80 rounded-[32px] p-8 shadow-luxury">
-            <div className="grid grid-cols-3 gap-6">
+          <div className="bg-[#FAF9F6] border border-pearl-200/80 rounded-[32px] p-6 shadow-luxury">
+            <div className="grid grid-cols-4 gap-4">
               {serviceCategories.map((cat, idx) => (
                 <Link
                   key={idx}
                   href={cat.href}
-                  className="bg-white rounded-2xl border border-pearl-200/60 p-4 flex flex-col items-center text-center hover:border-champagne-DEFAULT hover:shadow-luxury transition-all duration-300 group"
+                  className="bg-white rounded-2xl border border-pearl-200/60 p-3.5 flex flex-col items-center text-center hover:border-champagne-DEFAULT hover:shadow-luxury transition-all duration-300 group"
                 >
-                  <div className="relative w-16 h-16 rounded-full overflow-hidden bg-pearl-200 border border-pearl-200 flex-shrink-0 mb-3">
+                  <div className="relative w-14 h-14 rounded-full overflow-hidden bg-pearl-200 border border-pearl-200 flex-shrink-0 mb-2.5">
                     <Image
                       src={cat.image}
                       alt={cat.label}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      sizes="64px"
+                      sizes="56px"
                       unoptimized
                     />
                   </div>
-                  <span className="text-xs font-bold text-roope-primary group-hover:text-[#B8922E] transition-colors leading-tight min-h-[32px] flex items-center justify-center">
+                  <span className="text-[11px] font-extrabold text-roope-primary group-hover:text-[#B8922E] transition-colors leading-tight min-h-[28px] flex items-center justify-center">
                     {cat.label}
                   </span>
                   {cat.badge && (
-                    <span className="text-[8px] bg-champagne-300/30 text-[#B8922E] px-2 py-0.5 rounded font-extrabold uppercase mt-2 tracking-wider">
+                    <span className="text-[8px] bg-champagne-300/30 text-[#B8922E] px-2 py-0.5 rounded font-extrabold uppercase mt-1.5 tracking-wider">
                       {cat.badge}
                     </span>
                   )}
