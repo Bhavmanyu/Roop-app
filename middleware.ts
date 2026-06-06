@@ -2,6 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { verifySessionToken } from "@/lib/security";
 
 export async function middleware(req: NextRequest) {
+  const host = req.headers.get("host") || "";
+  
+  // Redirect all .vercel.app requests to the custom domain
+  if (host.includes(".vercel.app")) {
+    const url = req.nextUrl.clone();
+    url.host = "roope.beauty";
+    url.protocol = "https:";
+    return NextResponse.redirect(url, 301);
+  }
+
   const { pathname } = req.nextUrl;
 
   // Protect all /admin/dashboard routes
@@ -16,5 +26,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/dashboard/:path*"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|images).*)"],
 };
