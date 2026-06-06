@@ -169,7 +169,7 @@ export default function BridalPageClient() {
             </h2>
           </div>
 
-          <div className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory lg:grid lg:grid-cols-3 lg:gap-6 lg:pb-0 scrollbar-none -mx-4 px-4">
+          <div className="flex overflow-x-auto gap-4 pt-6 pb-4 snap-x snap-mandatory lg:grid lg:grid-cols-3 lg:gap-6 lg:pt-8 lg:pb-0 lg:overflow-visible scrollbar-none -mx-4 px-4">
             {bridalPackages.map((pkg, i) => {
               const isSelected = selectedPackage === pkg.id;
               const discount = getDiscount(pkg.originalPrice, pkg.price);
