@@ -15,6 +15,9 @@ import {
   ShieldCheck,
   ChevronRight,
   X,
+  Plus,
+  Minus,
+  Trash2,
 } from "lucide-react";
 import { services, extras } from "@/lib/data";
 import { formatPrice } from "@/lib/utils";
@@ -68,6 +71,34 @@ export default function CheckoutClient() {
   const [isCustomTipActive, setIsCustomTipActive] = useState(false);
   const [isCouponOpen, setIsCouponOpen] = useState(false);
 
+  const handleAddToCart = (id: string) => {
+    const newCart = { ...cartItems, [id]: (cartItems[id] || 0) + 1 };
+    setCartItems(newCart);
+    localStorage.setItem("roope-cart", JSON.stringify(newCart));
+    window.dispatchEvent(new Event("roope-cart-updated"));
+  };
+
+  const handleRemoveFromCart = (id: string) => {
+    if (!cartItems[id]) return;
+    const newCart = { ...cartItems };
+    if (newCart[id] === 1) {
+      delete newCart[id];
+    } else {
+      newCart[id] -= 1;
+    }
+    setCartItems(newCart);
+    localStorage.setItem("roope-cart", JSON.stringify(newCart));
+    window.dispatchEvent(new Event("roope-cart-updated"));
+  };
+
+  const handleDeleteFromCart = (id: string) => {
+    const newCart = { ...cartItems };
+    delete newCart[id];
+    setCartItems(newCart);
+    localStorage.setItem("roope-cart", JSON.stringify(newCart));
+    window.dispatchEvent(new Event("roope-cart-updated"));
+  };
+
   // Pricing
   const selectedService = services.find((s) => s.id === selectedServiceId);
   const basePrice =
@@ -110,7 +141,10 @@ export default function CheckoutClient() {
     // Override with URL service param (single service flow)
     if (serviceParam && !checkoutDirect) {
       setSelectedServiceId(serviceParam);
-      setCartItems({});
+      const newCart = { [serviceParam]: 1 };
+      setCartItems(newCart);
+      localStorage.setItem("roope-cart", JSON.stringify(newCart));
+      window.dispatchEvent(new Event("roope-cart-updated"));
     }
 
     // Auth
@@ -491,40 +525,68 @@ export default function CheckoutClient() {
               Selected Service(s)
             </span>
             {Object.keys(cartItems).length > 0 ? (
-              <div className="space-y-3 divide-y divide-pearl-100">
+              <div className="space-y-4 divide-y divide-pearl-100">
                 {Object.entries(cartItems).map(([id, qty]) => {
                   const svc = services.find((s) => s.id === id);
                   if (!svc) return null;
                   return (
-                    <div key={id} className="flex justify-between items-start pt-3 first:pt-0">
-                      <div className="min-w-0 pr-3">
-                        <h4 className="font-semibold text-roope-primary text-sm leading-snug">
-                          {svc.name}{" "}
-                          <span className="text-gold font-bold ml-1 text-xs">x{qty}</span>
+                    <div key={id} className="flex justify-between items-start pt-4 first:pt-0">
+                      <div className="min-w-0 pr-3 flex-1">
+                        <h4 className="font-semibold text-roope-primary text-xs sm:text-sm leading-snug">
+                          {svc.name}
                         </h4>
-                        <p className="text-[10px] text-stone-warm/60 mt-1">{svc.duration}</p>
+                        <p className="text-[10px] text-stone-warm/60 mt-0.5">{svc.duration}</p>
+                        
+                        {/* Interactive Quantity Selector & Trash Button */}
+                        <div className="flex items-center gap-2.5 mt-2">
+                          <div className="flex items-center gap-2 bg-pearl-200/50 border border-pearl-300 rounded-lg px-2 py-0.5">
+                            <button
+                              type="button"
+                              onClick={() => handleRemoveFromCart(id)}
+                              className="w-4.5 h-4.5 rounded-full flex items-center justify-center text-stone-warm hover:bg-stone-warm/15 hover:text-roope-primary transition-all cursor-pointer"
+                            >
+                              <Minus className="w-2.5 h-2.5" />
+                            </button>
+                            <span className="text-xs font-extrabold text-roope-primary w-3.5 text-center select-none">
+                              {qty}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => handleAddToCart(id)}
+                              className="w-4.5 h-4.5 rounded-full flex items-center justify-center text-stone-warm hover:bg-stone-warm/15 hover:text-roope-primary transition-all cursor-pointer"
+                            >
+                              <Plus className="w-2.5 h-2.5" />
+                            </button>
+                          </div>
+                          
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteFromCart(id)}
+                            className="text-stone-warm/40 hover:text-red-500 transition-colors p-1 cursor-pointer"
+                            title="Remove service"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
                       </div>
-                      <span className="font-display text-base font-light text-roope-primary flex-shrink-0">
+                      
+                      <span className="font-display text-xs sm:text-sm font-semibold text-roope-primary flex-shrink-0 pt-0.5">
                         {formatPrice(svc.price * qty)}
                       </span>
                     </div>
                   );
                 })}
               </div>
-            ) : selectedService ? (
-              <div className="flex justify-between items-start">
-                <div>
-                  <h4 className="font-semibold text-roope-primary text-base leading-snug">
-                    {selectedService.name}
-                  </h4>
-                  <p className="text-xs text-stone-warm/60 mt-1">{selectedService.duration}</p>
-                </div>
-                <span className="font-display text-base font-semibold md:text-lg md:font-light text-roope-primary">
-                  {formatPrice(selectedService.price)}
-                </span>
-              </div>
             ) : (
-              <p className="text-sm text-stone-warm/60">No service selected.</p>
+              <div className="text-center py-6">
+                <p className="text-xs text-stone-warm/60">No service selected.</p>
+                <Link
+                  href="/services"
+                  className="mt-3 inline-block text-xs font-bold text-[#B8922E] hover:underline uppercase tracking-wider"
+                >
+                  ← Browse Services
+                </Link>
+              </div>
             )}
           </div>
 
