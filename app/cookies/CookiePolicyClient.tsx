@@ -31,7 +31,7 @@ export default function CookiePolicyPage() {
   return (
     <>
       {/* Hero Header */}
-      <section className="pt-28 pb-16 px-6" style={{ background: "linear-gradient(160deg, #F8F6F2 0%, #FAF6EC 100%)" }}>
+      <section className="pt-28 pb-16 px-6" style={{ background: "linear-gradient(160deg, var(--pearl) 0%, var(--ivory) 100%)" }}>
         <div className="max-w-7xl mx-auto text-center">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -95,7 +95,7 @@ export default function CookiePolicyPage() {
       </section>
 
       {/* Concierge support */}
-      <section className="py-16 px-6 text-center bg-[#FAF9F6] border-t border-pearl-200">
+      <section className="py-16 px-6 text-center bg-[#FAF9F6] dark:bg-[#110F0E] border-t border-pearl-200">
         <p className="section-label mb-3">concierge support</p>
         <h2 className="font-display text-xl md:text-3xl font-semibold md:font-light text-roope-primary mb-3 max-w-md mx-auto">
           Need immediate <span className="italic text-gradient-gold">assistance?</span>

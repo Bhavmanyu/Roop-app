@@ -58,7 +58,7 @@ export default function CareersPage() {
   return (
     <>
       {/* Hero Header */}
-      <section className="pt-28 pb-16 px-6" style={{ background: "linear-gradient(160deg, #F8F6F2 0%, #FAF6EC 100%)" }}>
+      <section className="pt-28 pb-16 px-6" style={{ background: "linear-gradient(160deg, var(--pearl) 0%, var(--ivory) 100%)" }}>
         <div className="max-w-7xl mx-auto text-center">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -102,13 +102,13 @@ export default function CareersPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="card-luxury p-3 md:p-6 bg-[#FAF9F6] border border-pearl-200"
+                className="card-luxury p-3 md:p-6 bg-[#FAF9F6] dark:bg-[#141210] border border-pearl-200"
               >
                 <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-champagne-300/20 flex items-center justify-center mb-3 md:mb-4">
                   {b.icon}
                 </div>
                 <h3 className="text-xs md:text-sm font-bold text-roope-primary mb-1 md:mb-2">{b.title}</h3>
-                <p className="text-[10px] md:text-xs text-stone-warm/75 leading-normal md:leading-relaxed">{b.desc}</p>
+                <p className="text-[11.5px] md:text-xs text-stone-warm/75 leading-normal md:leading-relaxed">{b.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -116,7 +116,7 @@ export default function CareersPage() {
       </section>
  
       {/* Open Roles */}
-      <section className="py-12 md:py-20 px-4 md:px-6 bg-[#FAF9F6]">
+      <section className="py-12 md:py-20 px-4 md:px-6 bg-[#FAF9F6] dark:bg-[#110F0E]">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="font-display text-lg md:text-3xl font-semibold md:font-light text-roope-primary">
@@ -138,16 +138,16 @@ export default function CareersPage() {
                 <div>
                   <h3 className="font-display text-sm md:text-lg font-semibold md:font-light text-roope-primary">{job.title}</h3>
                   <div className="flex flex-wrap gap-1.5 md:gap-2.5 mt-1.5 md:mt-2">
-                    <span className="text-[9px] md:text-[10px] font-bold text-stone-warm/50 uppercase bg-pearl-100 px-1.5 py-0.5 rounded">
+                    <span className="text-[11px] md:text-[10px] font-bold text-stone-warm/50 uppercase bg-pearl-100 px-1.5 py-0.5 rounded">
                       {job.type}
                     </span>
-                    <span className="text-[9px] md:text-[10px] font-bold text-stone-warm/50 uppercase bg-pearl-100 px-1.5 py-0.5 rounded">
+                    <span className="text-[11px] md:text-[10px] font-bold text-stone-warm/50 uppercase bg-pearl-100 px-1.5 py-0.5 rounded">
                       {job.exp}
                     </span>
                   </div>
                   <div className="flex flex-wrap gap-1 mt-2.5 md:mt-3">
                     {job.skills.map(s => (
-                      <span key={s} className="text-[8.5px] md:text-[9px] font-semibold text-[#B8922E] bg-champagne-300/10 px-1.5 py-0.5 rounded-full">
+                      <span key={s} className="text-[10.5px] md:text-[9px] font-semibold text-[#B8922E] bg-champagne-300/10 px-1.5 py-0.5 rounded-full">
                         {s}
                       </span>
                     ))}
@@ -155,7 +155,7 @@ export default function CareersPage() {
                 </div>
                 <Link
                   href="/register/professional"
-                  className="btn-primary py-2.5 px-4 md:py-3 md:px-5 text-[10px] md:text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-1.5 self-start md:self-auto"
+                  className="btn-primary py-2.5 px-4 md:py-3 md:px-5 text-[11.5px] md:text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-1.5 self-start md:self-auto"
                 >
                   Apply Now <ArrowRight className="w-3.5 h-3.5" />
                 </Link>

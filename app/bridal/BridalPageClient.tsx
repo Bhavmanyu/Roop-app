@@ -143,8 +143,8 @@ export default function BridalPageClient() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-20 pb-10 px-4 md:pt-28 md:pb-20 md:px-6 overflow-hidden"
-        style={{ background: "linear-gradient(160deg, #FEFEFE 0%, #F8F6F2 40%, #FAF6EC 100%)" }}>
+      <section className="relative pt-24 pb-8 md:pt-36 md:pb-16 px-4 md:px-6 overflow-hidden"
+        style={{ background: "linear-gradient(160deg, var(--pearl-50) 0%, var(--pearl) 40%, var(--ivory) 100%)" }}>
         <div className="absolute inset-0 pointer-events-none"
           style={{ background: "radial-gradient(ellipse 60% 60% at 70% 50%, rgba(201,168,76,0.08), transparent)" }} />
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
@@ -203,7 +203,7 @@ export default function BridalPageClient() {
       </section>
 
       {/* Packages */}
-      <section id="packages" className="py-10 px-4 md:py-20 md:px-6" style={{ background: "linear-gradient(180deg, #F8F6F2 0%, #FAF6EC 100%)" }}>
+      <section id="packages" className="py-10 px-4 md:py-20 md:px-6" style={{ background: "linear-gradient(180deg, var(--pearl) 0%, var(--ivory) 100%)" }}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8 md:mb-14">
             <p className="section-label mb-2 md:mb-3">Bridal Packages</p>
@@ -231,12 +231,12 @@ export default function BridalPageClient() {
                   style={{
                     background: pkg.color === "gold"
                       ? "linear-gradient(145deg, #1A1612 0%, #3D352D 100%)"
-                      : "linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(248,246,242,0.9) 100%)",
+                      : "linear-gradient(145deg, var(--pearl-50) 0%, var(--pearl-200) 100%)",
                     border: isSelected
                       ? "2px solid #C9A84C"
                       : pkg.color === "gold"
                       ? "2px solid rgba(201,168,76,0.3)"
-                      : "1px solid rgba(255,255,255,0.8)",
+                      : "1px solid var(--glass-border)",
                   }}
                 >
                   {/* Premium Ambient Cursor Glow Overlay */}
@@ -271,7 +271,7 @@ export default function BridalPageClient() {
                   </div>
                   {pkg.badge && (
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                      <span className="px-3 py-1 md:px-4 md:py-1.5 rounded-full text-[10px] md:text-xs font-semibold text-white flex items-center gap-1 md:gap-1.5"
+                      <span className="px-3 py-1 md:px-4 md:py-1.5 rounded-full text-[11.5px] md:text-xs font-semibold text-white flex items-center gap-1 md:gap-1.5"
                         style={{ background: "linear-gradient(135deg, #C9A84C, #B8922E)" }}>
                         <Sparkles className="w-3 h-3" /> {pkg.badge}
                       </span>
@@ -293,7 +293,7 @@ export default function BridalPageClient() {
                         Free Consultation
                       </span>
                     </div>
-                    <p className={`text-[10px] md:text-xs mt-1 ${pkg.color === "gold" ? "text-white/40" : "text-stone-warm/60"}`}>
+                    <p className={`text-[11.5px] md:text-xs mt-1 ${pkg.color === "gold" ? "text-white/40" : "text-stone-warm/60"}`}>
                       Custom pricing based on requirements • {pkg.highlights}
                     </p>
                   </div>
@@ -351,7 +351,7 @@ export default function BridalPageClient() {
               <div key={item.title} className="p-4 md:p-6 rounded-2xl md:rounded-3xl" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
                 <div className="text-xl md:text-3xl mb-2 md:mb-3">{item.icon}</div>
                 <p className="text-xs md:text-sm font-medium text-white mb-0.5 md:mb-1">{item.title}</p>
-                <p className="text-[10px] md:text-xs text-white/40">{item.desc}</p>
+                <p className="text-[11.5px] md:text-xs text-white/40">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -375,7 +375,7 @@ export default function BridalPageClient() {
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="w-full max-w-lg rounded-2xl md:rounded-4xl p-4 md:p-8 max-h-[90vh] overflow-y-auto overscroll-contain"
-              style={{ background: "#FAF6EC" }}
+              style={{ background: "var(--ivory)" }}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-4 md:mb-6">
@@ -408,7 +408,7 @@ export default function BridalPageClient() {
                         value={form[key as keyof typeof form]}
                         onChange={(e) => setForm({ ...form, [key]: e.target.value })}
                         className="w-full px-3 py-2.5 md:px-4 md:py-3.5 rounded-xl md:rounded-2xl text-xs md:text-sm outline-none"
-                        style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
+                        style={{ background: "var(--pearl-50)", border: "1px solid rgba(107,94,82,0.15)", color: "var(--roope-primary)" }}
                       />
                     </div>
                   ))}
@@ -418,14 +418,14 @@ export default function BridalPageClient() {
                       <input type="date" value={form.wedding_date}
                         onChange={(e) => setForm({ ...form, wedding_date: e.target.value })}
                         className="w-full px-3 py-2.5 md:px-4 md:py-3.5 rounded-xl md:rounded-2xl text-xs md:text-sm outline-none"
-                        style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
+                        style={{ background: "var(--pearl-50)", border: "1px solid rgba(107,94,82,0.15)", color: "var(--roope-primary)" }}
                       />
                     </div>
                     <div>
                       <label className="block text-xs md:text-sm font-medium text-stone-warm mb-1 md:mb-2">City *</label>
                       <select required value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })}
                         className="w-full px-3 py-2.5 md:px-4 md:py-3.5 rounded-xl md:rounded-2xl text-xs md:text-sm outline-none appearance-none"
-                        style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: form.city ? "#1A1612" : "#8B7D6B" }}
+                        style={{ background: "var(--pearl-50)", border: "1px solid rgba(107,94,82,0.15)", color: form.city ? "var(--roope-primary)" : "#8B7D6B" }}
                       >
                         <option value="">Select city</option>
                         {cities.map((c) => <option key={c}>{c}</option>)}
@@ -437,7 +437,7 @@ export default function BridalPageClient() {
                     <label className="block text-xs md:text-sm font-medium text-stone-warm mb-1 md:mb-2">Estimated Budget *</label>
                     <select required value={form.budget} onChange={(e) => setForm({ ...form, budget: e.target.value })}
                       className="w-full px-3 py-2.5 md:px-4 md:py-3.5 rounded-xl md:rounded-2xl text-xs md:text-sm outline-none appearance-none"
-                      style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: form.budget ? "#1A1612" : "#8B7D6B" }}
+                      style={{ background: "var(--pearl-50)", border: "1px solid rgba(107,94,82,0.15)", color: form.budget ? "var(--roope-primary)" : "#8B7D6B" }}
                     >
                       <option value="">Select budget range</option>
                       <option value="under-25k">Intimate / Under ₹25k</option>
@@ -452,7 +452,7 @@ export default function BridalPageClient() {
                       value={form.skinTone}
                       onChange={(e) => setForm({ ...form, skinTone: e.target.value })}
                       className="w-full px-3 py-2.5 md:px-4 md:py-3.5 rounded-xl md:rounded-2xl text-xs md:text-sm outline-none"
-                      style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
+                      style={{ background: "var(--pearl-50)", border: "1px solid rgba(107,94,82,0.15)", color: "var(--roope-primary)" }}
                     />
                   </div>
 
@@ -461,7 +461,7 @@ export default function BridalPageClient() {
                     <textarea rows={2} placeholder="e.g. Draping style, number of family members, specific crew size..."
                       value={form.requirements} onChange={(e) => setForm({ ...form, requirements: e.target.value })}
                       className="w-full px-3 py-2.5 md:px-4 md:py-3.5 rounded-xl md:rounded-2xl text-xs md:text-sm outline-none resize-none"
-                      style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
+                      style={{ background: "var(--pearl-50)", border: "1px solid rgba(107,94,82,0.15)", color: "var(--roope-primary)" }}
                     />
                   </div>
 
@@ -470,7 +470,7 @@ export default function BridalPageClient() {
                     <textarea rows={2} placeholder="Tell us about your dream bridal look..."
                       value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}
                       className="w-full px-3 py-2.5 md:px-4 md:py-3.5 rounded-xl md:rounded-2xl text-xs md:text-sm outline-none resize-none"
-                      style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
+                      style={{ background: "var(--pearl-50)", border: "1px solid rgba(107,94,82,0.15)", color: "var(--roope-primary)" }}
                     />
                   </div>
                   {error && <p className="text-red-500 text-xs">{error}</p>}

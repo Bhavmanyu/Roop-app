@@ -32,7 +32,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative bg-roope-primary overflow-hidden">
+    <footer className="relative bg-[#1A1612] dark:bg-[#0C0A09] overflow-hidden">
       {/* Subtle gradient overlay */}
       <div className="absolute inset-0 pointer-events-none"
         style={{ background: "radial-gradient(ellipse 80% 50% at 50% 100%, rgba(201,168,76,0.08) 0%, transparent 70%)" }} />
@@ -60,7 +60,7 @@ export default function Footer() {
             ))}
           </div>
 
-          <span className="px-2.5 py-0.5 rounded-full text-[9px] text-white/40 bg-white/5 border border-white/10">
+          <span className="px-2.5 py-0.5 rounded-full text-[10.5px] text-white/40 bg-white/5 border border-white/10">
             Indore
           </span>
         </div>
@@ -69,10 +69,10 @@ export default function Footer() {
         <div className="space-y-3">
           {(["services", "company", "support"] as const).map((key) => (
             <div key={key} className="flex flex-wrap items-baseline gap-2">
-              <h3 className="text-[9px] font-extrabold tracking-[0.12em] uppercase text-white/45 min-w-[65px] flex-shrink-0">
+              <h3 className="text-[10.5px] font-extrabold tracking-[0.12em] uppercase text-white/45 min-w-[65px] flex-shrink-0">
                 {key}:
               </h3>
-              <div className="flex flex-wrap gap-x-2 gap-y-1 text-[10px] text-white/55">
+              <div className="flex flex-wrap gap-x-2 gap-y-1 text-[11.5px] text-white/55">
                 {footerLinks[key].map((link, idx) => (
                   <span key={link.label} className="flex items-center gap-2">
                     <Link href={link.href} className="hover:text-white transition-colors">
@@ -87,7 +87,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar: Copyright & Legal Side-by-side */}
-        <div className="border-t border-white/8 pt-6 space-y-2.5 text-[9px] text-white/30">
+        <div className="border-t border-white/8 pt-6 space-y-2.5 text-[10.5px] text-white/30">
           <div className="flex flex-wrap gap-x-4 gap-y-1.5">
             <Link href="/privacy" className="hover:text-white/50">Privacy</Link>
             <Link href="/terms" className="hover:text-white/50">Terms</Link>

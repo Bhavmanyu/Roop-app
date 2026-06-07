@@ -108,10 +108,10 @@ export default function ContactPage() {
                 <Icon className={`w-4 h-4 md:w-6 md:h-6 ${accent ? "text-white" : ""}`} style={{ color: accent ? undefined : "#C9A84C" }} />
               </div>
               <div className="min-w-0">
-                <h3 className="text-[10px] md:text-base font-bold text-roope-primary truncate">{title}</h3>
+                <h3 className="text-[12px] md:text-base font-bold text-roope-primary truncate">{title}</h3>
                 <p className="hidden md:block text-xs text-stone-warm mt-1 truncate">{desc}</p>
               </div>
-              <span className="text-[9px] md:text-sm font-semibold mt-1 md:mt-auto" style={{ color: "#C9A84C" }}>{action} →</span>
+              <span className="text-[11.5px] md:text-sm font-semibold mt-1 md:mt-auto" style={{ color: "#C9A84C" }}>{action} →</span>
             </a>
           ))}
         </div>

@@ -158,7 +158,7 @@ export default function DesktopCuratedAndCombos() {
   };
 
   return (
-    <section className="hidden lg:block py-20 bg-white border-b border-pearl-200">
+    <section className="hidden lg:block py-20 bg-white dark:bg-[#0C0A09] border-b border-pearl-200">
       <div className="max-w-7xl mx-auto px-6 space-y-16">
         
         {/* Curated Experiences */}
@@ -175,7 +175,7 @@ export default function DesktopCuratedAndCombos() {
               return (
                 <div 
                   key={item.id}
-                  className="bg-[#FAF9F6] border border-pearl-200 rounded-[24px] p-4 flex flex-col justify-between hover:shadow-luxury hover:-translate-y-1 transition-all duration-300 group animate-fade-in"
+                  className="bg-[#FAF9F6] dark:bg-[#141210] border border-pearl-200 rounded-[24px] p-4 flex flex-col justify-between hover:shadow-luxury hover:-translate-y-1 transition-all duration-300 group animate-fade-in"
                 >
                   <div>
                     <div className="relative w-full h-40 rounded-2xl overflow-hidden mb-3">
@@ -193,7 +193,7 @@ export default function DesktopCuratedAndCombos() {
                         </span>
                       )}
                       {discount > 0 && (
-                        <span className="absolute top-2.5 right-2.5 bg-roope-primary text-white text-[9px] font-extrabold px-2 py-0.5 rounded-md">
+                        <span className="absolute top-2.5 right-2.5 bg-[#1A1612] text-white dark:bg-champagne dark:text-[#0C0A09] text-[9px] font-extrabold px-2 py-0.5 rounded-md">
                           -{discount}%
                         </span>
                       )}
@@ -279,7 +279,7 @@ export default function DesktopCuratedAndCombos() {
               return (
                 <div 
                   key={item.id}
-                  className="bg-[#FAF9F6] border border-pearl-200 rounded-[24px] p-4 flex flex-col justify-between hover:shadow-luxury hover:-translate-y-1 transition-all duration-300 group animate-fade-in"
+                  className="bg-[#FAF9F6] dark:bg-[#141210] border border-pearl-200 rounded-[24px] p-4 flex flex-col justify-between hover:shadow-luxury hover:-translate-y-1 transition-all duration-300 group animate-fade-in"
                 >
                   <div>
                     <div className="relative w-full h-40 rounded-2xl overflow-hidden mb-3">
@@ -297,7 +297,7 @@ export default function DesktopCuratedAndCombos() {
                         </span>
                       )}
                       {discount > 0 && (
-                        <span className="absolute top-2.5 right-2.5 bg-roope-primary text-white text-[9px] font-extrabold px-2 py-0.5 rounded-md">
+                        <span className="absolute top-2.5 right-2.5 bg-[#1A1612] text-white dark:bg-champagne dark:text-[#0C0A09] text-[9px] font-extrabold px-2 py-0.5 rounded-md">
                           -{discount}%
                         </span>
                       )}

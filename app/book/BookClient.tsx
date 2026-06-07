@@ -262,7 +262,7 @@ export default function BookPage() {
   if (view === "confirmed") {
     return (
       <div className="min-h-screen flex items-center justify-center px-6 pt-24 pb-16"
-        style={{ background: "linear-gradient(160deg, #F8F6F2 0%, #FAF6EC 100%)" }}>
+        style={{ background: "linear-gradient(160deg, var(--pearl) 0%, var(--ivory) 100%)" }}>
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -335,7 +335,7 @@ export default function BookPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
         className="min-h-screen"
-        style={{ background: "linear-gradient(160deg, #F8F6F2 0%, #FAF6EC 100%)" }}
+        style={{ background: "linear-gradient(160deg, var(--pearl) 0%, var(--ivory) 100%)" }}
       >
         {/* Checkout Page Header */}
         <div className="pt-20 pb-3 px-4 md:pt-24 md:pb-6 md:px-6 border-b border-pearl-200/60 bg-white/70 backdrop-blur-sm">
@@ -618,7 +618,7 @@ export default function BookPage() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       className="min-h-screen pb-28"
-      style={{ background: "linear-gradient(160deg, #F8F6F2 0%, #FAF6EC 100%)" }}
+      style={{ background: "linear-gradient(160deg, var(--pearl) 0%, var(--ivory) 100%)" }}
     >
       {/* Header */}
       <div className="pt-20 pb-4 px-4 md:pt-28 md:pb-8 md:px-6">
@@ -658,7 +658,7 @@ export default function BookPage() {
                 className={`card-luxury overflow-hidden flex flex-row gap-3 md:gap-5 p-3 pb-4 md:p-5 items-start justify-between transition-all duration-300 hover:shadow-md ${
                   isSelected ? "border-champagne-DEFAULT ring-1 ring-champagne-300/10" : "border-pearl-200/80"
                 }`}
-                style={{ background: isSelected ? "linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(201,168,76,0.03) 100%)" : "rgba(255,255,255,0.8)" }}
+                style={{ background: isSelected ? "linear-gradient(180deg, var(--pearl-50) 0%, rgba(201,168,76,0.03) 100%)" : "var(--glass-bg)" }}
               >
                 {/* Info Column */}
                 <div className="flex-1 min-w-0">

@@ -38,7 +38,7 @@ export default function ReviewsPage() {
 
   return (
     <>
-      <section className="pt-28 pb-16 px-6" style={{ background: "linear-gradient(160deg, #F8F6F2 0%, #FAF6EC 100%)" }}>
+      <section className="pt-28 pb-16 px-6" style={{ background: "linear-gradient(160deg, var(--pearl) 0%, var(--ivory) 100%)" }}>
         <div className="max-w-7xl mx-auto text-center">
           <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="section-label mb-3">Reviews</motion.p>
           <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
@@ -53,7 +53,7 @@ export default function ReviewsPage() {
       </section>
 
       {/* Stats row */}
-      <section className="py-12 px-6" style={{ background: "linear-gradient(135deg, #FAF6EC, #F3E8C8)" }}>
+      <section className="py-12 px-6" style={{ background: "linear-gradient(135deg, var(--ivory), var(--ivory-300))" }}>
         <div className="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
           {[
             { value: "4.9/5.0", label: "Average Rating", sub: "From 100+ reviews" },
@@ -89,17 +89,17 @@ export default function ReviewsPage() {
                     <Star key={j} className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 fill-current" style={{ color: "#C9A84C" }} />
                   ))}
                 </div>
-                <p className="text-[10px] md:text-sm text-stone-warm leading-relaxed mb-3 md:mb-5 line-clamp-4 md:line-clamp-none">&ldquo;{review.text}&rdquo;</p>
+                <p className="text-[11.5px] md:text-sm text-stone-warm leading-relaxed mb-3 md:mb-5 line-clamp-4 md:line-clamp-none">&ldquo;{review.text}&rdquo;</p>
                 <div className="flex items-center gap-2 md:gap-3">
                   <div className="relative w-6 h-6 md:w-9 md:h-9 rounded-full overflow-hidden flex-shrink-0">
                     <Image src={review.image} alt={review.name} fill className="object-cover object-top" sizes="(max-width: 640px) 24px, 36px" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-0.5 md:gap-1">
-                      <p className="text-[9px] md:text-sm font-bold text-roope-primary truncate">{review.name}</p>
+                      <p className="text-[11px] md:text-sm font-bold text-roope-primary truncate">{review.name}</p>
                       {review.verified && <BadgeCheck className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 flex-shrink-0" style={{ color: "#C9A84C" }} />}
                     </div>
-                    <p className="text-[8px] md:text-xs text-stone-warm/70 truncate">{review.service} • {review.location}</p>
+                    <p className="text-[10.5px] md:text-xs text-stone-warm/70 truncate">{review.service} • {review.location}</p>
                   </div>
                 </div>
               </motion.div>
@@ -109,7 +109,7 @@ export default function ReviewsPage() {
       </section>
 
       {/* Write a Review */}
-      <section className="py-20 px-6" style={{ background: "linear-gradient(135deg, #FAF6EC, #F8F6F2)" }}>
+      <section className="py-20 px-6" style={{ background: "linear-gradient(135deg, var(--ivory), var(--pearl))" }}>
         <div className="max-w-xl mx-auto">
           <p className="section-label mb-3 text-center">Share Your Experience</p>
           <h2 className="font-display text-xl md:text-3xl font-semibold md:font-light text-roope-primary mb-2 text-center">
@@ -165,7 +165,7 @@ export default function ReviewsPage() {
                     value={reviewForm[key as keyof typeof reviewForm] as string}
                     onChange={(e) => setReviewForm({ ...reviewForm, [key]: e.target.value })}
                     className="w-full px-4 py-3.5 rounded-2xl text-sm outline-none"
-                    style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
+                    style={{ background: "var(--pearl-50)", border: "1px solid rgba(107,94,82,0.15)", color: "var(--roope-primary)" }}
                   />
                 </div>
               ))}
@@ -177,7 +177,7 @@ export default function ReviewsPage() {
                   value={reviewForm.service}
                   onChange={(e) => setReviewForm({ ...reviewForm, service: e.target.value })}
                   className="w-full px-4 py-3.5 rounded-2xl text-sm outline-none appearance-none"
-                  style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
+                  style={{ background: "var(--pearl-50)", border: "1px solid rgba(107,94,82,0.15)", color: "var(--roope-primary)" }}
                 >
                   <option value="">Select a service</option>
                   {services.map((s) => <option key={s.id} value={s.name}>{s.name}</option>)}
@@ -196,7 +196,7 @@ export default function ReviewsPage() {
                   value={reviewForm.review_text}
                   onChange={(e) => setReviewForm({ ...reviewForm, review_text: e.target.value })}
                   className="w-full px-4 py-3.5 rounded-2xl text-sm outline-none resize-none"
-                  style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
+                  style={{ background: "var(--pearl-50)", border: "1px solid rgba(107,94,82,0.15)", color: "var(--roope-primary)" }}
                 />
               </div>
 
@@ -210,7 +210,7 @@ export default function ReviewsPage() {
         </div>
       </section>
 
-      <section className="py-16 px-6 text-center" style={{ background: "linear-gradient(135deg, #FAF6EC, #F8F6F2)" }}>
+      <section className="py-16 px-6 text-center" style={{ background: "linear-gradient(135deg, var(--ivory), var(--pearl))" }}>
         <p className="section-label mb-3">Your Turn</p>
         <h2 className="font-display text-xl md:text-3xl font-semibold md:font-light text-roope-primary mb-6 max-w-md mx-auto">
           Ready to write your own <span className="italic text-gradient-gold">story?</span>

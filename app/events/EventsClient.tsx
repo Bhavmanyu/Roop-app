@@ -65,7 +65,7 @@ export default function EventsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-20 pb-8 px-4 md:pt-28 md:pb-16 md:px-6" style={{ background: "linear-gradient(160deg, #F8F6F2 0%, #FAF6EC 100%)" }}>
+      <section className="pt-20 pb-8 px-4 md:pt-28 md:pb-16 md:px-6" style={{ background: "linear-gradient(160deg, var(--pearl) 0%, var(--ivory) 100%)" }}>
         <div className="max-w-7xl mx-auto">
           <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="section-label mb-1.5 md:mb-3">Event Services</motion.p>
           <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
@@ -101,15 +101,15 @@ export default function EventsPage() {
                     boxShadow: selectedPackage === pkg.id ? "0 8px 48px rgba(201,168,76,0.2)" : "0 4px 24px rgba(26,22,18,0.06)",
                   }}
                 >
-                  <span className="text-[10px] md:text-xs tag-gold mb-2 md:mb-3 inline-block">{pkg.tag}</span>
+                  <span className="text-[11.5px] md:text-xs tag-gold mb-2 md:mb-3 inline-block">{pkg.tag}</span>
                   <h3 className="font-display text-sm font-semibold md:text-xl md:font-light text-roope-primary mb-1">{pkg.name}</h3>
-                  <p className="text-[10px] md:text-xs text-stone-warm mb-2.5 md:mb-4">{pkg.tagline}</p>
+                  <p className="text-[11.5px] md:text-xs text-stone-warm mb-2.5 md:mb-4">{pkg.tagline}</p>
                   <div className="flex items-baseline gap-1.5 md:gap-2 mb-2.5 md:mb-4">
                     <span className="font-display text-base font-semibold md:text-2xl md:font-light text-roope-primary">{formatPrice(pkg.price)}</span>
-                    <span className="text-[10px] md:text-xs text-stone-warm line-through">{formatPrice(pkg.originalPrice)}</span>
-                    {pkg.priceNote && <span className="text-[10px] md:text-xs text-stone-warm">{pkg.priceNote}</span>}
+                    <span className="text-[11.5px] md:text-xs text-stone-warm line-through">{formatPrice(pkg.originalPrice)}</span>
+                    {pkg.priceNote && <span className="text-[11.5px] md:text-xs text-stone-warm">{pkg.priceNote}</span>}
                   </div>
-                  <p className="text-[10px] md:text-xs text-stone-warm mb-2.5 md:mb-3">{pkg.duration} • Ideal for: {pkg.idealFor}</p>
+                  <p className="text-[11.5px] md:text-xs text-stone-warm mb-2.5 md:mb-3">{pkg.duration} • Ideal for: {pkg.idealFor}</p>
                   <ul className="space-y-1.5 md:space-y-2">
                     {pkg.includes.map((inc) => (
                       <li key={inc} className="flex items-center gap-2">
@@ -117,7 +117,7 @@ export default function EventsPage() {
                           style={{ background: "rgba(201,168,76,0.15)" }}>
                           <Check className="w-2 h-2" style={{ color: "#C9A84C" }} />
                         </div>
-                        <span className="text-[10px] md:text-xs text-stone-warm">{inc}</span>
+                        <span className="text-[11.5px] md:text-xs text-stone-warm">{inc}</span>
                       </li>
                     ))}
                   </ul>
@@ -141,7 +141,7 @@ export default function EventsPage() {
                 </button>
                 <span className="text-xs md:text-sm text-stone-warm">{groupSize === 1 ? "person" : "people"}</span>
                 {groupSize >= 4 && (
-                  <span className="text-[10px] md:text-xs tag-gold ml-auto">15% Group Discount!</span>
+                  <span className="text-[11.5px] md:text-xs tag-gold ml-auto">15% Group Discount!</span>
                 )}
               </div>
             </div>
@@ -214,7 +214,7 @@ export default function EventsPage() {
               >
                 Book Now <ArrowRight className="w-3.5 h-3.5" />
               </button>
-              <p className="text-[10px] md:text-xs text-stone-warm text-center mt-3 md:mt-4">Free cancellation • 24hr support</p>
+              <p className="text-[11.5px] md:text-xs text-stone-warm text-center mt-3 md:mt-4">Free cancellation • 24hr support</p>
             </div>
           </div>
         </div>
@@ -237,7 +237,7 @@ export default function EventsPage() {
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="w-full max-w-lg rounded-2xl md:rounded-4xl p-4 md:p-8 max-h-[90vh] overflow-y-auto"
-              style={{ background: "#FAF6EC" }}
+              style={{ background: "var(--ivory)" }}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-4 md:mb-6">
@@ -271,7 +271,7 @@ export default function EventsPage() {
                         value={form[key as keyof typeof form]}
                         onChange={(e) => setForm({ ...form, [key]: e.target.value })}
                         className="w-full px-3 py-2.5 md:px-4 md:py-3.5 rounded-xl md:rounded-2xl text-xs md:text-sm outline-none"
-                        style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
+                        style={{ background: "var(--pearl-50)", border: "1px solid rgba(107,94,82,0.15)", color: "var(--roope-primary)" }}
                       />
                     </div>
                   ))}
@@ -281,14 +281,14 @@ export default function EventsPage() {
                       <input type="date" value={form.event_date}
                         onChange={(e) => setForm({ ...form, event_date: e.target.value })}
                         className="w-full px-3 py-2.5 md:px-4 md:py-3.5 rounded-xl md:rounded-2xl text-xs md:text-sm outline-none"
-                        style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
+                        style={{ background: "var(--pearl-50)", border: "1px solid rgba(107,94,82,0.15)", color: "var(--roope-primary)" }}
                       />
                     </div>
                     <div>
                       <label className="block text-xs md:text-sm font-medium text-stone-warm mb-1 md:mb-2">City *</label>
                       <select required value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })}
                         className="w-full px-3 py-2.5 md:px-4 md:py-3.5 rounded-xl md:rounded-2xl text-xs md:text-sm outline-none appearance-none"
-                        style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: form.city ? "#1A1612" : "#8B7D6B" }}
+                        style={{ background: "var(--pearl-50)", border: "1px solid rgba(107,94,82,0.15)", color: form.city ? "var(--roope-primary)" : "#8B7D6B" }}
                       >
                         <option value="">Select city</option>
                         {cities.map((c) => <option key={c}>{c}</option>)}
@@ -300,7 +300,7 @@ export default function EventsPage() {
                     <textarea rows={2} placeholder="Any special requests or requirements..."
                       value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}
                       className="w-full px-3 py-2.5 md:px-4 md:py-3.5 rounded-xl md:rounded-2xl text-xs md:text-sm outline-none resize-none"
-                      style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(107,94,82,0.15)", color: "#1A1612" }}
+                      style={{ background: "var(--pearl-50)", border: "1px solid rgba(107,94,82,0.15)", color: "var(--roope-primary)" }}
                     />
                   </div>
                   {error && <p className="text-red-500 text-xs">{error}</p>}

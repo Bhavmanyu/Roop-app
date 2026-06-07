@@ -29,7 +29,7 @@ export default function ArtistsPage() {
       </section>
 
       {/* Artist grid */}
-      <section className="py-12 md:py-16 px-4 md:px-6" style={{ background: "linear-gradient(180deg, #F8F6F2 0%, #FAF6EC 100%)" }}>
+      <section className="py-12 md:py-16 px-4 md:px-6" style={{ background: "linear-gradient(180deg, var(--pearl) 0%, var(--ivory) 100%)" }}>
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-3 md:gap-6">
             {artists.map((artist, i) => (
@@ -54,7 +54,7 @@ export default function ArtistsPage() {
 
                     {/* Badges */}
                     <div className="absolute top-2 left-2 md:top-4 md:left-4 flex flex-col gap-2">
-                      <span className="px-2 py-0.5 md:px-3 md:py-1 rounded-full text-[9px] md:text-xs font-semibold text-white"
+                      <span className="px-2 py-0.5 md:px-3 md:py-1 rounded-full text-[11px] md:text-xs font-semibold text-white"
                         style={{
                           background: artist.tier === "Elite" ? "rgba(201,168,76,0.8)" : "rgba(26,22,18,0.7)",
                         }}>
@@ -64,7 +64,7 @@ export default function ArtistsPage() {
 
                     {artist.available && (
                       <div className="absolute top-2 right-2 md:top-4 md:right-4">
-                        <span className="flex items-center gap-1 px-1.5 py-0.5 md:px-2.5 md:py-1 rounded-full text-[9px] md:text-xs font-medium text-white"
+                        <span className="flex items-center gap-1 px-1.5 py-0.5 md:px-2.5 md:py-1 rounded-full text-[11px] md:text-xs font-medium text-white"
                           style={{ background: "rgba(34,197,94,0.25)", border: "1px solid rgba(34,197,94,0.4)" }}>
                           <div className="badge-live" /> Available
                         </span>
@@ -84,7 +84,7 @@ export default function ArtistsPage() {
                     <div className="flex items-start justify-between mb-2 md:mb-3">
                       <div className="min-w-0">
                         <h3 className="font-semibold text-roope-primary text-xs md:text-base truncate">{artist.name}</h3>
-                        <p className="text-[10px] md:text-xs text-stone-warm mt-0.5 truncate">{artist.title}</p>
+                        <p className="text-[11.5px] md:text-xs text-stone-warm mt-0.5 truncate">{artist.title}</p>
                       </div>
                       <BadgeCheck className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" style={{ color: "#C9A84C" }} />
                     </div>
@@ -94,11 +94,11 @@ export default function ArtistsPage() {
                       {[...Array(5)].map((_, j) => (
                         <Star key={j} className="w-2.5 h-2.5 md:w-3 h-3 fill-current flex-shrink-0" style={{ color: "#C9A84C" }} />
                       ))}
-                      <span className="text-[9.5px] md:text-xs text-stone-warm ml-0.5 md:ml-1 truncate">{artist.rating} ({artist.reviews})</span>
+                      <span className="text-[11.5px] md:text-xs text-stone-warm ml-0.5 md:ml-1 truncate">{artist.rating} ({artist.reviews})</span>
                     </div>
 
                     {/* Location + experience */}
-                    <div className="flex items-center gap-1 text-[9.5px] md:text-xs text-stone-warm mb-3 md:mb-4">
+                    <div className="flex items-center gap-1 text-[11.5px] md:text-xs text-stone-warm mb-3 md:mb-4">
                       <MapPin className="w-2.5 h-2.5 md:w-3 h-3 flex-shrink-0" />
                       <span className="truncate">{artist.city} • {artist.experience}</span>
                     </div>
@@ -106,7 +106,7 @@ export default function ArtistsPage() {
                     {/* Specialties */}
                     <div className="flex flex-wrap gap-1 mb-3 md:mb-4">
                       {artist.specialties.slice(0, 2).map((spec) => (
-                        <span key={spec} className="px-1.5 py-0.5 rounded-full text-[9px] md:text-xs text-stone-warm border border-pearl-300 truncate">
+                        <span key={spec} className="px-1.5 py-0.5 rounded-full text-[11px] md:text-xs text-stone-warm border border-pearl-300 truncate">
                           {spec}
                         </span>
                       ))}
@@ -142,7 +142,7 @@ export default function ArtistsPage() {
       </section>
 
       {/* Apply CTA */}
-      <section className="py-16 px-6" style={{ background: "linear-gradient(135deg, #FAF6EC 0%, #F3E8C8 100%)" }}>
+      <section className="py-16 px-6" style={{ background: "linear-gradient(135deg, var(--ivory) 0%, var(--ivory-300) 100%)" }}>
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="font-display text-xl md:text-3xl font-semibold md:font-light text-roope-primary mb-4">
             Are you a makeup artist?

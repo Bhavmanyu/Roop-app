@@ -31,7 +31,7 @@ export default function PrivacyPolicyPage() {
   return (
     <>
       {/* Hero Header */}
-      <section className="pt-28 pb-16 px-6" style={{ background: "linear-gradient(160deg, #F8F6F2 0%, #FAF6EC 100%)" }}>
+      <section className="pt-28 pb-16 px-6" style={{ background: "linear-gradient(160deg, var(--pearl) 0%, var(--ivory) 100%)" }}>
         <div className="max-w-7xl mx-auto text-center">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -95,7 +95,7 @@ export default function PrivacyPolicyPage() {
       </section>
 
       {/* Footer Concierge */}
-      <section className="py-16 px-6 text-center bg-[#FAF9F6] border-t border-pearl-200">
+      <section className="py-16 px-6 text-center bg-[#FAF9F6] dark:bg-[#110F0E] border-t border-pearl-200">
         <p className="section-label mb-3">Concierge</p>
         <h2 className="font-display text-xl md:text-3xl font-semibold md:font-light text-roope-primary mb-3 max-w-md mx-auto">
           Have security <span className="italic text-gradient-gold">concerns?</span>

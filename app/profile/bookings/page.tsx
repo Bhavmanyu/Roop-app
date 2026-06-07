@@ -88,7 +88,7 @@ export default function BookingsHistoryPage() {
 
   if (loadingUser) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#FAF9F6] pt-24">
+      <div className="min-h-screen flex items-center justify-center bg-[#FAF9F6] dark:bg-[#0C0A09] pt-24">
         <p className="text-sm font-bold uppercase tracking-widest text-gold animate-pulse">
           Loading Your Profile...
         </p>
@@ -99,7 +99,7 @@ export default function BookingsHistoryPage() {
   if (!user) {
     return (
       <div className="min-h-screen flex items-center justify-center px-6 pt-24 pb-12"
-        style={{ background: "linear-gradient(160deg, #F8F6F2 0%, #FAF6EC 100%)" }}>
+        style={{ background: "linear-gradient(160deg, var(--pearl) 0%, var(--ivory) 100%)" }}>
         <div className="max-w-md w-full text-center p-8 bg-white border border-pearl-200 rounded-3xl shadow-xl">
           <ShoppingBag className="w-12 h-12 text-gold mx-auto mb-4" />
           <h1 className="font-display text-xl md:text-2xl font-semibold md:font-light text-roope-primary mb-3">View Your Appointments</h1>
@@ -116,7 +116,7 @@ export default function BookingsHistoryPage() {
   }
 
   return (
-    <div className="min-h-screen pt-28 pb-24 px-6" style={{ background: "linear-gradient(160deg, #F8F6F2 0%, #FAF6EC 100%)" }}>
+    <div className="min-h-screen pt-28 pb-24 px-6" style={{ background: "linear-gradient(160deg, var(--pearl) 0%, var(--ivory) 100%)" }}>
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-pearl-200/80 pb-6 mb-8">

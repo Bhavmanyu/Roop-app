@@ -41,7 +41,7 @@ export default function MobileBottomNav() {
               }`}
             />
             <span
-              className={`text-[9px] font-extrabold tracking-wide transition-colors duration-200 ${
+              className={`text-[10.5px] font-extrabold tracking-wide transition-colors duration-200 ${
                 isActive ? "text-[#B8922E]" : "text-stone-warm/50"
               }`}
             >

@@ -687,13 +687,13 @@ export default function HeroSection() {
         <div className="flex flex-col gap-1.5">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-[10px] uppercase tracking-widest font-extrabold text-stone-warm/50">Your Doorstep Salon</p>
+              <p className="text-[11px] uppercase tracking-widest font-extrabold text-stone-warm/50">Your Doorstep Salon</p>
               <h2 className="text-base font-extrabold text-roope-primary tracking-tight">Indore, India</h2>
             </div>
             
             <button
               onClick={() => setIsLocationModalOpen(true)}
-              className="flex items-center gap-1.5 text-[9px] font-extrabold text-roope-primary bg-[#FAF9F6] border border-pearl-300 rounded-full px-3 py-1.5 max-w-[180px] truncate transition-all shadow-sm hover:border-[#B8922E]"
+              className="flex items-center gap-1.5 text-[11px] font-extrabold text-roope-primary bg-[#FAF9F6] border border-pearl-300 rounded-full px-3 py-1.5 max-w-[180px] truncate transition-all shadow-sm hover:border-[#B8922E]"
             >
               <MapPin className="w-3 h-3 text-[#B8922E] flex-shrink-0" />
               <span className="truncate">{activeLocation.split(",")[0]}</span>
@@ -735,9 +735,9 @@ export default function HeroSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/40 to-transparent" />
                 <div className="absolute inset-y-0 left-0 p-5 flex flex-col justify-center text-white space-y-1 max-w-[70%]">
-                  <span className="text-[8px] tracking-widest font-bold text-champagne uppercase">Roopé Premium</span>
+                  <span className="text-[10px] tracking-widest font-extrabold text-champagne uppercase">Roopé Premium</span>
                   <h4 className="text-sm font-bold leading-tight">{slide.title}</h4>
-                  <p className="text-[10px] text-pearl/80 leading-normal font-light">{slide.sub}</p>
+                  <p className="text-[11.5px] text-pearl/80 leading-normal font-light">{slide.sub}</p>
                 </div>
               </Link>
             );
@@ -772,7 +772,7 @@ export default function HeroSection() {
                         <LayoutGrid className="w-6 h-6 text-[#B8922E]" />
                       </div>
                     </div>
-                    <span className="text-[9.5px] font-extrabold text-stone-warm mt-2 leading-tight min-h-[24px] flex items-center justify-center">
+                    <span className="text-[11px] font-extrabold text-stone-warm mt-2 leading-tight min-h-[24px] flex items-center justify-center">
                       All Services
                     </span>
                   </button>
@@ -796,12 +796,12 @@ export default function HeroSection() {
                       />
                     </div>
                     {service.badge && (
-                      <span className="absolute -top-1 -right-1.5 bg-[#B8922E] text-white text-[7.5px] font-extrabold px-1.5 py-0.5 rounded-full shadow-sm z-10 leading-none uppercase tracking-wide whitespace-nowrap">
+                      <span className="absolute -top-1 -right-1.5 bg-[#B8922E] text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded-full shadow-sm z-10 leading-none uppercase tracking-wide whitespace-nowrap">
                         {service.badge}
                       </span>
                     )}
                   </div>
-                  <span className="text-[9.5px] font-extrabold text-stone-warm mt-2 leading-tight min-h-[24px] flex items-center justify-center">
+                  <span className="text-[11px] font-extrabold text-stone-warm mt-2 leading-tight min-h-[24px] flex items-center justify-center">
                     {service.label}
                   </span>
                 </Link>
@@ -814,7 +814,7 @@ export default function HeroSection() {
         <div className="space-y-3 pt-2">
           <div className="flex flex-col">
             <h3 className="text-xs font-extrabold text-roope-primary uppercase tracking-wider">Thoughtful Curations</h3>
-            <p className="text-[9px] text-stone-warm/60">Of our finest luxury beauty experiences</p>
+            <p className="text-[10.5px] text-stone-warm/60">Of our finest luxury beauty experiences</p>
           </div>
           
           <div className="flex gap-4 overflow-x-auto pb-3 -mx-4 px-4 scrollbar-none snap-x snap-mandatory">
@@ -835,12 +835,12 @@ export default function HeroSection() {
                       unoptimized
                     />
                     {item.tag && (
-                      <span className="absolute top-2 left-2 bg-champagne-300 text-roope-primary text-[8px] font-extrabold px-1.5 py-0.5 rounded uppercase tracking-wider">
+                      <span className="absolute top-2 left-2 bg-champagne-300 text-roope-primary text-[9.5px] font-extrabold px-1.5 py-0.5 rounded uppercase tracking-wider">
                         {item.tag}
                       </span>
                     )}
                     {discount > 0 && (
-                      <span className="absolute top-2 right-2 bg-black/75 text-white text-[8px] font-extrabold px-1.5 py-0.5 rounded">
+                      <span className="absolute top-2 right-2 bg-black/75 text-white text-[9.5px] font-extrabold px-1.5 py-0.5 rounded">
                         -{discount}%
                       </span>
                     )}
@@ -848,21 +848,21 @@ export default function HeroSection() {
 
                   <div className="space-y-1">
                     <div className="flex items-center gap-1">
-                      <span className="text-[8px] text-[#B8922E] font-extrabold">★ {item.rating}</span>
-                      <span className="text-[8px] text-stone-warm/50 font-bold">({item.reviews})</span>
+                      <span className="text-[9.5px] text-[#B8922E] font-extrabold">★ {item.rating}</span>
+                      <span className="text-[9.5px] text-stone-warm/50 font-bold">({item.reviews})</span>
                     </div>
                     
-                    <h4 className="text-[10px] font-extrabold text-roope-primary line-clamp-1 leading-snug">
+                    <h4 className="text-[11.5px] font-extrabold text-roope-primary line-clamp-1 leading-snug">
                       {item.name}
                     </h4>
                     
                     <div className="flex items-center justify-between pt-1 border-t border-pearl-100">
                       <div>
-                        <span className="text-[10.5px] font-bold text-roope-primary">
+                        <span className="text-[12px] font-bold text-roope-primary">
                           {formatPrice(item.price)}
                         </span>
                         {item.originalPrice && (
-                          <span className="text-[8.5px] text-stone-warm/50 line-through ml-1">
+                          <span className="text-[10px] text-stone-warm/50 line-through ml-1">
                             {formatPrice(item.originalPrice)}
                           </span>
                         )}
@@ -871,7 +871,7 @@ export default function HeroSection() {
                       {item.id === "bridal-signature" || item.id === "airbrush-glam" ? (
                         <Link 
                           href={item.link}
-                          className="border border-[#B8922E] text-roope-primary text-[8px] font-extrabold px-2.5 py-1 rounded-lg uppercase tracking-wider hover:bg-champagne-300/10 transition-all"
+                          className="border border-[#B8922E] text-roope-primary text-[10px] font-extrabold px-2.5 py-1 rounded-lg uppercase tracking-wider hover:bg-champagne-300/10 transition-all"
                         >
                           Add
                         </Link>
@@ -880,12 +880,12 @@ export default function HeroSection() {
                           {(cart[item.id] || 0) === 0 ? (
                             <button
                               onClick={() => handleAddToCart(item.id)}
-                              className="border border-[#B8922E] text-roope-primary text-[8px] font-extrabold px-2.5 py-1 rounded-lg uppercase tracking-wider hover:bg-champagne-300/10 transition-all bg-white"
+                              className="border border-[#B8922E] text-roope-primary text-[10px] font-extrabold px-2.5 py-1 rounded-lg uppercase tracking-wider hover:bg-champagne-300/10 transition-all bg-white"
                             >
                               Add
                             </button>
                           ) : (
-                            <div className="flex items-center gap-1.5 bg-[#8B7D6B] text-white text-[8px] font-bold px-2 py-1 rounded-lg border border-[#8B7D6B] h-6">
+                            <div className="flex items-center gap-1.5 bg-[#8B7D6B] text-white text-[10px] font-bold px-2 py-1 rounded-lg border border-[#8B7D6B] h-6">
                               <button 
                                 onClick={() => handleRemoveFromCart(item.id)}
                                 className="w-3.5 h-3.5 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-xs font-semibold animate-scale-up"
@@ -915,7 +915,7 @@ export default function HeroSection() {
         <div className="space-y-3 pt-2">
           <div className="flex flex-col">
             <h3 className="text-xs font-extrabold text-roope-primary uppercase tracking-wider">Best Sellers & Combos</h3>
-            <p className="text-[9px] text-stone-warm/60">Popular doorstep grooming packages</p>
+            <p className="text-[10.5px] text-stone-warm/60">Popular doorstep grooming packages</p>
           </div>
           
           <div className="flex gap-4 overflow-x-auto pb-3 -mx-4 px-4 scrollbar-none snap-x snap-mandatory">
@@ -936,12 +936,12 @@ export default function HeroSection() {
                       unoptimized
                     />
                     {item.tag && (
-                      <span className="absolute top-2 left-2 bg-champagne-300 text-roope-primary text-[8px] font-extrabold px-1.5 py-0.5 rounded uppercase tracking-wider">
+                      <span className="absolute top-2 left-2 bg-champagne-300 text-roope-primary text-[9.5px] font-extrabold px-1.5 py-0.5 rounded uppercase tracking-wider">
                         {item.tag}
                       </span>
                     )}
                     {discount > 0 && (
-                      <span className="absolute top-2 right-2 bg-black/75 text-white text-[8px] font-extrabold px-1.5 py-0.5 rounded">
+                      <span className="absolute top-2 right-2 bg-black/75 text-white text-[9.5px] font-extrabold px-1.5 py-0.5 rounded">
                         -{discount}%
                       </span>
                     )}
@@ -949,21 +949,21 @@ export default function HeroSection() {
 
                   <div className="space-y-1">
                     <div className="flex items-center gap-1">
-                      <span className="text-[8px] text-[#B8922E] font-extrabold">★ {item.rating}</span>
-                      <span className="text-[8px] text-stone-warm/50 font-bold">({item.reviews})</span>
+                      <span className="text-[9.5px] text-[#B8922E] font-extrabold">★ {item.rating}</span>
+                      <span className="text-[9.5px] text-stone-warm/50 font-bold">({item.reviews})</span>
                     </div>
                     
-                    <h4 className="text-[10px] font-extrabold text-roope-primary line-clamp-1 leading-snug">
+                    <h4 className="text-[11.5px] font-extrabold text-roope-primary line-clamp-1 leading-snug">
                       {item.name}
                     </h4>
                     
                     <div className="flex items-center justify-between pt-1 border-t border-pearl-100">
                       <div>
-                        <span className="text-[10.5px] font-bold text-roope-primary">
+                        <span className="text-[12px] font-bold text-roope-primary">
                           {formatPrice(item.price)}
                         </span>
                         {item.originalPrice && (
-                          <span className="text-[8.5px] text-stone-warm/50 line-through ml-1">
+                          <span className="text-[10px] text-stone-warm/50 line-through ml-1">
                             {formatPrice(item.originalPrice)}
                           </span>
                         )}
@@ -973,12 +973,12 @@ export default function HeroSection() {
                         {(cart[item.id] || 0) === 0 ? (
                           <button
                             onClick={() => handleAddToCart(item.id)}
-                            className="border border-[#B8922E] text-roope-primary text-[8px] font-extrabold px-2.5 py-1 rounded-lg uppercase tracking-wider hover:bg-champagne-300/10 transition-all bg-white"
+                            className="border border-[#B8922E] text-roope-primary text-[10px] font-extrabold px-2.5 py-1 rounded-lg uppercase tracking-wider hover:bg-champagne-300/10 transition-all bg-white"
                           >
                             Add
                           </button>
                         ) : (
-                          <div className="flex items-center gap-1.5 bg-[#8B7D6B] text-white text-[8px] font-bold px-2 py-1 rounded-lg border border-[#8B7D6B] h-6">
+                          <div className="flex items-center gap-1.5 bg-[#8B7D6B] text-white text-[10px] font-bold px-2 py-1 rounded-lg border border-[#8B7D6B] h-6">
                             <button 
                               onClick={() => handleRemoveFromCart(item.id)}
                               className="w-3.5 h-3.5 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-xs font-semibold animate-scale-up"
@@ -1041,14 +1041,14 @@ export default function HeroSection() {
               disabled={isDetectingLocation}
               className="flex items-center gap-2.5 px-3 py-3 mb-5 rounded-xl border border-pearl-200/80 hover:border-[#B8922E] bg-white text-xs font-bold text-roope-primary transition-all text-left w-full disabled:opacity-50 shadow-sm"
             >
-              <span className="w-5 h-5 rounded-full bg-champagne-300/20 text-[#B8922E] flex items-center justify-center font-bold text-[10px]">
+              <span className="w-5 h-5 rounded-full bg-champagne-300/20 text-[#B8922E] flex items-center justify-center font-bold text-[11.5px]">
                 {isDetectingLocation ? "⏳" : "🎯"}
               </span>
               <span>{isDetectingLocation ? "Detecting location..." : "Use current location"}</span>
             </button>
 
             <div className="flex-1 overflow-y-auto space-y-1">
-              <p className="text-[9px] font-bold text-stone-warm/40 uppercase tracking-widest pl-2 mb-2 select-none">
+              <p className="text-[10.5px] font-bold text-stone-warm/40 uppercase tracking-widest pl-2 mb-2 select-none">
                 Available Areas (Indore)
               </p>
               {filteredAreas.map((area) => (
@@ -1060,7 +1060,7 @@ export default function HeroSection() {
                   <MapPin className="w-4 h-4 text-champagne-DEFAULT flex-shrink-0 group-hover:scale-110 transition-transform" />
                   <div className="flex-1 min-w-0">
                     <span className="block text-xs font-bold text-roope-primary">{area.split(",")[0]}</span>
-                    <span className="block text-[9px] text-stone-warm/50 truncate mt-0.5">{area}</span>
+                    <span className="block text-[10.5px] text-stone-warm/50 truncate mt-0.5">{area}</span>
                   </div>
                   <ChevronRight className="w-4 h-4 text-stone-warm/30 group-hover:text-roope-primary transition-colors" />
                 </button>
@@ -1134,12 +1134,12 @@ export default function HeroSection() {
                               unoptimized
                             />
                             {item.badge && (
-                              <span className="absolute -top-1 -right-1 bg-[#B8922E] text-white text-[6px] font-extrabold px-1 py-0.5 rounded-full shadow-sm z-10 leading-none uppercase tracking-wide">
+                              <span className="absolute -top-1 -right-1 bg-[#B8922E] text-white text-[8px] font-extrabold px-1 py-0.5 rounded-full shadow-sm z-10 leading-none uppercase tracking-wide">
                                 {item.badge}
                               </span>
                             )}
                           </div>
-                          <span className="text-[8.5px] font-extrabold text-stone-warm mt-1.5 leading-tight text-center line-clamp-2 w-full">
+                          <span className="text-[10.5px] font-extrabold text-stone-warm mt-1.5 leading-tight text-center line-clamp-2 w-full">
                             {item.label}
                           </span>
                         </Link>

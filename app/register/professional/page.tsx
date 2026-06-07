@@ -96,7 +96,7 @@ export default function ProfessionalRegisterPage() {
     return (
       <div 
         className="min-h-screen flex items-center justify-center px-6 pt-24 pb-12"
-        style={{ background: "linear-gradient(160deg, #F8F6F2 0%, #FAF6EC 100%)" }}
+        style={{ background: "linear-gradient(160deg, var(--pearl) 0%, var(--ivory) 100%)" }}
       >
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -136,7 +136,7 @@ export default function ProfessionalRegisterPage() {
   return (
     <div 
       className="min-h-screen pt-28 pb-24 px-6 flex items-center justify-center" 
-      style={{ background: "linear-gradient(160deg, #F8F6F2 0%, #FAF6EC 100%)" }}
+      style={{ background: "linear-gradient(160deg, var(--pearl) 0%, var(--ivory) 100%)" }}
     >
       <div className="max-w-2xl w-full">
         {/* Header */}

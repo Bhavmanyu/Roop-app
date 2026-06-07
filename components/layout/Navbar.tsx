@@ -322,7 +322,7 @@ export default function Navbar() {
                     transition={{ duration: 0.15 }}
                     className="absolute top-full left-0 right-0 mt-2 bg-white/95 border border-pearl-200 rounded-2xl shadow-xl p-2.5 z-50 text-left max-h-72 overflow-y-auto backdrop-blur-md"
                   >
-                    <p className="text-[9px] font-bold text-stone-warm/40 uppercase tracking-widest px-2.5 py-1.5 border-b border-pearl-100 mb-1 select-none">
+                    <p className="text-[10.5px] font-bold text-stone-warm/40 uppercase tracking-widest px-2.5 py-1.5 border-b border-pearl-100 mb-1 select-none">
                       Matching Services
                     </p>
                     {suggestions.map((sug) => (
@@ -334,7 +334,7 @@ export default function Navbar() {
                       >
                         <div className="flex flex-col min-w-0 text-left">
                           <span className="truncate">{sug.name}</span>
-                          <span className="text-[9px] text-stone-warm/40 font-normal">{sug.category}</span>
+                          <span className="text-[10.5px] text-stone-warm/40 font-normal">{sug.category}</span>
                         </div>
                         <span className="text-[#B8922E] font-medium flex-shrink-0 ml-2">
                           {sug.price >= 10000 ? "Free Consultation" : formatPrice(sug.price)}
@@ -467,7 +467,7 @@ export default function Navbar() {
                         <p className="text-xs font-bold text-roope-primary truncate">
                           {user.user_metadata?.full_name || "Roopé Client"}
                         </p>
-                        <p className="text-[10px] text-stone-warm/60 truncate mt-0.5">
+                        <p className="text-[11.5px] text-stone-warm/60 truncate mt-0.5">
                           {user.email}
                         </p>
                       </div>
@@ -559,7 +559,7 @@ export default function Navbar() {
                 aria-label="View Cart & Checkout"
               >
                 <ShoppingBag className="w-4 h-4 text-[#B8922E]" />
-                <span className="absolute -top-1 -right-1 bg-[#B8922E] text-white w-4.5 h-4.5 rounded-full flex items-center justify-center text-[8.5px] font-extrabold border border-white leading-none">
+                <span className="absolute -top-1 -right-1 bg-[#B8922E] text-white w-4.5 h-4.5 rounded-full flex items-center justify-center text-[10px] font-extrabold border border-white leading-none">
                   {cartCount}
                 </span>
               </Link>
@@ -617,7 +617,7 @@ export default function Navbar() {
                   >
                     {link.children ? (
                       <div className="mb-2">
-                        <p className="section-label py-2 border-b border-white/10 uppercase tracking-widest text-[9px] text-white/50">{link.label}</p>
+                        <p className="section-label py-2 border-b border-white/10 uppercase tracking-widest text-[11px] text-white/50">{link.label}</p>
                         {link.children.map((child) => (
                           <Link
                             key={child.href}
@@ -647,7 +647,7 @@ export default function Navbar() {
                     transition={{ delay: 0.3, duration: 0.4 }}
                     className="border-t border-white/10 mt-4 pt-4"
                   >
-                    <p className="text-white/60 text-[10px] mb-2 truncate font-medium">Logged in as {user.email}</p>
+                    <p className="text-white/60 text-[11.5px] mb-2 truncate font-medium">Logged in as {user.email}</p>
                     <Link
                       href="/profile/bookings"
                       className="block py-2.5 text-xs font-semibold text-white hover:text-champagne-DEFAULT transition-colors flex items-center gap-2"
