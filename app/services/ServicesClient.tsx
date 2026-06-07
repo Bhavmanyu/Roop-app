@@ -100,10 +100,10 @@ export default function ServicesPage() {
   const [cart, setCart] = useState<{ [id: string]: number }>({});
   const [mobileCartDrawerOpen, setMobileCartDrawerOpen] = useState(false);
 
-  // Google location select modal states
   const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
   const [activeLocation, setActiveLocation] = useState("63, Maharani Road, Siyaganj, Indore");
   const [locationSearch, setLocationSearch] = useState("");
+  const [isDetectingLocation, setIsDetectingLocation] = useState(false);
 
   // References for smooth scrolling category synchronization
   const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
@@ -248,6 +248,45 @@ export default function ServicesPage() {
     setActiveLocation(loc);
     localStorage.setItem("roope-location", loc);
     setIsLocationModalOpen(false);
+  };
+
+  // Detect location via GPS + reverse geocoding API
+  const handleDetectLocation = () => {
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by your browser.");
+      return;
+    }
+
+    setIsDetectingLocation(true);
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords;
+        try {
+          const res = await fetch(`/api/location/detect?lat=${latitude}&lng=${longitude}`);
+          const data = await res.json();
+          if (data.address) {
+            handleSelectLocation(data.address);
+          } else {
+            alert("Could not detect location. Please select manually.");
+          }
+        } catch (error) {
+          console.error("Detect location error:", error);
+          alert("Error detecting location. Please select manually.");
+        } finally {
+          setIsDetectingLocation(false);
+        }
+      },
+      (error) => {
+        console.error("Geolocation error:", error);
+        let errorMsg = "Unable to retrieve your location.";
+        if (error.code === error.PERMISSION_DENIED) {
+          errorMsg = "Location access was denied. Please check site permissions.";
+        }
+        alert(errorMsg);
+        setIsDetectingLocation(false);
+      },
+      { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
+    );
   };
 
   // Cart Metrics
@@ -1396,15 +1435,14 @@ export default function ServicesPage() {
 
               {/* Use Current GPS Location Row */}
               <button
-                onClick={() => {
-                  handleSelectLocation("63, Maharani Road, Siyaganj, Indore");
-                }}
-                className="flex items-center gap-2.5 px-3 py-3 rounded-xl hover:bg-champagne-300/5 text-xs font-bold text-roope-primary transition-all text-left"
+                onClick={handleDetectLocation}
+                disabled={isDetectingLocation}
+                className="flex items-center gap-2.5 px-3 py-3 rounded-xl hover:bg-champagne-300/5 text-xs font-bold text-roope-primary transition-all text-left w-full disabled:opacity-50"
               >
                 <span className="w-5 h-5 rounded-full bg-champagne-300/20 text-[#B8922E] flex items-center justify-center font-bold text-[10px]">
-                  🎯
+                  {isDetectingLocation ? "⏳" : "🎯"}
                 </span>
-                <span>Use current location</span>
+                <span>{isDetectingLocation ? "Detecting location..." : "Use current location"}</span>
               </button>
 
               {/* Suggestions List */}

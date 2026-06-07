@@ -168,6 +168,7 @@ export default function HeroSection() {
   const [isAllServicesModalOpen, setIsAllServicesModalOpen] = useState(false);
   const [activeLocation, setActiveLocation] = useState("63, Maharani Road, Siyaganj, Indore");
   const [locationSearch, setLocationSearch] = useState("");
+  const [isDetectingLocation, setIsDetectingLocation] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [cart, setCart] = useState<{ [id: string]: number }>({});
 
@@ -422,6 +423,45 @@ export default function HeroSection() {
     setActiveLocation(loc);
     localStorage.setItem("roope-location", loc);
     setIsLocationModalOpen(false);
+  };
+
+  // Detect location via GPS + reverse geocoding API
+  const handleDetectLocation = () => {
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by your browser.");
+      return;
+    }
+
+    setIsDetectingLocation(true);
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords;
+        try {
+          const res = await fetch(`/api/location/detect?lat=${latitude}&lng=${longitude}`);
+          const data = await res.json();
+          if (data.address) {
+            handleSelectLocation(data.address);
+          } else {
+            alert("Could not detect location. Please select manually.");
+          }
+        } catch (error) {
+          console.error("Detect location error:", error);
+          alert("Error detecting location. Please select manually.");
+        } finally {
+          setIsDetectingLocation(false);
+        }
+      },
+      (error) => {
+        console.error("Geolocation error:", error);
+        let errorMsg = "Unable to retrieve your location.";
+        if (error.code === error.PERMISSION_DENIED) {
+          errorMsg = "Location access was denied. Please check site permissions.";
+        }
+        alert(errorMsg);
+        setIsDetectingLocation(false);
+      },
+      { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
+    );
   };
 
   const handleSearchSubmit = (e: React.FormEvent) => {
@@ -984,7 +1024,7 @@ export default function HeroSection() {
               </button>
             </div>
 
-            <div className="relative mb-5">
+            <div className="relative mb-4">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-warm/40" />
               <input
                 type="text"
@@ -994,6 +1034,18 @@ export default function HeroSection() {
                 className="w-full bg-[#FAF9F6] border border-pearl-300 pl-10 pr-4 py-3 rounded-xl text-xs font-semibold text-roope-primary outline-none focus:border-champagne-DEFAULT transition-all"
               />
             </div>
+
+            {/* Locate Me GPS Row */}
+            <button
+              onClick={handleDetectLocation}
+              disabled={isDetectingLocation}
+              className="flex items-center gap-2.5 px-3 py-3 mb-5 rounded-xl border border-pearl-200/80 hover:border-[#B8922E] bg-white text-xs font-bold text-roope-primary transition-all text-left w-full disabled:opacity-50 shadow-sm"
+            >
+              <span className="w-5 h-5 rounded-full bg-champagne-300/20 text-[#B8922E] flex items-center justify-center font-bold text-[10px]">
+                {isDetectingLocation ? "⏳" : "🎯"}
+              </span>
+              <span>{isDetectingLocation ? "Detecting location..." : "Use current location"}</span>
+            </button>
 
             <div className="flex-1 overflow-y-auto space-y-1">
               <p className="text-[9px] font-bold text-stone-warm/40 uppercase tracking-widest pl-2 mb-2 select-none">
