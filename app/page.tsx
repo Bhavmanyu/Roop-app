@@ -1,12 +1,8 @@
 import HeroSection from "@/components/home/HeroSection";
 import HomeServicesSection from "@/components/home/HomeServicesSection";
-import FeaturedTransformations from "@/components/home/FeaturedTransformations";
-import SignaturePackages from "@/components/home/SignaturePackages";
+import DesktopCuratedAndCombos from "@/components/home/DesktopCuratedAndCombos";
 import WhyRoope from "@/components/home/WhyRoope";
-import TrustSection from "@/components/home/TrustSection";
 import ReviewsSection from "@/components/home/ReviewsSection";
-import OffersSection from "@/components/home/OffersSection";
-import BookingCTA from "@/components/home/BookingCTA";
 
 export default function Home() {
   return (
@@ -22,13 +18,9 @@ export default function Home() {
       <div className="hidden lg:block">
         <HeroSection />
         <HomeServicesSection />
+        <DesktopCuratedAndCombos />
         <WhyRoope />
-        <TrustSection />
-        <SignaturePackages />
-        <FeaturedTransformations />
-        <OffersSection />
         <ReviewsSection />
-        <BookingCTA />
       </div>
     </>
   );

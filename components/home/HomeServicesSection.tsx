@@ -101,7 +101,7 @@ export default function HomeServicesSection() {
                 <Link
                   key={idx}
                   href={cat.href}
-                  className="bg-white rounded-2xl border border-pearl-200/60 p-3.5 flex flex-col items-center text-center hover:border-champagne-DEFAULT hover:shadow-luxury transition-all duration-300 group"
+                  className="bg-white rounded-2xl border border-pearl-200/60 p-3.5 flex flex-col items-center text-center hover:border-champagne-DEFAULT hover:shadow-luxury hover:-translate-y-1 transition-all duration-300 group"
                 >
                   <div className="relative w-14 h-14 rounded-full overflow-hidden bg-pearl-200 border border-pearl-200 flex-shrink-0 mb-2.5">
                     <Image
@@ -151,42 +151,42 @@ export default function HomeServicesSection() {
 
         {/* Right Column: 4-Photo Collage */}
         <div className="col-span-5 grid grid-cols-2 gap-4">
-          <div className="relative h-64 rounded-3xl overflow-hidden shadow-luxury border border-pearl-200">
+          <div className="relative h-64 rounded-3xl overflow-hidden shadow-luxury border border-pearl-200 group">
             <Image
               src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400"
               alt="Women's Salon"
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
               sizes="200px"
               unoptimized
             />
           </div>
-          <div className="relative h-64 rounded-3xl overflow-hidden shadow-luxury border border-pearl-200 mt-8">
+          <div className="relative h-64 rounded-3xl overflow-hidden shadow-luxury border border-pearl-200 mt-8 group">
             <Image
               src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=400"
               alt="Men's Grooming"
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
               sizes="200px"
               unoptimized
             />
           </div>
-          <div className="relative h-64 rounded-3xl overflow-hidden shadow-luxury border border-pearl-200 -mt-8">
+          <div className="relative h-64 rounded-3xl overflow-hidden shadow-luxury border border-pearl-200 -mt-8 group">
             <Image
               src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400"
               alt="Pedicure & Manicure"
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
               sizes="200px"
               unoptimized
             />
           </div>
-          <div className="relative h-64 rounded-3xl overflow-hidden shadow-luxury border border-pearl-200">
+          <div className="relative h-64 rounded-3xl overflow-hidden shadow-luxury border border-pearl-200 group">
             <Image
               src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400"
               alt="Bridal Glam"
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
               sizes="200px"
               unoptimized
             />
