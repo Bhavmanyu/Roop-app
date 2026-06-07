@@ -749,7 +749,7 @@ export default function HeroSection() {
                 key={idx}
                 onClick={() => setActiveSlide(idx)}
                 className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                  idx === activeSlide ? "bg-white w-3" : "bg-white/40"
+                  idx === activeSlide ? "bg-[#FFFFFF] w-3" : "bg-[#FFFFFF]/40"
                 }`}
               />
             ))}

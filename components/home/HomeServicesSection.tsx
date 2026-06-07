@@ -219,7 +219,7 @@ export default function HomeServicesSection() {
                 key={idx}
                 onClick={() => setActiveSlide(idx)}
                 className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                  idx === activeSlide ? "bg-white w-5" : "bg-white/40 hover:bg-white/60"
+                  idx === activeSlide ? "bg-[#FFFFFF] w-5" : "bg-[#FFFFFF]/40 hover:bg-[#FFFFFF]/60"
                 }`}
               />
             ))}

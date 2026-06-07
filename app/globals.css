@@ -438,8 +438,19 @@ html.dark {
   .bg-pearl-200\/60 {
     background-color: rgba(255, 255, 255, 0.04) !important;
   }
-  .bg-\[\#FAF9F6\] {
+  /* Page wrappers and main bodies using bg-[#FAF9F6] should be dark canvas */
+  main, .min-h-screen.bg-\[\#FAF9F6\], .fixed.inset-0.bg-\[\#FAF9F6\] {
+    background-color: var(--pearl) !important;
+  }
+  /* Small cards, inputs, and drawers using bg-[#FAF9F6] should be elevated */
+  input.bg-\[\#FAF9F6\],
+  button.bg-\[\#FAF9F6\],
+  div.bg-\[\#FAF9F6\]:not(.min-h-screen):not(.fixed) {
     background-color: var(--ivory-50) !important;
+  }
+  /* Specific page header with opacity */
+  .bg-\[\#FAF9F6\]\/90 {
+    background-color: rgba(17, 15, 14, 0.9) !important;
   }
   .bg-\[\#F3E8C8\]\/40 {
     background-color: rgba(229, 193, 88, 0.08) !important;
