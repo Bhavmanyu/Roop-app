@@ -37,8 +37,7 @@ export default function SignaturePackages() {
     <section
       ref={ref}
       id="signature-packages"
-      className="py-12 md:py-24 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #F8F6F2 0%, #FAF6EC 100%)" }}
+      className="py-12 md:py-24 overflow-hidden bg-gradient-to-b from-pearl to-ivory"
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <motion.div

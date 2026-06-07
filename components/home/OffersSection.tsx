@@ -73,8 +73,7 @@ export default function OffersSection() {
     <section
       ref={ref}
       id="offers"
-      className="py-12 md:py-24 px-4 md:px-6 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #FAF6EC 0%, #F8F6F2 100%)" }}
+      className="py-12 md:py-24 px-4 md:px-6 overflow-hidden bg-gradient-to-b from-ivory to-pearl"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -113,7 +112,7 @@ export default function OffersSection() {
                 style={{
                   background: offer.color === "gold"
                     ? "linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(201,168,76,0.04) 100%)"
-                    : "rgba(255,255,255,0.8)",
+                    : "var(--glass-bg)",
                 }}>
                 {offer.urgent && (
                   <div className="absolute -top-3 left-6">

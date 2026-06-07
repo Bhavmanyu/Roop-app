@@ -133,6 +133,24 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${inter.variable} ${instrumentSans.variable}`}>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('roope-theme');
+                  if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className="bg-pearl font-sans antialiased">
         <SplashLoader />
         <SmoothScroll>

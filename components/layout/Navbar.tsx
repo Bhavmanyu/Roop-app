@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, User, LogOut, Calendar, Shield, Search, ShoppingBag } from "lucide-react";
+import { Menu, X, ChevronDown, User, LogOut, Calendar, Shield, Search, ShoppingBag, Sun, Moon } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import AuthModal from "@/components/auth/AuthModal";
 import { services, bridalPackages, eventPackages } from "@/lib/data";
@@ -35,6 +35,26 @@ export default function Navbar() {
   const [suggestions, setSuggestions] = useState<any[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  // Sync theme status on mount
+  useEffect(() => {
+    const isDark = document.documentElement.classList.contains("dark");
+    setTheme(isDark ? "dark" : "light");
+  }, []);
+
+  const toggleTheme = () => {
+    const isDark = document.documentElement.classList.contains("dark");
+    if (isDark) {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("roope-theme", "light");
+      setTheme("light");
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("roope-theme", "dark");
+      setTheme("dark");
+    }
+  };
 
   // Sync cart count from localStorage and listen to updates
   useEffect(() => {
@@ -401,6 +421,29 @@ export default function Navbar() {
             >
               Support
             </Link>
+            {/* Theme Toggle Button (Desktop) */}
+            <button
+              onClick={toggleTheme}
+              className="w-9 h-9 rounded-full bg-pearl-200/60 border border-stone-warm/15 hover:border-champagne-DEFAULT flex items-center justify-center text-stone-warm hover:text-roope-primary hover:bg-white transition-all shadow-sm cursor-pointer mr-1 relative overflow-hidden"
+              title={theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={theme}
+                  initial={{ y: 15, opacity: 0, rotate: 40 }}
+                  animate={{ y: 0, opacity: 1, rotate: 0 }}
+                  exit={{ y: -15, opacity: 0, rotate: -40 }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                >
+                  {theme === "light" ? (
+                    <Moon className="w-4 h-4 text-stone-warm" />
+                  ) : (
+                    <Sun className="w-4 h-4 text-[#E5C158]" />
+                  )}
+                </motion.div>
+              </AnimatePresence>
+            </button>
+
              {/* Auth Section - Premium User Icon Avatar */}
              {user ? (
               <div className="relative" ref={dropdownRef}>
@@ -478,6 +521,19 @@ export default function Navbar() {
 
           {/* Mobile Icons Header Row - Clean and uncluttered */}
           <div className="flex md:hidden items-center gap-2.5">
+            {/* Theme Toggle Button (Mobile) */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-xl hover:bg-pearl text-roope-primary transition-colors cursor-pointer"
+              aria-label="Toggle theme"
+            >
+              {theme === "light" ? (
+                <Moon className="w-4.5 h-4.5 text-stone-warm" />
+              ) : (
+                <Sun className="w-4.5 h-4.5 text-[#E5C158]" />
+              )}
+            </button>
+
             {/* Mobile Search Button */}
             <button
               onClick={() => {

@@ -484,7 +484,7 @@ export default function HeroSection() {
         className="relative min-h-screen hidden lg:flex items-center overflow-hidden"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        style={{ background: "linear-gradient(160deg, #FFFFFF 0%, #F8F6F2 35%, #FAF6EC 65%, #F3E8C8 100%)" }}
+        style={{ background: "linear-gradient(160deg, var(--pearl-50) 0%, var(--pearl) 35%, var(--ivory) 65%, var(--champagne-200) 100%)" }}
       >
         {/* Background Image Layer */}
         <div className="absolute inset-0 pointer-events-none">
@@ -498,7 +498,7 @@ export default function HeroSection() {
           />
           {/* Gradient overlay */}
           <div className="absolute inset-0"
-            style={{ background: "linear-gradient(to right, rgba(248,246,242,0.95) 40%, rgba(248,246,242,0.4) 100%)" }} />
+            style={{ background: "var(--hero-overlay)" }} />
         </div>
 
         {/* Ambient orbs */}
@@ -533,7 +533,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="font-display text-5xl md:text-7xl lg:text-8xl font-light leading-tight mb-6"
-              style={{ letterSpacing: "-0.025em", color: "#1A1612" }}
+              style={{ letterSpacing: "-0.025em", color: "var(--roope-primary)" }}
             >
               Luxury Beauty
               <span className="block text-gradient-gold italic font-light">

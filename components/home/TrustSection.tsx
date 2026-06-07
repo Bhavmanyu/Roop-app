@@ -43,7 +43,7 @@ export default function TrustSection() {
       ref={ref}
       id="trust"
       className="py-10 md:py-20 px-4 md:px-6 overflow-hidden"
-      style={{ background: "linear-gradient(135deg, #FAF6EC 0%, #F3E8C8 100%)" }}
+      style={{ background: "linear-gradient(135deg, var(--ivory) 0%, var(--ivory-300) 100%)" }}
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
