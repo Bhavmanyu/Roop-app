@@ -43,22 +43,22 @@ export default function WhyRoope() {
         </div>
 
         {/* DESKTOP VIEW */}
-        <div className="hidden lg:grid lg:grid-cols-3 gap-6">
+        <div className="hidden lg:grid lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {trustPoints.map((point, i) => (
             <motion.div
               key={point.title}
-              initial={{ opacity: 0, y: 28 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="group"
+              className="bg-white border border-pearl-200 rounded-3xl p-6 flex flex-col items-center justify-center text-center aspect-square shadow-sm hover:border-[#B8922E] hover:shadow-luxury transition-all duration-300 group cursor-default"
             >
-              <div className="card-luxury p-4 md:p-7 h-full group-hover:shadow-luxury-lg">
-                <div className="text-2xl mb-2.5 md:text-3xl md:mb-5">{point.icon}</div>
-                <h3 className="font-display text-sm font-semibold md:text-xl md:font-light text-roope-primary mb-1.5 md:mb-3 leading-tight">
-                  {point.title}
-                </h3>
-                <p className="text-[11px] md:text-sm text-stone-warm/80 leading-relaxed">{point.desc}</p>
-              </div>
+              <div className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">{point.icon}</div>
+              <h4 className="text-xs font-extrabold text-roope-primary uppercase tracking-wider mb-2 leading-tight">
+                {point.title}
+              </h4>
+              <p className="text-xs text-stone-warm/75 leading-relaxed line-clamp-4">
+                {point.desc}
+              </p>
             </motion.div>
           ))}
         </div>
