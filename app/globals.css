@@ -434,6 +434,12 @@ html.dark {
   .bg-pearl-200\/60 {
     background-color: rgba(255, 255, 255, 0.04) !important;
   }
+  .bg-\[\#FAF9F6\] {
+    background-color: var(--pearl) !important;
+  }
+  .bg-\[\#F3E8C8\]\/40 {
+    background-color: rgba(229, 193, 88, 0.08) !important;
+  }
   
   /* Shadows */
   .shadow-sm, 
@@ -445,6 +451,7 @@ html.dark {
   }
 
   /* Borders */
+  .border-pearl-100,
   .border-pearl-200, 
   .border-pearl-200\/80,
   .border-pearl-200\/50,
@@ -454,6 +461,9 @@ html.dark {
   }
   .border-pearl-300 {
     border-color: rgba(255, 255, 255, 0.12) !important;
+  }
+  .border-pearl-300\/40 {
+    border-color: rgba(255, 255, 255, 0.06) !important;
   }
   .hover\:border-stone-warm\/15:hover {
     border-color: rgba(255, 255, 255, 0.15) !important;
