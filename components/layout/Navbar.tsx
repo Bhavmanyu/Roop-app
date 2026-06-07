@@ -424,7 +424,7 @@ export default function Navbar() {
             {/* Theme Toggle Button (Desktop) */}
             <button
               onClick={toggleTheme}
-              className="w-9 h-9 rounded-full bg-pearl-200/60 border border-stone-warm/15 hover:border-champagne-DEFAULT flex items-center justify-center text-stone-warm hover:text-roope-primary hover:bg-white transition-all shadow-sm cursor-pointer mr-1 relative overflow-hidden"
+              className="theme-toggle-btn mr-1"
               title={theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
             >
               <AnimatePresence mode="wait">
@@ -436,9 +436,9 @@ export default function Navbar() {
                   transition={{ duration: 0.2, ease: "easeInOut" }}
                 >
                   {theme === "light" ? (
-                    <Moon className="w-4 h-4 text-stone-warm" />
+                    <Moon className="w-4 h-4" />
                   ) : (
-                    <Sun className="w-4 h-4 text-[#E5C158]" />
+                    <Sun className="w-4 h-4" />
                   )}
                 </motion.div>
               </AnimatePresence>
@@ -524,13 +524,13 @@ export default function Navbar() {
             {/* Theme Toggle Button (Mobile) */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-xl hover:bg-pearl text-roope-primary transition-colors cursor-pointer"
+              className="theme-toggle-btn-mobile flex items-center justify-center"
               aria-label="Toggle theme"
             >
               {theme === "light" ? (
-                <Moon className="w-4.5 h-4.5 text-stone-warm" />
+                <Moon className="w-4.5 h-4.5" />
               ) : (
-                <Sun className="w-4.5 h-4.5 text-[#E5C158]" />
+                <Sun className="w-4.5 h-4.5" />
               )}
             </button>
 
