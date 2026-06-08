@@ -173,6 +173,8 @@ export default function ServicesPage() {
     const savedLoc = localStorage.getItem("roope-location");
     if (savedLoc) {
       setActiveLocation(savedLoc);
+    } else {
+      setIsLocationModalOpen(true);
     }
 
     // Client-side safe search parameter parser to avoid Next.js static de-optimization

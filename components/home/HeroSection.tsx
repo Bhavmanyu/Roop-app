@@ -364,6 +364,8 @@ export default function HeroSection() {
     const savedLoc = localStorage.getItem("roope-location");
     if (savedLoc) {
       setActiveLocation(savedLoc);
+    } else {
+      setIsLocationModalOpen(true);
     }
   }, []);
 

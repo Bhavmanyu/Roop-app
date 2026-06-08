@@ -37,10 +37,27 @@ export default function Navbar() {
   const [cartCount, setCartCount] = useState(0);
   const [theme, setTheme] = useState<"light" | "dark">("light");
 
-  // Sync theme status on mount
+  // Sync theme status on mount and listen to device preferences
   useEffect(() => {
     const isDark = document.documentElement.classList.contains("dark");
     setTheme(isDark ? "dark" : "light");
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleSystemThemeChange = (e: MediaQueryListEvent) => {
+      const userTheme = localStorage.getItem("roope-theme");
+      if (!userTheme) {
+        if (e.matches) {
+          document.documentElement.classList.add("dark");
+          setTheme("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+          setTheme("light");
+        }
+      }
+    };
+
+    mediaQuery.addEventListener("change", handleSystemThemeChange);
+    return () => mediaQuery.removeEventListener("change", handleSystemThemeChange);
   }, []);
 
   const toggleTheme = () => {
@@ -534,22 +551,7 @@ export default function Navbar() {
               )}
             </button>
 
-            {/* Mobile Search Button */}
-            <button
-              onClick={() => {
-                if (pathname !== "/services") {
-                  router.push("/services?search=");
-                } else {
-                  // Direct focus to services list search input
-                  document.querySelector("input[placeholder='Search premium services...']")?.scrollIntoView({ behavior: "smooth", block: "center" });
-                  (document.querySelector("input[placeholder='Search premium services...']") as HTMLInputElement)?.focus();
-                }
-              }}
-              className="p-2 rounded-xl hover:bg-pearl text-roope-primary transition-colors"
-              aria-label="Search"
-            >
-              <Search className="w-4.5 h-4.5" />
-            </button>
+
 
             {/* Mobile Cart Button */}
             {cartCount > 0 && (
