@@ -22,9 +22,9 @@ export default function ReviewsPage() {
     "@context": "https://schema.org",
     "@type": "BeautySalon",
     "name": "Roopé",
-    "image": "https://roope.in/images/hero_bridal.png",
-    "@id": "https://roope.in/#organization",
-    "url": "https://roope.in",
+    "image": "https://roope.beauty/images/hero_bridal.png",
+    "@id": "https://roope.beauty/#organization",
+    "url": "https://roope.beauty",
     "telephone": "+919876543210",
     "priceRange": "₹₹",
     "address": {

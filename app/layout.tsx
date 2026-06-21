@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     title: "Roopé — Luxury Beauty Services, Reimagined",
     description:
       "Professional bridal glam, event styling, and beauty crews at transparent, accessible pricing. India's most trusted luxury beauty-tech platform.",
-    url: "https://roope.in",
+    url: "https://roope.beauty",
     siteName: "Roopé",
     images: [
       {
@@ -94,9 +94,9 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "BeautySalon",
     "name": "Roopé",
-    "image": "https://roope.in/images/hero_bridal.png",
-    "@id": "https://roope.in/#organization",
-    "url": "https://roope.in",
+    "image": "https://roope.beauty/images/hero_bridal.png",
+    "@id": "https://roope.beauty/#organization",
+    "url": "https://roope.beauty",
     "telephone": "+919876543210",
     "priceRange": "₹₹",
     "address": {

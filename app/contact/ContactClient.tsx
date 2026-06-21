@@ -25,7 +25,7 @@ export default function ContactPage() {
 
   const phone = process.env.NEXT_PUBLIC_BUSINESS_PHONE || "+91 98765 43210";
   const whatsapp = process.env.NEXT_PUBLIC_BUSINESS_WHATSAPP || "919876543210";
-  const email = process.env.NEXT_PUBLIC_BUSINESS_EMAIL || "hello@roope.in";
+  const email = process.env.NEXT_PUBLIC_BUSINESS_EMAIL || "hello@roope.beauty";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

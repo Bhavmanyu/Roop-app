@@ -28,7 +28,7 @@ export default function ServicesPage() {
     "provider": {
       "@type": "LocalBusiness",
       "name": "Roopé",
-      "image": "https://roope.in/images/hero_bridal.png",
+      "image": "https://roope.beauty/images/hero_bridal.png",
       "telephone": "+919876543210",
       "priceRange": "₹₹",
       "address": {

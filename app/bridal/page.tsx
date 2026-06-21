@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: "Ultra-Premium Bridal & Wedding Makeup Packages in Indore — Roopé",
     description:
       "Indore's most premium bridal makeup packages. Airbrush, HD, and multi-day wedding coverage featuring certified bridal artists using luxury products.",
-    url: "https://roope.in/bridal",
+    url: "https://roope.beauty/bridal",
     images: [
       {
         url: "/images/hero_bridal.png",
